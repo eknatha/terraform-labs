@@ -237,7 +237,39 @@ footer span{color:var(--accent)}
 .prog-item{display:flex;align-items:center;gap:7px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted)}
 .prog-dot{width:8px;height:8px;border-radius:50%}
 
-/* FLASHCARD DRILL */
+/* SNIPPETS */
+.snip-toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:18px}
+.snip-search{flex:1;min-width:180px;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:9px 14px;font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--text);outline:none;transition:border-color 0.2s}
+.snip-search:focus{border-color:rgba(0,229,255,0.4)}
+.snip-search::placeholder{color:var(--muted)}
+.snip-filters{display:flex;gap:6px;flex-wrap:wrap}
+.snip-filter{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;padding:5px 11px;border-radius:3px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all 0.2s;white-space:nowrap}
+.snip-filter:hover{color:var(--text);border-color:rgba(0,229,255,0.3)}
+.snip-filter.active{background:rgba(0,229,255,0.08);color:var(--accent);border-color:rgba(0,229,255,0.35)}
+.snip-stats{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);white-space:nowrap}
+.snip-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.snip-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;transition:all 0.2s;display:flex;flex-direction:column}
+.snip-card:hover{border-color:rgba(0,229,255,0.28);transform:translateY(-2px)}
+.snip-header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 10px;gap:10px}
+.snip-title{font-family:'Orbitron',monospace;font-size:0.82rem;font-weight:700;color:#fff;flex:1;min-width:0}
+.snip-badges{display:flex;gap:5px;flex-shrink:0;align-items:center}
+.snip-badge{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:1px;padding:2px 7px;border-radius:2px}
+.sb-aws{background:rgba(245,158,11,0.12);color:var(--accent4);border:1px solid rgba(245,158,11,0.22)}
+.sb-gcp{background:rgba(16,185,129,0.1);color:var(--accent3);border:1px solid rgba(16,185,129,0.2)}
+.sb-azure{background:rgba(0,229,255,0.08);color:var(--accent);border:1px solid rgba(0,229,255,0.18)}
+.sb-multi{background:rgba(124,58,237,0.1);color:#a78bfa;border:1px solid rgba(124,58,237,0.2)}
+.sb-type{background:rgba(100,116,139,0.1);color:var(--muted);border:1px solid rgba(100,116,139,0.18)}
+.snip-desc{font-size:0.82rem;color:#94a3b8;padding:0 16px 10px;line-height:1.5}
+.snip-code-wrap{position:relative;margin:0 10px 10px;flex:1}
+.snip-code{background:#020610;border:1px solid rgba(0,229,255,0.1);border-radius:6px;padding:12px 14px;font-family:'Share Tech Mono',monospace;font-size:0.78rem;color:#94a3b8;line-height:1.7;overflow-x:auto;white-space:pre;max-height:200px;overflow-y:auto}
+.snip-code .kw{color:#a78bfa}.snip-code .key{color:var(--accent)}.snip-code .str{color:var(--accent4)}.snip-code .cmt{color:#334155}.snip-code .val{color:var(--accent3)}
+.snip-copy-btn{position:absolute;top:8px;right:8px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;padding:3px 9px;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.2);border-radius:3px;color:var(--accent);cursor:pointer;transition:all 0.2s}
+.snip-copy-btn:hover{background:rgba(0,229,255,0.16)}
+.snip-copy-btn.copied{background:rgba(16,185,129,0.12);border-color:rgba(16,185,129,0.3);color:var(--accent3)}
+.snip-footer{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;border-top:1px solid var(--border)}
+.snip-cat-tag{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--muted)}
+.snip-xp{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--accent4)}
+.snip-empty{text-align:center;padding:60px 20px;font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:1px;grid-column:1/-1}
 .drill-hud{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin-bottom:24px}
 .drill-stat{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:56px}
 .drill-stat-val{font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:700;color:var(--accent)}
@@ -395,6 +427,7 @@ footer span{color:var(--accent)}
   <button class="tab-btn" onclick="switchTab('skilltree')" id="tab-skilltree">🌿 SKILL TREE</button>
   <button class="tab-btn" onclick="switchTab('simulate')" id="tab-simulate">⚡ SIMULATE</button>
   <button class="tab-btn" onclick="switchTab('drill')" id="tab-drill">🃏 DRILL</button>
+  <button class="tab-btn" onclick="switchTab('snippets')" id="tab-snippets">📋 SNIPPETS</button>
   <button class="tab-btn" onclick="switchTab('badges')" id="tab-badges">🏅 BADGES</button>
   <button class="tab-btn" onclick="switchTab('leaderboard')" id="tab-leaderboard">🏆 LEADERBOARD</button>
   <button class="tab-btn" onclick="switchTab('dashboard')" id="tab-dashboard">📊 DASHBOARD</button>
@@ -457,6 +490,32 @@ footer span{color:var(--accent)}
   <div class="stats-strip" id="statsStrip"></div>
   <span class="sec-label" style="margin-top:20px">// ACTIVITY LOG</span>
   <div id="actLog" style="display:flex;flex-direction:column;gap:7px;margin-top:10px"></div>
+</div>
+
+<!-- SNIPPETS -->
+<div class="tab-content" id="content-snippets">
+  <span class="sec-label">// HCL SNIPPET LIBRARY</span>
+  <div class="sec-title">Copy-Paste Terraform Snippets</div>
+  <p class="sec-intro">62 production-ready HCL snippets across AWS, GCP, Azure, and multi-cloud. Search or filter by provider and type. Each copy earns +2 XP.</p>
+
+  <div class="snip-toolbar">
+    <input class="snip-search" id="snipSearch" type="text" placeholder="Search snippets... (e.g. vpc, backend, iam)" oninput="renderSnippets()">
+    <div class="snip-filters" id="snipFilters">
+      <button class="snip-filter active" onclick="setSnipFilter('all',this)">ALL</button>
+      <button class="snip-filter" onclick="setSnipFilter('aws',this)">AWS</button>
+      <button class="snip-filter" onclick="setSnipFilter('gcp',this)">GCP</button>
+      <button class="snip-filter" onclick="setSnipFilter('azure',this)">AZURE</button>
+      <button class="snip-filter" onclick="setSnipFilter('state',this)">STATE</button>
+      <button class="snip-filter" onclick="setSnipFilter('networking',this)">NETWORKING</button>
+      <button class="snip-filter" onclick="setSnipFilter('compute',this)">COMPUTE</button>
+      <button class="snip-filter" onclick="setSnipFilter('iam',this)">IAM</button>
+      <button class="snip-filter" onclick="setSnipFilter('cicd',this)">CI/CD</button>
+      <button class="snip-filter" onclick="setSnipFilter('security',this)">SECURITY</button>
+    </div>
+    <span class="snip-stats" id="snipStats">62 snippets</span>
+  </div>
+
+  <div class="snip-grid" id="snipGrid"></div>
 </div>
 
 <!-- DRILL -->
@@ -767,6 +826,7 @@ function switchTab(id){
   if(id==='badges') renderBadges();
   if(id==='dashboard') renderDash();
   if(id==='drill') initDrill();
+  if(id==='snippets') renderSnippets();
 }
 
 // ──────────────────────────────────────────────
@@ -1413,6 +1473,990 @@ function buildDrillHTML(){
       <button class="btn btn-success btn-sm" onclick="drillAnswer(true)">&#x2713; GOT IT  +5 XP</button>
     </div>
   `;
+}
+
+// ──────────────────────────────────────────────
+// HCL SNIPPET LIBRARY DATA (62 snippets)
+// ──────────────────────────────────────────────
+const SNIPPETS = [
+  // ── STATE BACKENDS ──
+  {id:'sn01',title:'S3 Remote Backend',provider:'aws',type:'state',
+   desc:'S3 backend with DynamoDB locking, encryption, and versioning.',
+   code:`terraform {
+  backend "s3" {
+    bucket         = var.state_bucket
+    key            = "env/terraform.tfstate"
+    region         = var.region
+    dynamodb_table = var.lock_table
+    encrypt        = true
+  }
+}`},
+  {id:'sn02',title:'GCS Remote Backend',provider:'gcp',type:'state',
+   desc:'Google Cloud Storage backend with state locking via GCS.',
+   code:`terraform {
+  backend "gcs" {
+    bucket = var.state_bucket
+    prefix = "terraform/state"
+  }
+}`},
+  {id:'sn03',title:'Azure Blob Backend',provider:'azure',type:'state',
+   desc:'Azure Storage Account backend for remote state.',
+   code:`terraform {
+  backend "azurerm" {
+    resource_group_name  = var.rg_name
+    storage_account_name = var.sa_name
+    container_name       = "tfstate"
+    key                  = "prod.terraform.tfstate"
+  }
+}`},
+  {id:'sn04',title:'Required Providers Block',provider:'multi',type:'state',
+   desc:'Lock provider versions to prevent surprise upgrades.',
+   code:`terraform {
+  required_version = ">= 1.5"
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+    google = {
+      source  = "hashicorp/google"
+      version = "~> 5.0"
+    }
+  }
+}`},
+
+  // ── AWS NETWORKING ──
+  {id:'sn05',title:'AWS VPC with DNS',provider:'aws',type:'networking',
+   desc:'VPC with DNS hostnames and support enabled.',
+   code:`resource "aws_vpc" "main" {
+  cidr_block           = var.vpc_cidr
+  enable_dns_hostnames = true
+  enable_dns_support   = true
+  tags = merge(var.tags, { Name = var.name })
+}`},
+  {id:'sn06',title:'AWS Public Subnet',provider:'aws',type:'networking',
+   desc:'Public subnet with map_public_ip_on_launch.',
+   code:`resource "aws_subnet" "public" {
+  for_each = var.public_subnet_cidrs
+  vpc_id                  = aws_vpc.main.id
+  cidr_block              = each.value
+  availability_zone       = each.key
+  map_public_ip_on_launch = true
+  tags = { Name = "public-\${each.key}" }
+}`},
+  {id:'sn07',title:'AWS Private Subnet',provider:'aws',type:'networking',
+   desc:'Private subnets using for_each across AZs.',
+   code:`resource "aws_subnet" "private" {
+  for_each          = var.private_subnet_cidrs
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = each.value
+  availability_zone = each.key
+  tags = { Name = "private-\${each.key}" }
+}`},
+  {id:'sn08',title:'AWS Internet Gateway',provider:'aws',type:'networking',
+   desc:'IGW attached to a VPC with name tag.',
+   code:`resource "aws_internet_gateway" "main" {
+  vpc_id = aws_vpc.main.id
+  tags   = { Name = "\${var.name}-igw" }
+}`},
+  {id:'sn09',title:'AWS NAT Gateway',provider:'aws',type:'networking',
+   desc:'NAT Gateway with Elastic IP in a public subnet.',
+   code:`resource "aws_eip" "nat" {
+  domain = "vpc"
+  tags   = { Name = "\${var.name}-nat-eip" }
+}
+resource "aws_nat_gateway" "main" {
+  allocation_id = aws_eip.nat.id
+  subnet_id     = aws_subnet.public[var.nat_az].id
+  depends_on    = [aws_internet_gateway.main]
+  tags          = { Name = "\${var.name}-nat" }
+}`},
+  {id:'sn10',title:'AWS Security Group',provider:'aws',type:'networking',
+   desc:'Security group with dynamic ingress rules.',
+   code:`resource "aws_security_group" "main" {
+  name_prefix = "\${var.name}-"
+  vpc_id      = var.vpc_id
+  dynamic "ingress" {
+    for_each = var.ingress_rules
+    content {
+      from_port   = ingress.value.from_port
+      to_port     = ingress.value.to_port
+      protocol    = ingress.value.protocol
+      cidr_blocks = ingress.value.cidr_blocks
+    }
+  }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}`},
+  {id:'sn11',title:'AWS Route Table + Association',provider:'aws',type:'networking',
+   desc:'Route table with IGW route and subnet associations.',
+   code:`resource "aws_route_table" "public" {
+  vpc_id = aws_vpc.main.id
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.main.id
+  }
+  tags = { Name = "\${var.name}-public-rt" }
+}
+resource "aws_route_table_association" "public" {
+  for_each       = aws_subnet.public
+  subnet_id      = each.value.id
+  route_table_id = aws_route_table.public.id
+}`},
+
+  // ── AWS COMPUTE ──
+  {id:'sn12',title:'AWS EC2 Instance',provider:'aws',type:'compute',
+   desc:'EC2 with user_data, IMDSv2 enforced, and tags.',
+   code:`resource "aws_instance" "main" {
+  ami                    = var.ami_id
+  instance_type          = var.instance_type
+  subnet_id              = var.subnet_id
+  vpc_security_group_ids = var.security_group_ids
+  iam_instance_profile   = aws_iam_instance_profile.main.name
+  user_data              = base64encode(var.user_data)
+  metadata_options {
+    http_tokens = "required" # IMDSv2
+  }
+  root_block_device {
+    volume_type = "gp3"
+    encrypted   = true
+  }
+  tags = merge(var.tags, { Name = var.name })
+}`},
+  {id:'sn13',title:'AWS Launch Template',provider:'aws',type:'compute',
+   desc:'Launch template for ASG with IMDSv2 and encrypted EBS.',
+   code:`resource "aws_launch_template" "main" {
+  name_prefix   = "\${var.name}-"
+  image_id      = var.ami_id
+  instance_type = var.instance_type
+  metadata_options {
+    http_tokens = "required"
+  }
+  block_device_mappings {
+    device_name = "/dev/xvda"
+    ebs { volume_type = "gp3"; encrypted = true }
+  }
+  tag_specifications {
+    resource_type = "instance"
+    tags = var.tags
+  }
+}`},
+  {id:'sn14',title:'AWS Auto Scaling Group',provider:'aws',type:'compute',
+   desc:'ASG wired to a launch template with health checks.',
+   code:`resource "aws_autoscaling_group" "main" {
+  name_prefix         = "\${var.name}-"
+  min_size            = var.min_size
+  max_size            = var.max_size
+  desired_capacity    = var.desired_capacity
+  vpc_zone_identifier = var.private_subnet_ids
+  launch_template {
+    id      = aws_launch_template.main.id
+    version = "$Latest"
+  }
+  health_check_type         = "ELB"
+  health_check_grace_period = 300
+}`},
+
+  // ── AWS IAM ──
+  {id:'sn15',title:'IAM Role with Trust Policy',provider:'aws',type:'iam',
+   desc:'IAM role assumable by EC2 with least-privilege pattern.',
+   code:`resource "aws_iam_role" "main" {
+  name = var.role_name
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Action    = "sts:AssumeRole"
+      Effect    = "Allow"
+      Principal = { Service = "ec2.amazonaws.com" }
+    }]
+  })
+  tags = var.tags
+}`},
+  {id:'sn16',title:'IAM Role for GitHub Actions (OIDC)',provider:'aws',type:'iam',
+   desc:'OIDC trust policy for GitHub Actions — no static credentials.',
+   code:`resource "aws_iam_role" "github_actions" {
+  name = "\${var.repo_name}-github-actions"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect = "Allow"
+      Principal = {
+        Federated = "arn:aws:iam::\${var.account_id}:oidc-provider/token.actions.githubusercontent.com"
+      }
+      Action = "sts:AssumeRoleWithWebIdentity"
+      Condition = {
+        StringLike = {
+          "token.actions.githubusercontent.com:sub" = "repo:\${var.repo_name}:*"
+        }
+      }
+    }]
+  })
+}`},
+  {id:'sn17',title:'IAM Policy Attachment',provider:'aws',type:'iam',
+   desc:'Attach a managed or inline policy to a role.',
+   code:`resource "aws_iam_role_policy_attachment" "main" {
+  role       = aws_iam_role.main.name
+  policy_arn = var.policy_arn
+}
+resource "aws_iam_role_policy" "inline" {
+  name   = "\${var.name}-inline"
+  role   = aws_iam_role.main.id
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = var.policy_statements
+  })
+}`},
+  {id:'sn18',title:'IAM Instance Profile',provider:'aws',type:'iam',
+   desc:'Instance profile wrapping an IAM role for EC2.',
+   code:`resource "aws_iam_instance_profile" "main" {
+  name = "\${var.name}-profile"
+  role = aws_iam_role.main.name
+  tags = var.tags
+}`},
+
+  // ── AWS STORAGE ──
+  {id:'sn19',title:'S3 Bucket (secure)',provider:'aws',type:'security',
+   desc:'S3 bucket with versioning, encryption, and public access blocked.',
+   code:`resource "aws_s3_bucket" "main" {
+  bucket        = var.bucket_name
+  force_destroy = var.force_destroy
+  tags          = var.tags
+}
+resource "aws_s3_bucket_versioning" "main" {
+  bucket = aws_s3_bucket.main.id
+  versioning_configuration { status = "Enabled" }
+}
+resource "aws_s3_bucket_server_side_encryption_configuration" "main" {
+  bucket = aws_s3_bucket.main.id
+  rule {
+    apply_server_side_encryption_by_default {
+      sse_algorithm = "aws:kms"
+    }
+  }
+}
+resource "aws_s3_bucket_public_access_block" "main" {
+  bucket                  = aws_s3_bucket.main.id
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+}`},
+
+  // ── AWS CI/CD ──
+  {id:'sn20',title:'GitHub Actions TF Plan Workflow',provider:'aws',type:'cicd',
+   desc:'Runs terraform plan on every PR and posts output as a comment.',
+   code:`# .github/workflows/terraform-plan.yml
+name: Terraform Plan
+on:
+  pull_request:
+    branches: [main]
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: \${{ vars.AWS_ROLE_ARN }}
+          aws-region: us-east-1
+      - uses: hashicorp/setup-terraform@v3
+      - run: terraform init
+      - id: plan
+        run: terraform plan -no-color 2>&1
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: \`\\\`\\\`\\\`\\n\${{ steps.plan.outputs.stdout }}\\n\\\`\\\`\\\`\`
+            })`},
+  {id:'sn21',title:'GitHub Actions TF Apply Workflow',provider:'aws',type:'cicd',
+   desc:'Runs terraform apply on merge to main with OIDC auth.',
+   code:`# .github/workflows/terraform-apply.yml
+name: Terraform Apply
+on:
+  push:
+    branches: [main]
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: \${{ vars.AWS_ROLE_ARN }}
+          aws-region: us-east-1
+      - uses: hashicorp/setup-terraform@v3
+      - run: terraform init
+      - run: terraform apply -auto-approve`},
+
+  // ── AWS SECURITY ──
+  {id:'sn22',title:'Lifecycle — Prevent Destroy',provider:'multi',type:'security',
+   desc:'Protect critical resources from accidental terraform destroy.',
+   code:`resource "aws_rds_instance" "main" {
+  # ... config ...
+  lifecycle {
+    prevent_destroy = true
+  }
+}`},
+  {id:'sn23',title:'Lifecycle — Ignore Changes',provider:'multi',type:'security',
+   desc:'Prevent Terraform from overwriting externally managed attributes.',
+   code:`resource "aws_instance" "main" {
+  # ... config ...
+  lifecycle {
+    ignore_changes = [
+      ami,           # managed by Packer pipeline
+      user_data,     # bootstrapped externally
+    ]
+  }
+}`},
+  {id:'sn24',title:'Sensitive Variable',provider:'multi',type:'security',
+   desc:'Mark inputs as sensitive — hides values in plan and apply logs.',
+   code:`variable "db_password" {
+  description = "RDS master password"
+  type        = string
+  sensitive   = true
+}
+output "connection_string" {
+  value     = "postgres://admin:\${var.db_password}@\${aws_db_instance.main.endpoint}"
+  sensitive = true
+}`},
+  {id:'sn25',title:'Precondition Validation',provider:'multi',type:'security',
+   desc:'Enforce business rules before resource creation (Terraform 1.2+).',
+   code:`resource "aws_instance" "main" {
+  # ... config ...
+  lifecycle {
+    precondition {
+      condition     = var.instance_type != "t2.micro"
+      error_message = "t2.micro is not allowed in production. Use t3.small or larger."
+    }
+  }
+}`},
+
+  // ── MODULE PATTERNS ──
+  {id:'sn26',title:'Module Structure — variables.tf',provider:'multi',type:'compute',
+   desc:'Standard variables.tf with descriptions, types, and defaults.',
+   code:`variable "name" {
+  description = "Name prefix for all resources"
+  type        = string
+}
+variable "vpc_id" {
+  description = "VPC ID to deploy into"
+  type        = string
+}
+variable "instance_type" {
+  description = "EC2 instance type"
+  type        = string
+  default     = "t3.small"
+  validation {
+    condition     = can(regex("^t3|m5|c5", var.instance_type))
+    error_message = "Only t3, m5, or c5 instance families are allowed."
+  }
+}
+variable "tags" {
+  description = "Tags applied to all resources"
+  type        = map(string)
+  default     = {}
+}`},
+  {id:'sn27',title:'Module Structure — outputs.tf',provider:'multi',type:'compute',
+   desc:'outputs.tf exposing key resource attributes to the root module.',
+   code:`output "vpc_id" {
+  description = "ID of the created VPC"
+  value       = aws_vpc.main.id
+}
+output "private_subnet_ids" {
+  description = "List of private subnet IDs"
+  value       = values(aws_subnet.private)[*].id
+}
+output "security_group_id" {
+  description = "ID of the main security group"
+  value       = aws_security_group.main.id
+}`},
+  {id:'sn28',title:'Locals Block',provider:'multi',type:'compute',
+   desc:'Compute derived values once and reuse — cleaner than repeating expressions.',
+   code:`locals {
+  name_prefix  = "\${var.env}-\${var.project}"
+  common_tags  = merge(var.tags, {
+    Environment = var.env
+    Project     = var.project
+    ManagedBy   = "terraform"
+  })
+  az_list      = slice(data.aws_availability_zones.available.names, 0, var.az_count)
+  subnet_cidrs = { for i, az in local.az_list :
+    az => cidrsubnet(var.vpc_cidr, 4, i)
+  }
+}`},
+  {id:'sn29',title:'Dynamic Block',provider:'multi',type:'compute',
+   desc:'Generate repeated nested blocks from a variable — DRY config.',
+   code:`resource "aws_security_group" "main" {
+  name   = var.name
+  vpc_id = var.vpc_id
+  dynamic "ingress" {
+    for_each = var.ingress_rules
+    content {
+      description = ingress.value.description
+      from_port   = ingress.value.from_port
+      to_port     = ingress.value.to_port
+      protocol    = ingress.value.protocol
+      cidr_blocks = ingress.value.cidr_blocks
+    }
+  }
+}`},
+  {id:'sn30',title:'For Expression — Map Transform',provider:'multi',type:'compute',
+   desc:'Transform a list into a map using a for expression.',
+   code:`# Transform a list of objects into a map keyed by name
+locals {
+  subnet_map = { for s in var.subnets : s.name => s }
+  # Result: { "public-a" = {...}, "private-b" = {...} }
+
+  # Filter and transform
+  prod_instances = {
+    for k, v in var.instances : k => v
+    if v.env == "prod"
+  }
+}`},
+
+  // ── GCP ──
+  {id:'sn31',title:'GCP Provider Config',provider:'gcp',type:'compute',
+   desc:'Google provider with project, region, and zone.',
+   code:`provider "google" {
+  project = var.project_id
+  region  = var.region
+  zone    = var.zone
+}
+provider "google-beta" {
+  project = var.project_id
+  region  = var.region
+}`},
+  {id:'sn32',title:'GCP VPC Network',provider:'gcp',type:'networking',
+   desc:'Custom mode VPC with auto_create_subnetworks disabled.',
+   code:`resource "google_compute_network" "main" {
+  name                    = var.name
+  auto_create_subnetworks = false
+  routing_mode            = "REGIONAL"
+  project                 = var.project_id
+}`},
+  {id:'sn33',title:'GCP Subnetwork',provider:'gcp',type:'networking',
+   desc:'GCP subnet with secondary ranges for GKE pods and services.',
+   code:`resource "google_compute_subnetwork" "main" {
+  name          = "\${var.name}-subnet"
+  ip_cidr_range = var.subnet_cidr
+  region        = var.region
+  network       = google_compute_network.main.id
+  secondary_ip_range {
+    range_name    = "pods"
+    ip_cidr_range = var.pods_cidr
+  }
+  secondary_ip_range {
+    range_name    = "services"
+    ip_cidr_range = var.services_cidr
+  }
+}`},
+  {id:'sn34',title:'GKE Cluster (Terraform)',provider:'gcp',type:'compute',
+   desc:'GKE autopilot cluster with private nodes and workload identity.',
+   code:`resource "google_container_cluster" "main" {
+  name     = var.cluster_name
+  location = var.region
+  network    = google_compute_network.main.id
+  subnetwork = google_compute_subnetwork.main.id
+  enable_autopilot = true
+  private_cluster_config {
+    enable_private_nodes    = true
+    enable_private_endpoint = false
+    master_ipv4_cidr_block  = "172.16.0.0/28"
+  }
+  workload_identity_config {
+    workload_pool = "\${var.project_id}.svc.id.goog"
+  }
+  ip_allocation_policy {
+    cluster_secondary_range_name  = "pods"
+    services_secondary_range_name = "services"
+  }
+}`},
+  {id:'sn35',title:'GCP Service Account',provider:'gcp',type:'iam',
+   desc:'Service account with IAM binding for workload identity.',
+   code:`resource "google_service_account" "main" {
+  account_id   = var.sa_name
+  display_name = "\${var.name} Service Account"
+  project      = var.project_id
+}
+resource "google_project_iam_member" "main" {
+  project = var.project_id
+  role    = "roles/\${var.iam_role}"
+  member  = "serviceAccount:\${google_service_account.main.email}"
+}`},
+  {id:'sn36',title:'GCP Cloud SQL (Postgres)',provider:'gcp',type:'compute',
+   desc:'Cloud SQL Postgres instance with private IP and automated backups.',
+   code:`resource "google_sql_database_instance" "main" {
+  name             = var.instance_name
+  database_version = "POSTGRES_15"
+  region           = var.region
+  settings {
+    tier = var.tier
+    ip_configuration {
+      ipv4_enabled    = false
+      private_network = google_compute_network.main.id
+    }
+    backup_configuration {
+      enabled    = true
+      start_time = "02:00"
+    }
+  }
+  deletion_protection = true
+}`},
+  {id:'sn37',title:'GCP Firewall Rule',provider:'gcp',type:'networking',
+   desc:'Firewall rule allowing internal VPC traffic and blocking external.',
+   code:`resource "google_compute_firewall" "internal" {
+  name    = "\${var.name}-allow-internal"
+  network = google_compute_network.main.id
+  allow {
+    protocol = "tcp"
+    ports    = ["0-65535"]
+  }
+  allow { protocol = "udp"; ports = ["0-65535"] }
+  allow { protocol = "icmp" }
+  source_ranges = [var.vpc_cidr]
+  target_tags   = ["internal"]
+}`},
+
+  // ── AZURE ──
+  {id:'sn38',title:'Azure Resource Group',provider:'azure',type:'compute',
+   desc:'Resource group with tagging best practices.',
+   code:`resource "azurerm_resource_group" "main" {
+  name     = "\${var.prefix}-\${var.env}-rg"
+  location = var.location
+  tags = merge(var.tags, {
+    Environment = var.env
+    ManagedBy   = "terraform"
+  })
+}`},
+  {id:'sn39',title:'Azure Virtual Network',provider:'azure',type:'networking',
+   desc:'VNet with address space and DNS servers.',
+   code:`resource "azurerm_virtual_network" "main" {
+  name                = "\${var.prefix}-vnet"
+  address_space       = [var.vnet_cidr]
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
+  dns_servers         = var.dns_servers
+  tags                = var.tags
+}`},
+  {id:'sn40',title:'Azure AKS Cluster',provider:'azure',type:'compute',
+   desc:'AKS cluster with system node pool and RBAC enabled.',
+   code:`resource "azurerm_kubernetes_cluster" "main" {
+  name                = "\${var.prefix}-aks"
+  location            = azurerm_resource_group.main.location
+  resource_group_name = azurerm_resource_group.main.name
+  dns_prefix          = var.prefix
+  default_node_pool {
+    name       = "system"
+    node_count = var.node_count
+    vm_size    = var.vm_size
+  }
+  identity { type = "SystemAssigned" }
+  role_based_access_control_enabled = true
+  tags = var.tags
+}`},
+
+  // ── MULTI-CLOUD / PATTERNS ──
+  {id:'sn41',title:'Data Source — AWS AMI',provider:'aws',type:'compute',
+   desc:'Fetch the latest Amazon Linux 2023 AMI dynamically.',
+   code:`data "aws_ami" "amazon_linux" {
+  most_recent = true
+  owners      = ["amazon"]
+  filter {
+    name   = "name"
+    values = ["al2023-ami-*-x86_64"]
+  }
+  filter {
+    name   = "state"
+    values = ["available"]
+  }
+}`},
+  {id:'sn42',title:'Data Source — Terraform Remote State',provider:'multi',type:'state',
+   desc:'Read outputs from another Terraform state file.',
+   code:`data "terraform_remote_state" "network" {
+  backend = "s3"
+  config = {
+    bucket = var.state_bucket
+    key    = "network/terraform.tfstate"
+    region = var.region
+  }
+}
+# Usage:
+# data.terraform_remote_state.network.outputs.vpc_id`},
+  {id:'sn43',title:'Terraform Workspace Pattern',provider:'multi',type:'state',
+   desc:'Use workspaces to manage multiple environments from one codebase.',
+   code:`locals {
+  env_config = {
+    dev  = { instance_type = "t3.micro",  min_size = 1 }
+    stg  = { instance_type = "t3.small",  min_size = 2 }
+    prod = { instance_type = "t3.medium", min_size = 3 }
+  }
+  config = local.env_config[terraform.workspace]
+}
+# terraform workspace new prod
+# terraform workspace select prod
+# terraform apply`},
+  {id:'sn44',title:'moved Block (Refactoring)',provider:'multi',type:'state',
+   desc:'Rename resource address in state without destroying — Terraform 1.1+.',
+   code:`# After renaming resource in .tf files:
+moved {
+  from = aws_instance.server
+  to   = aws_instance.web_server
+}
+# Also works for modules:
+moved {
+  from = module.vpc
+  to   = module.networking.aws_vpc.main
+}`},
+  {id:'sn45',title:'Atlantis Config',provider:'multi',type:'cicd',
+   desc:'atlantis.yaml for multi-workspace GitOps PR workflow.',
+   code:`# atlantis.yaml
+version: 3
+automerge: false
+projects:
+  - name: networking
+    dir: ./modules/networking
+    workspace: prod
+    autoplan:
+      when_modified: ["*.tf", "*.tfvars"]
+      enabled: true
+  - name: compute
+    dir: ./modules/compute
+    workspace: prod
+    depends_on: [networking]`},
+  {id:'sn46',title:'OPA Policy — Require Tags',provider:'multi',type:'security',
+   desc:'Conftest OPA policy that blocks plans missing required tags.',
+   code:`# policy/required_tags.rego
+package terraform
+import input.resource_changes as changes
+
+required_tags := {"Environment", "Owner", "ManagedBy"}
+
+deny[msg] {
+  change := changes[_]
+  change.change.actions[_] == "create"
+  tags := change.change.after.tags
+  missing := required_tags - {k | tags[k]}
+  count(missing) > 0
+  msg := sprintf("Resource %v missing required tags: %v",
+    [change.address, missing])
+}`},
+  {id:'sn47',title:'Null Resource + Triggers',provider:'multi',type:'compute',
+   desc:'Re-run a provisioner when a specific value changes.',
+   code:`resource "null_resource" "deploy" {
+  triggers = {
+    config_hash = sha256(file("\${path.module}/config.yaml"))
+    version     = var.app_version
+  }
+  provisioner "local-exec" {
+    command = "ansible-playbook -i \${var.host}, deploy.yml"
+  }
+}`},
+  {id:'sn48',title:'templatefile() Function',provider:'multi',type:'compute',
+   desc:'Render a template file with variables — great for user_data scripts.',
+   code:`resource "aws_instance" "main" {
+  ami           = data.aws_ami.main.id
+  instance_type = var.instance_type
+  user_data = base64encode(templatefile(
+    "\${path.module}/templates/userdata.sh.tpl",
+    {
+      db_host    = var.db_host
+      app_port   = var.app_port
+      log_level  = var.log_level
+    }
+  ))
+}`},
+  {id:'sn49',title:'count with conditional',provider:'multi',type:'compute',
+   desc:'Create a resource only when a condition is true.',
+   code:`resource "aws_eip" "nat" {
+  count  = var.enable_nat_gateway ? 1 : 0
+  domain = "vpc"
+  tags   = { Name = "\${var.name}-nat-eip" }
+}
+# Reference:
+# aws_eip.nat[0].id   (safe only if count >= 1)`},
+  {id:'sn50',title:'toset() and for_each',provider:'multi',type:'compute',
+   desc:'Create resources from a list using toset() to avoid index fragility.',
+   code:`variable "availability_zones" {
+  type    = list(string)
+  default = ["us-east-1a", "us-east-1b", "us-east-1c"]
+}
+resource "aws_subnet" "main" {
+  for_each          = toset(var.availability_zones)
+  vpc_id            = aws_vpc.main.id
+  availability_zone = each.key
+  cidr_block        = cidrsubnet(var.vpc_cidr, 4, index(var.availability_zones, each.key))
+}`},
+
+  // ── AWS EKS ──
+  {id:'sn51',title:'EKS Cluster',provider:'aws',type:'compute',
+   desc:'EKS cluster with private endpoint and logging enabled.',
+   code:`resource "aws_eks_cluster" "main" {
+  name     = var.cluster_name
+  role_arn = aws_iam_role.eks_cluster.arn
+  version  = var.k8s_version
+  vpc_config {
+    subnet_ids              = var.private_subnet_ids
+    endpoint_private_access = true
+    endpoint_public_access  = false
+    security_group_ids      = [aws_security_group.eks.id]
+  }
+  enabled_cluster_log_types = ["api","audit","authenticator"]
+  depends_on = [aws_iam_role_policy_attachment.eks_cluster]
+}`},
+  {id:'sn52',title:'EKS Node Group',provider:'aws',type:'compute',
+   desc:'Managed node group with private subnets and scaling config.',
+   code:`resource "aws_eks_node_group" "main" {
+  cluster_name    = aws_eks_cluster.main.name
+  node_group_name = "\${var.name}-nodes"
+  node_role_arn   = aws_iam_role.node.arn
+  subnet_ids      = var.private_subnet_ids
+  instance_types  = [var.instance_type]
+  scaling_config {
+    desired_size = var.desired_size
+    min_size     = var.min_size
+    max_size     = var.max_size
+  }
+  update_config { max_unavailable = 1 }
+}`},
+
+  // ── OBSERVABILITY ──
+  {id:'sn53',title:'AWS CloudWatch Alarm',provider:'aws',type:'security',
+   desc:'CPU utilisation alarm with SNS notification.',
+   code:`resource "aws_cloudwatch_metric_alarm" "cpu_high" {
+  alarm_name          = "\${var.name}-cpu-high"
+  comparison_operator = "GreaterThanThreshold"
+  evaluation_periods  = 2
+  metric_name         = "CPUUtilization"
+  namespace           = "AWS/EC2"
+  period              = 300
+  statistic           = "Average"
+  threshold           = 80
+  alarm_description   = "CPU > 80% for 10 minutes"
+  alarm_actions       = [var.sns_topic_arn]
+  dimensions = { AutoScalingGroupName = aws_autoscaling_group.main.name }
+}`},
+  {id:'sn54',title:'AWS CloudWatch Log Group',provider:'aws',type:'security',
+   desc:'Log group with KMS encryption and retention policy.',
+   code:`resource "aws_cloudwatch_log_group" "main" {
+  name              = "/aws/\${var.service}/\${var.env}"
+  retention_in_days = var.log_retention_days
+  kms_key_id        = var.kms_key_arn
+  tags              = var.tags
+}`},
+
+  // ── MISC PATTERNS ──
+  {id:'sn55',title:'Random ID for Unique Names',provider:'multi',type:'compute',
+   desc:'Generate a random suffix to avoid S3 bucket name collisions.',
+   code:`resource "random_id" "suffix" {
+  byte_length = 4
+}
+resource "aws_s3_bucket" "main" {
+  bucket = "\${var.prefix}-\${random_id.suffix.hex}"
+  tags   = var.tags
+}`},
+  {id:'sn56',title:'Terraform Import Block (1.5+)',provider:'multi',type:'state',
+   desc:'Declarative import — bring existing resources under TF without CLI.',
+   code:`import {
+  to = aws_s3_bucket.main
+  id = "my-existing-bucket-name"
+}
+# Then run: terraform plan  (generates config)
+# terraform apply           (imports + writes state)`},
+  {id:'sn57',title:'Check Block (Terraform 1.5+)',provider:'multi',type:'security',
+   desc:'Post-apply assertion — verify infrastructure is actually healthy.',
+   code:`resource "aws_db_instance" "main" {
+  # ... config ...
+}
+check "db_endpoint_reachable" {
+  assert {
+    condition     = can(cidrhost(aws_db_instance.main.address, 0))
+    error_message = "Database endpoint looks invalid: \${aws_db_instance.main.address}"
+  }
+}`},
+  {id:'sn58',title:'Provider Alias (Multi-Region)',provider:'aws',type:'compute',
+   desc:'Deploy to multiple AWS regions from one config using provider aliases.',
+   code:`provider "aws" {
+  region = "us-east-1"
+  alias  = "primary"
+}
+provider "aws" {
+  region = "eu-west-1"
+  alias  = "failover"
+}
+resource "aws_s3_bucket" "primary" {
+  provider = aws.primary
+  bucket   = "\${var.name}-primary"
+}
+resource "aws_s3_bucket" "failover" {
+  provider = aws.failover
+  bucket   = "\${var.name}-failover"
+}`},
+  {id:'sn59',title:'Depends On (Explicit Dependency)',provider:'multi',type:'compute',
+   desc:'Force ordering when Terraform cannot infer the dependency automatically.',
+   code:`resource "aws_iam_role_policy_attachment" "main" {
+  role       = aws_iam_role.main.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"
+}
+resource "aws_eks_cluster" "main" {
+  name     = var.name
+  role_arn = aws_iam_role.main.arn
+  # ... config ...
+  depends_on = [
+    aws_iam_role_policy_attachment.main
+  ]
+}`},
+  {id:'sn60',title:'Variable Validation',provider:'multi',type:'security',
+   desc:'Add input validation to catch bad values before plan.',
+   code:`variable "environment" {
+  type        = string
+  description = "Deployment environment"
+  validation {
+    condition     = contains(["dev","staging","prod"], var.environment)
+    error_message = "environment must be dev, staging, or prod."
+  }
+}
+variable "cidr_block" {
+  type = string
+  validation {
+    condition     = can(cidrnetmask(var.cidr_block))
+    error_message = "Must be a valid CIDR block."
+  }
+}`},
+  {id:'sn61',title:'Output with Description',provider:'multi',type:'compute',
+   desc:'Well-documented outputs that serve as module API documentation.',
+   code:`output "alb_dns_name" {
+  description = "DNS name of the Application Load Balancer — use this as the CNAME target"
+  value       = aws_lb.main.dns_name
+}
+output "alb_zone_id" {
+  description = "Route 53 zone ID for the ALB — needed for alias records"
+  value       = aws_lb.main.zone_id
+}
+output "alb_arn" {
+  description = "ARN of the ALB — use for WAF and Shield associations"
+  value       = aws_lb.main.arn
+}`},
+  {id:'sn62',title:'Terraform Cloud Workspace Config',provider:'multi',type:'cicd',
+   desc:'Configure HCP Terraform (formerly Terraform Cloud) as the backend.',
+   code:`terraform {
+  cloud {
+    organization = "your-org"
+    workspaces {
+      name = "\${var.project}-\${var.env}"
+    }
+  }
+}
+# Authentication: set TF_TOKEN_app_terraform_io env var
+# or run: terraform login`},
+];
+
+// ──────────────────────────────────────────────
+// SNIPPET ENGINE
+// ──────────────────────────────────────────────
+let snipFilter = 'all';
+
+function setSnipFilter(f, btn){
+  snipFilter = f;
+  document.querySelectorAll('.snip-filter').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderSnippets();
+}
+
+function renderSnippets(){
+  const search  = (document.getElementById('snipSearch')?.value || '').toLowerCase();
+  const grid    = document.getElementById('snipGrid');
+  if(!grid) return;
+
+  const filtered = SNIPPETS.filter(s => {
+    const matchFilter = snipFilter === 'all' || s.provider === snipFilter || s.type === snipFilter;
+    const matchSearch = !search || s.title.toLowerCase().includes(search)
+      || s.desc.toLowerCase().includes(search)
+      || s.code.toLowerCase().includes(search)
+      || s.type.toLowerCase().includes(search)
+      || s.provider.toLowerCase().includes(search);
+    return matchFilter && matchSearch;
+  });
+
+  const statsEl = document.getElementById('snipStats');
+  if(statsEl) statsEl.textContent = `${filtered.length} snippet${filtered.length !== 1 ? 's' : ''}`;
+
+  if(!filtered.length){
+    grid.innerHTML = '<div class="snip-empty">NO SNIPPETS MATCH — TRY A DIFFERENT SEARCH OR FILTER</div>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map(s => {
+    const provCls  = s.provider === 'aws' ? 'sb-aws' : s.provider === 'gcp' ? 'sb-gcp' : s.provider === 'azure' ? 'sb-azure' : 'sb-multi';
+    const provLabel= s.provider.toUpperCase();
+    const typeLabel= s.type.toUpperCase();
+    const highlighted = highlightHCL(s.code);
+    return `
+      <div class="snip-card">
+        <div class="snip-header">
+          <div class="snip-title">${s.title}</div>
+          <div class="snip-badges">
+            <span class="snip-badge ${provCls}">${provLabel}</span>
+          </div>
+        </div>
+        <div class="snip-desc">${s.desc}</div>
+        <div class="snip-code-wrap">
+          <pre class="snip-code" id="sc-${s.id}">${highlighted}</pre>
+          <button class="snip-copy-btn" id="cb-${s.id}" onclick="copySnip('${s.id}')">COPY</button>
+        </div>
+        <div class="snip-footer">
+          <span class="snip-cat-tag">${typeLabel}</span>
+          <span class="snip-xp">+2 XP per copy</span>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function highlightHCL(code){
+  return code
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/(#[^\n]*)/g,'<span class="cmt">$1</span>')
+    .replace(/\b(resource|data|variable|output|locals|module|terraform|provider|required_providers|backend|lifecycle|dynamic|content|provisioner|check|assert|import|moved)\b/g,'<span class="kw">$1</span>')
+    .replace(/("(?:[^"\\]|\\.)*")\s*=/g,'<span class="key">$1</span> =')
+    .replace(/=\s*("(?:[^"\\]|\\.)*")/g,'= <span class="str">$1</span>')
+    .replace(/\b(true|false|null)\b/g,'<span class="val">$1</span>');
+}
+
+function copySnip(id){
+  const s = SNIPPETS.find(x => x.id === id);
+  if(!s) return;
+  navigator.clipboard.writeText(s.code).then(() => {
+    const btn = document.getElementById('cb-'+id);
+    if(btn){ btn.textContent = 'COPIED!'; btn.classList.add('copied'); }
+    addXP(2, `Snippet copied: ${s.title}`);
+    toast(`+2 XP — Snippet copied!`, 't-xp');
+    setTimeout(() => {
+      if(btn){ btn.textContent = 'COPY'; btn.classList.remove('copied'); }
+    }, 2000);
+  }).catch(() => {
+    // Fallback for non-https
+    const ta = document.createElement('textarea');
+    ta.value = s.code; document.body.appendChild(ta);
+    ta.select(); document.execCommand('copy');
+    document.body.removeChild(ta);
+    toast(`Snippet copied!`, 't-xp');
+  });
 }
 
 // ──────────────────────────────────────────────
