@@ -237,6 +237,53 @@ footer span{color:var(--accent)}
 .prog-item{display:flex;align-items:center;gap:7px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted)}
 .prog-dot{width:8px;height:8px;border-radius:50%}
 
+/* FLASHCARD DRILL */
+.drill-hud{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin-bottom:24px}
+.drill-stat{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:56px}
+.drill-stat-val{font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:700;color:var(--accent)}
+.drill-stat-val.green{color:var(--accent3)}.drill-stat-val.red{color:var(--danger)}.drill-stat-val.amber{color:var(--accent4)}
+.drill-stat-lbl{font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--muted)}
+.drill-stat-div{width:1px;height:36px;background:var(--border);margin:0 4px}
+.drill-progress-wrap{flex:1;min-width:120px}
+.drill-progress-bar{height:6px;background:rgba(0,229,255,0.08);border-radius:3px;overflow:hidden;border:1px solid rgba(0,229,255,0.12);margin-bottom:4px}
+.drill-progress-fill{height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent));border-radius:3px;transition:width 0.5s ease}
+.drill-progress-lbl{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--muted)}
+.drill-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.drill-filter{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;padding:5px 12px;border-radius:3px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all 0.2s}
+.drill-filter:hover{color:var(--text);border-color:rgba(0,229,255,0.3)}
+.drill-filter.active{background:rgba(0,229,255,0.08);color:var(--accent);border-color:rgba(0,229,255,0.35)}
+.card-scene{perspective:1000px;width:100%;max-width:560px;margin:0 auto 24px;height:280px;cursor:pointer}
+.card-3d{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform 0.55s cubic-bezier(0.4,0,0.2,1)}
+.card-3d.flipped{transform:rotateY(180deg)}
+.card-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:12px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 28px;border:1px solid var(--border)}
+.card-front{background:var(--surface)}
+.card-back{background:var(--surface2);transform:rotateY(180deg)}
+.card-face-label{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;margin-bottom:18px;opacity:0.5}
+.card-front .card-face-label{color:var(--accent)}
+.card-back .card-face-label{color:var(--accent3)}
+.card-question{font-family:'Orbitron',monospace;font-size:clamp(0.9rem,2vw,1.1rem);font-weight:700;color:var(--text);text-align:center;line-height:1.4;margin-bottom:16px}
+.card-answer{font-family:'Share Tech Mono',monospace;font-size:clamp(0.85rem,1.8vw,1rem);color:var(--accent3);text-align:center;line-height:1.6;word-break:break-word}
+.card-answer code{background:rgba(0,229,255,0.08);padding:2px 8px;border-radius:3px;color:var(--accent);font-size:0.9em;display:inline-block;margin:2px 0}
+.card-hint{font-size:0.78rem;color:var(--muted);margin-top:12px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px}
+.card-category{position:absolute;top:14px;right:16px;font-family:'Share Tech Mono',monospace;font-size:8px;letter-spacing:2px;padding:2px 8px;border-radius:2px}
+.cat-basics{background:rgba(0,229,255,0.08);color:var(--accent);border:1px solid rgba(0,229,255,0.15)}
+.cat-state{background:rgba(124,58,237,0.1);color:#a78bfa;border:1px solid rgba(124,58,237,0.18)}
+.cat-modules{background:rgba(16,185,129,0.08);color:var(--accent3);border:1px solid rgba(16,185,129,0.15)}
+.cat-cicd{background:rgba(245,158,11,0.08);color:var(--accent4);border:1px solid rgba(245,158,11,0.15)}
+.cat-security{background:rgba(239,68,68,0.08);color:var(--danger);border:1px solid rgba(239,68,68,0.15)}
+.card-count-badge{position:absolute;top:14px;left:16px;font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--muted)}
+.drill-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:28px}
+.drill-action-hint{text-align:center;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:20px}
+.review-queue{background:rgba(239,68,68,0.05);border:1px solid rgba(239,68,68,0.15);border-radius:8px;padding:14px 18px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.review-queue-label{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--danger)}
+.drill-empty{text-align:center;padding:60px 20px;font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:1px}
+.drill-session-end{background:var(--surface);border:1px solid rgba(16,185,129,0.3);border-radius:12px;padding:32px;text-align:center;max-width:480px;margin:0 auto}
+.drill-end-title{font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:700;color:#fff;margin-bottom:10px}
+.drill-end-stats{display:flex;gap:20px;justify-content:center;margin:20px 0;flex-wrap:wrap}
+.drill-end-stat{display:flex;flex-direction:column;align-items:center;gap:4px}
+.drill-end-val{font-family:'Orbitron',monospace;font-size:1.6rem;font-weight:700}
+.drill-end-lbl{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--muted)}
+
 /* ONBOARDING MODAL */
 .ob-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:800;display:flex;align-items:center;justify-content:center;padding:20px}
 .ob-box{background:var(--surface);border:1px solid rgba(0,229,255,0.25);border-radius:14px;padding:36px 32px;max-width:460px;width:100%;text-align:center;position:relative;overflow:hidden}
@@ -347,6 +394,7 @@ footer span{color:var(--accent)}
   <button class="tab-btn active" onclick="switchTab('quests')" id="tab-quests">⚔ QUESTS</button>
   <button class="tab-btn" onclick="switchTab('skilltree')" id="tab-skilltree">🌿 SKILL TREE</button>
   <button class="tab-btn" onclick="switchTab('simulate')" id="tab-simulate">⚡ SIMULATE</button>
+  <button class="tab-btn" onclick="switchTab('drill')" id="tab-drill">🃏 DRILL</button>
   <button class="tab-btn" onclick="switchTab('badges')" id="tab-badges">🏅 BADGES</button>
   <button class="tab-btn" onclick="switchTab('leaderboard')" id="tab-leaderboard">🏆 LEADERBOARD</button>
   <button class="tab-btn" onclick="switchTab('dashboard')" id="tab-dashboard">📊 DASHBOARD</button>
@@ -409,6 +457,78 @@ footer span{color:var(--accent)}
   <div class="stats-strip" id="statsStrip"></div>
   <span class="sec-label" style="margin-top:20px">// ACTIVITY LOG</span>
   <div id="actLog" style="display:flex;flex-direction:column;gap:7px;margin-top:10px"></div>
+</div>
+
+<!-- DRILL -->
+<div class="tab-content" id="content-drill">
+  <span class="sec-label">// FLASHCARD DRILL MODE</span>
+  <div class="sec-title">Terraform Command Drills</div>
+  <p class="sec-intro">60 cards across 5 categories. Click to flip. Mark got it or review again. Spaced repetition keeps missed cards coming back.</p>
+
+  <div class="drill-hud">
+    <div class="drill-stat">
+      <span class="drill-stat-val" id="drillTotal">60</span>
+      <span class="drill-stat-lbl">TOTAL</span>
+    </div>
+    <div class="drill-stat-div"></div>
+    <div class="drill-stat">
+      <span class="drill-stat-val green" id="drillGot">0</span>
+      <span class="drill-stat-lbl">GOT IT</span>
+    </div>
+    <div class="drill-stat-div"></div>
+    <div class="drill-stat">
+      <span class="drill-stat-val red" id="drillReview">0</span>
+      <span class="drill-stat-lbl">REVIEW</span>
+    </div>
+    <div class="drill-stat-div"></div>
+    <div class="drill-stat">
+      <span class="drill-stat-val amber" id="drillXP">0</span>
+      <span class="drill-stat-lbl">XP TODAY</span>
+    </div>
+    <div class="drill-stat-div"></div>
+    <div class="drill-progress-wrap">
+      <div class="drill-progress-bar"><div class="drill-progress-fill" id="drillFill" style="width:0%"></div></div>
+      <div class="drill-progress-lbl" id="drillPct">0% through deck</div>
+    </div>
+  </div>
+
+  <div class="drill-filters">
+    <button class="drill-filter active" onclick="setDrillFilter('all',this)">ALL CARDS</button>
+    <button class="drill-filter" onclick="setDrillFilter('basics',this)">BASICS</button>
+    <button class="drill-filter" onclick="setDrillFilter('state',this)">STATE</button>
+    <button class="drill-filter" onclick="setDrillFilter('modules',this)">MODULES</button>
+    <button class="drill-filter" onclick="setDrillFilter('cicd',this)">CI/CD</button>
+    <button class="drill-filter" onclick="setDrillFilter('security',this)">SECURITY</button>
+    <button class="drill-filter" onclick="setDrillFilter('review',this)" id="filterReview">REVIEW QUEUE</button>
+  </div>
+
+  <div id="drillContent">
+    <div class="card-scene" onclick="flipCard()" id="cardScene">
+      <div class="card-3d" id="card3d">
+        <div class="card-face card-front">
+          <span class="card-count-badge" id="cardNum">1 / 60</span>
+          <span class="card-category cat-basics" id="cardCat">BASICS</span>
+          <div class="card-face-label">QUESTION</div>
+          <div class="card-question" id="cardQ">Loading...</div>
+          <div class="card-hint">click card to reveal answer</div>
+        </div>
+        <div class="card-face card-back">
+          <span class="card-count-badge" id="cardNumB">1 / 60</span>
+          <span class="card-category cat-basics" id="cardCatB">BASICS</span>
+          <div class="card-face-label">ANSWER</div>
+          <div class="card-answer" id="cardA">Loading...</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="drill-action-hint" id="drillHint">Click the card to flip it</div>
+
+    <div class="drill-actions" id="drillActions" style="display:none">
+      <button class="btn btn-danger btn-sm" onclick="drillAnswer(false)">✗ REVIEW AGAIN</button>
+      <button class="btn btn-outline btn-sm" onclick="drillSkip()">→ SKIP</button>
+      <button class="btn btn-success btn-sm" onclick="drillAnswer(true)">✓ GOT IT  +5 XP</button>
+    </div>
+  </div>
 </div>
 
 <!-- MODAL -->
@@ -646,6 +766,7 @@ function switchTab(id){
   if(id==='leaderboard') renderLB();
   if(id==='badges') renderBadges();
   if(id==='dashboard') renderDash();
+  if(id==='drill') initDrill();
 }
 
 // ──────────────────────────────────────────────
@@ -982,6 +1103,317 @@ function claimDaily(){
 // ──────────────────────────────────────────────
 function closeModal(){ document.getElementById('mOverlay').classList.remove('open'); clearInterval(simTimer); }
 function overlayClose(e){ if(e.target===document.getElementById('mOverlay')) closeModal(); }
+
+// ──────────────────────────────────────────────
+// FLASHCARD DATA (60 cards)
+// ──────────────────────────────────────────────
+const CARDS = [
+  // BASICS (15)
+  {id:'c01',cat:'basics',q:'What command initializes a Terraform working directory?',a:'<code>terraform init</code> — downloads providers and sets up the backend.'},
+  {id:'c02',cat:'basics',q:'What does `terraform plan` do?',a:'Shows what changes will be made without applying them. A safe dry-run.'},
+  {id:'c03',cat:'basics',q:'How do you save a plan to a file for later apply?',a:'<code>terraform plan -out=plan.tfplan</code> then <code>terraform apply plan.tfplan</code>'},
+  {id:'c04',cat:'basics',q:'What command destroys all managed infrastructure?',a:'<code>terraform destroy</code> — prompts for confirmation before deleting.'},
+  {id:'c05',cat:'basics',q:'How do you auto-approve an apply without prompting?',a:'<code>terraform apply -auto-approve</code> — use with caution in production.'},
+  {id:'c06',cat:'basics',q:'What does `terraform validate` check?',a:'Syntax and internal consistency of .tf files — does not check against cloud APIs.'},
+  {id:'c07',cat:'basics',q:'How do you format all Terraform files recursively?',a:'<code>terraform fmt -recursive</code> — auto-formats to canonical HCL style.'},
+  {id:'c08',cat:'basics',q:'What file locks provider versions for your team?',a:'<code>.terraform.lock.hcl</code> — always commit this file to Git.'},
+  {id:'c09',cat:'basics',q:'How do you apply only one specific resource?',a:'<code>terraform apply -target=resource_type.name</code> — use sparingly.'},
+  {id:'c10',cat:'basics',q:'What command shows output values after apply?',a:'<code>terraform output</code> or <code>terraform output -json</code> for scripting.'},
+  {id:'c11',cat:'basics',q:'How do you pass a variable value on the CLI?',a:'<code>terraform apply -var="name=value"</code> or use a .tfvars file.'},
+  {id:'c12',cat:'basics',q:'What is the purpose of `terraform refresh`?',a:'Syncs state with real infrastructure — reads actual resource attributes.'},
+  {id:'c13',cat:'basics',q:'How do you upgrade provider versions?',a:'<code>terraform init -upgrade</code> — updates .terraform.lock.hcl with new versions.'},
+  {id:'c14',cat:'basics',q:'What does the `depends_on` meta-argument do?',a:'Explicitly declares a dependency Terraform cannot infer automatically.'},
+  {id:'c15',cat:'basics',q:'How do you preview what `terraform destroy` will delete?',a:'<code>terraform plan -destroy</code> — shows the destruction plan without applying.'},
+
+  // STATE (15)
+  {id:'c16',cat:'state',q:'What command lists all resources in the current state?',a:'<code>terraform state list</code> — shows all managed resource addresses.'},
+  {id:'c17',cat:'state',q:'How do you inspect a specific resource in state?',a:'<code>terraform state show resource_type.name</code> — shows all attributes.'},
+  {id:'c18',cat:'state',q:'How do you rename a resource in state without destroying it?',a:'<code>terraform state mv old_address new_address</code>'},
+  {id:'c19',cat:'state',q:'How do you remove a resource from state without deleting it?',a:'<code>terraform state rm resource_type.name</code> — unmanages it, leaves it running.'},
+  {id:'c20',cat:'state',q:'How do you pull remote state to a local file?',a:'<code>terraform state pull > state.json</code>'},
+  {id:'c21',cat:'state',q:'What is the purpose of state locking?',a:'Prevents concurrent apply runs from corrupting state — uses DynamoDB with S3 backend.'},
+  {id:'c22',cat:'state',q:'How do you import an existing resource into Terraform state?',a:'<code>terraform import resource_type.name resource_id</code>'},
+  {id:'c23',cat:'state',q:'What does `terraform taint` do? (pre-1.3)',a:'Marks a resource for forced recreation on next apply. Replaced by <code>-replace</code> flag.'},
+  {id:'c24',cat:'state',q:'How do you force-replace a resource in Terraform 1.3+?',a:'<code>terraform apply -replace="resource_type.name"</code>'},
+  {id:'c25',cat:'state',q:'What S3 backend config enables state locking?',a:'Set <code>dynamodb_table = "lock-table"</code> in the backend block.'},
+  {id:'c26',cat:'state',q:'What does the `moved` block do in Terraform 1.1+?',a:'Renames resource addresses in state without destroying — for safe refactoring.'},
+  {id:'c27',cat:'state',q:'How do you push a local state file to a remote backend?',a:'<code>terraform state push state.json</code>'},
+  {id:'c28',cat:'state',q:'What causes infrastructure drift?',a:'Manual changes to cloud resources outside of Terraform that diverge from state.'},
+  {id:'c29',cat:'state',q:'How do you detect drift in Terraform?',a:'<code>terraform plan</code> — it diffs actual resources against state and desired config.'},
+  {id:'c30',cat:'state',q:'What command unlocks a stuck state lock?',a:'<code>terraform force-unlock LOCK_ID</code> — use only when lock is truly orphaned.'},
+
+  // MODULES (10)
+  {id:'c31',cat:'modules',q:'What are the three required files in a well-structured module?',a:'<code>main.tf</code>, <code>variables.tf</code>, <code>outputs.tf</code> — plus optional versions.tf.'},
+  {id:'c32',cat:'modules',q:'How do you call a local module?',a:'<code>module "name" { source = "./path/to/module" }</code>'},
+  {id:'c33',cat:'modules',q:'What does `outputs.tf` expose from a module?',a:'Values the calling module can reference — e.g. VPC ID, subnet IDs, security group ARNs.'},
+  {id:'c34',cat:'modules',q:'What is the `locals` block used for?',a:'Computing derived values inside a module — avoids repeating expressions.'},
+  {id:'c35',cat:'modules',q:'How do you create multiple instances with `for_each`?',a:'<code>for_each = var.subnet_map</code> — iterates a map/set, each instance gets a unique key.'},
+  {id:'c36',cat:'modules',q:'What is the difference between `count` and `for_each`?',a:'count uses index (fragile on delete), for_each uses stable named keys — prefer for_each.'},
+  {id:'c37',cat:'modules',q:'How do you reference a module output in the root module?',a:'<code>module.module_name.output_name</code>'},
+  {id:'c38',cat:'modules',q:'What does `terraform get` do?',a:'Downloads and updates module sources — equivalent to init for modules only.'},
+  {id:'c39',cat:'modules',q:'How do you version-pin a module from the Terraform registry?',a:'<code>version = "~> 3.0"</code> in the module block allows patch updates only.'},
+  {id:'c40',cat:'modules',q:'What is the `versions.tf` file used for?',a:'Declares required Terraform and provider version constraints for the module.'},
+
+  // CICD (10)
+  {id:'c41',cat:'cicd',q:'What GitHub Actions trigger runs terraform plan on every PR?',a:'<code>on: pull_request</code> — triggers on PR open, sync, and reopen.'},
+  {id:'c42',cat:'cicd',q:'What is OIDC authentication used for in Terraform CI/CD?',a:'Lets GitHub Actions assume a cloud IAM role without storing static credentials.'},
+  {id:'c43',cat:'cicd',q:'What does Atlantis do?',a:'Runs terraform plan/apply from PR comments — GitOps workflow for team Terraform.'},
+  {id:'c44',cat:'cicd',q:'What tool runs policy checks on Terraform plans?',a:'OPA with conftest, or Sentinel (HCP Terraform) — enforces compliance as code.'},
+  {id:'c45',cat:'cicd',q:'What does `checkov` check in a CI pipeline?',a:'Static analysis of Terraform for security misconfigurations before apply.'},
+  {id:'c46',cat:'cicd',q:'What is the correct order of Terraform CI steps?',a:'fmt → validate → plan → (approval) → apply'},
+  {id:'c47',cat:'cicd',q:'How do you post a terraform plan as a PR comment in GitHub Actions?',a:'Use <code>github-script</code> action with <code>context.issue.number</code> and the plan output.'},
+  {id:'c48',cat:'cicd',q:'What environment variable sets Terraform log level?',a:'<code>TF_LOG=DEBUG</code> — levels: TRACE, DEBUG, INFO, WARN, ERROR.'},
+  {id:'c49',cat:'cicd',q:'How do you pass Terraform variables in CI without a .tfvars file?',a:'Set <code>TF_VAR_name=value</code> environment variables — Terraform reads them automatically.'},
+  {id:'c50',cat:'cicd',q:'What is a GitHub Environment used for in Terraform pipelines?',a:'Adds a manual approval gate before apply — protects production deployments.'},
+
+  // SECURITY (10)
+  {id:'c51',cat:'security',q:'How do you prevent Terraform from ever destroying a resource?',a:'<code>lifecycle { prevent_destroy = true }</code> — throws error if destroy is attempted.'},
+  {id:'c52',cat:'security',q:'How do you hide a sensitive output from plan/apply logs?',a:'<code>sensitive = true</code> on the output block — value shows as (sensitive).'},
+  {id:'c53',cat:'security',q:'How do you mark a variable as sensitive?',a:'<code>sensitive = true</code> in the variable block — prevents it appearing in logs.'},
+  {id:'c54',cat:'security',q:'What is the risk of committing .tfvars files with secrets?',a:'Secrets leak into version history — use environment variables or a secrets manager instead.'},
+  {id:'c55',cat:'security',q:'What does `tfsec` scan for?',a:'Security misconfigurations in Terraform HCL — e.g. open security groups, unencrypted buckets.'},
+  {id:'c56',cat:'security',q:'How do you enforce tagging policies on all resources?',a:'Use OPA/conftest or Sentinel to deny plans missing required tags.'},
+  {id:'c57',cat:'security',q:'What is the principle of least privilege for Terraform execution?',a:'Give the Terraform IAM role only the permissions needed for that specific config — no admin.'},
+  {id:'c58',cat:'security',q:'How do you store Terraform state securely?',a:'S3 with server-side encryption + bucket versioning + DynamoDB locking + bucket policy.'},
+  {id:'c59',cat:'security',q:'What does `precondition` in Terraform 1.2+ enforce?',a:'Business rules checked before resource creation — e.g. validate variable values meet requirements.'},
+  {id:'c60',cat:'security',q:'How do you rotate secrets used by Terraform without downtime?',a:'Use a secrets manager (Vault/AWS SM), reference via data source — never hardcode in HCL.'},
+];
+
+// ──────────────────────────────────────────────
+// DRILL ENGINE
+// ──────────────────────────────────────────────
+let drillDeck = [];
+let drillIdx = 0;
+let drillFlipped = false;
+let drillFilter = 'all';
+let drillSessionGot = 0;
+let drillSessionReview = 0;
+let drillSessionXP = 0;
+
+function initDrill(){
+  S.drillGot = S.drillGot || {};
+  S.drillReview = S.drillReview || {};
+  buildDeck();
+  showDrillCard();
+  updateDrillHUD();
+}
+
+function buildDeck(){
+  let pool = CARDS;
+  if(drillFilter === 'review'){
+    pool = CARDS.filter(c => S.drillReview[c.id]);
+    if(!pool.length){ pool = CARDS; }
+  } else if(drillFilter !== 'all'){
+    pool = CARDS.filter(c => c.cat === drillFilter);
+  }
+  // Put review-due cards first (appear 2x more often)
+  const reviewCards = pool.filter(c => S.drillReview[c.id]);
+  const otherCards  = pool.filter(c => !S.drillReview[c.id]);
+  // Shuffle each group
+  const shuffle = a => a.sort(()=>Math.random()-0.5);
+  drillDeck = [...shuffle(reviewCards), ...shuffle(reviewCards), ...shuffle(otherCards)];
+  drillIdx = 0;
+  drillFlipped = false;
+}
+
+function setDrillFilter(f, btn){
+  drillFilter = f;
+  document.querySelectorAll('.drill-filter').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  buildDeck();
+  showDrillCard();
+  updateDrillHUD();
+}
+
+function showDrillCard(){
+  if(!drillDeck.length){
+    document.getElementById('drillContent').innerHTML =
+      `<div class="drill-empty">NO CARDS IN THIS FILTER — TRY ANOTHER CATEGORY</div>`;
+    return;
+  }
+
+  if(drillIdx >= drillDeck.length){
+    showDrillSessionEnd();
+    return;
+  }
+
+  const card = drillDeck[drillIdx];
+  const pos  = drillIdx + 1;
+  const total = drillDeck.length;
+  const catClass = 'cat-' + card.cat;
+  const catLabel = card.cat.toUpperCase();
+
+  // Reset flip
+  drillFlipped = false;
+  const el = document.getElementById('card3d');
+  if(el) el.classList.remove('flipped');
+
+  const hint = document.getElementById('drillHint');
+  const actions = document.getElementById('drillActions');
+  if(hint){ hint.style.display = 'block'; hint.textContent = 'Click the card to flip it'; }
+  if(actions) actions.style.display = 'none';
+
+  // Front
+  document.getElementById('cardNum').textContent  = `${pos} / ${total}`;
+  document.getElementById('cardCat').textContent  = catLabel;
+  document.getElementById('cardCat').className    = `card-category ${catClass}`;
+  document.getElementById('cardQ').innerHTML       = card.q;
+
+  // Back
+  document.getElementById('cardNumB').textContent = `${pos} / ${total}`;
+  document.getElementById('cardCatB').textContent = catLabel;
+  document.getElementById('cardCatB').className   = `card-category ${catClass}`;
+  document.getElementById('cardA').innerHTML       = card.a;
+
+  updateDrillHUD();
+}
+
+function flipCard(){
+  if(drillIdx >= drillDeck.length) return;
+  const el = document.getElementById('card3d');
+  if(!el) return;
+  drillFlipped = !drillFlipped;
+  el.classList.toggle('flipped', drillFlipped);
+  const hint = document.getElementById('drillHint');
+  const actions = document.getElementById('drillActions');
+  if(drillFlipped){
+    if(hint){ hint.style.display = 'none'; }
+    if(actions) actions.style.display = 'flex';
+  } else {
+    if(hint){ hint.style.display = 'block'; hint.textContent = 'Click the card to flip it'; }
+    if(actions) actions.style.display = 'none';
+  }
+}
+
+function drillAnswer(gotIt){
+  if(drillIdx >= drillDeck.length) return;
+  const card = drillDeck[drillIdx];
+  if(gotIt){
+    S.drillGot[card.id] = (S.drillGot[card.id]||0) + 1;
+    delete S.drillReview[card.id];
+    drillSessionGot++;
+    drillSessionXP += 5;
+    addXP(5, `Flashcard: ${card.q.slice(0,40)}...`);
+    toast('+5 XP — Got it!', 't-xp');
+  } else {
+    S.drillReview[card.id] = true;
+    drillSessionReview++;
+    toast('Added to review queue', 't-error');
+  }
+  save();
+  drillIdx++;
+  // Flip back before showing next
+  const el = document.getElementById('card3d');
+  if(el) el.classList.remove('flipped');
+  drillFlipped = false;
+  setTimeout(()=> showDrillCard(), 220);
+  updateDrillHUD();
+  // Update review filter badge
+  const revCount = Object.keys(S.drillReview).length;
+  const rfBtn = document.getElementById('filterReview');
+  if(rfBtn) rfBtn.textContent = revCount ? `REVIEW QUEUE (${revCount})` : 'REVIEW QUEUE';
+}
+
+function drillSkip(){
+  drillIdx++;
+  const el = document.getElementById('card3d');
+  if(el) el.classList.remove('flipped');
+  drillFlipped = false;
+  setTimeout(()=> showDrillCard(), 120);
+}
+
+function updateDrillHUD(){
+  const gotCount    = Object.keys(S.drillGot||{}).length;
+  const reviewCount = Object.keys(S.drillReview||{}).length;
+  const pct = Math.round(drillIdx / Math.max(drillDeck.length,1) * 100);
+
+  const el = (id, val) => { const e=document.getElementById(id); if(e) e.textContent=val; };
+  el('drillGot', gotCount);
+  el('drillReview', reviewCount);
+  el('drillXP', drillSessionXP);
+  el('drillTotal', CARDS.length);
+  el('drillPct', `${pct}% through deck`);
+  const fill = document.getElementById('drillFill');
+  if(fill) fill.style.width = pct + '%';
+}
+
+function showDrillSessionEnd(){
+  const accuracy = drillDeck.length
+    ? Math.round(drillSessionGot / (drillSessionGot + drillSessionReview) * 100)
+    : 0;
+  const content = document.getElementById('drillContent');
+  content.innerHTML = `
+    <div class="drill-session-end">
+      <div class="drill-end-title">SESSION COMPLETE</div>
+      <p style="font-size:0.9rem;color:var(--muted);margin-bottom:4px">Deck finished. Here's how you did:</p>
+      <div class="drill-end-stats">
+        <div class="drill-end-stat">
+          <div class="drill-end-val" style="color:var(--accent3)">${drillSessionGot}</div>
+          <div class="drill-end-lbl">GOT IT</div>
+        </div>
+        <div class="drill-end-stat">
+          <div class="drill-end-val" style="color:var(--danger)">${drillSessionReview}</div>
+          <div class="drill-end-lbl">REVIEW</div>
+        </div>
+        <div class="drill-end-stat">
+          <div class="drill-end-val" style="color:var(--accent4)">${drillSessionXP}</div>
+          <div class="drill-end-lbl">XP EARNED</div>
+        </div>
+        <div class="drill-end-stat">
+          <div class="drill-end-val" style="color:var(--accent)">${accuracy}%</div>
+          <div class="drill-end-lbl">ACCURACY</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:8px">
+        <button class="btn btn-primary btn-sm" onclick="restartDrill()">▶ DRILL AGAIN</button>
+        <button class="btn btn-outline btn-sm" onclick="drillReviewOnly()">REVIEW MISSED ONLY</button>
+      </div>
+    </div>
+  `;
+  if(drillSessionGot >= 10) checkBadges();
+}
+
+function restartDrill(){
+  drillSessionGot = 0; drillSessionReview = 0; drillSessionXP = 0;
+  const dc = document.getElementById('drillContent');
+  dc.innerHTML = buildDrillHTML();
+  buildDeck(); showDrillCard(); updateDrillHUD();
+}
+
+function drillReviewOnly(){
+  drillSessionGot = 0; drillSessionReview = 0; drillSessionXP = 0;
+  const dc = document.getElementById('drillContent');
+  dc.innerHTML = buildDrillHTML();
+  setDrillFilter('review', document.getElementById('filterReview') || {classList:{add:()=>{},remove:()=>{}}});
+}
+
+function buildDrillHTML(){
+  return `
+    <div class="card-scene" onclick="flipCard()" id="cardScene">
+      <div class="card-3d" id="card3d">
+        <div class="card-face card-front">
+          <span class="card-count-badge" id="cardNum">1 / 60</span>
+          <span class="card-category cat-basics" id="cardCat">BASICS</span>
+          <div class="card-face-label">QUESTION</div>
+          <div class="card-question" id="cardQ">Loading...</div>
+          <div class="card-hint">click card to reveal answer</div>
+        </div>
+        <div class="card-face card-back">
+          <span class="card-count-badge" id="cardNumB">1 / 60</span>
+          <span class="card-category cat-basics" id="cardCatB">BASICS</span>
+          <div class="card-face-label">ANSWER</div>
+          <div class="card-answer" id="cardA">Loading...</div>
+        </div>
+      </div>
+    </div>
+    <div class="drill-action-hint" id="drillHint">Click the card to flip it</div>
+    <div class="drill-actions" id="drillActions" style="display:none">
+      <button class="btn btn-danger btn-sm" onclick="drillAnswer(false)">&#x2717; REVIEW AGAIN</button>
+      <button class="btn btn-outline btn-sm" onclick="drillSkip()">&#x2192; SKIP</button>
+      <button class="btn btn-success btn-sm" onclick="drillAnswer(true)">&#x2713; GOT IT  +5 XP</button>
+    </div>
+  `;
+}
 
 // ──────────────────────────────────────────────
 // RESET
