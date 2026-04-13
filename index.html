@@ -3,1058 +3,918 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Learn Terraform: Gamified Path</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+<title>Terraform Mission Control — EknathaLabs</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #070b14;
-    --surface: #0d1526;
-    --surface2: #111d38;
-    --accent: #00e5ff;
-    --accent2: #7c3aed;
-    --accent3: #10b981;
-    --accent4: #f59e0b;
-    --danger: #ef4444;
-    --text: #e2e8f0;
-    --muted: #64748b;
-    --border: rgba(0,229,255,0.15);
-    --glow: 0 0 20px rgba(0,229,255,0.3);
-    --glow2: 0 0 20px rgba(124,58,237,0.4);
-  }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Rajdhani', sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  /* Animated grid background */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  body::after {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(124,58,237,0.12) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* ---- HERO ---- */
-  .hero {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    padding: 80px 20px 60px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .hero-badge {
-    display: inline-block;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 3px;
-    color: var(--accent);
-    border: 1px solid var(--accent);
-    padding: 4px 14px;
-    border-radius: 2px;
-    margin-bottom: 24px;
-    animation: pulse-border 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse-border {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(0,229,255,0.4); }
-    50% { box-shadow: 0 0 0 6px rgba(0,229,255,0); }
-  }
-
-  .hero h1 {
-    font-family: 'Orbitron', monospace;
-    font-size: clamp(2rem, 5vw, 3.6rem);
-    font-weight: 900;
-    letter-spacing: -1px;
-    line-height: 1.1;
-    margin-bottom: 16px;
-  }
-
-  .hero h1 span.tf { color: var(--accent2); }
-  .hero h1 span.glow { color: var(--accent); text-shadow: 0 0 30px rgba(0,229,255,0.6); }
-
-  .hero-sub {
-    font-size: 1.15rem;
-    color: var(--muted);
-    max-width: 560px;
-    margin: 0 auto 40px;
-    font-weight: 300;
-  }
-
-  /* XP Bar */
-  .xp-strip {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 12px;
-    color: var(--accent);
-    margin-top: 8px;
-  }
-
-  .xp-bar {
-    width: 200px;
-    height: 6px;
-    background: rgba(0,229,255,0.1);
-    border-radius: 3px;
-    overflow: hidden;
-    border: 1px solid rgba(0,229,255,0.2);
-  }
-
-  .xp-fill {
-    height: 100%;
-    width: 35%;
-    background: linear-gradient(90deg, var(--accent2), var(--accent));
-    border-radius: 3px;
-    animation: xp-grow 2s ease-out forwards;
-  }
-
-  @keyframes xp-grow {
-    from { width: 0; }
-    to { width: 35%; }
-  }
-
-  /* ---- SECTIONS ---- */
-  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
-
-  section { padding: 60px 0; border-bottom: 1px solid var(--border); }
-
-  .section-label {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 4px;
-    color: var(--accent2);
-    margin-bottom: 8px;
-    display: block;
-  }
-
-  h2 {
-    font-family: 'Orbitron', monospace;
-    font-size: clamp(1.4rem, 3vw, 2rem);
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: #fff;
-  }
-
-  .section-intro {
-    color: var(--muted);
-    max-width: 620px;
-    margin-bottom: 40px;
-    font-size: 1.05rem;
-  }
-
-  /* ---- QUEST CARDS (Learning Path) ---- */
-  .quest-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-  }
-
-  .quest-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 24px;
-    position: relative;
-    overflow: hidden;
-    transition: transform 0.2s, box-shadow 0.2s;
-    cursor: default;
-  }
-
-  .quest-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(0,229,255,0.04) 0%, transparent 60%);
-    pointer-events: none;
-  }
-
-  .quest-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--glow);
-  }
-
-  .quest-card.purple:hover { box-shadow: var(--glow2); }
-  .quest-card.green:hover { box-shadow: 0 0 20px rgba(16,185,129,0.3); }
-  .quest-card.amber:hover { box-shadow: 0 0 20px rgba(245,158,11,0.3); }
-
-  .quest-level {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-    padding: 3px 10px;
-    border-radius: 2px;
-    display: inline-block;
-    margin-bottom: 14px;
-  }
-
-  .level-beginner { background: rgba(16,185,129,0.15); color: var(--accent3); border: 1px solid rgba(16,185,129,0.3); }
-  .level-intermediate { background: rgba(0,229,255,0.1); color: var(--accent); border: 1px solid rgba(0,229,255,0.3); }
-  .level-advanced { background: rgba(124,58,237,0.15); color: #a78bfa; border: 1px solid rgba(124,58,237,0.3); }
-  .level-expert { background: rgba(245,158,11,0.15); color: var(--accent4); border: 1px solid rgba(245,158,11,0.3); }
-
-  .quest-card h3 {
-    font-family: 'Orbitron', monospace;
-    font-size: 1rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: #fff;
-  }
-
-  .quest-card p { font-size: 0.92rem; color: #94a3b8; margin-bottom: 16px; }
-
-  .quest-meta {
-    display: flex;
-    gap: 16px;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 11px;
-    color: var(--muted);
-  }
-
-  .quest-meta span { display: flex; align-items: center; gap: 5px; }
-
-  .quest-xp {
-    position: absolute;
-    top: 16px; right: 16px;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 11px;
-    color: var(--accent4);
-    background: rgba(245,158,11,0.1);
-    border: 1px solid rgba(245,158,11,0.2);
-    padding: 2px 8px;
-    border-radius: 2px;
-  }
-
-  /* ---- PLATFORMS TABLE ---- */
-  .platforms-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 16px;
-  }
-
-  .platform-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-
-  .platform-card:hover {
-    border-color: rgba(0,229,255,0.4);
-    transform: translateY(-3px);
-  }
-
-  .platform-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .platform-name {
-    font-family: 'Orbitron', monospace;
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: #fff;
-  }
-
-  .platform-tag {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 1px;
-    padding: 2px 8px;
-    border-radius: 2px;
-  }
-
-  .tag-free { background: rgba(16,185,129,0.15); color: var(--accent3); }
-  .tag-paid { background: rgba(245,158,11,0.15); color: var(--accent4); }
-  .tag-freemium { background: rgba(0,229,255,0.1); color: var(--accent); }
-
-  .platform-desc { font-size: 0.88rem; color: #94a3b8; }
-
-  .platform-features {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .platform-features li {
-    font-size: 0.82rem;
-    color: #64748b;
-    padding-left: 14px;
-    position: relative;
-  }
-
-  .platform-features li::before {
-    content: '›';
-    position: absolute;
-    left: 0;
-    color: var(--accent);
-  }
-
-  .platform-score {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-top: 4px;
-  }
-
-  .score-bar {
-    flex: 1;
-    height: 4px;
-    background: rgba(255,255,255,0.06);
-    border-radius: 2px;
-    overflow: hidden;
-  }
-
-  .score-fill {
-    height: 100%;
-    border-radius: 2px;
-    background: linear-gradient(90deg, var(--accent2), var(--accent));
-  }
-
-  .score-label {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 10px;
-    color: var(--accent);
-    white-space: nowrap;
-  }
-
-  /* ---- SIMULATION TECHNIQUES ---- */
-  .sim-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 20px;
-  }
-
-  .sim-item {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 24px;
-    display: flex;
-    gap: 18px;
-    align-items: flex-start;
-    transition: transform 0.2s;
-  }
-
-  .sim-item:hover { transform: translateX(4px); }
-
-  .sim-icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.4rem;
-    flex-shrink: 0;
-  }
-
-  .sim-icon.cyan { background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,0.2); }
-  .sim-icon.purple { background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.25); }
-  .sim-icon.green { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.2); }
-  .sim-icon.amber { background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2); }
-  .sim-icon.red { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.2); }
-
-  .sim-content h4 {
-    font-family: 'Orbitron', monospace;
-    font-size: 0.88rem;
-    font-weight: 700;
-    color: #fff;
-    margin-bottom: 8px;
-  }
-
-  .sim-content p { font-size: 0.88rem; color: #94a3b8; line-height: 1.6; }
-
-  /* ---- SKILL TREE ---- */
-  .skill-tree {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    position: relative;
-    padding-left: 32px;
-  }
-
-  .skill-tree::before {
-    content: '';
-    position: absolute;
-    left: 12px;
-    top: 0; bottom: 0;
-    width: 1px;
-    background: linear-gradient(to bottom, var(--accent2), transparent);
-  }
-
-  .skill-node {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 14px 18px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    transition: border-color 0.2s;
-    position: relative;
-  }
-
-  .skill-node::before {
-    content: '';
-    position: absolute;
-    left: -20px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 16px;
-    height: 1px;
-    background: var(--accent2);
-  }
-
-  .skill-node:hover { border-color: rgba(0,229,255,0.4); }
-
-  .skill-node-name {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.9rem;
-    color: #e2e8f0;
-  }
-
-  .skill-tags {
-    display: flex;
-    gap: 6px;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-  }
-
-  .skill-tag {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 9px;
-    padding: 2px 7px;
-    border-radius: 2px;
-    background: rgba(0,229,255,0.08);
-    color: var(--accent);
-    border: 1px solid rgba(0,229,255,0.15);
-  }
-
-  /* ---- CODE BLOCK ---- */
-  .code-block {
-    background: #020610;
-    border: 1px solid rgba(0,229,255,0.12);
-    border-radius: 8px;
-    padding: 20px;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.85rem;
-    line-height: 1.8;
-    color: #94a3b8;
-    overflow-x: auto;
-    position: relative;
-  }
-
-  .code-block .comment { color: #334155; }
-  .code-block .key { color: var(--accent); }
-  .code-block .val { color: var(--accent3); }
-  .code-block .str { color: var(--accent4); }
-  .code-block .kw { color: #a78bfa; }
-  .code-block .code-label {
-    position: absolute;
-    top: 10px; right: 14px;
-    font-size: 9px;
-    letter-spacing: 2px;
-    color: var(--muted);
-  }
-
-  /* ---- TIPS STRIP ---- */
-  .tips-strip {
-    background: rgba(124,58,237,0.08);
-    border: 1px solid rgba(124,58,237,0.2);
-    border-radius: 8px;
-    padding: 20px 24px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 16px;
-    margin-top: 30px;
-  }
-
-  .tip-item {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-  }
-
-  .tip-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--accent2);
-    margin-top: 7px;
-    flex-shrink: 0;
-    box-shadow: 0 0 6px rgba(124,58,237,0.6);
-  }
-
-  .tip-item p { font-size: 0.85rem; color: #94a3b8; }
-
-  /* ---- ACHIEVEMENT BADGES ---- */
-  .badges-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 8px;
-  }
-
-  .badge {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 10px 14px;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 11px;
-    color: #94a3b8;
-    transition: border-color 0.2s, transform 0.2s;
-  }
-
-  .badge:hover {
-    border-color: rgba(0,229,255,0.4);
-    transform: scale(1.03);
-    color: var(--accent);
-  }
-
-  .badge-icon { font-size: 1.2rem; }
-
-  /* ---- FOOTER ---- */
-  footer {
-    padding: 40px 24px;
-    text-align: center;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 11px;
-    letter-spacing: 2px;
-    color: var(--muted);
-    position: relative;
-    z-index: 1;
-  }
-
-  footer span { color: var(--accent); }
-
-  /* ---- ANIMATIONS ---- */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeIn 0.6s ease forwards;
-  }
-
-  @keyframes fadeIn {
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .quest-card:nth-child(1) { animation-delay: 0.05s; }
-  .quest-card:nth-child(2) { animation-delay: 0.10s; }
-  .quest-card:nth-child(3) { animation-delay: 0.15s; }
-  .quest-card:nth-child(4) { animation-delay: 0.20s; }
-  .quest-card:nth-child(5) { animation-delay: 0.25s; }
-  .quest-card:nth-child(6) { animation-delay: 0.30s; }
-
-  .divider {
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--border), transparent);
-    margin: 0;
-  }
-
-  @media (max-width: 600px) {
-    .hero { padding: 60px 16px 40px; }
-    .quest-grid, .platforms-grid, .sim-list { grid-template-columns: 1fr; }
-    .tips-strip { grid-template-columns: 1fr; }
-  }
+:root{--bg:#060a12;--surface:#0c1424;--surface2:#111e36;--surface3:#162540;--accent:#00e5ff;--accent2:#7c3aed;--accent3:#10b981;--accent4:#f59e0b;--danger:#ef4444;--text:#e2e8f0;--muted:#64748b;--border:rgba(0,229,255,0.12);--border2:rgba(124,58,237,0.2)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,229,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,0.025) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;z-index:0}
+body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 40% at 50% 0%,rgba(124,58,237,0.1) 0%,transparent 70%);pointer-events:none;z-index:0}
+.scanline{position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.025) 2px,rgba(0,0,0,0.025) 4px);pointer-events:none;z-index:999;opacity:0.5}
+
+/* HUD */
+.hud{position:sticky;top:0;z-index:100;background:rgba(6,10,18,0.94);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.hud-brand{font-family:'Orbitron',monospace;font-size:0.72rem;font-weight:700;color:var(--accent);letter-spacing:2px;text-decoration:none}
+.hud-brand span{color:var(--accent2)}
+.hud-stats{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.hud-stat{display:flex;align-items:center;gap:7px;font-family:'Share Tech Mono',monospace;font-size:11px}
+.hud-stat-label{color:var(--muted)}
+.hud-stat-val{color:var(--accent);font-weight:700}
+.hud-xp-bar{width:110px;height:5px;background:rgba(0,229,255,0.08);border-radius:3px;overflow:hidden;border:1px solid rgba(0,229,255,0.12)}
+.hud-xp-fill{height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent));border-radius:3px;transition:width 0.7s ease}
+.hud-level{font-family:'Share Tech Mono',monospace;font-size:9px;background:rgba(124,58,237,0.18);color:#a78bfa;padding:2px 8px;border-radius:2px;border:1px solid rgba(124,58,237,0.3)}
+.hud-streak{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--accent4)}
+.reset-btn{font-family:'Share Tech Mono',monospace;font-size:9px;padding:3px 10px;background:transparent;color:var(--muted);border:1px solid rgba(100,116,139,0.2);border-radius:2px;cursor:pointer;transition:all 0.2s}
+.reset-btn:hover{color:var(--danger);border-color:rgba(239,68,68,0.3)}
+
+/* HERO */
+.hero{position:relative;z-index:1;text-align:center;padding:65px 20px 45px}
+.hero-badge{display:inline-block;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--accent);border:1px solid rgba(0,229,255,0.4);padding:4px 16px;border-radius:2px;margin-bottom:22px;animation:pulseBorder 2s ease-in-out infinite}
+@keyframes pulseBorder{0%,100%{box-shadow:0 0 0 0 rgba(0,229,255,0.4)}50%{box-shadow:0 0 0 8px rgba(0,229,255,0)}}
+.hero h1{font-family:'Orbitron',monospace;font-size:clamp(1.9rem,5vw,3.3rem);font-weight:900;line-height:1.1;margin-bottom:14px}
+.hero h1 .c1{color:var(--accent2)}.hero h1 .c2{color:var(--accent);text-shadow:0 0 40px rgba(0,229,255,0.5)}
+.hero-sub{color:var(--muted);font-size:1rem;max-width:480px;margin:0 auto 26px;font-weight:300}
+.hero-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn{font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:2px;padding:10px 22px;border-radius:3px;cursor:pointer;transition:all 0.2s;border:none;text-transform:uppercase}
+.btn-primary{background:linear-gradient(135deg,var(--accent2),var(--accent));color:#fff;box-shadow:0 4px 20px rgba(0,229,255,0.2)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,229,255,0.35)}
+.btn-primary:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+.btn-outline{background:transparent;color:var(--accent);border:1px solid rgba(0,229,255,0.4)}
+.btn-outline:hover{background:rgba(0,229,255,0.08)}
+.btn-danger{background:rgba(239,68,68,0.12);color:var(--danger);border:1px solid rgba(239,68,68,0.25)}
+.btn-danger:hover{background:rgba(239,68,68,0.22)}
+.btn-success{background:rgba(16,185,129,0.12);color:var(--accent3);border:1px solid rgba(16,185,129,0.25)}
+.btn-success:hover{background:rgba(16,185,129,0.22)}
+.btn-sm{font-size:9px;padding:6px 13px}
+
+/* TABS */
+.tab-nav{position:relative;z-index:10;display:flex;gap:2px;padding:0 20px;border-bottom:1px solid var(--border);overflow-x:auto;background:rgba(6,10,18,0.7);backdrop-filter:blur(8px)}
+.tab-btn{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:2px;padding:12px 16px;background:transparent;border:none;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;white-space:nowrap}
+.tab-btn:hover{color:var(--text)}
+.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab-content{display:none;position:relative;z-index:1;padding:36px 20px;max-width:1100px;margin:0 auto}
+.tab-content.active{display:block}
+
+/* QUEST CARDS */
+.quest-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:18px}
+.quest-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:22px;position:relative;overflow:hidden;transition:all 0.25s;cursor:pointer}
+.quest-card.locked{opacity:0.4;cursor:not-allowed}
+.quest-card.locked::after{content:'🔒  LOCKED';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'Share Tech Mono',monospace;font-size:13px;color:var(--muted);background:rgba(6,10,18,0.55);letter-spacing:3px}
+.quest-card.completed{border-color:rgba(16,185,129,0.3)}
+.quest-card.completed::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(16,185,129,0.05) 0%,transparent 60%);pointer-events:none}
+.quest-card:not(.locked):hover{transform:translateY(-5px);box-shadow:0 14px 40px rgba(0,229,255,0.14);border-color:rgba(0,229,255,0.3)}
+.quest-card.completed:not(.locked):hover{box-shadow:0 14px 40px rgba(16,185,129,0.14)}
+.quest-xp-badge{position:absolute;top:14px;right:14px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--accent4);background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.22);padding:2px 8px;border-radius:2px}
+.quest-done-badge{position:absolute;top:14px;right:14px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--accent3);background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.28);padding:2px 8px;border-radius:2px}
+.qlvl{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;padding:3px 10px;border-radius:2px;display:inline-block;margin-bottom:12px}
+.qlvl-b{background:rgba(16,185,129,0.1);color:var(--accent3);border:1px solid rgba(16,185,129,0.22)}
+.qlvl-i{background:rgba(0,229,255,0.07);color:var(--accent);border:1px solid rgba(0,229,255,0.18)}
+.qlvl-a{background:rgba(124,58,237,0.1);color:#a78bfa;border:1px solid rgba(124,58,237,0.22)}
+.qlvl-e{background:rgba(245,158,11,0.1);color:var(--accent4);border:1px solid rgba(245,158,11,0.22)}
+.quest-card h3{font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:700;color:#fff;margin-bottom:8px}
+.quest-card p{font-size:0.87rem;color:#94a3b8;margin-bottom:14px;line-height:1.5}
+.quest-meta-row{display:flex;gap:12px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);flex-wrap:wrap}
+.qpbar{margin-top:12px;height:3px;background:rgba(255,255,255,0.05);border-radius:2px;overflow:hidden}
+.qpbar-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--accent2),var(--accent));transition:width 0.5s ease}
+.qpct{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--muted);margin-top:5px}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:500;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.open{display:flex}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:12px;max-width:660px;width:100%;max-height:92vh;overflow-y:auto}
+.modal-header{padding:22px 22px 0;display:flex;align-items:flex-start;justify-content:space-between;gap:14px;position:sticky;top:0;background:var(--surface);padding-bottom:14px;border-bottom:1px solid var(--border);z-index:2}
+.modal-title{font-family:'Orbitron',monospace;font-size:1rem;font-weight:700;color:#fff}
+.modal-close{background:transparent;border:none;color:var(--muted);font-size:1.3rem;cursor:pointer;line-height:1;padding:4px}
+.modal-close:hover{color:var(--text)}
+.modal-body{padding:20px 22px 24px}
+.msec{margin-bottom:20px}
+.msec h4{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--accent2);margin-bottom:10px}
+.obj-list{list-style:none;display:flex;flex-direction:column;gap:7px}
+.obj-item{display:flex;align-items:flex-start;gap:11px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:10px 13px;cursor:pointer;transition:border-color 0.2s}
+.obj-item:hover{border-color:rgba(0,229,255,0.28)}
+.obj-item.done{border-color:rgba(16,185,129,0.25);cursor:default}
+.obj-chk{width:17px;height:17px;min-width:17px;border:1px solid var(--muted);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;transition:all 0.2s;margin-top:2px}
+.obj-item.done .obj-chk{background:var(--accent3);border-color:var(--accent3);color:#fff}
+.obj-txt{font-size:0.86rem;color:#94a3b8;line-height:1.5}
+.obj-item.done .obj-txt{text-decoration:line-through;color:var(--muted)}
+
+/* QUIZ */
+.quiz-wrap{background:var(--surface2);border:1px solid var(--border2);border-radius:8px;padding:18px}
+.quiz-q{font-size:0.93rem;color:var(--text);margin-bottom:14px;font-weight:600;line-height:1.5}
+.quiz-opts{display:flex;flex-direction:column;gap:7px}
+.quiz-opt{background:var(--surface3);border:1px solid var(--border);border-radius:6px;padding:10px 13px;cursor:pointer;font-size:0.86rem;color:#94a3b8;transition:all 0.2s;text-align:left;font-family:'Rajdhani',sans-serif}
+.quiz-opt:hover:not(.qdisabled){border-color:rgba(0,229,255,0.28);color:var(--text)}
+.quiz-opt.correct{border-color:var(--accent3);color:var(--accent3);background:rgba(16,185,129,0.08)}
+.quiz-opt.wrong{border-color:var(--danger);color:var(--danger);background:rgba(239,68,68,0.08)}
+.quiz-opt.qdisabled{cursor:not-allowed}
+.quiz-fb{margin-top:10px;font-family:'Share Tech Mono',monospace;font-size:10px;padding:8px 12px;border-radius:4px;line-height:1.6}
+.quiz-fb.correct{background:rgba(16,185,129,0.08);color:var(--accent3);border:1px solid rgba(16,185,129,0.18)}
+.quiz-fb.wrong{background:rgba(239,68,68,0.08);color:var(--danger);border:1px solid rgba(239,68,68,0.18)}
+
+/* TIMER */
+.timer-wrap{display:flex;align-items:center;gap:14px;background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.2);border-radius:6px;padding:14px 16px;margin-bottom:16px;flex-wrap:wrap}
+.timer-disp{font-family:'Share Tech Mono',monospace;font-size:1.7rem;color:var(--accent4);min-width:90px}
+.timer-disp.warn{color:var(--danger);animation:tFlash 0.5s ease-in-out infinite}
+@keyframes tFlash{0%,100%{opacity:1}50%{opacity:0.35}}
+.timer-lbl{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:2px;margin-bottom:4px}
+
+/* SKILL TREE */
+.stree{display:flex;flex-direction:column;gap:10px;position:relative;padding-left:40px}
+.stree::before{content:'';position:absolute;left:16px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--accent2),transparent)}
+.snode-row{position:relative}
+.snode-row::before{content:'';position:absolute;left:-24px;top:50%;width:20px;height:2px;background:var(--accent2);transform:translateY(-50%)}
+.snode{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;transition:all 0.2s}
+.snode.unlocked{border-color:rgba(16,185,129,0.28)}
+.snode.unlocked:hover{transform:translateX(5px);border-color:rgba(16,185,129,0.45)}
+.snode.slocked{opacity:0.38}
+.snode:not(.slocked):hover{transform:translateX(5px);border-color:rgba(0,229,255,0.3)}
+.snode-left{display:flex;align-items:center;gap:13px}
+.snode-ico{width:38px;height:38px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+.ico-g{background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.18)}
+.ico-c{background:rgba(0,229,255,0.07);border:1px solid rgba(0,229,255,0.14)}
+.ico-p{background:rgba(124,58,237,0.1);border:1px solid rgba(124,58,237,0.18)}
+.ico-a{background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.18)}
+.ico-r{background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.15)}
+.snode-name{font-family:'Orbitron',monospace;font-size:0.8rem;font-weight:700;color:#fff;margin-bottom:4px}
+.snode-tags{display:flex;gap:5px;flex-wrap:wrap}
+.stag{font-family:'Share Tech Mono',monospace;font-size:8px;padding:2px 7px;border-radius:2px;background:rgba(0,229,255,0.06);color:var(--accent);border:1px solid rgba(0,229,255,0.1)}
+.snode-status{font-family:'Share Tech Mono',monospace;font-size:9px;padding:3px 9px;border-radius:2px;white-space:nowrap}
+.ss-done{background:rgba(16,185,129,0.1);color:var(--accent3);border:1px solid rgba(16,185,129,0.18)}
+.ss-avail{background:rgba(0,229,255,0.07);color:var(--accent);border:1px solid rgba(0,229,255,0.14)}
+.ss-lock{background:rgba(100,116,139,0.08);color:var(--muted);border:1px solid rgba(100,116,139,0.12)}
+
+/* LEADERBOARD */
+.lb-wrap{display:flex;flex-direction:column;gap:7px}
+.lb-row{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:13px 16px;transition:border-color 0.2s}
+.lb-row.you{border-color:rgba(0,229,255,0.28);background:rgba(0,229,255,0.03)}
+.lb-rank{font-family:'Share Tech Mono',monospace;font-size:0.95rem;color:var(--muted);width:28px;text-align:center}
+.lb-rank.gold{color:#fbbf24;font-size:1.1rem}.lb-rank.silver{color:#94a3b8;font-size:1rem}.lb-rank.bronze{color:#b45309}
+.lb-name{font-family:'Rajdhani',sans-serif;font-size:0.97rem;font-weight:600;color:var(--text);flex:1}
+.lb-name.youname{color:var(--accent)}
+.you-tag{font-family:'Share Tech Mono',monospace;font-size:8px;background:rgba(0,229,255,0.08);color:var(--accent);border:1px solid rgba(0,229,255,0.18);padding:2px 6px;border-radius:2px;margin-left:8px}
+.lb-xp{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--accent4)}
+.lb-lv{font-family:'Share Tech Mono',monospace;font-size:9px;padding:2px 8px;border-radius:2px;background:rgba(124,58,237,0.1);color:#a78bfa;border:1px solid rgba(124,58,237,0.18)}
+.lb-bar{width:100px;height:3px;background:rgba(255,255,255,0.05);border-radius:2px;overflow:hidden}
+.lb-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent2),var(--accent));border-radius:2px}
+
+/* BADGES */
+.badges-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
+.badge-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px;text-align:center;transition:all 0.25s;position:relative;overflow:hidden}
+.badge-card.earned{border-color:rgba(245,158,11,0.35);cursor:pointer}
+.badge-card.earned::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(245,158,11,0.05) 0%,transparent 60%)}
+.badge-card.earned:hover{transform:translateY(-4px);box-shadow:0 12px 28px rgba(245,158,11,0.12)}
+.badge-card.noearned{opacity:0.32;filter:grayscale(1)}
+.bemoji{font-size:2.2rem;margin-bottom:9px;display:block}
+.bname{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--accent4);margin-bottom:5px}
+.badge-card.noearned .bname{color:var(--muted)}
+.bdesc{font-size:0.79rem;color:#64748b;line-height:1.4}
+.beat{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--accent3);margin-top:7px}
+
+/* SIM CARDS */
+.sim-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.sim-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px;transition:all 0.2s}
+.sim-card:hover{border-color:rgba(0,229,255,0.22);transform:translateY(-3px)}
+.sim-header{display:flex;align-items:center;gap:13px;margin-bottom:12px}
+.sim-ico{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.sim-card h4{font-family:'Orbitron',monospace;font-size:0.83rem;font-weight:700;color:#fff;margin-bottom:3px}
+.sim-diff{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--muted)}
+.sim-card p{font-size:0.86rem;color:#94a3b8;line-height:1.5;margin-bottom:13px}
+.sim-footer{display:flex;align-items:center;justify-content:space-between}
+.sim-xp{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--accent4)}
+
+/* DAILY CHALLENGE */
+.daily-card{background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(0,229,255,0.05));border:1px solid var(--border2);border-radius:10px;padding:22px;margin-bottom:28px;position:relative;overflow:hidden}
+.daily-card::before{content:'DAILY CHALLENGE';position:absolute;top:12px;right:16px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--accent2);opacity:0.5}
+.daily-timer-row{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:7px}
+.daily-title{font-family:'Orbitron',monospace;font-size:1rem;font-weight:700;color:#fff;margin-bottom:7px}
+.daily-desc{font-size:0.89rem;color:#94a3b8;margin-bottom:14px}
+.daily-reward{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--accent4)}
+
+/* STATS */
+.stats-strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-bottom:28px}
+.stat-box{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;text-align:center}
+.sv{font-family:'Orbitron',monospace;font-size:1.7rem;font-weight:700;color:var(--accent);margin-bottom:3px}
+.sv.purple{color:#a78bfa}.sv.green{color:var(--accent3)}.sv.amber{color:var(--accent4)}
+.sl{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--muted)}
+.sec-label{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:4px;color:var(--accent2);margin-bottom:5px;display:block}
+.sec-title{font-family:'Orbitron',monospace;font-size:clamp(1.1rem,2.5vw,1.6rem);font-weight:700;color:#fff;margin-bottom:7px}
+.sec-intro{color:var(--muted);font-size:0.93rem;margin-bottom:26px;max-width:560px}
+
+/* TOAST */
+.toast-wrap{position:fixed;bottom:22px;right:22px;z-index:600;display:flex;flex-direction:column;gap:9px;pointer-events:none}
+.toast{font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:0.5px;padding:11px 16px;border-radius:6px;pointer-events:auto;animation:tIn 0.3s ease,tOut 0.3s ease 2.8s forwards;max-width:290px;line-height:1.5}
+@keyframes tIn{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:translateX(0)}}
+@keyframes tOut{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(18px)}}
+.t-xp{background:rgba(245,158,11,0.13);border:1px solid rgba(245,158,11,0.28);color:var(--accent4)}
+.t-badge{background:rgba(124,58,237,0.13);border:1px solid rgba(124,58,237,0.28);color:#a78bfa}
+.t-unlock{background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.22);color:var(--accent3)}
+.t-error{background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.22);color:var(--danger)}
+
+/* XP POPUP */
+.xp-pop{position:fixed;pointer-events:none;font-family:'Share Tech Mono',monospace;font-size:1.1rem;color:var(--accent4);font-weight:700;text-shadow:0 0 18px rgba(245,158,11,0.6);z-index:700;animation:xpF 1.4s ease forwards}
+@keyframes xpF{0%{opacity:1;transform:translateY(0) scale(1)}100%{opacity:0;transform:translateY(-80px) scale(1.25)}}
+
+footer{position:relative;z-index:1;text-align:center;padding:32px 20px;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:2px;color:var(--muted);border-top:1px solid var(--border)}
+footer span{color:var(--accent)}
+
+/* progress summary bar */
+.prog-summary{display:flex;align-items:center;gap:10px;margin-bottom:22px;flex-wrap:wrap}
+.prog-item{display:flex;align-items:center;gap:7px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted)}
+.prog-dot{width:8px;height:8px;border-radius:50%}
+
+@media(max-width:600px){
+  .hud{padding:8px 14px}
+  .hud-stats{gap:10px}
+  .hud-xp-bar{width:80px}
+  .tab-btn{padding:10px 10px;font-size:9px}
+  .quest-grid,.sim-grid,.badges-grid,.stats-strip{grid-template-columns:1fr}
+  .stats-strip{grid-template-columns:1fr 1fr}
+}
 </style>
 </head>
 <body>
+<div class="scanline"></div>
+
+<!-- HUD -->
+<nav class="hud">
+  <a class="hud-brand" href="#">EKNATHA<span>LABS</span> / TF-MISSIONS</a>
+  <div class="hud-stats">
+    <div class="hud-stat">
+      <span class="hud-stat-label">LVL</span>
+      <div class="hud-level" id="hudLevel">ROOKIE</div>
+    </div>
+    <div class="hud-stat">
+      <span class="hud-stat-label">XP</span>
+      <div class="hud-xp-bar"><div class="hud-xp-fill" id="hudXpFill" style="width:0%"></div></div>
+      <span class="hud-stat-val" id="hudXp">0</span>
+    </div>
+    <div class="hud-stat">
+      <span class="hud-streak" id="hudStreak">🔥 0 streak</span>
+    </div>
+    <button class="reset-btn" onclick="confirmReset()">RESET</button>
+  </div>
+</nav>
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-badge">// EKNATHA LABS — LEARNING PROTOCOL</div>
-  <h1>
-    <span class="tf">TERRA</span><span class="glow">FORM</span><br>
-    MISSION CONTROL
-  </h1>
-  <p class="hero-sub">A gamified, simulation-driven learning path to mastering Infrastructure as Code — from zero to production-grade.</p>
-  <div class="xp-strip">
-    <span>XP 1,420 / 4,000</span>
-    <div class="xp-bar"><div class="xp-fill"></div></div>
-    <span>LVL 3 OPERATOR</span>
+  <div class="hero-badge">// TERRAFORM MISSION CONTROL v2.0 — FULLY INTERACTIVE</div>
+  <h1><span class="c1">TERRA</span><span class="c2">FORM</span><br>MISSION CONTROL</h1>
+  <p class="hero-sub">A real gamified IaC learning system. Complete quests, earn XP, solve quizzes, race the clock.</p>
+  <div class="hero-actions">
+    <button class="btn btn-primary" onclick="switchTab('quests')">▶ START MISSIONS</button>
+    <button class="btn btn-outline" onclick="switchTab('simulate')">⚡ SIMULATIONS</button>
+    <button class="btn btn-outline" onclick="switchTab('leaderboard')">🏆 LEADERBOARD</button>
   </div>
 </div>
 
-<!-- LEARNING PATH -->
-<section>
-  <div class="container">
-    <span class="section-label">// MODULE_01</span>
-    <h2>The Quest-Based Learning Path</h2>
-    <p class="section-intro">Structured progression across six mission tiers. Each quest unlocks the next. Complete challenges, earn XP, and level up your IaC skills.</p>
+<!-- TABS -->
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('quests')" id="tab-quests">⚔ QUESTS</button>
+  <button class="tab-btn" onclick="switchTab('skilltree')" id="tab-skilltree">🌿 SKILL TREE</button>
+  <button class="tab-btn" onclick="switchTab('simulate')" id="tab-simulate">⚡ SIMULATE</button>
+  <button class="tab-btn" onclick="switchTab('badges')" id="tab-badges">🏅 BADGES</button>
+  <button class="tab-btn" onclick="switchTab('leaderboard')" id="tab-leaderboard">🏆 LEADERBOARD</button>
+  <button class="tab-btn" onclick="switchTab('dashboard')" id="tab-dashboard">📊 DASHBOARD</button>
+</div>
 
-    <div class="quest-grid">
-
-      <div class="quest-card fade-in">
-        <div class="quest-xp">+250 XP</div>
-        <span class="quest-level level-beginner">BEGINNER</span>
-        <h3>Quest 1 — Terraform Origin Story</h3>
-        <p>Understand what Terraform is, how providers work, and write your first <code>main.tf</code> to deploy a local file resource. No cloud account needed.</p>
-        <div class="quest-meta">
-          <span>⏱ 2–3 hrs</span>
-          <span>🎯 3 challenges</span>
-          <span>🛠 local provider</span>
-        </div>
-      </div>
-
-      <div class="quest-card fade-in">
-        <div class="quest-xp">+400 XP</div>
-        <span class="quest-level level-beginner">BEGINNER</span>
-        <h3>Quest 2 — State of the Nation</h3>
-        <p>Master <code>terraform.tfstate</code>, remote backends, and locking. Simulate state corruption scenarios and recover using <code>terraform state</code> commands.</p>
-        <div class="quest-meta">
-          <span>⏱ 3–4 hrs</span>
-          <span>🎯 5 challenges</span>
-          <span>🛠 S3 + DynamoDB</span>
-        </div>
-      </div>
-
-      <div class="quest-card fade-in">
-        <div class="quest-xp">+600 XP</div>
-        <span class="quest-level level-intermediate">INTERMEDIATE</span>
-        <h3>Quest 3 — Module Architect</h3>
-        <p>Build reusable modules with inputs/outputs/locals. Create a VPC module and call it from multiple environments using workspace-based isolation.</p>
-        <div class="quest-meta">
-          <span>⏱ 5–6 hrs</span>
-          <span>🎯 7 challenges</span>
-          <span>🛠 AWS / Azure</span>
-        </div>
-      </div>
-
-      <div class="quest-card fade-in purple">
-        <div class="quest-xp">+800 XP</div>
-        <span class="quest-level level-intermediate">INTERMEDIATE</span>
-        <h3>Quest 4 — Pipeline Commander</h3>
-        <p>Integrate Terraform into GitHub Actions CI/CD. Automate <code>plan</code> on PR, <code>apply</code> on merge. Add policy gates with OPA or Sentinel.</p>
-        <div class="quest-meta">
-          <span>⏱ 6–8 hrs</span>
-          <span>🎯 6 challenges</span>
-          <span>🛠 GitHub Actions</span>
-        </div>
-      </div>
-
-      <div class="quest-card fade-in">
-        <div class="quest-xp">+1000 XP</div>
-        <span class="quest-level level-advanced">ADVANCED</span>
-        <h3>Quest 5 — Drift Detector</h3>
-        <p>Simulate infrastructure drift, detect it with <code>terraform plan</code>, reconcile with import, and build automated drift-detection pipelines.</p>
-        <div class="quest-meta">
-          <span>⏱ 8–10 hrs</span>
-          <span>🎯 8 challenges</span>
-          <span>🛠 Multi-cloud</span>
-        </div>
-      </div>
-
-      <div class="quest-card fade-in amber">
-        <div class="quest-xp">+1500 XP</div>
-        <span class="quest-level level-expert">EXPERT</span>
-        <h3>Quest 6 — Platform Engineer Boss Fight</h3>
-        <p>Design a production multi-account AWS landing zone with workspaces, Atlantis, and full GitOps workflow. Timed simulation under pressure.</p>
-        <div class="quest-meta">
-          <span>⏱ 12–16 hrs</span>
-          <span>🎯 10 challenges</span>
-          <span>🛠 Atlantis + TFE</span>
-        </div>
-      </div>
-
+<!-- QUESTS -->
+<div class="tab-content active" id="content-quests">
+  <div class="daily-card">
+    <div class="daily-timer-row">⏰ RESETS IN: <span id="dailyCountdown">--:--:--</span></div>
+    <div class="daily-title" id="dailyTitle">Loading...</div>
+    <div class="daily-desc" id="dailyDesc"></div>
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <span class="daily-reward" id="dailyReward"></span>
+      <button class="btn btn-sm btn-primary" id="dailyBtn" onclick="claimDaily()">ACCEPT CHALLENGE</button>
     </div>
   </div>
-</section>
-
-<!-- PLATFORMS -->
-<section>
-  <div class="container">
-    <span class="section-label">// MODULE_02</span>
-    <h2>Gamified Platforms & Simulators</h2>
-    <p class="section-intro">Ranked by hands-on value for Terraform practice. Use sandboxes — not your personal account — during learning.</p>
-
-    <div class="platforms-grid">
-
-      <div class="platform-card">
-        <div class="platform-header">
-          <span class="platform-name">KodeKloud</span>
-          <span class="platform-tag tag-paid">SUBSCRIPTION</span>
-        </div>
-        <p class="platform-desc">Browser-based Terraform labs with real cloud playgrounds. Game-style progression and challenge scoring.</p>
-        <ul class="platform-features">
-          <li>Terraform Associate certification path</li>
-          <li>Cloud sandboxes (AWS, Azure, GCP)</li>
-          <li>100+ hands-on Terraform labs</li>
-          <li>Score-based leaderboard per lab</li>
-        </ul>
-        <div class="platform-score">
-          <div class="score-bar"><div class="score-fill" style="width:95%"></div></div>
-          <span class="score-label">95 / 100</span>
-        </div>
-      </div>
-
-      <div class="platform-card">
-        <div class="platform-header">
-          <span class="platform-name">HashiCorp Learn</span>
-          <span class="platform-tag tag-free">FREE</span>
-        </div>
-        <p class="platform-desc">Official guided tutorials with interactive browser terminals. Structured learning tracks by provider.</p>
-        <ul class="platform-features">
-          <li>Interactive in-browser terminal</li>
-          <li>Official Terraform tracks</li>
-          <li>GCP, AWS, Azure, Kubernetes paths</li>
-          <li>Completion badges per track</li>
-        </ul>
-        <div class="platform-score">
-          <div class="score-bar"><div class="score-fill" style="width:88%"></div></div>
-          <span class="score-label">88 / 100</span>
-        </div>
-      </div>
-
-      <div class="platform-card">
-        <div class="platform-header">
-          <span class="platform-name">Instruqt</span>
-          <span class="platform-tag tag-freemium">FREEMIUM</span>
-        </div>
-        <p class="platform-desc">Game-like track system with achievements. HashiCorp's official partner for interactive labs.</p>
-        <ul class="platform-features">
-          <li>Terraform tracks by HashiCorp</li>
-          <li>Points and achievement system</li>
-          <li>Team challenges available</li>
-          <li>Vault + Consul integration labs</li>
-        </ul>
-        <div class="platform-score">
-          <div class="score-bar"><div class="score-fill" style="width:82%"></div></div>
-          <span class="score-label">82 / 100</span>
-        </div>
-      </div>
-
-      <div class="platform-card">
-        <div class="platform-header">
-          <span class="platform-name">Pluralsight / ACG</span>
-          <span class="platform-tag tag-paid">PAID</span>
-        </div>
-        <p class="platform-desc">Cloud sandboxes with skill assessments and IQ scores. Excellent for structured certification prep.</p>
-        <ul class="platform-features">
-          <li>Cloud sandboxes per lab</li>
-          <li>Skill IQ assessment with score</li>
-          <li>Terraform Associate path</li>
-          <li>Hands-on projects with review</li>
-        </ul>
-        <div class="platform-score">
-          <div class="score-bar"><div class="score-fill" style="width:78%"></div></div>
-          <span class="score-label">78 / 100</span>
-        </div>
-      </div>
-
-      <div class="platform-card">
-        <div class="platform-header">
-          <span class="platform-name">Terraformer Arena</span>
-          <span class="platform-tag tag-free">FREE / OSS</span>
-        </div>
-        <p class="platform-desc">Community-built CTF-style Terraform challenges. Solve broken configs under time pressure.</p>
-        <ul class="platform-features">
-          <li>CTF-style broken infra scenarios</li>
-          <li>Timed challenges with leaderboard</li>
-          <li>GitHub-based scenario submission</li>
-          <li>Community scoring and ranking</li>
-        </ul>
-        <div class="platform-score">
-          <div class="score-bar"><div class="score-fill" style="width:70%"></div></div>
-          <span class="score-label">70 / 100</span>
-        </div>
-      </div>
-
-      <div class="platform-card">
-        <div class="platform-header">
-          <span class="platform-name">Localstack + TF</span>
-          <span class="platform-tag tag-free">FREE</span>
-        </div>
-        <p class="platform-desc">Local AWS simulation. Practice Terraform against a full AWS API emulator — zero cost, zero cloud.</p>
-        <ul class="platform-features">
-          <li>Full AWS service emulation locally</li>
-          <li>Zero cost — no cloud account needed</li>
-          <li>Test destroy/apply loops safely</li>
-          <li>CI pipeline friendly</li>
-        </ul>
-        <div class="platform-score">
-          <div class="score-bar"><div class="score-fill" style="width:85%"></div></div>
-          <span class="score-label">85 / 100</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- SIMULATION TECHNIQUES -->
-<section>
-  <div class="container">
-    <span class="section-label">// MODULE_03</span>
-    <h2>Simulation Techniques That Stick</h2>
-    <p class="section-intro">Beyond platforms — these hands-on simulation methods build real muscle memory for production scenarios.</p>
-
-    <div class="sim-list">
-
-      <div class="sim-item">
-        <div class="sim-icon cyan">💥</div>
-        <div class="sim-content">
-          <h4>Break-and-Fix Drills</h4>
-          <p>Intentionally corrupt your <code>.tfstate</code>, remove a resource manually from the console, then recover using <code>terraform import</code>, <code>state rm</code>, or <code>taint</code>. Nothing teaches state management faster than controlled chaos.</p>
-        </div>
-      </div>
-
-      <div class="sim-item">
-        <div class="sim-icon purple">🏎️</div>
-        <div class="sim-content">
-          <h4>Speed-Run Challenges</h4>
-          <p>Set a 30-minute timer. Deploy a working 3-tier VPC with public/private subnets, NAT gateway, and EC2 from scratch using only Terraform. Track your time each week — speed is a proxy for internalization.</p>
-        </div>
-      </div>
-
-      <div class="sim-item">
-        <div class="sim-icon green">🌍</div>
-        <div class="sim-content">
-          <h4>Multi-Cloud Parity Builds</h4>
-          <p>Deploy the same architecture on AWS and then GCP using separate providers but identical module interfaces. This forces you to understand what's truly provider-agnostic vs. what's cloud-specific.</p>
-        </div>
-      </div>
-
-      <div class="sim-item">
-        <div class="sim-icon amber">🔍</div>
-        <div class="sim-content">
-          <h4>Plan Output Reading</h4>
-          <p>Given a <code>terraform plan</code> output, predict exactly what will change and why before running <code>apply</code>. Keep a score. This trains you to catch dangerous changes before they hit production.</p>
-        </div>
-      </div>
-
-      <div class="sim-item">
-        <div class="sim-icon red">🚨</div>
-        <div class="sim-content">
-          <h4>Incident Roleplay</h4>
-          <p>Someone "accidentally" runs <code>terraform destroy</code> on a staging env. Simulate a recovery exercise: restore from state backup, re-apply with correct vars, and write the incident postmortem. Forces real-world thinking.</p>
-        </div>
-      </div>
-
-      <div class="sim-item">
-        <div class="sim-icon cyan">🧪</div>
-        <div class="sim-content">
-          <h4>Terratest / BATS Automation</h4>
-          <p>Write Go-based Terratest assertions that validate your infrastructure actually works after apply — not just that it deployed. This brings TDD discipline to IaC and prepares you for senior platform roles.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
+  <span class="sec-label">// MISSION BOARD</span>
+  <div class="sec-title">Active Quest Log</div>
+  <p class="sec-intro">Click any unlocked quest to open objectives and knowledge checks. Complete all objectives + quiz to finish the quest.</p>
+  <div class="quest-grid" id="questGrid"></div>
+</div>
 
 <!-- SKILL TREE -->
-<section>
-  <div class="container">
-    <span class="section-label">// MODULE_04</span>
-    <h2>Terraform Skill Tree</h2>
-    <p class="section-intro">A locked progression — unlock each tier before advancing. Each node maps to real interview questions and production scenarios.</p>
+<div class="tab-content" id="content-skilltree">
+  <span class="sec-label">// PROGRESSION SYSTEM</span>
+  <div class="sec-title">Terraform Skill Tree</div>
+  <p class="sec-intro">Tiers unlock automatically as you complete quests. Each tier maps to real interview questions.</p>
+  <div class="stree" id="skillTree"></div>
+</div>
 
-    <div class="skill-tree">
-      <div class="skill-node">
-        <span class="skill-node-name">🟢 Tier 1 — Fundamentals</span>
-        <div class="skill-tags">
-          <span class="skill-tag">init / plan / apply</span>
-          <span class="skill-tag">providers</span>
-          <span class="skill-tag">resources</span>
-          <span class="skill-tag">variables</span>
-        </div>
-      </div>
-      <div class="skill-node">
-        <span class="skill-node-name">🔵 Tier 2 — State Mastery</span>
-        <div class="skill-tags">
-          <span class="skill-tag">remote backends</span>
-          <span class="skill-tag">locking</span>
-          <span class="skill-tag">state mv / rm</span>
-          <span class="skill-tag">import</span>
-        </div>
-      </div>
-      <div class="skill-node">
-        <span class="skill-node-name">🔵 Tier 3 — Modules & Reuse</span>
-        <div class="skill-tags">
-          <span class="skill-tag">module structure</span>
-          <span class="skill-tag">locals</span>
-          <span class="skill-tag">outputs</span>
-          <span class="skill-tag">registry</span>
-        </div>
-      </div>
-      <div class="skill-node">
-        <span class="skill-node-name">🟣 Tier 4 — Workspaces & Environments</span>
-        <div class="skill-tags">
-          <span class="skill-tag">workspaces</span>
-          <span class="skill-tag">tfvars</span>
-          <span class="skill-tag">env strategy</span>
-          <span class="skill-tag">loops</span>
-        </div>
-      </div>
-      <div class="skill-node">
-        <span class="skill-node-name">🟣 Tier 5 — CI/CD Integration</span>
-        <div class="skill-tags">
-          <span class="skill-tag">GitHub Actions</span>
-          <span class="skill-tag">Atlantis</span>
-          <span class="skill-tag">plan on PR</span>
-          <span class="skill-tag">OIDC auth</span>
-        </div>
-      </div>
-      <div class="skill-node">
-        <span class="skill-node-name">🟡 Tier 6 — Policy & Security</span>
-        <div class="skill-tags">
-          <span class="skill-tag">Sentinel</span>
-          <span class="skill-tag">OPA / conftest</span>
-          <span class="skill-tag">checkov</span>
-          <span class="skill-tag">tfsec</span>
-        </div>
-      </div>
-      <div class="skill-node">
-        <span class="skill-node-name">🔴 Tier 7 — Production Architecture</span>
-        <div class="skill-tags">
-          <span class="skill-tag">landing zones</span>
-          <span class="skill-tag">multi-account</span>
-          <span class="skill-tag">Terragrunt</span>
-          <span class="skill-tag">drift detection</span>
-        </div>
-      </div>
-    </div>
+<!-- SIMULATE -->
+<div class="tab-content" id="content-simulate">
+  <span class="sec-label">// SIMULATION ARENA</span>
+  <div class="sec-title">Timed Challenge Simulations</div>
+  <p class="sec-intro">Start a timer-based simulation, complete it in the real world, then mark complete to claim XP.</p>
+  <div class="sim-grid" id="simGrid"></div>
+</div>
 
-    <div class="tips-strip" style="margin-top:30px;">
-      <div class="tip-item">
-        <div class="tip-dot"></div>
-        <p>Don't skip state management — it's 60% of production Terraform problems.</p>
-      </div>
-      <div class="tip-item">
-        <div class="tip-dot"></div>
-        <p>Practice destroying and re-applying the same configs repeatedly to build speed.</p>
-      </div>
-      <div class="tip-item">
-        <div class="tip-dot"></div>
-        <p>Every module you build is a portfolio artifact — push it to GitHub with a README.</p>
-      </div>
-      <div class="tip-item">
-        <div class="tip-dot"></div>
-        <p>Use LocalStack for AWS free-tier practice — no cost, no surprise bills.</p>
-      </div>
+<!-- BADGES -->
+<div class="tab-content" id="content-badges">
+  <span class="sec-label">// ACHIEVEMENT SYSTEM</span>
+  <div class="sec-title">Badge Collection</div>
+  <p class="sec-intro">Badges unlock automatically when you hit milestones. Share them on GitHub and LinkedIn.</p>
+  <div class="badges-grid" id="badgesGrid"></div>
+</div>
+
+<!-- LEADERBOARD -->
+<div class="tab-content" id="content-leaderboard">
+  <span class="sec-label">// GLOBAL RANKING</span>
+  <div class="sec-title">Platform Leaderboard</div>
+  <p class="sec-intro">Your rank updates live as you earn XP. Climb the board by completing quests and simulations.</p>
+  <div class="lb-wrap" id="lbWrap"></div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="tab-content" id="content-dashboard">
+  <span class="sec-label">// OPERATOR PROFILE</span>
+  <div class="sec-title">Mission Dashboard</div>
+  <p class="sec-intro">Your full progress at a glance.</p>
+  <div class="stats-strip" id="statsStrip"></div>
+  <span class="sec-label" style="margin-top:20px">// ACTIVITY LOG</span>
+  <div id="actLog" style="display:flex;flex-direction:column;gap:7px;margin-top:10px"></div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="mOverlay" onclick="overlayClose(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="mTitle"></div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
     </div>
+    <div class="modal-body" id="mBody"></div>
   </div>
-</section>
+</div>
 
-<!-- SAMPLE HCL -->
-<section>
-  <div class="container">
-    <span class="section-label">// MODULE_05</span>
-    <h2>A Starter Simulation Config</h2>
-    <p class="section-intro">Run this locally with the <code>local</code> provider — no cloud account needed. Your first playable Terraform simulation.</p>
+<div class="toast-wrap" id="toasts"></div>
 
-    <div class="code-block">
-      <span class="code-label">MAIN.TF</span>
-<span class="comment"># ─── QUEST 1: Local Provider Simulation ───────────────────────────</span>
+<footer>EKNATHA LABS &nbsp;/&nbsp; <span>eknathalabs.com</span> &nbsp;/&nbsp; TERRAFORM MISSION CONTROL v2.0</footer>
 
-<span class="kw">terraform</span> {
-  required_providers {
-    <span class="key">local</span> = {
-      source  = <span class="str">"hashicorp/local"</span>
-      version = <span class="str">"~> 2.4"</span>
-    }
+<script>
+// ──────────────────────────────────────────────
+// DATA
+// ──────────────────────────────────────────────
+const QUESTS = [
+  { id:'q1', title:'Quest 1 — Terraform Origin Story', level:'BEGINNER', lc:'qlvl-b',
+    xp:250, time:'2–3 hrs', tools:'local provider', prereq:null,
+    desc:'Write your first main.tf, deploy a local file resource using the local provider. No cloud account needed.',
+    objectives:[
+      {id:'q1o1',text:'Install Terraform CLI ≥ 1.5 and verify with `terraform version`',xp:30},
+      {id:'q1o2',text:'Write main.tf using the local provider to create a file resource',xp:40},
+      {id:'q1o3',text:'Run terraform init → plan → apply and observe each output',xp:50},
+      {id:'q1o4',text:'Modify the resource value and re-apply. Study the plan diff',xp:40},
+      {id:'q1o5',text:'Run terraform destroy and inspect terraform.tfstate',xp:40},
+    ],
+    quiz:{q:'What does `terraform plan` do?',
+      opts:['Deploys infrastructure immediately','Shows what changes will be made without applying','Destroys all managed resources','Initializes provider plugins'],
+      correct:1,explain:'`terraform plan` is a dry-run — it calculates and shows exactly what will be created, changed, or destroyed without touching real infrastructure.'}
+  },
+  { id:'q2', title:'Quest 2 — State of the Nation', level:'BEGINNER', lc:'qlvl-b',
+    xp:400, time:'3–4 hrs', tools:'S3 + DynamoDB', prereq:'q1',
+    desc:'Master terraform.tfstate, configure remote backends, and recover from state corruption.',
+    objectives:[
+      {id:'q2o1',text:'Inspect a local terraform.tfstate and understand its JSON structure',xp:40},
+      {id:'q2o2',text:'Configure an S3 remote backend with DynamoDB state locking',xp:70},
+      {id:'q2o3',text:'Run `terraform state list` and `terraform state show <resource>`',xp:50},
+      {id:'q2o4',text:'Manually delete a resource in the console, run plan, observe the drift',xp:70},
+      {id:'q2o5',text:'Use `terraform state rm` to remove an orphaned resource',xp:60},
+    ],
+    quiz:{q:'Why is state locking critical in team environments?',
+      opts:['It encrypts the state file at rest','It prevents concurrent apply runs that could corrupt state','It speeds up terraform plan execution','It auto-backs up the state to S3'],
+      correct:1,explain:'State locking prevents two engineers from running terraform apply simultaneously, which would corrupt the state file and leave infrastructure in an undefined state.'}
+  },
+  { id:'q3', title:'Quest 3 — Module Architect', level:'INTERMEDIATE', lc:'qlvl-i',
+    xp:600, time:'5–6 hrs', tools:'AWS / Azure', prereq:'q2',
+    desc:'Build reusable modules with inputs/outputs/locals. Deploy a VPC module from multiple environments.',
+    objectives:[
+      {id:'q3o1',text:'Create a VPC module with variables.tf, outputs.tf, and main.tf',xp:80},
+      {id:'q3o2',text:'Call the module from a root module with different variable inputs',xp:80},
+      {id:'q3o3',text:'Add locals{} to compute derived values inside the module',xp:70},
+      {id:'q3o4',text:'Use for_each to deploy multiple subnets dynamically',xp:80},
+      {id:'q3o5',text:'Push the module structure to GitHub with a proper README',xp:50},
+    ],
+    quiz:{q:'What is the purpose of outputs.tf in a Terraform module?',
+      opts:['Declare provider version requirements','Expose module values to calling code','Define resource configurations','Store sensitive variable defaults'],
+      correct:1,explain:'outputs.tf exposes internal module values (VPC ID, subnet IDs, etc.) to the root module or other modules that consume it, enabling composition and dependency chaining.'}
+  },
+  { id:'q4', title:'Quest 4 — Pipeline Commander', level:'INTERMEDIATE', lc:'qlvl-i',
+    xp:800, time:'6–8 hrs', tools:'GitHub Actions', prereq:'q3',
+    desc:'Automate plan on PR and apply on merge with GitHub Actions. Add policy gates with OPA/checkov.',
+    objectives:[
+      {id:'q4o1',text:'Create a GitHub Actions workflow for terraform fmt + validate on push',xp:80},
+      {id:'q4o2',text:'Add terraform plan on pull_request and post output as a PR comment',xp:120},
+      {id:'q4o3',text:'Configure terraform apply on merge to main using OIDC authentication',xp:120},
+      {id:'q4o4',text:'Add checkov or tfsec static analysis step to the pipeline',xp:80},
+      {id:'q4o5',text:'Add a manual approval gate before apply using GitHub Environments',xp:80},
+    ],
+    quiz:{q:'What does OIDC authentication solve in Terraform CI/CD?',
+      opts:['It encrypts state files','It eliminates long-lived cloud credentials stored as GitHub secrets','It runs terraform plan faster','It locks the DynamoDB state table'],
+      correct:1,explain:'OIDC lets GitHub Actions assume a cloud IAM role dynamically via a short-lived token — no static access keys stored in GitHub secrets, dramatically reducing the credential exposure risk.'}
+  },
+  { id:'q5', title:'Quest 5 — Drift Detector', level:'ADVANCED', lc:'qlvl-a',
+    xp:1000, time:'8–10 hrs', tools:'Multi-cloud', prereq:'q4',
+    desc:'Detect, investigate and reconcile infrastructure drift. Build automated drift detection pipelines.',
+    objectives:[
+      {id:'q5o1',text:'Manually modify a cloud resource outside of Terraform',xp:100},
+      {id:'q5o2',text:'Run terraform plan and document the exact drift detected',xp:100},
+      {id:'q5o3',text:'Use terraform import to bring an unmanaged resource under TF control',xp:150},
+      {id:'q5o4',text:'Build a scheduled GH Actions job that alerts on drift',xp:200},
+      {id:'q5o5',text:'Write an incident postmortem for a simulated drift incident',xp:100},
+    ],
+    quiz:{q:'What is infrastructure drift?',
+      opts:['When terraform plan takes too long to run','When real cloud resources differ from what Terraform state expects','When a module has no outputs defined','When the remote backend loses connection'],
+      correct:1,explain:'Drift occurs when the actual state of cloud resources diverges from the desired state recorded in Terraform — usually caused by manual console changes, other automation, or human error.'}
+  },
+  { id:'q6', title:'Quest 6 — Boss Fight: Landing Zone', level:'EXPERT', lc:'qlvl-e',
+    xp:1500, time:'12–16 hrs', tools:'Atlantis + TFE', prereq:'q5',
+    desc:'Design a production multi-account AWS landing zone with Atlantis GitOps and full policy enforcement.',
+    objectives:[
+      {id:'q6o1',text:'Design a multi-account Terraform workspace strategy for dev/staging/prod',xp:150},
+      {id:'q6o2',text:'Set up Atlantis for PR-based GitOps Terraform workflow',xp:200},
+      {id:'q6o3',text:'Implement OPA/Sentinel policies that block non-compliant resources',xp:200},
+      {id:'q6o4',text:'Configure cross-account IAM roles for Terraform execution',xp:200},
+      {id:'q6o5',text:'Add drift detection + alerting to the landing zone pipeline',xp:150},
+    ],
+    quiz:{q:'In Atlantis, what triggers a terraform plan run?',
+      opts:['A push to the main branch','A pull request being opened or updated','A manual CLI command on the server','A scheduled cron job in crontab'],
+      correct:1,explain:'Atlantis listens to PR webhooks — when a PR is opened or a new commit is pushed, Atlantis automatically runs terraform plan and posts the output as a comment on the PR.'}
+  }
+];
+
+const SKILLS = [
+  {name:'Tier 1 — Fundamentals',icon:'🟢',ic:'ico-g',tags:['init/plan/apply','providers','resources','variables'],req:'q1'},
+  {name:'Tier 2 — State Mastery',icon:'📦',ic:'ico-c',tags:['remote backends','locking','state mv/rm','import'],req:'q2'},
+  {name:'Tier 3 — Modules & Reuse',icon:'🧩',ic:'ico-p',tags:['module structure','locals','outputs','registry'],req:'q3'},
+  {name:'Tier 4 — Workspaces & Envs',icon:'🌍',ic:'ico-c',tags:['workspaces','tfvars','for_each','count'],req:'q3'},
+  {name:'Tier 5 — CI/CD Integration',icon:'⚡',ic:'ico-p',tags:['GitHub Actions','Atlantis','OIDC auth','plan on PR'],req:'q4'},
+  {name:'Tier 6 — Policy & Security',icon:'🛡️',ic:'ico-a',tags:['Sentinel','OPA/conftest','checkov','tfsec'],req:'q4'},
+  {name:'Tier 7 — Production Architecture',icon:'🔴',ic:'ico-r',tags:['landing zones','multi-account','Terragrunt','drift detection'],req:'q5'},
+];
+
+const SIMS = [
+  {id:'s1',icon:'💥',ibg:'background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.18)',title:'Break & Fix: State Corruption',diff:'INTERMEDIATE',xp:150,time:900,
+   desc:'A tfstate file is corrupted and one resource is orphaned. Recover the infrastructure in 15 minutes using state manipulation commands.'},
+  {id:'s2',icon:'🏎️',ibg:'background:rgba(124,58,237,0.1);border:1px solid rgba(124,58,237,0.18)',title:'Speed Run: VPC Deploy',diff:'BEGINNER',xp:100,time:1800,
+   desc:'Deploy a 3-tier VPC (public/private subnets, NAT gateway, routing) from scratch using only Terraform in under 30 minutes.'},
+  {id:'s3',icon:'🔍',ibg:'background:rgba(0,229,255,0.07);border:1px solid rgba(0,229,255,0.13)',title:'Plan Output Literacy',diff:'BEGINNER',xp:80,time:600,
+   desc:'Read a terraform plan output and answer 5 questions about what will change, what will be destroyed, and why.'},
+  {id:'s4',icon:'🚨',ibg:'background:rgba(239,68,68,0.07);border:1px solid rgba(239,68,68,0.13)',title:'Incident Roleplay',diff:'ADVANCED',xp:200,time:1200,
+   desc:'Someone ran terraform destroy on staging. Restore from state backup, re-apply correctly, and write an incident postmortem.'},
+  {id:'s5',icon:'🌍',ibg:'background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.13)',title:'Multi-Cloud Parity Build',diff:'ADVANCED',xp:250,time:2400,
+   desc:'Deploy the same 2-tier app on AWS and GCP using identical module interfaces. Document every provider-specific difference.'},
+  {id:'s6',icon:'🧪',ibg:'background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.13)',title:'Terratest Gauntlet',diff:'EXPERT',xp:300,time:3600,
+   desc:'Write Go-based Terratest assertions that validate your VPC module actually works post-deploy. All tests must pass.'},
+];
+
+const BADGES = [
+  {id:'b1',emoji:'🟢',name:'FIRST APPLY',desc:'Complete your first terraform apply',req:s=>s.cq.includes('q1')},
+  {id:'b2',emoji:'🔐',name:'STATE GUARDIAN',desc:'Recover from state corruption drill',req:s=>s.cq.includes('q2')},
+  {id:'b3',emoji:'📦',name:'MODULE BUILDER',desc:'Build and call a reusable module',req:s=>s.cq.includes('q3')},
+  {id:'b4',emoji:'⚡',name:'PIPELINE RUNNER',desc:'Automate plan + apply in CI/CD',req:s=>s.cq.includes('q4')},
+  {id:'b5',emoji:'🚨',name:'DRIFT BUSTER',desc:'Detect and reconcile infrastructure drift',req:s=>s.cq.includes('q5')},
+  {id:'b6',emoji:'🏆',name:'PLATFORM ENGINEER',desc:'Complete all 6 quests',req:s=>s.cq.includes('q6')},
+  {id:'b7',emoji:'🏎️',name:'SPEED RUNNER',desc:'Complete any timed simulation',req:s=>Object.keys(s.cs).length>0},
+  {id:'b8',emoji:'🌍',name:'MULTI-CLOUD OPS',desc:'Complete the multi-cloud simulation',req:s=>s.cs['s5']},
+  {id:'b9',emoji:'⭐',name:'DAILY WARRIOR',desc:'Accept a daily challenge',req:s=>s.dailyDone},
+  {id:'b10',emoji:'💯',name:'XP CENTURION',desc:'Earn 1,000+ XP total',req:s=>s.xp>=1000},
+];
+
+const DAILY = [
+  {title:'State File Detective',desc:'Open your latest terraform.tfstate. Identify: (1) resource count, (2) provider version, (3) one dependency chain between resources.',reward:'+75 XP'},
+  {title:'HCL Speed Write',desc:'From memory only — write a valid AWS VPC resource block with 3 required attributes. No docs or autocomplete.',reward:'+60 XP'},
+  {title:'Plan Output Predict',desc:'Make a single tag change to one resource. Before applying, write down exactly what terraform plan will show. Then run it and compare.',reward:'+80 XP'},
+  {title:'Module Input Design',desc:'Design variables.tf for a compute module: instance_type, ami_id, subnet_id, tags (map). Include defaults and descriptions.',reward:'+70 XP'},
+  {title:'Backend Config From Memory',desc:'Write the Terraform backend config block for S3 + DynamoDB locking entirely from memory. Then verify it against the docs.',reward:'+65 XP'},
+];
+
+const LB_BASE = [
+  {name:'CloudNinja_42',xp:8200,level:'ARCHITECT',pct:92},
+  {name:'infra_wizard',xp:6800,level:'EXPERT',pct:76},
+  {name:'terrabot_9000',xp:5900,level:'ADVANCED',pct:66},
+  {name:'devops_queen',xp:4200,level:'INTERMEDIATE',pct:47},
+  {name:'module_master',xp:3100,level:'INTERMEDIATE',pct:35},
+  {name:'plan_reader',xp:2400,level:'BEGINNER',pct:27},
+  {name:'tf_initiate',xp:1200,level:'BEGINNER',pct:13},
+];
+
+const LEVELS = [
+  {min:0,name:'ROOKIE'},{min:500,name:'INITIATE'},{min:1200,name:'OPERATOR'},
+  {min:2500,name:'ENGINEER'},{min:4000,name:'ADVANCED'},{min:5500,name:'EXPERT'},
+  {min:7000,name:'ARCHITECT'},{min:9000,name:'PRINCIPAL'}
+];
+
+// ──────────────────────────────────────────────
+// STATE
+// ──────────────────────────────────────────────
+let S = load();
+function load(){
+  try{ const r=localStorage.getItem('tf_mc_v3'); if(r) return JSON.parse(r); }catch(e){}
+  return {xp:0,level:'ROOKIE',streak:0,cq:[],co:{},qp:{},cb:{},cs:{},log:[],dailyDone:false,dailyDate:''};
+}
+function save(){ try{ localStorage.setItem('tf_mc_v3',JSON.stringify(S)); }catch(e){} }
+
+// ──────────────────────────────────────────────
+// XP / LEVEL
+// ──────────────────────────────────────────────
+function getLevel(xp){ let l=LEVELS[0]; LEVELS.forEach(lv=>{ if(xp>=lv.min) l=lv; }); return l; }
+function getNext(xp){ for(const l of LEVELS) if(l.min>xp) return l; return null; }
+
+function addXP(amt, label, ex, ey){
+  S.xp += amt;
+  const lv = getLevel(S.xp), was = S.level;
+  S.level = lv.name;
+  if(was !== lv.name) toast(`🆙 LEVEL UP → ${lv.name}!`, 't-unlock');
+  S.log.unshift({t: `+${amt} XP — ${label}`, ts: new Date().toLocaleTimeString()});
+  if(S.log.length>25) S.log.length=25;
+  save();
+  updateHUD();
+  if(ex!==undefined) spawnXP(amt, ex, ey);
+  checkBadges();
+}
+
+function updateHUD(){
+  const lv=getLevel(S.xp), next=getNext(S.xp);
+  document.getElementById('hudLevel').textContent = lv.name;
+  document.getElementById('hudXp').textContent = S.xp.toLocaleString();
+  document.getElementById('hudStreak').textContent = `🔥 ${S.streak} streak`;
+  const pct = next ? Math.round(((S.xp-lv.min)/(next.min-lv.min))*100) : 100;
+  document.getElementById('hudXpFill').style.width = pct+'%';
+}
+
+function spawnXP(amt, x, y){
+  const el = document.createElement('div');
+  el.className='xp-pop'; el.textContent=`+${amt} XP`;
+  el.style.left=(x||window.innerWidth/2)+'px'; el.style.top=(y||300)+'px';
+  document.body.appendChild(el); setTimeout(()=>el.remove(),1450);
+}
+
+// ──────────────────────────────────────────────
+// TOASTS
+// ──────────────────────────────────────────────
+function toast(msg, cls='t-xp'){
+  const w=document.getElementById('toasts');
+  const t=document.createElement('div');
+  t.className=`toast ${cls}`; t.textContent=msg;
+  w.appendChild(t); setTimeout(()=>t.remove(),3200);
+}
+
+// ──────────────────────────────────────────────
+// TABS
+// ──────────────────────────────────────────────
+function switchTab(id){
+  document.querySelectorAll('.tab-content').forEach(e=>e.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(e=>e.classList.remove('active'));
+  document.getElementById('content-'+id).classList.add('active');
+  document.getElementById('tab-'+id).classList.add('active');
+  if(id==='skilltree') renderSkillTree();
+  if(id==='leaderboard') renderLB();
+  if(id==='badges') renderBadges();
+  if(id==='dashboard') renderDash();
+}
+
+// ──────────────────────────────────────────────
+// QUESTS RENDER
+// ──────────────────────────────────────────────
+function renderQuests(){
+  const g=document.getElementById('questGrid'); g.innerHTML='';
+  QUESTS.forEach(q=>{
+    const done=S.cq.includes(q.id);
+    const locked=q.prereq && !S.cq.includes(q.prereq);
+    const total=q.objectives.length, doneN=q.objectives.filter(o=>S.co[o.id]).length;
+    const pct=Math.round(doneN/total*100);
+    const d=document.createElement('div');
+    d.className=`quest-card ${locked?'locked':''} ${done?'completed':''}`;
+    d.innerHTML=`
+      ${done ? `<div class="quest-done-badge">✓ COMPLETE</div>` : `<div class="quest-xp-badge">+${q.xp} XP</div>`}
+      <span class="qlvl ${q.lc}">${q.level}</span>
+      <h3>${q.title}</h3>
+      <p>${q.desc}</p>
+      <div class="quest-meta-row">
+        <span>⏱ ${q.time}</span>
+        <span>🎯 ${total} objectives</span>
+        <span>🛠 ${q.tools}</span>
+      </div>
+      <div class="qpbar"><div class="qpbar-fill" style="width:${pct}%"></div></div>
+      <div class="qpct">${doneN}/${total} objectives · ${pct}%</div>
+    `;
+    if(!locked) d.addEventListener('click',ev=>openQuestModal(q,ev));
+    g.appendChild(d);
+  });
+}
+
+// ──────────────────────────────────────────────
+// QUEST MODAL
+// ──────────────────────────────────────────────
+function openQuestModal(q, e){
+  document.getElementById('mTitle').textContent = q.title;
+  const done = S.cq.includes(q.id);
+  const qpassed = S.qp[q.id];
+  let html = '';
+  if(done) html += `<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--accent3);padding:10px 14px;background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.18);border-radius:6px;margin-bottom:18px;letter-spacing:1px">✓ QUEST COMPLETE — ${q.xp} XP EARNED</div>`;
+  html += `
+    <div class="msec">
+      <h4>// OBJECTIVES — click to complete</h4>
+      <ul class="obj-list" id="objlist_${q.id}">
+        ${q.objectives.map(o=>{
+          const od=S.co[o.id]||false;
+          return `<li class="obj-item ${od?'done':''}" id="oi_${o.id}" onclick="toggleObj('${q.id}','${o.id}',${o.xp},event)">
+            <div class="obj-chk">${od?'✓':''}</div>
+            <div class="obj-txt">${o.text} <span style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--accent4)">(+${o.xp} XP)</span></div>
+          </li>`;
+        }).join('')}
+      </ul>
+    </div>
+    <div class="msec">
+      <h4>// KNOWLEDGE CHECK</h4>
+      <div class="quiz-wrap" id="qz_${q.id}">
+        ${qpassed
+          ? `<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--accent3)">✓ Knowledge check passed!</div>`
+          : `<div class="quiz-q">${q.quiz.q}</div>
+             <div class="quiz-opts">
+               ${q.quiz.opts.map((opt,i)=>`<button class="quiz-opt" onclick="answerQ('${q.id}',${i},${q.quiz.correct},this,event)">${opt}</button>`).join('')}
+             </div>
+             <div id="qzfb_${q.id}"></div>`
+        }
+      </div>
+    </div>
+  `;
+  document.getElementById('mBody').innerHTML = html;
+  document.getElementById('mOverlay').classList.add('open');
+}
+
+function toggleObj(qId, oId, xp, e){
+  e.stopPropagation();
+  if(S.co[oId]) return;
+  S.co[oId]=true;
+  addXP(xp, 'Objective complete', e.clientX, e.clientY);
+  toast(`+${xp} XP — objective done!`, 't-xp');
+  const el=document.getElementById('oi_'+oId);
+  if(el){ el.classList.add('done'); el.querySelector('.obj-chk').textContent='✓'; }
+  checkQuestDone(qId);
+  renderQuests();
+}
+
+function answerQ(qId, chosen, correct, btn, e){
+  e.stopPropagation();
+  const q=QUESTS.find(x=>x.id===qId);
+  const opts=document.querySelectorAll(`#qz_${qId} .quiz-opt`);
+  opts.forEach(o=>o.classList.add('qdisabled'));
+  opts[correct].classList.add('correct');
+  const fb=document.getElementById('qzfb_'+qId);
+  if(chosen===correct){
+    btn.classList.add('correct');
+    fb.className='quiz-fb correct'; fb.textContent='✓ CORRECT — '+q.quiz.explain;
+    S.qp[qId]=true; save();
+    addXP(50, q.title+' quiz passed', e.clientX, e.clientY);
+    toast('✓ Knowledge check passed! +50 XP','t-unlock');
+    checkQuestDone(qId);
+  } else {
+    btn.classList.add('wrong');
+    fb.className='quiz-fb wrong'; fb.textContent='✗ INCORRECT — '+q.quiz.explain;
+    toast('✗ Wrong answer — try again','t-error');
   }
 }
 
-<span class="kw">variable</span> <span class="str">"player_name"</span> {
-  <span class="key">description</span> = <span class="str">"Your operator callsign"</span>
-  <span class="key">default</span>     = <span class="str">"Eknatha"</span>
+function checkQuestDone(qId){
+  if(S.cq.includes(qId)) return;
+  const q=QUESTS.find(x=>x.id===qId);
+  const allObj=q.objectives.every(o=>S.co[o.id]);
+  if(allObj && S.qp[qId]){
+    S.cq.push(qId); save();
+    toast(`🏆 QUEST COMPLETE — ${q.title}!`,'t-badge');
+    renderQuests(); checkBadges();
+  }
 }
 
-<span class="kw">resource</span> <span class="str">"local_file"</span> <span class="str">"mission_brief"</span> {
-  <span class="key">filename</span> = <span class="str">"${path.module}/mission_log.txt"</span>
-  <span class="key">content</span>  = <span class="str"><<-EOT
-    ╔══════════════════════════════════╗
-    ║  TERRAFORM MISSION LOG           ║
-    ║  Operator: ${var.player_name}    ║
-    ║  Status:   ACTIVE                ║
-    ╚══════════════════════════════════╝
-    Quest 1 complete. State initialized.
-  EOT</span>
+// ──────────────────────────────────────────────
+// SKILL TREE
+// ──────────────────────────────────────────────
+function renderSkillTree(){
+  const w=document.getElementById('skillTree'); w.innerHTML='';
+  SKILLS.forEach((sk,i)=>{
+    const unlocked=!sk.req||S.cq.includes(sk.req);
+    const row=document.createElement('div'); row.className='snode-row';
+    row.innerHTML=`
+      <div class="snode ${unlocked?'unlocked':'slocked'}">
+        <div class="snode-left">
+          <div class="snode-ico ${sk.ic}">${sk.icon}</div>
+          <div>
+            <div class="snode-name">${sk.name}</div>
+            <div class="snode-tags">${sk.tags.map(t=>`<span class="stag">${t}</span>`).join('')}</div>
+          </div>
+        </div>
+        <span class="snode-status ${unlocked?'ss-done':'ss-lock'}">${unlocked?'UNLOCKED':'LOCKED'}</span>
+      </div>
+    `;
+    w.appendChild(row);
+  });
 }
 
-<span class="kw">output</span> <span class="str">"mission_status"</span> {
-  <span class="key">value</span> = <span class="str">"Mission log created at: ${local_file.mission_brief.filename}"</span>
+// ──────────────────────────────────────────────
+// SIMULATIONS
+// ──────────────────────────────────────────────
+function renderSims(){
+  const g=document.getElementById('simGrid'); g.innerHTML='';
+  SIMS.forEach(s=>{
+    const done=S.cs[s.id];
+    const d=document.createElement('div'); d.className='sim-card';
+    d.innerHTML=`
+      <div class="sim-header">
+        <div class="sim-ico" style="${s.ibg}">${s.icon}</div>
+        <div><h4>${s.title}</h4><div class="sim-diff">${s.diff} · ${fmtTime(s.time)}</div></div>
+      </div>
+      <p>${s.desc}</p>
+      <div class="sim-footer">
+        <span class="sim-xp">${done?'✓ COMPLETED':'+'+s.xp+' XP'}</span>
+        <button class="btn btn-sm ${done?'btn-success':'btn-primary'}" onclick="launchSim('${s.id}',event)">${done?'REPLAY':'▶ START'}</button>
+      </div>
+    `;
+    g.appendChild(d);
+  });
 }
-    </div>
 
-    <div class="tips-strip" style="margin-top:20px;">
-      <div class="tip-item">
-        <div class="tip-dot"></div>
-        <p>Run <code>terraform init</code> → <code>plan</code> → <code>apply</code> and watch the file appear.</p>
+let simTimer=null;
+function launchSim(id, e){
+  e.stopPropagation();
+  clearInterval(simTimer);
+  const sim=SIMS.find(s=>s.id===id);
+  let rem=sim.time;
+  document.getElementById('mTitle').textContent='⚡ '+sim.title;
+  const render=()=>{
+    const warn=rem<=30;
+    document.getElementById('mBody').innerHTML=`
+      <div class="timer-wrap">
+        <div>
+          <div class="timer-lbl">TIME REMAINING</div>
+          <div class="timer-disp ${warn?'warn':''}" id="tdisp">${fmtTime(rem)}</div>
+        </div>
+        <div>
+          <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:10px">Complete in your terminal, then mark done below</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="btn btn-sm btn-success" onclick="finishSim('${id}',${sim.xp},event)">✓ MARK COMPLETE</button>
+            <button class="btn btn-sm btn-danger" onclick="abandonSim()">ABANDON</button>
+          </div>
+        </div>
       </div>
-      <div class="tip-item">
-        <div class="tip-dot"></div>
-        <p>Edit <code>player_name</code> and re-apply. Watch the diff in <code>plan</code> output.</p>
-      </div>
-      <div class="tip-item">
-        <div class="tip-dot"></div>
-        <p>Run <code>terraform destroy</code> and inspect what happened to <code>terraform.tfstate</code>.</p>
-      </div>
-    </div>
-  </div>
-</section>
+      <div style="font-size:0.88rem;color:#94a3b8;line-height:1.7;margin-top:4px"><strong style="color:var(--text)">Task:</strong> ${sim.desc}</div>
+    `;
+  };
+  render();
+  document.getElementById('mOverlay').classList.add('open');
+  simTimer=setInterval(()=>{
+    rem--;
+    const d=document.getElementById('tdisp');
+    if(!d){clearInterval(simTimer);return;}
+    d.textContent=fmtTime(rem);
+    if(rem<=30) d.classList.add('warn');
+    if(rem<=0){clearInterval(simTimer);toast('⏰ Time expired!','t-error');}
+  },1000);
+}
 
-<!-- ACHIEVEMENT BADGES -->
-<section>
-  <div class="container">
-    <span class="section-label">// MODULE_06</span>
-    <h2>Achievement Badges — Earn as You Learn</h2>
-    <p class="section-intro">Self-award these as you complete each milestone. Use them in your GitHub README and LinkedIn profile.</p>
+function finishSim(id, xp, e){
+  e.stopPropagation();
+  clearInterval(simTimer);
+  S.cs[id]=true; save();
+  addXP(xp, 'Simulation: '+SIMS.find(s=>s.id===id).title, e.clientX, e.clientY);
+  toast(`🏆 Sim complete! +${xp} XP`,'t-badge');
+  closeModal(); renderSims(); checkBadges();
+}
 
-    <div class="badges-row">
-      <div class="badge"><span class="badge-icon">🟢</span> FIRST APPLY</div>
-      <div class="badge"><span class="badge-icon">📦</span> MODULE BUILDER</div>
-      <div class="badge"><span class="badge-icon">🔐</span> STATE GUARDIAN</div>
-      <div class="badge"><span class="badge-icon">⚡</span> PIPELINE RUNNER</div>
-      <div class="badge"><span class="badge-icon">🌍</span> MULTI-CLOUD OPS</div>
-      <div class="badge"><span class="badge-icon">🚨</span> DRIFT BUSTER</div>
-      <div class="badge"><span class="badge-icon">🏆</span> TERRAFORM ASSOCIATE</div>
-      <div class="badge"><span class="badge-icon">🔴</span> LANDING ZONE ARCH</div>
-      <div class="badge"><span class="badge-icon">🤖</span> ATLANTIS RUNNER</div>
-      <div class="badge"><span class="badge-icon">🛡️</span> POLICY ENFORCER</div>
-    </div>
-  </div>
-</section>
+function abandonSim(){ clearInterval(simTimer); closeModal(); }
+function fmtTime(s){ return `${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`; }
 
-<footer>
-  EKNATHA LABS &nbsp;/&nbsp; <span>eknathalabs.com</span> &nbsp;/&nbsp; TERRAFORM MISSION CONTROL v1.0 &nbsp;/&nbsp; BUILT FOR PLATFORM ENGINEERS
-</footer>
+// ──────────────────────────────────────────────
+// BADGES
+// ──────────────────────────────────────────────
+function checkBadges(){
+  BADGES.forEach(b=>{
+    if(!S.cb[b.id] && b.req(S)){
+      S.cb[b.id]=new Date().toLocaleDateString();
+      toast(`🏅 Badge unlocked: ${b.name}`,'t-badge');
+    }
+  });
+  save();
+}
 
+function renderBadges(){
+  const g=document.getElementById('badgesGrid'); g.innerHTML='';
+  BADGES.forEach(b=>{
+    const earned=S.cb[b.id];
+    const d=document.createElement('div'); d.className=`badge-card ${earned?'earned':'noearned'}`;
+    d.innerHTML=`
+      <span class="bemoji">${b.emoji}</span>
+      <div class="bname">${b.name}</div>
+      <div class="bdesc">${b.desc}</div>
+      <div class="beat">${earned?'✓ EARNED '+earned:'LOCKED'}</div>
+    `;
+    g.appendChild(d);
+  });
+}
+
+// ──────────────────────────────────────────────
+// LEADERBOARD
+// ──────────────────────────────────────────────
+function renderLB(){
+  const lv=getLevel(S.xp), next=getNext(S.xp);
+  const pct=next?Math.round(((S.xp-lv.min)/(next.min-lv.min))*100):100;
+  const data=[...LB_BASE.map(e=>({...e})),{name:'Eknatha',xp:S.xp,level:lv.name,pct,you:true}];
+  data.sort((a,b)=>b.xp-a.xp);
+  const w=document.getElementById('lbWrap'); w.innerHTML='';
+  const ranks=['🥇','🥈','🥉'];
+  data.forEach((e,i)=>{
+    const rc=i===0?'gold':i===1?'silver':i===2?'bronze':'';
+    const row=document.createElement('div'); row.className=`lb-row ${e.you?'you':''}`;
+    row.innerHTML=`
+      <div class="lb-rank ${rc}">${i<3?ranks[i]:'#'+(i+1)}</div>
+      <div class="lb-name ${e.you?'youname':''}">${e.name}${e.you?'<span class="you-tag">YOU</span>':''}</div>
+      <div class="lb-bar"><div class="lb-bar-fill" style="width:${e.pct}%"></div></div>
+      <div class="lb-xp">${e.xp.toLocaleString()} XP</div>
+      <div class="lb-lv">${e.level}</div>
+    `;
+    w.appendChild(row);
+  });
+}
+
+// ──────────────────────────────────────────────
+// DASHBOARD
+// ──────────────────────────────────────────────
+function renderDash(){
+  document.getElementById('statsStrip').innerHTML=`
+    <div class="stat-box"><div class="sv">${S.xp.toLocaleString()}</div><div class="sl">TOTAL XP</div></div>
+    <div class="stat-box"><div class="sv purple">${S.cq.length}/6</div><div class="sl">QUESTS DONE</div></div>
+    <div class="stat-box"><div class="sv green">${Object.keys(S.co).length}</div><div class="sl">OBJECTIVES</div></div>
+    <div class="stat-box"><div class="sv amber">${Object.keys(S.cb).length}</div><div class="sl">BADGES</div></div>
+    <div class="stat-box"><div class="sv">${Object.keys(S.cs).length}</div><div class="sl">SIMS DONE</div></div>
+    <div class="stat-box"><div class="sv green">${S.streak}</div><div class="sl">DAY STREAK</div></div>
+  `;
+  const al=document.getElementById('actLog');
+  al.innerHTML=S.log.length
+    ? S.log.map(a=>`<div style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:9px 13px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:0.87rem;color:#94a3b8">${a.t}</span><span style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--muted)">${a.ts}</span></div>`).join('')
+    : `<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--muted);text-align:center;padding:28px">No activity yet — start a quest!</div>`;
+}
+
+// ──────────────────────────────────────────────
+// DAILY CHALLENGE
+// ──────────────────────────────────────────────
+function initDaily(){
+  const today=new Date().toDateString();
+  const idx=new Date().getDate()%DAILY.length;
+  const dc=DAILY[idx];
+  document.getElementById('dailyTitle').textContent=dc.title;
+  document.getElementById('dailyDesc').textContent=dc.desc;
+  document.getElementById('dailyReward').textContent=dc.reward;
+  if(S.dailyDate===today && S.dailyDone){
+    const btn=document.getElementById('dailyBtn');
+    btn.textContent='✓ COMPLETED TODAY'; btn.disabled=true; btn.className='btn btn-sm btn-success';
+  }
+  function tick(){
+    const now=new Date(), mid=new Date(now); mid.setHours(24,0,0,0);
+    const d=Math.floor((mid-now)/1000);
+    const h=Math.floor(d/3600),m=Math.floor((d%3600)/60),s=d%60;
+    const el=document.getElementById('dailyCountdown');
+    if(el) el.textContent=`${String(h).padStart(2,'0')}h ${String(m).padStart(2,'0')}m ${String(s).padStart(2,'0')}s`;
+  }
+  tick(); setInterval(tick,1000);
+}
+
+function claimDaily(){
+  const today=new Date().toDateString();
+  if(S.dailyDate===today && S.dailyDone){ toast('Already claimed today!','t-error'); return; }
+  const idx=new Date().getDate()%DAILY.length;
+  const xpAmt=parseInt(DAILY[idx].reward.replace(/\D/g,''));
+  S.dailyDone=true; S.dailyDate=today; S.streak=(S.streak||0)+1; save();
+  addXP(xpAmt,'Daily Challenge: '+DAILY[idx].title);
+  toast(`⭐ Daily claimed! +${xpAmt} XP 🔥 Streak: ${S.streak}`,'t-xp');
+  const btn=document.getElementById('dailyBtn');
+  btn.textContent='✓ COMPLETED TODAY'; btn.disabled=true; btn.className='btn btn-sm btn-success';
+  checkBadges();
+}
+
+// ──────────────────────────────────────────────
+// MODAL
+// ──────────────────────────────────────────────
+function closeModal(){ document.getElementById('mOverlay').classList.remove('open'); clearInterval(simTimer); }
+function overlayClose(e){ if(e.target===document.getElementById('mOverlay')) closeModal(); }
+
+// ──────────────────────────────────────────────
+// RESET
+// ──────────────────────────────────────────────
+function confirmReset(){
+  if(!confirm('⚠️ Reset ALL progress? This cannot be undone.')) return;
+  localStorage.removeItem('tf_mc_v3'); location.reload();
+}
+
+// ──────────────────────────────────────────────
+// BOOT
+// ──────────────────────────────────────────────
+updateHUD();
+renderQuests();
+renderSims();
+initDaily();
+checkBadges();
+</script>
 </body>
 </html>
