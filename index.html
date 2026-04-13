@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learn Terraform: Gamified Path</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #070b14;
+    --surface: #0d1526;
+    --surface2: #111d38;
+    --accent: #00e5ff;
+    --accent2: #7c3aed;
+    --accent3: #10b981;
+    --accent4: #f59e0b;
+    --danger: #ef4444;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --border: rgba(0,229,255,0.15);
+    --glow: 0 0 20px rgba(0,229,255,0.3);
+    --glow2: 0 0 20px rgba(124,58,237,0.4);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* Animated grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(124,58,237,0.12) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ---- HERO ---- */
+  .hero {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 80px 20px 60px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-badge {
+    display: inline-block;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 4px 14px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+    animation: pulse-border 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-border {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0,229,255,0.4); }
+    50% { box-shadow: 0 0 0 6px rgba(0,229,255,0); }
+  }
+
+  .hero h1 {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    font-weight: 900;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .hero h1 span.tf { color: var(--accent2); }
+  .hero h1 span.glow { color: var(--accent); text-shadow: 0 0 30px rgba(0,229,255,0.6); }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--muted);
+    max-width: 560px;
+    margin: 0 auto 40px;
+    font-weight: 300;
+  }
+
+  /* XP Bar */
+  .xp-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    margin-top: 8px;
+  }
+
+  .xp-bar {
+    width: 200px;
+    height: 6px;
+    background: rgba(0,229,255,0.1);
+    border-radius: 3px;
+    overflow: hidden;
+    border: 1px solid rgba(0,229,255,0.2);
+  }
+
+  .xp-fill {
+    height: 100%;
+    width: 35%;
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    border-radius: 3px;
+    animation: xp-grow 2s ease-out forwards;
+  }
+
+  @keyframes xp-grow {
+    from { width: 0; }
+    to { width: 35%; }
+  }
+
+  /* ---- SECTIONS ---- */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+  section { padding: 60px 0; border-bottom: 1px solid var(--border); }
+
+  .section-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--accent2);
+    margin-bottom: 8px;
+    display: block;
+  }
+
+  h2 {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+
+  .section-intro {
+    color: var(--muted);
+    max-width: 620px;
+    margin-bottom: 40px;
+    font-size: 1.05rem;
+  }
+
+  /* ---- QUEST CARDS (Learning Path) ---- */
+  .quest-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+
+  .quest-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: default;
+  }
+
+  .quest-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(0,229,255,0.04) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .quest-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--glow);
+  }
+
+  .quest-card.purple:hover { box-shadow: var(--glow2); }
+  .quest-card.green:hover { box-shadow: 0 0 20px rgba(16,185,129,0.3); }
+  .quest-card.amber:hover { box-shadow: 0 0 20px rgba(245,158,11,0.3); }
+
+  .quest-level {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    padding: 3px 10px;
+    border-radius: 2px;
+    display: inline-block;
+    margin-bottom: 14px;
+  }
+
+  .level-beginner { background: rgba(16,185,129,0.15); color: var(--accent3); border: 1px solid rgba(16,185,129,0.3); }
+  .level-intermediate { background: rgba(0,229,255,0.1); color: var(--accent); border: 1px solid rgba(0,229,255,0.3); }
+  .level-advanced { background: rgba(124,58,237,0.15); color: #a78bfa; border: 1px solid rgba(124,58,237,0.3); }
+  .level-expert { background: rgba(245,158,11,0.15); color: var(--accent4); border: 1px solid rgba(245,158,11,0.3); }
+
+  .quest-card h3 {
+    font-family: 'Orbitron', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+
+  .quest-card p { font-size: 0.92rem; color: #94a3b8; margin-bottom: 16px; }
+
+  .quest-meta {
+    display: flex;
+    gap: 16px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .quest-meta span { display: flex; align-items: center; gap: 5px; }
+
+  .quest-xp {
+    position: absolute;
+    top: 16px; right: 16px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: var(--accent4);
+    background: rgba(245,158,11,0.1);
+    border: 1px solid rgba(245,158,11,0.2);
+    padding: 2px 8px;
+    border-radius: 2px;
+  }
+
+  /* ---- PLATFORMS TABLE ---- */
+  .platforms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  .platform-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .platform-card:hover {
+    border-color: rgba(0,229,255,0.4);
+    transform: translateY(-3px);
+  }
+
+  .platform-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .platform-name {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .platform-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    border-radius: 2px;
+  }
+
+  .tag-free { background: rgba(16,185,129,0.15); color: var(--accent3); }
+  .tag-paid { background: rgba(245,158,11,0.15); color: var(--accent4); }
+  .tag-freemium { background: rgba(0,229,255,0.1); color: var(--accent); }
+
+  .platform-desc { font-size: 0.88rem; color: #94a3b8; }
+
+  .platform-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .platform-features li {
+    font-size: 0.82rem;
+    color: #64748b;
+    padding-left: 14px;
+    position: relative;
+  }
+
+  .platform-features li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  .platform-score {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .score-bar {
+    flex: 1;
+    height: 4px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .score-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+  }
+
+  .score-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  /* ---- SIMULATION TECHNIQUES ---- */
+  .sim-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+
+  .sim-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 24px;
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    transition: transform 0.2s;
+  }
+
+  .sim-item:hover { transform: translateX(4px); }
+
+  .sim-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+
+  .sim-icon.cyan { background: rgba(0,229,255,0.1); border: 1px solid rgba(0,229,255,0.2); }
+  .sim-icon.purple { background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.25); }
+  .sim-icon.green { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.2); }
+  .sim-icon.amber { background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2); }
+  .sim-icon.red { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.2); }
+
+  .sim-content h4 {
+    font-family: 'Orbitron', monospace;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .sim-content p { font-size: 0.88rem; color: #94a3b8; line-height: 1.6; }
+
+  /* ---- SKILL TREE ---- */
+  .skill-tree {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+    padding-left: 32px;
+  }
+
+  .skill-tree::before {
+    content: '';
+    position: absolute;
+    left: 12px;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent2), transparent);
+  }
+
+  .skill-node {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    transition: border-color 0.2s;
+    position: relative;
+  }
+
+  .skill-node::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 1px;
+    background: var(--accent2);
+  }
+
+  .skill-node:hover { border-color: rgba(0,229,255,0.4); }
+
+  .skill-node-name {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.9rem;
+    color: #e2e8f0;
+  }
+
+  .skill-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .skill-tag {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 9px;
+    padding: 2px 7px;
+    border-radius: 2px;
+    background: rgba(0,229,255,0.08);
+    color: var(--accent);
+    border: 1px solid rgba(0,229,255,0.15);
+  }
+
+  /* ---- CODE BLOCK ---- */
+  .code-block {
+    background: #020610;
+    border: 1px solid rgba(0,229,255,0.12);
+    border-radius: 8px;
+    padding: 20px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: #94a3b8;
+    overflow-x: auto;
+    position: relative;
+  }
+
+  .code-block .comment { color: #334155; }
+  .code-block .key { color: var(--accent); }
+  .code-block .val { color: var(--accent3); }
+  .code-block .str { color: var(--accent4); }
+  .code-block .kw { color: #a78bfa; }
+  .code-block .code-label {
+    position: absolute;
+    top: 10px; right: 14px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    color: var(--muted);
+  }
+
+  /* ---- TIPS STRIP ---- */
+  .tips-strip {
+    background: rgba(124,58,237,0.08);
+    border: 1px solid rgba(124,58,237,0.2);
+    border-radius: 8px;
+    padding: 20px 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 30px;
+  }
+
+  .tip-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .tip-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent2);
+    margin-top: 7px;
+    flex-shrink: 0;
+    box-shadow: 0 0 6px rgba(124,58,237,0.6);
+  }
+
+  .tip-item p { font-size: 0.85rem; color: #94a3b8; }
+
+  /* ---- ACHIEVEMENT BADGES ---- */
+  .badges-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    color: #94a3b8;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .badge:hover {
+    border-color: rgba(0,229,255,0.4);
+    transform: scale(1.03);
+    color: var(--accent);
+  }
+
+  .badge-icon { font-size: 1.2rem; }
+
+  /* ---- FOOTER ---- */
+  footer {
+    padding: 40px 24px;
+    text-align: center;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--muted);
+    position: relative;
+    z-index: 1;
+  }
+
+  footer span { color: var(--accent); }
+
+  /* ---- ANIMATIONS ---- */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.6s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .quest-card:nth-child(1) { animation-delay: 0.05s; }
+  .quest-card:nth-child(2) { animation-delay: 0.10s; }
+  .quest-card:nth-child(3) { animation-delay: 0.15s; }
+  .quest-card:nth-child(4) { animation-delay: 0.20s; }
+  .quest-card:nth-child(5) { animation-delay: 0.25s; }
+  .quest-card:nth-child(6) { animation-delay: 0.30s; }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--border), transparent);
+    margin: 0;
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 60px 16px 40px; }
+    .quest-grid, .platforms-grid, .sim-list { grid-template-columns: 1fr; }
+    .tips-strip { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">// EKNATHA LABS — LEARNING PROTOCOL</div>
+  <h1>
+    <span class="tf">TERRA</span><span class="glow">FORM</span><br>
+    MISSION CONTROL
+  </h1>
+  <p class="hero-sub">A gamified, simulation-driven learning path to mastering Infrastructure as Code — from zero to production-grade.</p>
+  <div class="xp-strip">
+    <span>XP 1,420 / 4,000</span>
+    <div class="xp-bar"><div class="xp-fill"></div></div>
+    <span>LVL 3 OPERATOR</span>
+  </div>
+</div>
+
+<!-- LEARNING PATH -->
+<section>
+  <div class="container">
+    <span class="section-label">// MODULE_01</span>
+    <h2>The Quest-Based Learning Path</h2>
+    <p class="section-intro">Structured progression across six mission tiers. Each quest unlocks the next. Complete challenges, earn XP, and level up your IaC skills.</p>
+
+    <div class="quest-grid">
+
+      <div class="quest-card fade-in">
+        <div class="quest-xp">+250 XP</div>
+        <span class="quest-level level-beginner">BEGINNER</span>
+        <h3>Quest 1 — Terraform Origin Story</h3>
+        <p>Understand what Terraform is, how providers work, and write your first <code>main.tf</code> to deploy a local file resource. No cloud account needed.</p>
+        <div class="quest-meta">
+          <span>⏱ 2–3 hrs</span>
+          <span>🎯 3 challenges</span>
+          <span>🛠 local provider</span>
+        </div>
+      </div>
+
+      <div class="quest-card fade-in">
+        <div class="quest-xp">+400 XP</div>
+        <span class="quest-level level-beginner">BEGINNER</span>
+        <h3>Quest 2 — State of the Nation</h3>
+        <p>Master <code>terraform.tfstate</code>, remote backends, and locking. Simulate state corruption scenarios and recover using <code>terraform state</code> commands.</p>
+        <div class="quest-meta">
+          <span>⏱ 3–4 hrs</span>
+          <span>🎯 5 challenges</span>
+          <span>🛠 S3 + DynamoDB</span>
+        </div>
+      </div>
+
+      <div class="quest-card fade-in">
+        <div class="quest-xp">+600 XP</div>
+        <span class="quest-level level-intermediate">INTERMEDIATE</span>
+        <h3>Quest 3 — Module Architect</h3>
+        <p>Build reusable modules with inputs/outputs/locals. Create a VPC module and call it from multiple environments using workspace-based isolation.</p>
+        <div class="quest-meta">
+          <span>⏱ 5–6 hrs</span>
+          <span>🎯 7 challenges</span>
+          <span>🛠 AWS / Azure</span>
+        </div>
+      </div>
+
+      <div class="quest-card fade-in purple">
+        <div class="quest-xp">+800 XP</div>
+        <span class="quest-level level-intermediate">INTERMEDIATE</span>
+        <h3>Quest 4 — Pipeline Commander</h3>
+        <p>Integrate Terraform into GitHub Actions CI/CD. Automate <code>plan</code> on PR, <code>apply</code> on merge. Add policy gates with OPA or Sentinel.</p>
+        <div class="quest-meta">
+          <span>⏱ 6–8 hrs</span>
+          <span>🎯 6 challenges</span>
+          <span>🛠 GitHub Actions</span>
+        </div>
+      </div>
+
+      <div class="quest-card fade-in">
+        <div class="quest-xp">+1000 XP</div>
+        <span class="quest-level level-advanced">ADVANCED</span>
+        <h3>Quest 5 — Drift Detector</h3>
+        <p>Simulate infrastructure drift, detect it with <code>terraform plan</code>, reconcile with import, and build automated drift-detection pipelines.</p>
+        <div class="quest-meta">
+          <span>⏱ 8–10 hrs</span>
+          <span>🎯 8 challenges</span>
+          <span>🛠 Multi-cloud</span>
+        </div>
+      </div>
+
+      <div class="quest-card fade-in amber">
+        <div class="quest-xp">+1500 XP</div>
+        <span class="quest-level level-expert">EXPERT</span>
+        <h3>Quest 6 — Platform Engineer Boss Fight</h3>
+        <p>Design a production multi-account AWS landing zone with workspaces, Atlantis, and full GitOps workflow. Timed simulation under pressure.</p>
+        <div class="quest-meta">
+          <span>⏱ 12–16 hrs</span>
+          <span>🎯 10 challenges</span>
+          <span>🛠 Atlantis + TFE</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORMS -->
+<section>
+  <div class="container">
+    <span class="section-label">// MODULE_02</span>
+    <h2>Gamified Platforms & Simulators</h2>
+    <p class="section-intro">Ranked by hands-on value for Terraform practice. Use sandboxes — not your personal account — during learning.</p>
+
+    <div class="platforms-grid">
+
+      <div class="platform-card">
+        <div class="platform-header">
+          <span class="platform-name">KodeKloud</span>
+          <span class="platform-tag tag-paid">SUBSCRIPTION</span>
+        </div>
+        <p class="platform-desc">Browser-based Terraform labs with real cloud playgrounds. Game-style progression and challenge scoring.</p>
+        <ul class="platform-features">
+          <li>Terraform Associate certification path</li>
+          <li>Cloud sandboxes (AWS, Azure, GCP)</li>
+          <li>100+ hands-on Terraform labs</li>
+          <li>Score-based leaderboard per lab</li>
+        </ul>
+        <div class="platform-score">
+          <div class="score-bar"><div class="score-fill" style="width:95%"></div></div>
+          <span class="score-label">95 / 100</span>
+        </div>
+      </div>
+
+      <div class="platform-card">
+        <div class="platform-header">
+          <span class="platform-name">HashiCorp Learn</span>
+          <span class="platform-tag tag-free">FREE</span>
+        </div>
+        <p class="platform-desc">Official guided tutorials with interactive browser terminals. Structured learning tracks by provider.</p>
+        <ul class="platform-features">
+          <li>Interactive in-browser terminal</li>
+          <li>Official Terraform tracks</li>
+          <li>GCP, AWS, Azure, Kubernetes paths</li>
+          <li>Completion badges per track</li>
+        </ul>
+        <div class="platform-score">
+          <div class="score-bar"><div class="score-fill" style="width:88%"></div></div>
+          <span class="score-label">88 / 100</span>
+        </div>
+      </div>
+
+      <div class="platform-card">
+        <div class="platform-header">
+          <span class="platform-name">Instruqt</span>
+          <span class="platform-tag tag-freemium">FREEMIUM</span>
+        </div>
+        <p class="platform-desc">Game-like track system with achievements. HashiCorp's official partner for interactive labs.</p>
+        <ul class="platform-features">
+          <li>Terraform tracks by HashiCorp</li>
+          <li>Points and achievement system</li>
+          <li>Team challenges available</li>
+          <li>Vault + Consul integration labs</li>
+        </ul>
+        <div class="platform-score">
+          <div class="score-bar"><div class="score-fill" style="width:82%"></div></div>
+          <span class="score-label">82 / 100</span>
+        </div>
+      </div>
+
+      <div class="platform-card">
+        <div class="platform-header">
+          <span class="platform-name">Pluralsight / ACG</span>
+          <span class="platform-tag tag-paid">PAID</span>
+        </div>
+        <p class="platform-desc">Cloud sandboxes with skill assessments and IQ scores. Excellent for structured certification prep.</p>
+        <ul class="platform-features">
+          <li>Cloud sandboxes per lab</li>
+          <li>Skill IQ assessment with score</li>
+          <li>Terraform Associate path</li>
+          <li>Hands-on projects with review</li>
+        </ul>
+        <div class="platform-score">
+          <div class="score-bar"><div class="score-fill" style="width:78%"></div></div>
+          <span class="score-label">78 / 100</span>
+        </div>
+      </div>
+
+      <div class="platform-card">
+        <div class="platform-header">
+          <span class="platform-name">Terraformer Arena</span>
+          <span class="platform-tag tag-free">FREE / OSS</span>
+        </div>
+        <p class="platform-desc">Community-built CTF-style Terraform challenges. Solve broken configs under time pressure.</p>
+        <ul class="platform-features">
+          <li>CTF-style broken infra scenarios</li>
+          <li>Timed challenges with leaderboard</li>
+          <li>GitHub-based scenario submission</li>
+          <li>Community scoring and ranking</li>
+        </ul>
+        <div class="platform-score">
+          <div class="score-bar"><div class="score-fill" style="width:70%"></div></div>
+          <span class="score-label">70 / 100</span>
+        </div>
+      </div>
+
+      <div class="platform-card">
+        <div class="platform-header">
+          <span class="platform-name">Localstack + TF</span>
+          <span class="platform-tag tag-free">FREE</span>
+        </div>
+        <p class="platform-desc">Local AWS simulation. Practice Terraform against a full AWS API emulator — zero cost, zero cloud.</p>
+        <ul class="platform-features">
+          <li>Full AWS service emulation locally</li>
+          <li>Zero cost — no cloud account needed</li>
+          <li>Test destroy/apply loops safely</li>
+          <li>CI pipeline friendly</li>
+        </ul>
+        <div class="platform-score">
+          <div class="score-bar"><div class="score-fill" style="width:85%"></div></div>
+          <span class="score-label">85 / 100</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SIMULATION TECHNIQUES -->
+<section>
+  <div class="container">
+    <span class="section-label">// MODULE_03</span>
+    <h2>Simulation Techniques That Stick</h2>
+    <p class="section-intro">Beyond platforms — these hands-on simulation methods build real muscle memory for production scenarios.</p>
+
+    <div class="sim-list">
+
+      <div class="sim-item">
+        <div class="sim-icon cyan">💥</div>
+        <div class="sim-content">
+          <h4>Break-and-Fix Drills</h4>
+          <p>Intentionally corrupt your <code>.tfstate</code>, remove a resource manually from the console, then recover using <code>terraform import</code>, <code>state rm</code>, or <code>taint</code>. Nothing teaches state management faster than controlled chaos.</p>
+        </div>
+      </div>
+
+      <div class="sim-item">
+        <div class="sim-icon purple">🏎️</div>
+        <div class="sim-content">
+          <h4>Speed-Run Challenges</h4>
+          <p>Set a 30-minute timer. Deploy a working 3-tier VPC with public/private subnets, NAT gateway, and EC2 from scratch using only Terraform. Track your time each week — speed is a proxy for internalization.</p>
+        </div>
+      </div>
+
+      <div class="sim-item">
+        <div class="sim-icon green">🌍</div>
+        <div class="sim-content">
+          <h4>Multi-Cloud Parity Builds</h4>
+          <p>Deploy the same architecture on AWS and then GCP using separate providers but identical module interfaces. This forces you to understand what's truly provider-agnostic vs. what's cloud-specific.</p>
+        </div>
+      </div>
+
+      <div class="sim-item">
+        <div class="sim-icon amber">🔍</div>
+        <div class="sim-content">
+          <h4>Plan Output Reading</h4>
+          <p>Given a <code>terraform plan</code> output, predict exactly what will change and why before running <code>apply</code>. Keep a score. This trains you to catch dangerous changes before they hit production.</p>
+        </div>
+      </div>
+
+      <div class="sim-item">
+        <div class="sim-icon red">🚨</div>
+        <div class="sim-content">
+          <h4>Incident Roleplay</h4>
+          <p>Someone "accidentally" runs <code>terraform destroy</code> on a staging env. Simulate a recovery exercise: restore from state backup, re-apply with correct vars, and write the incident postmortem. Forces real-world thinking.</p>
+        </div>
+      </div>
+
+      <div class="sim-item">
+        <div class="sim-icon cyan">🧪</div>
+        <div class="sim-content">
+          <h4>Terratest / BATS Automation</h4>
+          <p>Write Go-based Terratest assertions that validate your infrastructure actually works after apply — not just that it deployed. This brings TDD discipline to IaC and prepares you for senior platform roles.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILL TREE -->
+<section>
+  <div class="container">
+    <span class="section-label">// MODULE_04</span>
+    <h2>Terraform Skill Tree</h2>
+    <p class="section-intro">A locked progression — unlock each tier before advancing. Each node maps to real interview questions and production scenarios.</p>
+
+    <div class="skill-tree">
+      <div class="skill-node">
+        <span class="skill-node-name">🟢 Tier 1 — Fundamentals</span>
+        <div class="skill-tags">
+          <span class="skill-tag">init / plan / apply</span>
+          <span class="skill-tag">providers</span>
+          <span class="skill-tag">resources</span>
+          <span class="skill-tag">variables</span>
+        </div>
+      </div>
+      <div class="skill-node">
+        <span class="skill-node-name">🔵 Tier 2 — State Mastery</span>
+        <div class="skill-tags">
+          <span class="skill-tag">remote backends</span>
+          <span class="skill-tag">locking</span>
+          <span class="skill-tag">state mv / rm</span>
+          <span class="skill-tag">import</span>
+        </div>
+      </div>
+      <div class="skill-node">
+        <span class="skill-node-name">🔵 Tier 3 — Modules & Reuse</span>
+        <div class="skill-tags">
+          <span class="skill-tag">module structure</span>
+          <span class="skill-tag">locals</span>
+          <span class="skill-tag">outputs</span>
+          <span class="skill-tag">registry</span>
+        </div>
+      </div>
+      <div class="skill-node">
+        <span class="skill-node-name">🟣 Tier 4 — Workspaces & Environments</span>
+        <div class="skill-tags">
+          <span class="skill-tag">workspaces</span>
+          <span class="skill-tag">tfvars</span>
+          <span class="skill-tag">env strategy</span>
+          <span class="skill-tag">loops</span>
+        </div>
+      </div>
+      <div class="skill-node">
+        <span class="skill-node-name">🟣 Tier 5 — CI/CD Integration</span>
+        <div class="skill-tags">
+          <span class="skill-tag">GitHub Actions</span>
+          <span class="skill-tag">Atlantis</span>
+          <span class="skill-tag">plan on PR</span>
+          <span class="skill-tag">OIDC auth</span>
+        </div>
+      </div>
+      <div class="skill-node">
+        <span class="skill-node-name">🟡 Tier 6 — Policy & Security</span>
+        <div class="skill-tags">
+          <span class="skill-tag">Sentinel</span>
+          <span class="skill-tag">OPA / conftest</span>
+          <span class="skill-tag">checkov</span>
+          <span class="skill-tag">tfsec</span>
+        </div>
+      </div>
+      <div class="skill-node">
+        <span class="skill-node-name">🔴 Tier 7 — Production Architecture</span>
+        <div class="skill-tags">
+          <span class="skill-tag">landing zones</span>
+          <span class="skill-tag">multi-account</span>
+          <span class="skill-tag">Terragrunt</span>
+          <span class="skill-tag">drift detection</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tips-strip" style="margin-top:30px;">
+      <div class="tip-item">
+        <div class="tip-dot"></div>
+        <p>Don't skip state management — it's 60% of production Terraform problems.</p>
+      </div>
+      <div class="tip-item">
+        <div class="tip-dot"></div>
+        <p>Practice destroying and re-applying the same configs repeatedly to build speed.</p>
+      </div>
+      <div class="tip-item">
+        <div class="tip-dot"></div>
+        <p>Every module you build is a portfolio artifact — push it to GitHub with a README.</p>
+      </div>
+      <div class="tip-item">
+        <div class="tip-dot"></div>
+        <p>Use LocalStack for AWS free-tier practice — no cost, no surprise bills.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAMPLE HCL -->
+<section>
+  <div class="container">
+    <span class="section-label">// MODULE_05</span>
+    <h2>A Starter Simulation Config</h2>
+    <p class="section-intro">Run this locally with the <code>local</code> provider — no cloud account needed. Your first playable Terraform simulation.</p>
+
+    <div class="code-block">
+      <span class="code-label">MAIN.TF</span>
+<span class="comment"># ─── QUEST 1: Local Provider Simulation ───────────────────────────</span>
+
+<span class="kw">terraform</span> {
+  required_providers {
+    <span class="key">local</span> = {
+      source  = <span class="str">"hashicorp/local"</span>
+      version = <span class="str">"~> 2.4"</span>
+    }
+  }
+}
+
+<span class="kw">variable</span> <span class="str">"player_name"</span> {
+  <span class="key">description</span> = <span class="str">"Your operator callsign"</span>
+  <span class="key">default</span>     = <span class="str">"Eknatha"</span>
+}
+
+<span class="kw">resource</span> <span class="str">"local_file"</span> <span class="str">"mission_brief"</span> {
+  <span class="key">filename</span> = <span class="str">"${path.module}/mission_log.txt"</span>
+  <span class="key">content</span>  = <span class="str"><<-EOT
+    ╔══════════════════════════════════╗
+    ║  TERRAFORM MISSION LOG           ║
+    ║  Operator: ${var.player_name}    ║
+    ║  Status:   ACTIVE                ║
+    ╚══════════════════════════════════╝
+    Quest 1 complete. State initialized.
+  EOT</span>
+}
+
+<span class="kw">output</span> <span class="str">"mission_status"</span> {
+  <span class="key">value</span> = <span class="str">"Mission log created at: ${local_file.mission_brief.filename}"</span>
+}
+    </div>
+
+    <div class="tips-strip" style="margin-top:20px;">
+      <div class="tip-item">
+        <div class="tip-dot"></div>
+        <p>Run <code>terraform init</code> → <code>plan</code> → <code>apply</code> and watch the file appear.</p>
+      </div>
+      <div class="tip-item">
+        <div class="tip-dot"></div>
+        <p>Edit <code>player_name</code> and re-apply. Watch the diff in <code>plan</code> output.</p>
+      </div>
+      <div class="tip-item">
+        <div class="tip-dot"></div>
+        <p>Run <code>terraform destroy</code> and inspect what happened to <code>terraform.tfstate</code>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENT BADGES -->
+<section>
+  <div class="container">
+    <span class="section-label">// MODULE_06</span>
+    <h2>Achievement Badges — Earn as You Learn</h2>
+    <p class="section-intro">Self-award these as you complete each milestone. Use them in your GitHub README and LinkedIn profile.</p>
+
+    <div class="badges-row">
+      <div class="badge"><span class="badge-icon">🟢</span> FIRST APPLY</div>
+      <div class="badge"><span class="badge-icon">📦</span> MODULE BUILDER</div>
+      <div class="badge"><span class="badge-icon">🔐</span> STATE GUARDIAN</div>
+      <div class="badge"><span class="badge-icon">⚡</span> PIPELINE RUNNER</div>
+      <div class="badge"><span class="badge-icon">🌍</span> MULTI-CLOUD OPS</div>
+      <div class="badge"><span class="badge-icon">🚨</span> DRIFT BUSTER</div>
+      <div class="badge"><span class="badge-icon">🏆</span> TERRAFORM ASSOCIATE</div>
+      <div class="badge"><span class="badge-icon">🔴</span> LANDING ZONE ARCH</div>
+      <div class="badge"><span class="badge-icon">🤖</span> ATLANTIS RUNNER</div>
+      <div class="badge"><span class="badge-icon">🛡️</span> POLICY ENFORCER</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  EKNATHA LABS &nbsp;/&nbsp; <span>eknathalabs.com</span> &nbsp;/&nbsp; TERRAFORM MISSION CONTROL v1.0 &nbsp;/&nbsp; BUILT FOR PLATFORM ENGINEERS
+</footer>
+
+</body>
+</html>
