@@ -820,7 +820,7 @@ function renderBadges(){
 function renderLB(){
   const lv=getLevel(S.xp), next=getNext(S.xp);
   const pct=next?Math.round(((S.xp-lv.min)/(next.min-lv.min))*100):100;
-  const data=[...LB_BASE.map(e=>({...e})),{name:'Eknatha',xp:S.xp,level:lv.name,pct,you:true}];
+  const data=[...LB_BASE.map(e=>({...e})),{name:'You',xp:S.xp,level:lv.name,pct,you:true}];
   data.sort((a,b)=>b.xp-a.xp);
   const w=document.getElementById('lbWrap'); w.innerHTML='';
   const ranks=['🥇','🥈','🥉'];
