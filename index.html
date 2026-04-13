@@ -105,13 +105,28 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .msec{margin-bottom:20px}
 .msec h4{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--accent2);margin-bottom:10px}
 .obj-list{list-style:none;display:flex;flex-direction:column;gap:7px}
-.obj-item{display:flex;align-items:flex-start;gap:11px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:10px 13px;cursor:pointer;transition:border-color 0.2s}
-.obj-item:hover{border-color:rgba(0,229,255,0.28)}
-.obj-item.done{border-color:rgba(16,185,129,0.25);cursor:default}
-.obj-chk{width:17px;height:17px;min-width:17px;border:1px solid var(--muted);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;transition:all 0.2s;margin-top:2px}
+.obj-item{background:var(--surface2);border:1px solid var(--border);border-radius:6px;overflow:hidden;transition:border-color 0.2s}
+.obj-item-top{display:flex;align-items:flex-start;gap:11px;padding:10px 13px;cursor:pointer}
+.obj-item:hover .obj-item-top{border-color:rgba(0,229,255,0.28)}
+.obj-item.done{border-color:rgba(16,185,129,0.25)}
+.obj-chk{width:17px;height:17px;min-width:17px;border:1px solid var(--muted);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:10px;transition:all 0.2s;margin-top:2px;flex-shrink:0}
 .obj-item.done .obj-chk{background:var(--accent3);border-color:var(--accent3);color:#fff}
-.obj-txt{font-size:0.86rem;color:#94a3b8;line-height:1.5}
+.obj-txt{font-size:0.86rem;color:#94a3b8;line-height:1.5;flex:1}
 .obj-item.done .obj-txt{text-decoration:line-through;color:var(--muted)}
+.obj-hint-btn{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;padding:3px 9px;background:transparent;border:1px solid rgba(124,58,237,0.25);border-radius:3px;color:#a78bfa;cursor:pointer;transition:all 0.2s;white-space:nowrap;flex-shrink:0;align-self:flex-start;margin-top:1px}
+.obj-hint-btn:hover{background:rgba(124,58,237,0.12);border-color:rgba(124,58,237,0.4)}
+.obj-hint-btn.open{background:rgba(124,58,237,0.12);border-color:rgba(124,58,237,0.4)}
+.obj-solution{display:none;border-top:1px solid rgba(124,58,237,0.15);background:rgba(124,58,237,0.04)}
+.obj-solution.show{display:block}
+.obj-solution-inner{padding:12px 14px}
+.obj-sol-label{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:#a78bfa;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.obj-sol-label::after{content:'';flex:1;height:1px;background:rgba(124,58,237,0.15)}
+.obj-sol-text{font-size:0.83rem;color:#94a3b8;line-height:1.65;margin-bottom:10px}
+.obj-sol-code{background:#020610;border:1px solid rgba(0,229,255,0.1);border-radius:5px;padding:10px 12px;font-family:'Share Tech Mono',monospace;font-size:0.78rem;color:#94a3b8;line-height:1.7;overflow-x:auto;white-space:pre;margin-bottom:8px;position:relative}
+.obj-sol-code .kw{color:#a78bfa}.obj-sol-code .key{color:var(--accent)}.obj-sol-code .str{color:var(--accent4)}.obj-sol-code .cmt{color:#334155}.obj-sol-code .val{color:var(--accent3)}
+.obj-sol-tip{font-size:0.8rem;color:var(--muted);line-height:1.5;padding:8px 10px;background:rgba(245,158,11,0.06);border-left:2px solid rgba(245,158,11,0.3);border-radius:0 4px 4px 0}
+.obj-sol-copy{font-family:'Share Tech Mono',monospace;font-size:9px;padding:3px 9px;background:transparent;border:1px solid rgba(0,229,255,0.18);border-radius:3px;color:var(--accent);cursor:pointer;transition:all 0.2s;float:right;margin-bottom:4px}
+.obj-sol-copy:hover{background:rgba(0,229,255,0.08)}
 
 /* QUIZ */
 .quiz-wrap{background:var(--surface2);border:1px solid var(--border2);border-radius:8px;padding:18px}
@@ -614,81 +629,1023 @@ const QUESTS = [
     xp:250, time:'2–3 hrs', tools:'local provider', prereq:null,
     desc:'Write your first main.tf, deploy a local file resource using the local provider. No cloud account needed.',
     objectives:[
-      {id:'q1o1',text:'Install Terraform CLI ≥ 1.5 and verify with `terraform version`',xp:30},
-      {id:'q1o2',text:'Write main.tf using the local provider to create a file resource',xp:40},
-      {id:'q1o3',text:'Run terraform init → plan → apply and observe each output',xp:50},
-      {id:'q1o4',text:'Modify the resource value and re-apply. Study the plan diff',xp:40},
-      {id:'q1o5',text:'Run terraform destroy and inspect terraform.tfstate',xp:40},
+      {id:'q1o1', xp:30,
+       text:'Install Terraform CLI ≥ 1.5 and verify with `terraform version`',
+       sol:{
+         why:'Before writing any HCL you need the binary on your PATH. Always verify the version so you know which features are available.',
+         code:`# macOS (Homebrew)
+brew tap hashicorp/tap
+brew install hashicorp/tap/terraform
+
+# Linux (apt)
+wget -O- https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt update && sudo apt install terraform
+
+# Verify
+terraform version`,
+         tip:'Use tfenv (github.com/tfutils/tfenv) to manage multiple Terraform versions — essential when working across different projects.'
+       }
+      },
+      {id:'q1o2', xp:40,
+       text:'Write main.tf using the local provider to create a file resource',
+       sol:{
+         why:'The local provider lets you practice the full Terraform workflow without any cloud account — perfect for understanding HCL syntax before touching real infrastructure.',
+         code:`terraform {
+  required_providers {
+    local = {
+      source  = "hashicorp/local"
+      version = "~> 2.4"
+    }
+  }
+}
+
+variable "operator_name" {
+  default = "Eknatha"
+}
+
+resource "local_file" "mission_log" {
+  filename = "\${path.module}/mission_log.txt"
+  content  = <<-EOT
+    Operator : \${var.operator_name}
+    Status   : ACTIVE
+    Mission  : Quest 1 — Origin Story
+  EOT
+}
+
+output "file_path" {
+  value = local_file.mission_log.filename
+}`,
+         tip:'path.module always refers to the directory containing the .tf file — use it instead of hardcoding paths so modules work from any location.'
+       }
+      },
+      {id:'q1o3', xp:50,
+       text:'Run terraform init → plan → apply and observe each output',
+       sol:{
+         why:'These three commands are the core Terraform workflow. Understanding what each one does and outputs is foundational to everything else.',
+         code:`# Step 1: Initialise — downloads providers into .terraform/
+terraform init
+
+# Step 2: Plan — shows what WILL happen (dry-run)
+terraform plan
+# Look for: "Plan: 1 to add, 0 to change, 0 to destroy."
+
+# Step 3: Apply — executes the plan
+terraform apply
+# Type "yes" when prompted
+# OR skip the prompt:
+terraform apply -auto-approve`,
+         tip:'After apply, a terraform.tfstate file is created. Open it — it is plain JSON containing every resource Terraform now manages. This file is the source of truth.'
+       }
+      },
+      {id:'q1o4', xp:40,
+       text:'Modify the resource value and re-apply. Study the plan diff',
+       sol:{
+         why:'Understanding how Terraform detects changes is critical. The plan diff shows exactly what will be updated, replaced, or destroyed — reading it confidently is a core PE skill.',
+         code:`# Edit main.tf — change the content value:
+resource "local_file" "mission_log" {
+  filename = "\${path.module}/mission_log.txt"
+  content  = "UPDATED: Mission status changed to COMPLETE"
+}
+
+# Run plan — observe the ~ (update in-place) symbol
+terraform plan
+# Output will show:
+# ~ resource "local_file" "mission_log" {
+#     ~ content = "..." -> "UPDATED: ..."
+#   }
+
+# Apply the change
+terraform apply -auto-approve`,
+         tip:'Symbols in plan output: + = create, - = destroy, ~ = update in-place, -/+ = destroy then recreate. The -/+ symbol is the dangerous one — it means downtime for live resources.'
+       }
+      },
+      {id:'q1o5', xp:40,
+       text:'Run terraform destroy and inspect terraform.tfstate',
+       sol:{
+         why:'Knowing how to cleanly destroy resources and understanding the resulting state is essential for managing infrastructure lifecycle and debugging.',
+         code:`# Destroy all managed resources
+terraform destroy
+# Type "yes" to confirm
+# OR:
+terraform destroy -auto-approve
+
+# After destroy — inspect the state file
+cat terraform.tfstate
+# You will see: "resources": []
+# The file still exists but is now empty of resources
+
+# Preview what destroy would do (without doing it):
+terraform plan -destroy`,
+         tip:'terraform destroy removes resources from the cloud AND updates the state file. If a resource was already deleted manually, you need terraform state rm first — otherwise destroy will fail trying to delete something that no longer exists.'
+       }
+      },
     ],
     quiz:{q:'What does `terraform plan` do?',
       opts:['Deploys infrastructure immediately','Shows what changes will be made without applying','Destroys all managed resources','Initializes provider plugins'],
       correct:1,explain:'`terraform plan` is a dry-run — it calculates and shows exactly what will be created, changed, or destroyed without touching real infrastructure.'}
   },
+
   { id:'q2', title:'Quest 2 — State of the Nation', level:'BEGINNER', lc:'qlvl-b',
     xp:400, time:'3–4 hrs', tools:'S3 + DynamoDB', prereq:'q1',
     desc:'Master terraform.tfstate, configure remote backends, and recover from state corruption.',
     objectives:[
-      {id:'q2o1',text:'Inspect a local terraform.tfstate and understand its JSON structure',xp:40},
-      {id:'q2o2',text:'Configure an S3 remote backend with DynamoDB state locking',xp:70},
-      {id:'q2o3',text:'Run `terraform state list` and `terraform state show <resource>`',xp:50},
-      {id:'q2o4',text:'Manually delete a resource in the console, run plan, observe the drift',xp:70},
-      {id:'q2o5',text:'Use `terraform state rm` to remove an orphaned resource',xp:60},
+      {id:'q2o1', xp:40,
+       text:'Inspect a local terraform.tfstate and understand its JSON structure',
+       sol:{
+         why:'Terraform state is the most critical file in your infrastructure — understanding its structure lets you debug issues, perform manual recovery, and reason about what Terraform knows.',
+         code:`# Pretty-print the state file
+cat terraform.tfstate | python3 -m json.tool
+
+# Key fields to understand:
+# "version"    — state format version
+# "serial"     — increments on every change (used for conflict detection)
+# "resources"  — array of every managed resource
+#   "type"     — resource type (e.g. aws_instance)
+#   "name"     — resource name from your .tf file
+#   "instances[0].attributes" — ALL current attribute values
+
+# Use the CLI instead of reading raw JSON:
+terraform state list                    # list all resources
+terraform state show aws_instance.main  # show one resource's full state`,
+         tip:'Never edit terraform.tfstate manually unless you absolutely have to. Use terraform state commands instead — they validate and update the serial number correctly.'
+       }
+      },
+      {id:'q2o2', xp:70,
+       text:'Configure an S3 remote backend with DynamoDB state locking',
+       sol:{
+         why:'Local state is dangerous in teams — it gets lost, corrupted, or causes conflicts. Remote state in S3 with DynamoDB locking is the AWS production standard.',
+         code:`# 1. Create the S3 bucket and DynamoDB table first (do this once):
+resource "aws_s3_bucket" "tf_state" {
+  bucket        = "my-terraform-state-\${random_id.suffix.hex}"
+  force_destroy = false
+}
+resource "aws_s3_bucket_versioning" "tf_state" {
+  bucket = aws_s3_bucket.tf_state.id
+  versioning_configuration { status = "Enabled" }
+}
+resource "aws_dynamodb_table" "tf_locks" {
+  name         = "terraform-state-locks"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "LockID"
+  attribute { name = "LockID"; type = "S" }
+}
+
+# 2. Add backend config to terraform {}:
+terraform {
+  backend "s3" {
+    bucket         = "my-terraform-state-xxxx"
+    key            = "prod/terraform.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "terraform-state-locks"
+    encrypt        = true
+  }
+}
+# Run: terraform init  (migrates local state to S3)`,
+         tip:'Use encrypt = true to enable server-side encryption at rest. Also enable S3 bucket versioning — it acts as automatic state backup so you can roll back after a bad apply.'
+       }
+      },
+      {id:'q2o3', xp:50,
+       text:'Run `terraform state list` and `terraform state show <resource>`',
+       sol:{
+         why:'These commands are your primary debugging tools for production issues. They let you inspect exactly what Terraform knows about your infrastructure without making any changes.',
+         code:`# List everything in state
+terraform state list
+# Output example:
+# aws_vpc.main
+# aws_subnet.public["us-east-1a"]
+# aws_instance.web[0]
+
+# Show all attributes of one resource
+terraform state show aws_vpc.main
+# Output shows every attribute: id, cidr_block, tags, etc.
+
+# Filter state list by type
+terraform state list | grep aws_subnet
+
+# Show resource in JSON format (for scripting)
+terraform show -json | jq '.values.root_module.resources[] | select(.type=="aws_vpc")'`,
+         tip:'terraform state show is invaluable when an apply fails mid-way — it shows you exactly what was created so you know the current real state before retrying.'
+       }
+      },
+      {id:'q2o4', xp:70,
+       text:'Manually delete a resource in the console, run plan, observe the drift',
+       sol:{
+         why:'Infrastructure drift — when real resources differ from state — is a constant production challenge. Knowing how Terraform detects and responds to it is essential.',
+         code:`# 1. Apply some infrastructure (e.g. an S3 bucket)
+terraform apply -auto-approve
+
+# 2. Manually delete the resource in AWS Console or CLI:
+aws s3 rb s3://your-bucket-name --force
+
+# 3. Run plan — Terraform will detect the drift:
+terraform plan
+# Output:
+# aws_s3_bucket.main must be replaced
+# -/+ resource "aws_s3_bucket" "main" {
+#       Plan: 1 to add, 0 to change, 1 to destroy.
+
+# Option A: Re-create it (run apply)
+terraform apply -auto-approve
+
+# Option B: Remove from state (accept the deletion)
+terraform state rm aws_s3_bucket.main`,
+         tip:'Run terraform plan on a schedule in CI (e.g. nightly) to detect drift automatically. If plan shows changes when nothing was intentionally changed — investigate before the next apply.'
+       }
+      },
+      {id:'q2o5', xp:60,
+       text:'Use `terraform state rm` to remove an orphaned resource',
+       sol:{
+         why:'When a resource is deleted outside Terraform (manually or by another tool), you need to remove it from state so Terraform stops trying to manage it.',
+         code:`# Scenario: EC2 instance was terminated manually in the console
+# Terraform still has it in state and will error on next plan
+
+# Remove it from state (does NOT delete the real resource):
+terraform state rm aws_instance.web
+
+# Verify it is gone from state:
+terraform state list | grep aws_instance
+
+# Now run plan — no errors, resource is no longer tracked:
+terraform plan
+
+# Moving a resource to a new address (rename without destroy):
+terraform state mv aws_instance.web aws_instance.web_server
+
+# Remove multiple resources at once:
+terraform state rm 'module.vpc.aws_subnet.private["us-east-1a"]'`,
+         tip:'Always run terraform state list before and after state rm to confirm the change. One typo in the address and you might remove the wrong resource.'
+       }
+      },
     ],
     quiz:{q:'Why is state locking critical in team environments?',
       opts:['It encrypts the state file at rest','It prevents concurrent apply runs that could corrupt state','It speeds up terraform plan execution','It auto-backs up the state to S3'],
       correct:1,explain:'State locking prevents two engineers from running terraform apply simultaneously, which would corrupt the state file and leave infrastructure in an undefined state.'}
   },
+
   { id:'q3', title:'Quest 3 — Module Architect', level:'INTERMEDIATE', lc:'qlvl-i',
     xp:600, time:'5–6 hrs', tools:'AWS / Azure', prereq:'q2',
     desc:'Build reusable modules with inputs/outputs/locals. Deploy a VPC module from multiple environments.',
     objectives:[
-      {id:'q3o1',text:'Create a VPC module with variables.tf, outputs.tf, and main.tf',xp:80},
-      {id:'q3o2',text:'Call the module from a root module with different variable inputs',xp:80},
-      {id:'q3o3',text:'Add locals{} to compute derived values inside the module',xp:70},
-      {id:'q3o4',text:'Use for_each to deploy multiple subnets dynamically',xp:80},
-      {id:'q3o5',text:'Push the module structure to GitHub with a proper README',xp:50},
+      {id:'q3o1', xp:80,
+       text:'Create a VPC module with variables.tf, outputs.tf, and main.tf',
+       sol:{
+         why:'A well-structured module is the foundation of reusable, composable infrastructure. The three-file pattern (variables, main, outputs) is the standard that every Platform Engineer is expected to follow.',
+         code:`# modules/vpc/variables.tf
+variable "name"     { type = string }
+variable "vpc_cidr" { type = string; default = "10.0.0.0/16" }
+variable "tags"     { type = map(string); default = {} }
+
+# modules/vpc/main.tf
+resource "aws_vpc" "this" {
+  cidr_block           = var.vpc_cidr
+  enable_dns_hostnames = true
+  enable_dns_support   = true
+  tags = merge(var.tags, { Name = var.name })
+}
+
+# modules/vpc/outputs.tf
+output "vpc_id"   { value = aws_vpc.this.id }
+output "vpc_cidr" { value = aws_vpc.this.cidr_block }`,
+         tip:'Also create a versions.tf declaring required_providers and a minimum Terraform version. This prevents the module from being accidentally used with an incompatible provider version.'
+       }
+      },
+      {id:'q3o2', xp:80,
+       text:'Call the module from a root module with different variable inputs',
+       sol:{
+         why:'Modules are only useful when called with different inputs. This pattern lets you deploy dev/staging/prod environments from identical module code.',
+         code:`# root/main.tf
+module "vpc_dev" {
+  source   = "./modules/vpc"
+  name     = "dev-vpc"
+  vpc_cidr = "10.0.0.0/16"
+  tags     = { Environment = "dev" }
+}
+
+module "vpc_prod" {
+  source   = "./modules/vpc"
+  name     = "prod-vpc"
+  vpc_cidr = "10.1.0.0/16"
+  tags     = { Environment = "prod" }
+}
+
+# Access module outputs:
+output "dev_vpc_id"  { value = module.vpc_dev.vpc_id }
+output "prod_vpc_id" { value = module.vpc_prod.vpc_id }`,
+         tip:'Use separate .tfvars files per environment (dev.tfvars, prod.tfvars) rather than hardcoding values. Then run: terraform apply -var-file=prod.tfvars'
+       }
+      },
+      {id:'q3o3', xp:70,
+       text:'Add locals{} to compute derived values inside the module',
+       sol:{
+         why:'locals{} lets you compute values once and reuse them — keeping code DRY and making complex expressions readable. It is especially useful for name prefixes and merged tags.',
+         code:`# modules/vpc/main.tf — with locals
+locals {
+  # Compute a consistent name prefix
+  name_prefix = "\${var.environment}-\${var.project}"
+
+  # Merge common tags once, reuse everywhere
+  common_tags = merge(var.tags, {
+    Environment = var.environment
+    ManagedBy   = "terraform"
+    Module      = "vpc"
+  })
+
+  # Derive AZ list from input
+  az_count = min(length(data.aws_availability_zones.available.names), 3)
+}
+
+resource "aws_vpc" "this" {
+  cidr_block = var.vpc_cidr
+  tags       = merge(local.common_tags, { Name = "\${local.name_prefix}-vpc" })
+}`,
+         tip:'Locals are evaluated once at plan time — you cannot reference resource attributes in locals that are only known after apply (use outputs for that).'
+       }
+      },
+      {id:'q3o4', xp:80,
+       text:'Use for_each to deploy multiple subnets dynamically',
+       sol:{
+         why:'for_each is the recommended pattern for creating multiple similar resources. Unlike count, it uses stable string keys so deleting one item does not cause Terraform to recreate all the others.',
+         code:`# variables.tf
+variable "subnet_config" {
+  type = map(object({
+    cidr = string
+    az   = string
+    public = bool
+  }))
+  default = {
+    "pub-a"  = { cidr = "10.0.1.0/24", az = "us-east-1a", public = true  }
+    "pub-b"  = { cidr = "10.0.2.0/24", az = "us-east-1b", public = true  }
+    "priv-a" = { cidr = "10.0.3.0/24", az = "us-east-1a", public = false }
+  }
+}
+
+# main.tf
+resource "aws_subnet" "this" {
+  for_each                = var.subnet_config
+  vpc_id                  = aws_vpc.this.id
+  cidr_block              = each.value.cidr
+  availability_zone       = each.value.az
+  map_public_ip_on_launch = each.value.public
+  tags = { Name = "\${local.name_prefix}-\${each.key}" }
+}
+
+# outputs.tf
+output "public_subnet_ids" {
+  value = [for k, s in aws_subnet.this : s.id if var.subnet_config[k].public]
+}`,
+         tip:'Each resource instance is identified by its key (e.g. aws_subnet.this["pub-a"]). If you rename a key, Terraform will destroy and recreate that subnet — be careful in production.'
+       }
+      },
+      {id:'q3o5', xp:50,
+       text:'Push the module structure to GitHub with a proper README',
+       sol:{
+         why:'A module without a README is useless to teammates. The README is the module\'s API documentation — inputs, outputs, usage example, and requirements.',
+         code:`# README.md template for a Terraform module
+
+## terraform-aws-vpc
+
+> Reusable VPC module with public/private subnets and NAT gateway.
+
+## Usage
+
+\`\`\`hcl
+module "vpc" {
+  source   = "github.com/eknatha/terraform-labs//modules/vpc"
+  name     = "prod-vpc"
+  vpc_cidr = "10.0.0.0/16"
+  tags     = { Environment = "prod" }
+}
+\`\`\`
+
+## Inputs
+
+| Name | Type | Default | Description |
+|------|------|---------|-------------|
+| name | string | — | Name prefix for all resources |
+| vpc_cidr | string | 10.0.0.0/16 | CIDR block for the VPC |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| vpc_id | ID of the created VPC |
+
+## Requirements
+
+- Terraform >= 1.5
+- AWS Provider ~> 5.0`,
+         tip:'Use terraform-docs (github.com/terraform-docs/terraform-docs) to auto-generate the inputs/outputs table from your .tf files: terraform-docs markdown . > README.md'
+       }
+      },
     ],
     quiz:{q:'What is the purpose of outputs.tf in a Terraform module?',
       opts:['Declare provider version requirements','Expose module values to calling code','Define resource configurations','Store sensitive variable defaults'],
       correct:1,explain:'outputs.tf exposes internal module values (VPC ID, subnet IDs, etc.) to the root module or other modules that consume it, enabling composition and dependency chaining.'}
   },
+
   { id:'q4', title:'Quest 4 — Pipeline Commander', level:'INTERMEDIATE', lc:'qlvl-i',
     xp:800, time:'6–8 hrs', tools:'GitHub Actions', prereq:'q3',
     desc:'Automate plan on PR and apply on merge with GitHub Actions. Add policy gates with OPA/checkov.',
     objectives:[
-      {id:'q4o1',text:'Create a GitHub Actions workflow for terraform fmt + validate on push',xp:80},
-      {id:'q4o2',text:'Add terraform plan on pull_request and post output as a PR comment',xp:120},
-      {id:'q4o3',text:'Configure terraform apply on merge to main using OIDC authentication',xp:120},
-      {id:'q4o4',text:'Add checkov or tfsec static analysis step to the pipeline',xp:80},
-      {id:'q4o5',text:'Add a manual approval gate before apply using GitHub Environments',xp:80},
+      {id:'q4o1', xp:80,
+       text:'Create a GitHub Actions workflow for terraform fmt + validate on push',
+       sol:{
+         why:'fmt and validate are the fastest sanity checks — they catch formatting inconsistencies and syntax errors before anyone reviews the PR. They should run on every push.',
+         code:`# .github/workflows/terraform-lint.yml
+name: Terraform Lint
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "~1.5"
+
+      - name: Terraform Format Check
+        run: terraform fmt -check -recursive
+        # Fails if any file needs formatting
+
+      - name: Terraform Init
+        run: terraform init -backend=false
+        # -backend=false skips remote state for lint jobs
+
+      - name: Terraform Validate
+        run: terraform validate`,
+         tip:'Add terraform fmt -recursive to your pre-commit hooks locally too, so formatting issues are fixed before they ever reach CI.'
+       }
+      },
+      {id:'q4o2', xp:120,
+       text:'Add terraform plan on pull_request and post output as a PR comment',
+       sol:{
+         why:'A plan comment on every PR is the core of safe Terraform collaboration — reviewers see exactly what will change before approving, preventing surprises in production.',
+         code:`# .github/workflows/terraform-plan.yml
+name: Terraform Plan
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+      pull-requests: write   # needed to post comment
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: \${{ vars.AWS_ROLE_ARN }}
+          aws-region: us-east-1
+
+      - uses: hashicorp/setup-terraform@v3
+
+      - run: terraform init
+
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan -no-color 2>&1 | tee plan_output.txt
+        continue-on-error: true
+
+      - name: Post Plan as PR Comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs')
+            const plan = fs.readFileSync('plan_output.txt', 'utf8')
+            const body = \`### Terraform Plan\\n\\\`\\\`\\\`\\n\${plan.slice(0,65000)}\\n\\\`\\\`\\\`\`
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body
+            })`,
+         tip:'Use continue-on-error: true on the plan step so the comment posts even when plan fails — the comment itself shows the error, which is more useful than a silent job failure.'
+       }
+      },
+      {id:'q4o3', xp:120,
+       text:'Configure terraform apply on merge to main using OIDC authentication',
+       sol:{
+         why:'OIDC eliminates the need to store long-lived AWS credentials as GitHub secrets. Instead, GitHub Actions gets a short-lived token that can assume an IAM role — far more secure.',
+         code:`# Step 1: Create the OIDC provider in AWS (one-time setup)
+resource "aws_iam_openid_connect_provider" "github" {
+  url = "https://token.actions.githubusercontent.com"
+  client_id_list  = ["sts.amazonaws.com"]
+  thumbprint_list = ["6938fd4d98bab03faadb97b34396831e3780aea1"]
+}
+
+# Step 2: Create IAM role with GitHub trust policy
+resource "aws_iam_role" "github_actions" {
+  name = "github-actions-terraform"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect = "Allow"
+      Principal = { Federated = aws_iam_openid_connect_provider.github.arn }
+      Action = "sts:AssumeRoleWithWebIdentity"
+      Condition = {
+        StringLike = {
+          "token.actions.githubusercontent.com:sub" =
+            "repo:eknatha/terraform-labs:*"
+        }
+      }
+    }]
+  })
+}
+
+# Step 3: Apply workflow
+# .github/workflows/terraform-apply.yml
+name: Terraform Apply
+on:
+  push:
+    branches: [main]
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    environment: production   # requires manual approval
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: \${{ vars.AWS_ROLE_ARN }}
+          aws-region: us-east-1
+      - uses: hashicorp/setup-terraform@v3
+      - run: terraform init
+      - run: terraform apply -auto-approve`,
+         tip:'Set environment: production in the job to require a manual reviewer approval before apply runs. Configure this under GitHub repo Settings → Environments → production → Required reviewers.'
+       }
+      },
+      {id:'q4o4', xp:80,
+       text:'Add checkov or tfsec static analysis step to the pipeline',
+       sol:{
+         why:'Static analysis catches security misconfigurations before they reach the cloud — open security groups, unencrypted buckets, missing tags. Catching these in CI is infinitely cheaper than finding them in a security audit.',
+         code:`# Option A: checkov (Python-based, broad coverage)
+- name: Run Checkov
+  uses: bridgecrewio/checkov-action@master
+  with:
+    directory: .
+    framework: terraform
+    output_format: cli
+    soft_fail: false   # fails the job on HIGH severity findings
+
+# Option B: tfsec (Go-based, fast)
+- name: Run tfsec
+  uses: aquasecurity/tfsec-action@v1.0.0
+  with:
+    soft_fail: false
+
+# Option C: run both
+- name: Run checkov
+  run: pip install checkov && checkov -d . --framework terraform --quiet
+
+- name: Run tfsec
+  run: |
+    wget -q https://github.com/aquasecurity/tfsec/releases/latest/download/tfsec-linux-amd64
+    chmod +x tfsec-linux-amd64
+    ./tfsec-linux-amd64 .`,
+         tip:'Start with soft_fail: true to see the findings without blocking PRs. Once you understand the baseline, switch to soft_fail: false for the HIGH and CRITICAL checks only.'
+       }
+      },
+      {id:'q4o5', xp:80,
+       text:'Add a manual approval gate before apply using GitHub Environments',
+       sol:{
+         why:'An unreviewed auto-apply to production is how incidents happen. GitHub Environments give you a required-reviewers gate that blocks apply until a human approves.',
+         code:`# Step 1: Create the environment in GitHub
+# Repo → Settings → Environments → New environment → "production"
+# Add yourself (or your team) as Required reviewers
+# Optional: add deployment branch rule → only main
+
+# Step 2: Reference environment in workflow job
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    environment: production   # THIS triggers the approval gate
+    steps:
+      - uses: actions/checkout@v4
+      - run: terraform apply -auto-approve
+
+# The workflow will pause at the job boundary
+# GitHub sends a notification to required reviewers
+# They click Approve in the GitHub UI
+# Then the job continues and apply runs`,
+         tip:'Use environment: staging for the plan job (no approval needed) and environment: production for apply. This lets you see the plan output before deciding to approve the apply.'
+       }
+      },
     ],
     quiz:{q:'What does OIDC authentication solve in Terraform CI/CD?',
       opts:['It encrypts state files','It eliminates long-lived cloud credentials stored as GitHub secrets','It runs terraform plan faster','It locks the DynamoDB state table'],
       correct:1,explain:'OIDC lets GitHub Actions assume a cloud IAM role dynamically via a short-lived token — no static access keys stored in GitHub secrets, dramatically reducing the credential exposure risk.'}
   },
+
   { id:'q5', title:'Quest 5 — Drift Detector', level:'ADVANCED', lc:'qlvl-a',
     xp:1000, time:'8–10 hrs', tools:'Multi-cloud', prereq:'q4',
     desc:'Detect, investigate and reconcile infrastructure drift. Build automated drift detection pipelines.',
     objectives:[
-      {id:'q5o1',text:'Manually modify a cloud resource outside of Terraform',xp:100},
-      {id:'q5o2',text:'Run terraform plan and document the exact drift detected',xp:100},
-      {id:'q5o3',text:'Use terraform import to bring an unmanaged resource under TF control',xp:150},
-      {id:'q5o4',text:'Build a scheduled GH Actions job that alerts on drift',xp:200},
-      {id:'q5o5',text:'Write an incident postmortem for a simulated drift incident',xp:100},
+      {id:'q5o1', xp:100,
+       text:'Manually modify a cloud resource outside of Terraform',
+       sol:{
+         why:'Real-world drift always starts with a manual change — someone edits a security group in the console during an incident, or another automation tool modifies a tag. You need to know what this looks like from Terraform\'s perspective.',
+         code:`# Create a resource via Terraform first
+resource "aws_security_group_rule" "allow_https" {
+  type        = "ingress"
+  from_port   = 443
+  to_port     = 443
+  protocol    = "tcp"
+  cidr_blocks = ["10.0.0.0/8"]
+  security_group_id = aws_security_group.main.id
+}
+
+# Then manually add a rule in the AWS Console:
+# EC2 → Security Groups → your-sg → Inbound rules → Edit
+# Add: Custom TCP, port 8080, 0.0.0.0/0
+
+# Or via AWS CLI:
+aws ec2 authorize-security-group-ingress \\
+  --group-id sg-xxxxxxxx \\
+  --protocol tcp \\
+  --port 8080 \\
+  --cidr 0.0.0.0/0`,
+         tip:'Document the exact change you make so you know what drift to expect. In production, always ask: "what would Terraform see if plan ran right now?" before touching anything manually.'
+       }
+      },
+      {id:'q5o2', xp:100,
+       text:'Run terraform plan and document the exact drift detected',
+       sol:{
+         why:'Reading a drift plan output and accurately diagnosing what changed and why is a critical PE skill — especially for incident investigations.',
+         code:`# Run plan to detect drift
+terraform plan -detailed-exitcode
+# Exit codes: 0 = no changes, 1 = error, 2 = changes detected
+
+# If changes are detected, save the output for documentation:
+terraform plan -no-color 2>&1 | tee drift_report_\$(date +%Y%m%d).txt
+
+# Terraform shows the drift as a diff:
+# ~ resource "aws_security_group" "main" {
+#     # (1 unchanged attribute hidden)
+#     ~ ingress = [
+#         + {
+#             + from_port   = 8080
+#             + to_port     = 8080
+#             + cidr_blocks = ["0.0.0.0/0"]   # <-- the manual change
+#           },
+#       ]
+#   }
+
+# Document: what changed, when, who (check CloudTrail), why`,
+         tip:'Run terraform plan -detailed-exitcode in scheduled CI pipelines. If exit code is 2 (changes detected when none were expected), trigger an alert to Slack or PagerDuty.'
+       }
+      },
+      {id:'q5o3', xp:150,
+       text:'Use terraform import to bring an unmanaged resource under TF control',
+       sol:{
+         why:'In real organisations you will always inherit resources that were created manually or by older tools. terraform import brings them under management without downtime.',
+         code:`# Scenario: An S3 bucket exists in AWS but is not in Terraform state
+# Step 1: Write the resource config in .tf (Terraform 1.5+ can generate this)
+resource "aws_s3_bucket" "legacy" {
+  bucket = "my-existing-bucket-name"
+}
+
+# Step 2: Import the existing resource into state
+terraform import aws_s3_bucket.legacy my-existing-bucket-name
+
+# Step 3: Run plan to see if config matches reality
+terraform plan
+# If config doesn't match: update your .tf to match the plan diff
+# Repeat until plan shows "No changes"
+
+# Terraform 1.5+ declarative import (recommended):
+import {
+  to = aws_s3_bucket.legacy
+  id = "my-existing-bucket-name"
+}
+# Then run: terraform plan  (auto-generates the config)
+# Then run: terraform apply  (writes to state)`,
+         tip:'Always run terraform plan AFTER import before applying anything. The import only writes to state — it does not verify your .tf config matches reality. Mismatches will be shown as changes in the next plan.'
+       }
+      },
+      {id:'q5o4', xp:200,
+       text:'Build a scheduled GH Actions job that alerts on drift',
+       sol:{
+         why:'Manual drift detection is reactive — you only find out when something breaks. A scheduled pipeline that runs plan every night is proactive, catching drift before it causes incidents.',
+         code:`# .github/workflows/drift-detection.yml
+name: Drift Detection
+on:
+  schedule:
+    - cron: '0 6 * * *'   # Every day at 6am UTC
+  workflow_dispatch:       # Allow manual trigger
+
+jobs:
+  detect:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: \${{ vars.AWS_ROLE_ARN }}
+          aws-region: us-east-1
+
+      - uses: hashicorp/setup-terraform@v3
+      - run: terraform init
+
+      - name: Detect Drift
+        id: plan
+        run: |
+          terraform plan -detailed-exitcode -no-color 2>&1 | tee plan.txt
+          echo "exit_code=\$?" >> \$GITHUB_OUTPUT
+        continue-on-error: true
+
+      - name: Alert on Drift
+        if: steps.plan.outputs.exit_code == '2'
+        uses: slackapi/slack-github-action@v1
+        with:
+          slack-bot-token: \${{ secrets.SLACK_BOT_TOKEN }}
+          channel-id: '#infra-alerts'
+          slack-message: |
+            🚨 *Terraform Drift Detected*
+            Unexpected changes found in production.
+            <\${{ github.server_url }}/\${{ github.repository }}/actions/runs/\${{ github.run_id }}|View plan output>`,
+         tip:'Also send alerts when exit_code == 1 (plan error) — this catches state lock issues, provider authentication failures, and API errors that need immediate attention.'
+       }
+      },
+      {id:'q5o5', xp:100,
+       text:'Write an incident postmortem for a simulated drift incident',
+       sol:{
+         why:'Postmortems are a core Platform Engineering practice. Writing one — even for a simulated incident — builds the habit of structured incident analysis and blame-free documentation.',
+         code:`# Incident Postmortem Template
+
+## Summary
+On [DATE], infrastructure drift was detected in the production VPC
+security group. An unauthorised inbound rule (port 8080, 0.0.0.0/0)
+was found that was not in Terraform state.
+
+## Timeline
+| Time  | Event |
+|-------|-------|
+| 06:00 | Drift detection pipeline detected changes (exit code 2) |
+| 06:05 | Slack alert received by on-call engineer |
+| 06:20 | Root cause identified: manual rule added during previous day's incident |
+| 06:45 | terraform apply run to reconcile state — drift removed |
+| 07:00 | Postmortem opened |
+
+## Root Cause
+Manual console change during P1 incident on [DATE-1].
+Engineer added temporary rule, planned to remove it, forgot.
+
+## Contributing Factors
+- No automated drift detection was running at the time
+- Incident runbook did not require Terraform reconciliation after manual changes
+
+## Action Items
+| Action | Owner | Due |
+|--------|-------|-----|
+| Enable nightly drift detection pipeline | Platform team | [DATE+3] |
+| Update incident runbook: add TF reconciliation step | On-call lead | [DATE+7] |
+| Add change tracking via CloudTrail → Slack | Platform team | [DATE+14] |
+
+## Lessons Learned
+Manual changes during incidents are inevitable.
+The gap was the absence of automated detection after the incident resolved.`,
+         tip:'Good postmortems are blameless — focus on systemic failures and process gaps, not individuals. The goal is to make the system more resilient, not to assign fault.'
+       }
+      },
     ],
     quiz:{q:'What is infrastructure drift?',
       opts:['When terraform plan takes too long to run','When real cloud resources differ from what Terraform state expects','When a module has no outputs defined','When the remote backend loses connection'],
       correct:1,explain:'Drift occurs when the actual state of cloud resources diverges from the desired state recorded in Terraform — usually caused by manual console changes, other automation, or human error.'}
   },
+
   { id:'q6', title:'Quest 6 — Boss Fight: Landing Zone', level:'EXPERT', lc:'qlvl-e',
     xp:1500, time:'12–16 hrs', tools:'Atlantis + TFE', prereq:'q5',
     desc:'Design a production multi-account AWS landing zone with Atlantis GitOps and full policy enforcement.',
     objectives:[
-      {id:'q6o1',text:'Design a multi-account Terraform workspace strategy for dev/staging/prod',xp:150},
-      {id:'q6o2',text:'Set up Atlantis for PR-based GitOps Terraform workflow',xp:200},
-      {id:'q6o3',text:'Implement OPA/Sentinel policies that block non-compliant resources',xp:200},
-      {id:'q6o4',text:'Configure cross-account IAM roles for Terraform execution',xp:200},
-      {id:'q6o5',text:'Add drift detection + alerting to the landing zone pipeline',xp:150},
+      {id:'q6o1', xp:150,
+       text:'Design a multi-account Terraform workspace strategy for dev/staging/prod',
+       sol:{
+         why:'Multi-account architecture isolates blast radius, permissions, and billing. It is the AWS well-architected standard and what every principal PE interview will ask about.',
+         code:`# Recommended account structure:
+# ├── Management (billing, org policies)
+# ├── Security (CloudTrail, GuardDuty, audit logs)
+# ├── Shared Services (CI/CD, Atlantis, ECR, DNS)
+# ├── Dev     (sandbox, developer accounts)
+# ├── Staging (pre-production testing)
+# └── Prod    (production workloads)
+
+# Workspace strategy — one workspace per account+region:
+# terraform workspace new dev-us-east-1
+# terraform workspace new staging-us-east-1
+# terraform workspace new prod-us-east-1
+
+locals {
+  account_config = {
+    dev     = { account_id = "111111111111", cidr = "10.0.0.0/16" }
+    staging = { account_id = "222222222222", cidr = "10.1.0.0/16" }
+    prod    = { account_id = "333333333333", cidr = "10.2.0.0/16" }
+  }
+  env    = terraform.workspace  # "dev" | "staging" | "prod"
+  config = local.account_config[local.env]
+}
+
+# Each workspace uses the same code, different tfvars:
+# terraform apply -var-file=envs/\${terraform.workspace}.tfvars`,
+         tip:'Use AWS Organizations SCPs (Service Control Policies) to enforce guardrails at the account level — these cannot be overridden even by account admins, providing a safety net beneath Terraform.'
+       }
+      },
+      {id:'q6o2', xp:200,
+       text:'Set up Atlantis for PR-based GitOps Terraform workflow',
+       sol:{
+         why:'Atlantis is the standard open-source tool for team Terraform — it runs plan/apply from PR comments, gives every engineer visibility, and enforces review before apply.',
+         code:`# atlantis.yaml (repo root)
+version: 3
+automerge: false
+delete_source_branch_on_merge: false
+
+projects:
+  - name: networking
+    dir: ./infra/networking
+    workspace: prod
+    autoplan:
+      enabled: true
+      when_modified: ["*.tf", "*.tfvars", "../modules/**"]
+    apply_requirements:
+      - approved       # requires PR approval
+      - mergeable      # requires passing CI checks
+
+  - name: compute
+    dir: ./infra/compute
+    workspace: prod
+    depends_on: [networking]
+
+# How it works in practice:
+# 1. Open PR with Terraform changes
+# 2. Atlantis auto-comments: "Ran Plan for project networking"
+#    Shows the full terraform plan output
+# 3. Reviewer reads plan, approves PR
+# 4. Comment on PR: "atlantis apply -p networking"
+# 5. Atlantis runs apply, posts output as comment
+# 6. Merge PR
+
+# Docker-compose for self-hosted Atlantis:
+# services:
+#   atlantis:
+#     image: ghcr.io/runatlantis/atlantis:latest
+#     ports: ["4141:4141"]
+#     environment:
+#       ATLANTIS_GH_TOKEN: \${GH_TOKEN}
+#       ATLANTIS_GH_WEBHOOK_SECRET: \${WEBHOOK_SECRET}
+#       ATLANTIS_REPO_ALLOWLIST: "github.com/eknatha/*"`,
+         tip:'Set atlantis apply via comment (not auto-apply) for production. Auto-apply is fine for dev environments but prod should always require an explicit "atlantis apply" comment after the plan is reviewed.'
+       }
+      },
+      {id:'q6o3', xp:200,
+       text:'Implement OPA/Sentinel policies that block non-compliant resources',
+       sol:{
+         why:'Policy-as-code enforces compliance automatically — no resource can be deployed that violates your rules, regardless of who writes the Terraform. This is what \'guardrails at scale\' means.',
+         code:`# policy/required_tags.rego (OPA with conftest)
+package terraform
+
+import input.resource_changes as changes
+
+required_tags := {"Environment", "Owner", "ManagedBy", "CostCenter"}
+
+deny[msg] {
+  change := changes[_]
+  change.change.actions[_] == "create"
+  resource_tags := object.get(change.change.after, "tags", {})
+  missing := required_tags - {k | resource_tags[k]}
+  count(missing) > 0
+  msg := sprintf(
+    "Resource %v is missing required tags: %v",
+    [change.address, missing]
+  )
+}
+
+# policy/no_public_s3.rego
+deny[msg] {
+  change := changes[_]
+  change.type == "aws_s3_bucket_public_access_block"
+  change.change.after.block_public_acls == false
+  msg := sprintf("S3 bucket %v must block public ACLs", [change.address])
+}
+
+# Run in CI:
+# terraform plan -out=plan.tfplan
+# terraform show -json plan.tfplan > plan.json
+# conftest test plan.json --policy ./policy/`,
+         tip:'Start with warn-only policies to establish a baseline. Once you understand your existing violations, switch to deny. Blocking every deployment on day one creates friction that kills adoption.'
+       }
+      },
+      {id:'q6o4', xp:200,
+       text:'Configure cross-account IAM roles for Terraform execution',
+       sol:{
+         why:'In multi-account architectures, Terraform runs in one account (the CI/CD account) but deploys to others. Cross-account role assumption is the secure pattern — no long-lived credentials in any child account.',
+         code:`# In each CHILD account — create a role Terraform can assume:
+resource "aws_iam_role" "terraform_execution" {
+  name = "TerraformExecutionRole"
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Effect    = "Allow"
+      Principal = { AWS = "arn:aws:iam::\${var.cicd_account_id}:root" }
+      Action    = "sts:AssumeRole"
+      Condition = {
+        StringEquals = {
+          "sts:ExternalId" = var.external_id  # extra security
+        }
+      }
+    }]
+  })
+}
+# Attach AdministratorAccess (or least-privilege policy)
+
+# In Terraform config — assume the role per provider:
+provider "aws" {
+  alias  = "prod"
+  region = "us-east-1"
+  assume_role {
+    role_arn     = "arn:aws:iam::\${var.prod_account_id}:role/TerraformExecutionRole"
+    session_name = "terraform-\${terraform.workspace}"
+    external_id  = var.external_id
+  }
+}
+
+# Resources in the prod account:
+resource "aws_vpc" "prod" {
+  provider   = aws.prod
+  cidr_block = "10.2.0.0/16"
+}`,
+         tip:'Use a separate external_id per account as an extra verification step — prevents confused deputy attacks where one account\'s role is tricked into assuming another\'s role.'
+       }
+      },
+      {id:'q6o5', xp:150,
+       text:'Add drift detection + alerting to the landing zone pipeline',
+       sol:{
+         why:'A landing zone without drift detection is infrastructure on hope. Automated nightly drift detection across all accounts and environments is the difference between proactive and reactive platform engineering.',
+         code:`# .github/workflows/landing-zone-drift.yml
+name: Landing Zone Drift Detection
+on:
+  schedule:
+    - cron: '0 5 * * *'   # 5am UTC daily
+  workflow_dispatch:
+
+strategy:
+  matrix:
+    environment: [dev, staging, prod]
+    region: [us-east-1, eu-west-1]
+
+jobs:
+  drift-check:
+    runs-on: ubuntu-latest
+    environment: \${{ matrix.environment }}
+    permissions:
+      id-token: write
+      contents: read
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: \${{ vars[format('{0}_AWS_ROLE_ARN', upper(matrix.environment))] }}
+          aws-region: \${{ matrix.region }}
+
+      - uses: hashicorp/setup-terraform@v3
+
+      - run: |
+          terraform workspace select \${{ matrix.environment }}-\${{ matrix.region }}
+          terraform init
+          terraform plan -detailed-exitcode -no-color 2>&1 | tee plan.txt
+          EXIT_CODE=\${PIPESTATUS[0]}
+          echo "exit_code=\$EXIT_CODE" >> \$GITHUB_OUTPUT
+        id: plan
+        continue-on-error: true
+
+      - name: Notify on Drift
+        if: steps.plan.outputs.exit_code == '2'
+        run: |
+          curl -X POST "\${{ secrets.SLACK_WEBHOOK }}" \\
+            -H "Content-Type: application/json" \\
+            -d '{"text":"🚨 Drift detected in *\${{ matrix.environment }}* / *\${{ matrix.region }}*. <\${{ github.server_url }}/\${{ github.repository }}/actions/runs/\${{ github.run_id }}|View details>"}'`,
+         tip:'Run drift detection across all environments in parallel using a matrix strategy. This way the entire landing zone is checked in one pipeline run rather than having separate workflows per environment.'
+       }
+      },
     ],
     quiz:{q:'In Atlantis, what triggers a terraform plan run?',
       opts:['A push to the main branch','A pull request being opened or updated','A manual CLI command on the server','A scheduled cron job in crontab'],
@@ -870,13 +1827,27 @@ function openQuestModal(q, e){
   if(done) html += `<div style="font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--accent3);padding:10px 14px;background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.18);border-radius:6px;margin-bottom:18px;letter-spacing:1px">✓ QUEST COMPLETE — ${q.xp} XP EARNED</div>`;
   html += `
     <div class="msec">
-      <h4>// OBJECTIVES — click to complete</h4>
+      <h4>// OBJECTIVES — click to complete · expand for solution</h4>
       <ul class="obj-list" id="objlist_${q.id}">
         ${q.objectives.map(o=>{
           const od=S.co[o.id]||false;
-          return `<li class="obj-item ${od?'done':''}" id="oi_${o.id}" onclick="toggleObj('${q.id}','${o.id}',${o.xp},event)">
-            <div class="obj-chk">${od?'✓':''}</div>
-            <div class="obj-txt">${o.text} <span style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--accent4)">(+${o.xp} XP)</span></div>
+          const hasSol = !!o.sol;
+          const solOpen = S.solOpen && S.solOpen[o.id];
+          return `<li class="obj-item ${od?'done':''}" id="oi_${o.id}">
+            <div class="obj-item-top" onclick="toggleObj('${q.id}','${o.id}',${o.xp},event)">
+              <div class="obj-chk">${od?'✓':''}</div>
+              <div class="obj-txt">${o.text} <span style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--accent4)">(+${o.xp} XP)</span></div>
+              ${hasSol ? `<button class="obj-hint-btn ${solOpen?'open':''}" id="hbtn_${o.id}" onclick="toggleSolution('${o.id}',event)">${solOpen?'▲ HIDE':'▼ SOLUTION'}</button>` : ''}
+            </div>
+            ${hasSol ? `<div class="obj-solution ${solOpen?'show':''}" id="sol_${o.id}">
+              <div class="obj-solution-inner">
+                <div class="obj-sol-label">// SOLUTION GUIDE</div>
+                <div class="obj-sol-text">${o.sol.why}</div>
+                <button class="obj-sol-copy" onclick="copySolCode('${o.id}')">COPY CODE</button>
+                <pre class="obj-sol-code" id="solcode_${o.id}">${escHCL(o.sol.code)}</pre>
+                ${o.sol.tip ? `<div class="obj-sol-tip">💡 <strong>Pro tip:</strong> ${o.sol.tip}</div>` : ''}
+              </div>
+            </div>` : ''}
           </li>`;
         }).join('')}
       </ul>
@@ -906,9 +1877,48 @@ function toggleObj(qId, oId, xp, e){
   addXP(xp, 'Objective complete', e.clientX, e.clientY);
   toast(`+${xp} XP — objective done!`, 't-xp');
   const el=document.getElementById('oi_'+oId);
-  if(el){ el.classList.add('done'); el.querySelector('.obj-chk').textContent='✓'; }
+  if(el){
+    el.classList.add('done');
+    const chk = el.querySelector('.obj-chk');
+    if(chk) chk.textContent='✓';
+  }
   checkQuestDone(qId);
   renderQuests();
+}
+
+function toggleSolution(oId, e){
+  e.stopPropagation();
+  S.solOpen = S.solOpen || {};
+  S.solOpen[oId] = !S.solOpen[oId];
+  save();
+  const sol  = document.getElementById('sol_'+oId);
+  const btn  = document.getElementById('hbtn_'+oId);
+  if(sol){ sol.classList.toggle('show', S.solOpen[oId]); }
+  if(btn){ btn.textContent = S.solOpen[oId] ? '▲ HIDE' : '▼ SOLUTION'; btn.classList.toggle('open', S.solOpen[oId]); }
+}
+
+function escHCL(code){
+  return code
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/(#[^\n]*)/g,'<span class="cmt">$1</span>')
+    .replace(/\b(resource|data|variable|output|locals|module|terraform|provider|required_providers|backend|lifecycle|dynamic|content|provisioner|check|assert|import|moved|for_each|count|depends_on)\b/g,'<span class="kw">$1</span>')
+    .replace(/("(?:[^"\\]|\\.)*")\s*=/g,'<span class="key">$1</span> =')
+    .replace(/=\s*("(?:[^"\\]|\\.)*")/g,'= <span class="str">$1</span>')
+    .replace(/\b(true|false|null)\b/g,'<span class="val">$1</span>');
+}
+
+function copySolCode(oId){
+  const pre = document.getElementById('solcode_'+oId);
+  if(!pre) return;
+  const raw = pre.textContent;
+  navigator.clipboard.writeText(raw).then(()=>{
+    toast('✓ Code copied to clipboard!', 't-unlock');
+  }).catch(()=>{
+    const ta = document.createElement('textarea');
+    ta.value = raw; document.body.appendChild(ta); ta.select();
+    document.execCommand('copy'); document.body.removeChild(ta);
+    toast('✓ Code copied!', 't-unlock');
+  });
 }
 
 function answerQ(qId, chosen, correct, btn, e){
