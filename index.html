@@ -224,6 +224,36 @@ footer span{color:var(--accent)}
 .prog-item{display:flex;align-items:center;gap:7px;font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted)}
 .prog-dot{width:8px;height:8px;border-radius:50%}
 
+/* ONBOARDING MODAL */
+.ob-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:800;display:flex;align-items:center;justify-content:center;padding:20px}
+.ob-box{background:var(--surface);border:1px solid rgba(0,229,255,0.25);border-radius:14px;padding:36px 32px;max-width:460px;width:100%;text-align:center;position:relative;overflow:hidden}
+.ob-box::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(124,58,237,0.08) 0%,transparent 60%);pointer-events:none}
+.ob-glyph{font-size:2.4rem;margin-bottom:16px;display:block}
+.ob-title{font-family:'Orbitron',monospace;font-size:1.3rem;font-weight:900;color:#fff;margin-bottom:8px}
+.ob-sub{font-size:0.9rem;color:var(--muted);margin-bottom:24px;line-height:1.5}
+.ob-input-wrap{position:relative;margin-bottom:20px}
+.ob-prefix{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--accent2);pointer-events:none}
+.ob-input{width:100%;background:rgba(0,229,255,0.04);border:1px solid rgba(0,229,255,0.2);border-radius:6px;padding:12px 14px 12px 90px;font-family:'Share Tech Mono',monospace;font-size:1rem;color:var(--text);outline:none;transition:border-color 0.2s;letter-spacing:1px}
+.ob-input:focus{border-color:rgba(0,229,255,0.5)}
+.ob-input::placeholder{color:var(--muted);letter-spacing:0}
+.ob-tip{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:20px;letter-spacing:1px}
+
+/* DID YOU KNOW TIP BAR */
+.tip-bar{position:relative;z-index:1;background:rgba(124,58,237,0.07);border-bottom:1px solid rgba(124,58,237,0.15);padding:10px 20px;display:flex;align-items:center;gap:12px;overflow:hidden}
+.tip-bar-label{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--accent2);white-space:nowrap;flex-shrink:0}
+.tip-bar-text{font-family:'Share Tech Mono',monospace;font-size:11px;color:#94a3b8;flex:1;animation:tipSlide 0.5s ease}
+.tip-bar-nav{display:flex;gap:6px;flex-shrink:0}
+.tip-nav-btn{background:transparent;border:1px solid rgba(124,58,237,0.25);color:var(--accent2);font-size:10px;width:22px;height:22px;border-radius:3px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;padding:0}
+.tip-nav-btn:hover{background:rgba(124,58,237,0.15)}
+.tip-dots{display:flex;gap:4px;align-items:center}
+.tip-dot{width:4px;height:4px;border-radius:50%;background:rgba(124,58,237,0.25);transition:background 0.2s}
+.tip-dot.active{background:var(--accent2)}
+@keyframes tipSlide{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* OPERATOR NAME in HUD */
+.hud-operator{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--accent3);letter-spacing:1px;cursor:pointer;padding:2px 8px;border:1px solid rgba(16,185,129,0.2);border-radius:2px;background:rgba(16,185,129,0.06);transition:all 0.2s}
+.hud-operator:hover{border-color:rgba(16,185,129,0.4);background:rgba(16,185,129,0.12)}
+
 @media(max-width:600px){
   .hud{padding:8px 14px}
   .hud-stats{gap:10px}
@@ -237,10 +267,28 @@ footer span{color:var(--accent)}
 <body>
 <div class="scanline"></div>
 
+<!-- ONBOARDING MODAL -->
+<div class="ob-overlay" id="obOverlay">
+  <div class="ob-box">
+    <span class="ob-glyph">&#x1F6F0;&#xFE0F;</span>
+    <div class="ob-title">IDENTIFY YOURSELF, OPERATOR</div>
+    <p class="ob-sub">Enter your callsign to begin. This personalises your HUD, dashboard, and progress reports.</p>
+    <div class="ob-input-wrap">
+      <span class="ob-prefix">OPERATOR //</span>
+      <input class="ob-input" id="obInput" type="text" maxlength="20" placeholder="e.g. Eknatha" autocomplete="off">
+    </div>
+    <p class="ob-tip">YOU CAN CHANGE THIS ANYTIME BY CLICKING YOUR NAME IN THE HUD</p>
+    <button class="btn btn-primary" style="width:100%;margin-top:4px" onclick="obConfirm()">&#9654; INITIALIZE MISSION</button>
+  </div>
+</div>
+
 <!-- HUD -->
 <nav class="hud">
   <a class="hud-brand" href="#">EKNATHA<span>LABS</span> / TF-MISSIONS</a>
   <div class="hud-stats">
+    <div class="hud-stat">
+      <span class="hud-operator" id="hudOperator" onclick="editOperatorName()" title="Click to change callsign">&#x1F464; OPERATOR</span>
+    </div>
     <div class="hud-stat">
       <span class="hud-stat-label">LVL</span>
       <div class="hud-level" id="hudLevel">ROOKIE</div>
@@ -251,17 +299,26 @@ footer span{color:var(--accent)}
       <span class="hud-stat-val" id="hudXp">0</span>
     </div>
     <div class="hud-stat">
-      <span class="hud-streak" id="hudStreak">🔥 0 streak</span>
+      <span class="hud-streak" id="hudStreak">&#x1F525; 0 streak</span>
     </div>
     <button class="reset-btn" onclick="confirmReset()">RESET</button>
   </div>
 </nav>
 
+<!-- DID YOU KNOW TIP BAR -->
+<div class="tip-bar">
+  <span class="tip-bar-label">// DID YOU KNOW</span>
+  <span class="tip-bar-text" id="tipText"></span>
+  <div class="tip-dots" id="tipDots"></div>
+  <button class="tip-nav-btn" onclick="prevTip()">&#8249;</button>
+  <button class="tip-nav-btn" onclick="nextTip()">&#8250;</button>
+</div>
+
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-badge">// TERRAFORM MISSION CONTROL v2.0 — FULLY INTERACTIVE</div>
+  <div class="hero-badge" id="heroBadge">// TERRAFORM MISSION CONTROL v2.0 — FULLY INTERACTIVE</div>
   <h1><span class="c1">TERRA</span><span class="c2">FORM</span><br>MISSION CONTROL</h1>
-  <p class="hero-sub">A real gamified IaC learning system. Complete quests, earn XP, solve quizzes, race the clock.</p>
+  <p class="hero-sub" id="heroSub">A real gamified IaC learning system. Complete quests, earn XP, solve quizzes, race the clock.</p>
   <div class="hero-actions">
     <button class="btn btn-primary" onclick="switchTab('quests')">▶ START MISSIONS</button>
     <button class="btn btn-outline" onclick="switchTab('simulate')">⚡ SIMULATIONS</button>
@@ -512,7 +569,7 @@ const LEVELS = [
 let S = load();
 function load(){
   try{ const r=localStorage.getItem('tf_mc_v3'); if(r) return JSON.parse(r); }catch(e){}
-  return {xp:0,level:'ROOKIE',streak:0,cq:[],co:{},qp:{},cb:{},cs:{},log:[],dailyDone:false,dailyDate:''};
+  return {xp:0,level:'ROOKIE',streak:0,cq:[],co:{},qp:{},cb:{},cs:{},log:[],dailyDone:false,dailyDate:'',operatorName:'',joinDate:new Date().toLocaleDateString()};
 }
 function save(){ try{ localStorage.setItem('tf_mc_v3',JSON.stringify(S)); }catch(e){} }
 
@@ -820,7 +877,8 @@ function renderBadges(){
 function renderLB(){
   const lv=getLevel(S.xp), next=getNext(S.xp);
   const pct=next?Math.round(((S.xp-lv.min)/(next.min-lv.min))*100):100;
-  const data=[...LB_BASE.map(e=>({...e})),{name:'You',xp:S.xp,level:lv.name,pct,you:true}];
+  const myName = S.operatorName || 'You';
+  const data=[...LB_BASE.map(e=>({...e})),{name:myName,xp:S.xp,level:lv.name,pct,you:true}];
   data.sort((a,b)=>b.xp-a.xp);
   const w=document.getElementById('lbWrap'); w.innerHTML='';
   const ranks=['🥇','🥈','🥉'];
@@ -842,7 +900,16 @@ function renderLB(){
 // DASHBOARD
 // ──────────────────────────────────────────────
 function renderDash(){
+  const opName = S.operatorName || 'Unknown Operator';
   document.getElementById('statsStrip').innerHTML=`
+    <div class="stat-box" style="grid-column:1/-1;background:rgba(16,185,129,0.06);border-color:rgba(16,185,129,0.2);display:flex;align-items:center;gap:14px;text-align:left;padding:14px 18px">
+      <div style="width:44px;height:44px;border-radius:50%;background:rgba(0,229,255,0.1);border:1px solid rgba(0,229,255,0.25);display:flex;align-items:center;justify-content:center;font-family:'Orbitron',monospace;font-size:1rem;font-weight:700;color:var(--accent);flex-shrink:0">${opName.slice(0,2).toUpperCase()}</div>
+      <div>
+        <div style="font-family:'Orbitron',monospace;font-size:1rem;font-weight:700;color:#fff">${opName}</div>
+        <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--accent3);letter-spacing:1px">LEVEL: ${S.level} &nbsp;·&nbsp; JOINED: ${S.joinDate||'TODAY'}</div>
+      </div>
+      <button class="btn btn-sm btn-outline" style="margin-left:auto" onclick="editOperatorName()">EDIT CALLSIGN</button>
+    </div>
     <div class="stat-box"><div class="sv">${S.xp.toLocaleString()}</div><div class="sl">TOTAL XP</div></div>
     <div class="stat-box"><div class="sv purple">${S.cq.length}/6</div><div class="sl">QUESTS DONE</div></div>
     <div class="stat-box"><div class="sv green">${Object.keys(S.co).length}</div><div class="sl">OBJECTIVES</div></div>
@@ -908,6 +975,127 @@ function confirmReset(){
 }
 
 // ──────────────────────────────────────────────
+// DID YOU KNOW — TIPS
+// ──────────────────────────────────────────────
+const TIPS = [
+  'terraform plan -out=plan.tfplan saves your plan to a file so apply uses the exact same plan — no surprises.',
+  'The .terraform.lock.hcl file locks provider versions. Commit it to Git so your team always uses the same providers.',
+  'terraform fmt -recursive auto-formats all .tf files in every subdirectory — run it before every commit.',
+  'You can use terraform console to interactively evaluate HCL expressions like locals and functions without applying.',
+  'terraform graph | dot -Tsvg > graph.svg generates a visual dependency graph of all your resources.',
+  'The TF_LOG=DEBUG environment variable enables verbose logging — essential for debugging provider issues.',
+  'terraform state mv can rename or move resources between modules without destroying and recreating them.',
+  'Use terraform import to bring existing cloud resources under Terraform management without downtime.',
+  'The depends_on meta-argument explicitly declares dependencies Terraform can\'t automatically infer.',
+  'lifecycle { prevent_destroy = true } stops Terraform from ever destroying a critical resource like a production database.',
+  'terraform workspace list shows all workspaces. Use workspaces to manage dev/staging/prod with one codebase.',
+  'The for_each meta-argument creates multiple instances of a resource from a map or set — cleaner than count.',
+  'terraform output -json pipes all outputs as JSON — useful for CI/CD scripts that need infrastructure values.',
+  'sensitive = true on a variable or output hides the value from plan/apply output and marks it as redacted.',
+  'The moved {} block lets you refactor resource addresses in state without destroying infrastructure.',
+  'terraform apply -target=resource.name applies only one specific resource — useful for emergency fixes.',
+  'Remote backends like S3 + DynamoDB give you state locking, versioning, and shared access for teams.',
+  'The null_resource with a triggers map lets you re-run provisioners without changing real infrastructure.',
+  'terraform validate checks syntax and internal consistency — run it in CI before every plan.',
+  'Use precondition and postcondition blocks in Terraform 1.2+ to enforce business rules as code.',
+];
+
+let tipIdx = 0;
+let tipTimer = null;
+
+function renderTipDots(){
+  const d = document.getElementById('tipDots');
+  if(!d) return;
+  d.innerHTML = TIPS.map((_,i) =>
+    `<div class="tip-dot ${i===tipIdx?'active':''}" onclick="goTip(${i})" style="cursor:pointer"></div>`
+  ).join('');
+}
+
+function showTip(idx){
+  tipIdx = ((idx % TIPS.length) + TIPS.length) % TIPS.length;
+  const el = document.getElementById('tipText');
+  if(el){
+    el.style.animation = 'none';
+    void el.offsetWidth;
+    el.style.animation = 'tipSlide 0.4s ease';
+    el.textContent = TIPS[tipIdx];
+  }
+  renderTipDots();
+}
+
+function nextTip(){ clearInterval(tipTimer); showTip(tipIdx+1); startTipAuto(); }
+function prevTip(){ clearInterval(tipTimer); showTip(tipIdx-1); startTipAuto(); }
+function goTip(i){ clearInterval(tipTimer); showTip(i); startTipAuto(); }
+
+function startTipAuto(){
+  clearInterval(tipTimer);
+  tipTimer = setInterval(()=>showTip(tipIdx+1), 8000);
+}
+
+function initTips(){
+  tipIdx = Math.floor(Math.random() * TIPS.length);
+  showTip(tipIdx);
+  startTipAuto();
+}
+
+// ──────────────────────────────────────────────
+// OPERATOR NAME / ONBOARDING
+// ──────────────────────────────────────────────
+function updateOperatorDisplay(){
+  const name = S.operatorName || 'OPERATOR';
+  const el = document.getElementById('hudOperator');
+  if(el) el.textContent = name.toUpperCase();
+
+  const hero = document.getElementById('heroSub');
+  if(hero && S.operatorName){
+    hero.textContent = `Welcome back, ${S.operatorName}. Your missions await — complete quests, earn XP, and level up.`;
+  }
+  const badge = document.getElementById('heroBadge');
+  if(badge && S.operatorName){
+    badge.textContent = `// OPERATOR: ${S.operatorName.toUpperCase()} — MISSION CONTROL v2.0`;
+  }
+}
+
+function obConfirm(){
+  const input = document.getElementById('obInput');
+  const val = (input ? input.value.trim() : '') || 'Operator';
+  S.operatorName = val;
+  save();
+  document.getElementById('obOverlay').style.display = 'none';
+  updateOperatorDisplay();
+  toast(`Welcome aboard, ${val}! Your mission begins now.`, 't-unlock');
+}
+
+function editOperatorName(){
+  const current = S.operatorName || '';
+  const newName = prompt('Enter new callsign:', current);
+  if(newName === null) return;
+  const trimmed = newName.trim();
+  if(!trimmed) return;
+  S.operatorName = trimmed;
+  save();
+  updateOperatorDisplay();
+  toast(`Callsign updated: ${trimmed}`, 't-unlock');
+}
+
+function initOnboarding(){
+  const overlay = document.getElementById('obOverlay');
+  if(S.operatorName){
+    overlay.style.display = 'none';
+    updateOperatorDisplay();
+  } else {
+    overlay.style.display = 'flex';
+    setTimeout(()=>{
+      const inp = document.getElementById('obInput');
+      if(inp) inp.focus();
+    }, 200);
+    document.getElementById('obInput').addEventListener('keydown', e=>{
+      if(e.key==='Enter') obConfirm();
+    });
+  }
+}
+
+// ──────────────────────────────────────────────
 // BOOT
 // ──────────────────────────────────────────────
 updateHUD();
@@ -915,6 +1103,8 @@ renderQuests();
 renderSims();
 initDaily();
 checkBadges();
+initTips();
+initOnboarding();
 </script>
 </body>
 </html>
