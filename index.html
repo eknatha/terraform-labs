@@ -823,6 +823,80 @@ footer span{color:var(--accent)}
 
 <script>
 // ──────────────────────────────────────────────
+// STATE — available immediately so onclick handlers work on first click
+// ──────────────────────────────────────────────
+function load(){
+  try{
+    const r=localStorage.getItem('tf_mc_v3');
+    if(r){
+      const parsed = JSON.parse(r);
+      // Migration: clear stale 'Operator' default so modal shows correctly
+      if(parsed.operatorName === 'Operator') parsed.operatorName = '';
+      return parsed;
+    }
+  }catch(e){}
+  return {xp:0,level:'ROOKIE',streak:0,cq:[],co:{},qp:{},cb:{},cs:{},log:[],dailyDone:false,dailyDate:'',operatorName:'',joinDate:new Date().toLocaleDateString()};
+}
+function save(){ try{ localStorage.setItem('tf_mc_v3',JSON.stringify(S)); }catch(e){} }
+let S = load();
+
+// ──────────────────────────────────────────────
+// ONBOARDING — defined early so button onclick works immediately
+// ──────────────────────────────────────────────
+function updateOperatorDisplay(){
+  const name = S.operatorName || 'OPERATOR';
+  const el = document.getElementById('hudOperator');
+  if(el) el.textContent = name.toUpperCase();
+  const hero = document.getElementById('heroSub');
+  if(hero && S.operatorName) hero.textContent = `Welcome back, ${S.operatorName}. Your missions await — complete quests, earn XP, and level up.`;
+  const badge = document.getElementById('heroBadge');
+  if(badge && S.operatorName) badge.textContent = `// OPERATOR: ${S.operatorName.toUpperCase()} — MISSION CONTROL v2.0`;
+}
+
+function obConfirm(){
+  const input = document.getElementById('obInput');
+  if(!input) return;
+  const val = input.value.trim();
+  if(!val){
+    input.style.border = '2px solid rgba(239,68,68,0.7)';
+    input.style.outline = 'none';
+    const tip = document.getElementById('obTip');
+    if(tip){ tip.textContent = '⚠ CALLSIGN REQUIRED — TYPE YOUR NAME FIRST'; tip.style.color = 'var(--danger)'; }
+    input.focus();
+    return;
+  }
+  S.operatorName = val;
+  save();
+  document.getElementById('obOverlay').style.display = 'none';
+  updateOperatorDisplay();
+  if(typeof toast === 'function') toast(`Welcome aboard, ${val}! Your mission begins now.`, 't-unlock');
+}
+
+function editOperatorName(){
+  const current = S.operatorName || '';
+  const newName = prompt('Enter new callsign:', current);
+  if(newName === null) return;
+  const trimmed = newName.trim();
+  if(!trimmed) return;
+  S.operatorName = trimmed;
+  save();
+  updateOperatorDisplay();
+  toast(`Callsign updated: ${trimmed}`, 't-unlock');
+}
+
+function initOnboarding(){
+  const overlay = document.getElementById('obOverlay');
+  if(S.operatorName){
+    overlay.style.display = 'none';
+    updateOperatorDisplay();
+    return;
+  }
+  overlay.style.display = 'flex';
+  setTimeout(()=>{ const inp = document.getElementById('obInput'); if(inp) inp.focus(); }, 300);
+}
+
+
+// ──────────────────────────────────────────────
 // DATA
 // ──────────────────────────────────────────────
 const QUESTS = [
@@ -2087,22 +2161,8 @@ const LEVELS = [
 ];
 
 // ──────────────────────────────────────────────
-// STATE
+// STATE — moved to top so S is available immediately on page load
 // ──────────────────────────────────────────────
-let S = load();
-function load(){
-  try{
-    const r=localStorage.getItem('tf_mc_v3');
-    if(r){
-      const parsed = JSON.parse(r);
-      // Migration: clear the old bad default 'Operator' fallback so the modal shows
-      if(parsed.operatorName === 'Operator') parsed.operatorName = '';
-      return parsed;
-    }
-  }catch(e){}
-  return {xp:0,level:'ROOKIE',streak:0,cq:[],co:{},qp:{},cb:{},cs:{},log:[],dailyDone:false,dailyDate:'',operatorName:'',joinDate:new Date().toLocaleDateString()};
-}
-function save(){ try{ localStorage.setItem('tf_mc_v3',JSON.stringify(S)); }catch(e){} }
 
 // ──────────────────────────────────────────────
 // XP / LEVEL
@@ -3958,68 +4018,9 @@ function initTips(){
 // ──────────────────────────────────────────────
 // OPERATOR NAME / ONBOARDING
 // ──────────────────────────────────────────────
-function updateOperatorDisplay(){
-  const name = S.operatorName || 'OPERATOR';
-  const el = document.getElementById('hudOperator');
-  if(el) el.textContent = name.toUpperCase();
+// updateOperatorDisplay — moved to top of script
 
-  const hero = document.getElementById('heroSub');
-  if(hero && S.operatorName){
-    hero.textContent = `Welcome back, ${S.operatorName}. Your missions await — complete quests, earn XP, and level up.`;
-  }
-  const badge = document.getElementById('heroBadge');
-  if(badge && S.operatorName){
-    badge.textContent = `// OPERATOR: ${S.operatorName.toUpperCase()} — MISSION CONTROL v2.0`;
-  }
-}
-
-function obConfirm(){
-  const input = document.getElementById('obInput');
-  if(!input) return;
-  const val = input.value.trim();
-
-  // Block empty submissions
-  if(!val){
-    input.style.border = '2px solid rgba(239,68,68,0.7)';
-    input.style.outline = 'none';
-    const tip = document.getElementById('obTip');
-    if(tip){ tip.textContent = '⚠ CALLSIGN REQUIRED — TYPE YOUR NAME FIRST'; tip.style.color = 'var(--danger)'; }
-    input.focus();
-    return;
-  }
-
-  S.operatorName = val;
-  save();
-  document.getElementById('obOverlay').style.display = 'none';
-  updateOperatorDisplay();
-  toast(`Welcome aboard, ${val}! Your mission begins now.`, 't-unlock');
-}
-
-function editOperatorName(){
-  const current = S.operatorName || '';
-  const newName = prompt('Enter new callsign:', current);
-  if(newName === null) return;
-  const trimmed = newName.trim();
-  if(!trimmed) return;
-  S.operatorName = trimmed;
-  save();
-  updateOperatorDisplay();
-  toast(`Callsign updated: ${trimmed}`, 't-unlock');
-}
-
-function initOnboarding(){
-  const overlay = document.getElementById('obOverlay');
-  if(S.operatorName){
-    overlay.style.display = 'none';
-    updateOperatorDisplay();
-    return;
-  }
-  overlay.style.display = 'flex';
-  setTimeout(()=>{
-    const inp = document.getElementById('obInput');
-    if(inp) inp.focus();
-  }, 300);
-}
+// obConfirm / editOperatorName / initOnboarding — moved to top of script
 
 // ──────────────────────────────────────────────
 // CONFETTI ENGINE
