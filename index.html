@@ -499,10 +499,10 @@ footer span{color:var(--accent)}
     <p class="ob-sub">Enter your callsign to begin. This personalises your HUD, dashboard, and progress reports.</p>
     <div class="ob-input-wrap">
       <span class="ob-prefix">OPERATOR //</span>
-      <input class="ob-input" id="obInput" type="text" maxlength="20" placeholder="e.g. Eknatha" autocomplete="off">
+      <input class="ob-input" id="obInput" type="text" maxlength="20" placeholder="e.g. Eknatha" autocomplete="off" onkeydown="if(event.key==='Enter')obConfirm()">
     </div>
-    <p class="ob-tip">YOU CAN CHANGE THIS ANYTIME BY CLICKING YOUR NAME IN THE HUD</p>
-    <button class="btn btn-primary" style="width:100%;margin-top:4px" onclick="obConfirm()">&#9654; INITIALIZE MISSION</button>
+    <p class="ob-tip" id="obTip">YOU CAN CHANGE THIS ANYTIME BY CLICKING YOUR NAME IN THE HUD</p>
+    <button class="btn btn-primary" id="obBtn" style="width:100%;margin-top:4px" onclick="obConfirm()">&#9654; INITIALIZE MISSION</button>
   </div>
 </div>
 
@@ -2091,7 +2091,15 @@ const LEVELS = [
 // ──────────────────────────────────────────────
 let S = load();
 function load(){
-  try{ const r=localStorage.getItem('tf_mc_v3'); if(r) return JSON.parse(r); }catch(e){}
+  try{
+    const r=localStorage.getItem('tf_mc_v3');
+    if(r){
+      const parsed = JSON.parse(r);
+      // Migration: clear the old bad default 'Operator' fallback so the modal shows
+      if(parsed.operatorName === 'Operator') parsed.operatorName = '';
+      return parsed;
+    }
+  }catch(e){}
   return {xp:0,level:'ROOKIE',streak:0,cq:[],co:{},qp:{},cb:{},cs:{},log:[],dailyDone:false,dailyDate:'',operatorName:'',joinDate:new Date().toLocaleDateString()};
 }
 function save(){ try{ localStorage.setItem('tf_mc_v3',JSON.stringify(S)); }catch(e){} }
@@ -3967,7 +3975,19 @@ function updateOperatorDisplay(){
 
 function obConfirm(){
   const input = document.getElementById('obInput');
-  const val = (input ? input.value.trim() : '') || 'Operator';
+  if(!input) return;
+  const val = input.value.trim();
+
+  // Block empty submissions
+  if(!val){
+    input.style.border = '2px solid rgba(239,68,68,0.7)';
+    input.style.outline = 'none';
+    const tip = document.getElementById('obTip');
+    if(tip){ tip.textContent = '⚠ CALLSIGN REQUIRED — TYPE YOUR NAME FIRST'; tip.style.color = 'var(--danger)'; }
+    input.focus();
+    return;
+  }
+
   S.operatorName = val;
   save();
   document.getElementById('obOverlay').style.display = 'none';
@@ -3992,16 +4012,13 @@ function initOnboarding(){
   if(S.operatorName){
     overlay.style.display = 'none';
     updateOperatorDisplay();
-  } else {
-    overlay.style.display = 'flex';
-    setTimeout(()=>{
-      const inp = document.getElementById('obInput');
-      if(inp) inp.focus();
-    }, 200);
-    document.getElementById('obInput').addEventListener('keydown', e=>{
-      if(e.key==='Enter') obConfirm();
-    });
+    return;
   }
+  overlay.style.display = 'flex';
+  setTimeout(()=>{
+    const inp = document.getElementById('obInput');
+    if(inp) inp.focus();
+  }, 300);
 }
 
 // ──────────────────────────────────────────────
