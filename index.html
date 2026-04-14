@@ -305,6 +305,55 @@ footer span{color:var(--accent)}
 .snip-xp{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--accent4)}
 .snip-empty{text-align:center;padding:60px 20px;font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:1px;grid-column:1/-1}
 
+
+/* COMMAND OF THE DAY */
+.cmd-card{background:linear-gradient(135deg,rgba(0,229,255,0.07),rgba(124,58,237,0.06));border:1px solid rgba(0,229,255,0.2);border-radius:12px;padding:26px;margin-bottom:22px;position:relative;overflow:hidden}
+.cmd-card::before{content:'COMMAND OF THE DAY';position:absolute;top:12px;right:16px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--accent);opacity:0.45}
+.cmd-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.cmd-countdown{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted)}
+.cmd-cat-badge{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;padding:3px 10px;border-radius:2px}
+.cmdcat-basics{background:rgba(16,185,129,0.1);color:var(--accent3);border:1px solid rgba(16,185,129,0.22)}
+.cmdcat-state{background:rgba(124,58,237,0.1);color:#a78bfa;border:1px solid rgba(124,58,237,0.2)}
+.cmdcat-modules{background:rgba(0,229,255,0.08);color:var(--accent);border:1px solid rgba(0,229,255,0.18)}
+.cmdcat-debug{background:rgba(245,158,11,0.1);color:var(--accent4);border:1px solid rgba(245,158,11,0.2)}
+.cmdcat-cicd{background:rgba(239,68,68,0.08);color:var(--danger);border:1px solid rgba(239,68,68,0.18)}
+.cmd-name{font-family:'Orbitron',monospace;font-size:clamp(1rem,2.5vw,1.25rem);font-weight:900;color:var(--accent);margin-bottom:8px;letter-spacing:1px}
+.cmd-syntax{font-family:'Share Tech Mono',monospace;font-size:0.82rem;color:#e2e8f0;background:rgba(0,229,255,0.06);border:1px solid rgba(0,229,255,0.12);border-radius:5px;padding:7px 13px;margin-bottom:14px;display:inline-block}
+.cmd-desc{font-size:0.88rem;color:#94a3b8;line-height:1.65;margin-bottom:16px}
+.cmd-flags-label,.cmd-examples-label{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.cmd-flags-label{color:var(--accent2)}.cmd-flags-label::after{content:'';flex:1;height:1px;background:rgba(124,58,237,0.15)}
+.cmd-examples-label{color:var(--accent)}.cmd-examples-label::after{content:'';flex:1;height:1px;background:rgba(0,229,255,0.1)}
+.cmd-flags{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.cmd-flag{display:flex;gap:10px;align-items:flex-start}
+.cmd-flag-name{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--accent);background:rgba(0,229,255,0.07);padding:2px 8px;border-radius:3px;border:1px solid rgba(0,229,255,0.15);white-space:nowrap;flex-shrink:0;margin-top:1px}
+.cmd-flag-desc{font-size:0.82rem;color:#94a3b8;line-height:1.5}
+.cmd-examples{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+.cmd-example-item{background:#020610;border:1px solid rgba(0,229,255,0.1);border-radius:6px;overflow:hidden}
+.cmd-example-hdr{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--muted);padding:5px 12px;border-bottom:1px solid rgba(0,229,255,0.06);background:rgba(0,229,255,0.03);display:flex;align-items:center;justify-content:space-between}
+.cmd-example-code{font-family:'Share Tech Mono',monospace;font-size:0.79rem;color:#94a3b8;padding:10px 12px;line-height:1.7;overflow-x:auto;white-space:pre}
+.cmd-example-code .cmt{color:#334155}.cmd-example-code .kw{color:#a78bfa}.cmd-example-code .fl{color:var(--accent4)}.cmd-example-code .val{color:var(--accent3)}
+.cmd-avoid{font-size:0.82rem;color:#94a3b8;line-height:1.6;padding:9px 13px;background:rgba(239,68,68,0.05);border-left:3px solid rgba(239,68,68,0.3);border-radius:0 4px 4px 0;margin-bottom:12px}
+.cmd-avoid strong{color:var(--danger)}
+.cmd-tip-box{font-size:0.82rem;color:#94a3b8;line-height:1.6;padding:9px 13px;background:rgba(245,158,11,0.05);border-left:3px solid rgba(245,158,11,0.3);border-radius:0 4px 4px 0;margin-bottom:14px}
+.cmd-tip-box strong{color:var(--accent4)}
+.cmd-actions{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;align-items:center}
+.cmd-viewed-btn{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1px;padding:9px 18px;background:rgba(0,229,255,0.1);border:1px solid rgba(0,229,255,0.3);border-radius:4px;color:var(--accent);cursor:pointer;transition:all 0.2s}
+.cmd-viewed-btn:hover{background:rgba(0,229,255,0.18)}.cmd-viewed-btn:disabled{opacity:0.5;cursor:default}
+.cmd-xp-badge{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--accent);background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.2);padding:4px 12px;border-radius:3px}
+.cmd-copy-btn{font-family:'Share Tech Mono',monospace;font-size:9px;padding:2px 9px;background:rgba(0,229,255,0.07);border:1px solid rgba(0,229,255,0.18);border-radius:3px;color:var(--accent);cursor:pointer;transition:all 0.2s}
+.cmd-copy-btn:hover{background:rgba(0,229,255,0.14)}
+.cmd-hist-label{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--accent2);margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.cmd-hist-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.cmd-hist-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 14px;cursor:pointer;transition:all 0.2s}
+.cmd-hist-card:hover{border-color:rgba(0,229,255,0.3);transform:translateY(-2px)}
+.cmd-hist-card.open{border-color:rgba(0,229,255,0.4)}
+.cmd-hist-name{font-family:'Share Tech Mono',monospace;font-size:0.88rem;color:var(--accent);font-weight:700;margin-bottom:4px}
+.cmd-hist-desc{font-size:0.81rem;color:#94a3b8;margin-bottom:8px;line-height:1.4}
+.cmd-hist-meta{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.cmd-hist-detail{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
+.cmd-hist-card.open .cmd-hist-detail{display:block}
+.cmd-viewed-tag{font-family:'Share Tech Mono',monospace;font-size:8px;padding:2px 7px;background:rgba(0,229,255,0.08);color:var(--accent);border:1px solid rgba(0,229,255,0.18);border-radius:2px}
+
 /* INTERVIEW QUESTION OF THE DAY */
 .iq-hero{background:linear-gradient(135deg,rgba(124,58,237,0.12),rgba(0,229,255,0.06));border:1px solid var(--border2);border-radius:12px;padding:28px;margin-bottom:24px;position:relative;overflow:hidden}
 .iq-hero::before{content:'INTERVIEW Q OF THE DAY';position:absolute;top:12px;right:16px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--accent2);opacity:0.5}
@@ -512,6 +561,7 @@ footer span{color:var(--accent)}
   <button class="tab-btn" onclick="switchTab('simulate')" id="tab-simulate">⚡ SIMULATE</button>
   <button class="tab-btn" onclick="switchTab('drill')" id="tab-drill">🃏 DRILL</button>
   <button class="tab-btn" onclick="switchTab('snippets')" id="tab-snippets">📋 SNIPPETS</button>
+  <button class="tab-btn" onclick="switchTab('cmd')" id="tab-cmd">⌨️ CMD</button>
   <button class="tab-btn" onclick="switchTab('iq')" id="tab-iq">🎤 DAILY IQ</button>
   <button class="tab-btn" onclick="switchTab('badges')" id="tab-badges">🏅 BADGES</button>
   <button class="tab-btn" onclick="switchTab('leaderboard')" id="tab-leaderboard">🏆 LEADERBOARD</button>
@@ -586,6 +636,36 @@ footer span{color:var(--accent)}
   <div class="stats-strip" id="statsStrip"></div>
   <span class="sec-label" style="margin-top:20px">// ACTIVITY LOG</span>
   <div id="actLog" style="display:flex;flex-direction:column;gap:7px;margin-top:10px"></div>
+</div>
+
+<!-- COMMAND OF THE DAY -->
+<div class="tab-content" id="content-cmd">
+  <span class="sec-label">// COMMAND OF THE DAY</span>
+  <div class="sec-title">Daily Terraform Command</div>
+  <p class="sec-intro">One command every day — syntax, all flags, two real-world examples, and when NOT to use it. Mark as viewed to earn +5 XP.</p>
+  <div class="cmd-card" id="cmdCard">
+    <div class="cmd-meta">
+      <span class="cmd-countdown">⏰ RESETS IN: <span id="cmdCountdown">--:--:--</span></span>
+      <span class="cmd-cat-badge cmdcat-basics" id="cmdCatBadge">BASICS</span>
+    </div>
+    <div class="cmd-name" id="cmdName">Loading...</div>
+    <div class="cmd-syntax" id="cmdSyntax"></div>
+    <div class="cmd-desc" id="cmdDesc"></div>
+    <div class="cmd-flags-label">// FLAGS</div>
+    <div class="cmd-flags" id="cmdFlags"></div>
+    <div class="cmd-examples-label">// EXAMPLES</div>
+    <div class="cmd-examples" id="cmdExamples"></div>
+    <div class="cmd-avoid" id="cmdAvoid"></div>
+    <div class="cmd-tip-box" id="cmdTip"></div>
+    <div class="cmd-actions">
+      <button class="cmd-viewed-btn" id="cmdViewedBtn" onclick="markCmdViewed()">✓ MARK AS VIEWED  +5 XP</button>
+      <span class="cmd-xp-badge">+5 XP</span>
+    </div>
+  </div>
+  <div>
+    <div class="cmd-hist-label">// PREVIOUS COMMANDS — click to expand</div>
+    <div class="cmd-hist-grid" id="cmdHistGrid"></div>
+  </div>
 </div>
 
 <!-- DAILY IQ -->
@@ -2071,6 +2151,7 @@ function switchTab(id){
   if(id==='drill') initDrill();
   if(id==='snippets') renderSnippets();
   if(id==='iq') initIQ();
+  if(id==='cmd') initCmd();
 }
 
 // ──────────────────────────────────────────────
@@ -5288,6 +5369,800 @@ function toggleIQHist(card,idx){
     }
   }
 }
+
+
+// ──────────────────────────────────────────────
+// COMMAND OF THE DAY — 40 Commands
+// ──────────────────────────────────────────────
+const CMD_BANK = [
+  {cat:'basics',name:'terraform init',syntax:'terraform init [options] [DIR]',
+   desc:'Initialises a Terraform working directory — downloads provider plugins, sets up the backend, and installs modules. Must be run before any other command.',
+   flags:[
+     {f:'-upgrade',d:'Upgrade providers to latest allowed version and update .terraform.lock.hcl'},
+     {f:'-backend=false',d:'Skip backend init — useful in CI for validate/fmt jobs that need no state'},
+     {f:'-reconfigure',d:'Discard existing backend config and re-initialise from scratch'},
+     {f:'-migrate-state',d:'Migrate existing state to a new backend configuration'},
+     {f:'-backend-config=FILE',d:'Pass backend config from a separate file — keeps credentials out of .tf files'},
+   ],
+   examples:[
+     {label:'First-time setup + CI lint pattern',code:`# Basic initialise:
+terraform init
+
+# Upgrade all providers and update lock file:
+terraform init -upgrade
+
+# CI lint/validate — no backend needed, fast:
+terraform init -backend=false && terraform validate`},
+     {label:'Pass backend config without hardcoding',code:`# Keep bucket/key out of version-controlled .tf files:
+terraform init \
+  -backend-config="bucket=my-state-bucket" \
+  -backend-config="key=prod/terraform.tfstate" \
+  -backend-config="region=us-east-1"`},
+   ],
+   avoid:'<strong>Never use -upgrade in automated pipelines</strong> — it can silently introduce breaking provider changes. Reserve it for deliberate, human-reviewed dependency updates.',
+   tip:'Commit .terraform.lock.hcl to Git. This ensures every engineer and CI runner uses identical provider versions — preventing "works on my machine" issues across the team.'
+  },
+  {cat:'basics',name:'terraform plan',syntax:'terraform plan [options]',
+   desc:'Generates an execution plan showing exactly what will be created, updated, or destroyed — without touching real infrastructure. Always read the full plan before applying.',
+   flags:[
+     {f:'-out=FILE',d:'Save plan to binary file. Use with terraform apply FILE for guaranteed reproducibility'},
+     {f:'-destroy',d:'Preview a full destroy of all managed resources'},
+     {f:'-target=ADDR',d:'Limit plan to a specific resource — use sparingly'},
+     {f:'-var="K=V"',d:'Set a variable for this run only'},
+     {f:'-var-file=FILE',d:'Load variable values from a .tfvars file'},
+     {f:'-detailed-exitcode',d:'Exit 0=no changes, 1=error, 2=changes — used in CI drift detection'},
+     {f:'-no-color',d:'Strip ANSI colours for clean CI log output'},
+   ],
+   examples:[
+     {label:'Save plan and apply exactly that plan',code:`# Generate and SAVE the plan:
+terraform plan -out=plan.tfplan -no-color 2>&1 | tee plan.txt
+
+# Review plan.txt (or post to PR comment in CI)
+
+# Apply EXACTLY that saved plan — no surprises:
+terraform apply plan.tfplan`},
+     {label:'Drift detection in a scheduled CI pipeline',code:`terraform plan -detailed-exitcode -no-color
+EXIT=$?
+# Exit 0 = no changes (expected)
+# Exit 1 = error (alert immediately)
+# Exit 2 = drift detected — alert Slack
+if [ $EXIT -eq 2 ]; then
+  echo "DRIFT DETECTED"; exit 1
+fi`},
+   ],
+   avoid:'<strong>Never use -target regularly</strong> — it creates partial plans that miss dependencies and can leave state inconsistent. Only use for emergency hotfixes.',
+   tip:'Plan symbols: + create, - destroy, ~ update in-place, -/+ destroy then recreate. Always scan for -/+ before applying — it means downtime for that resource.'
+  },
+  {cat:'basics',name:'terraform apply',syntax:'terraform apply [options] [PLAN]',
+   desc:'Executes the plan — creates, updates, or destroys infrastructure to match the desired configuration. The command that makes real changes to your cloud.',
+   flags:[
+     {f:'-auto-approve',d:'Skip "yes" confirmation — required in CI, dangerous if run manually in production'},
+     {f:'-replace=ADDR',d:'Force recreation of a specific resource (modern replacement for taint)'},
+     {f:'-target=ADDR',d:'Apply only to a specific resource — use sparingly'},
+     {f:'-var="K=V"',d:'Set a variable for this apply only'},
+     {f:'-parallelism=N',d:'Concurrent operations (default 10) — reduce if hitting API rate limits'},
+   ],
+   examples:[
+     {label:'Interactive apply with review',code:`# Run plan first, read it carefully, then apply:
+terraform plan
+terraform apply   # type "yes" when prompted
+
+# Or use saved plan for guaranteed reproducibility:
+terraform plan -out=plan.tfplan
+terraform apply plan.tfplan`},
+     {label:'CI/CD automated apply',code:`# GitHub Actions automated apply:
+terraform init
+terraform apply -auto-approve
+
+# Safe auto-apply — abort if unexpected destroys:
+terraform plan -no-color | tee plan.txt
+if grep -q "0 to destroy" plan.txt; then
+  terraform apply -auto-approve
+else
+  echo "ERROR: unexpected destroys — aborting"; exit 1
+fi`},
+   ],
+   avoid:'<strong>Never use -auto-approve manually on production</strong> — always review the plan first. Reserve -auto-approve for automated pipelines with peer-reviewed plan output.',
+   tip:'After a failed apply, always re-run terraform plan before retrying. Terraform may have partially applied — the plan shows current real state and what still needs to happen.'
+  },
+  {cat:'basics',name:'terraform destroy',syntax:'terraform destroy [options]',
+   desc:'Destroys ALL infrastructure managed by the current configuration. The most destructive command — always run terraform plan -destroy first to preview.',
+   flags:[
+     {f:'-auto-approve',d:'Skip confirmation — NEVER use in production without explicit human review'},
+     {f:'-target=ADDR',d:'Destroy only a specific resource, leaving everything else intact'},
+   ],
+   examples:[
+     {label:'Always preview before committing',code:`# ALWAYS preview first:
+terraform plan -destroy
+# Plan: 0 to add, 0 to change, 12 to destroy.
+
+# Only proceed if the list looks correct:
+terraform destroy   # type "yes" to confirm`},
+     {label:'Targeted and dev environment destroy',code:`# Destroy only one resource:
+terraform destroy -target=aws_instance.old_server
+
+# Dev environment full teardown without prompt:
+terraform destroy -auto-approve`},
+   ],
+   avoid:'<strong>Never run on shared environments</strong> without communicating in Slack first — destroying staging/prod infrastructure without team awareness is how major incidents happen.',
+   tip:'Add lifecycle { prevent_destroy = true } to critical resources (RDS, EKS clusters) so even an accidental terraform destroy fails with an error rather than silently deleting them.'
+  },
+  {cat:'basics',name:'terraform validate',syntax:'terraform validate [options]',
+   desc:'Checks HCL syntax and internal consistency — correct types, no undefined references, valid configurations. Makes NO network calls so it is fast and safe everywhere.',
+   flags:[
+     {f:'-json',d:'Output results as structured JSON with file paths and line numbers — for CI parsing'},
+     {f:'-no-color',d:'Strip ANSI colours for clean output'},
+   ],
+   examples:[
+     {label:'Fast CI sanity check',code:`# No backend needed — very fast:
+terraform init -backend=false
+terraform validate
+
+# JSON output for parsing in CI:
+terraform validate -json | jq '.valid'`},
+     {label:'Combined lint pipeline',code:`# Full static check sequence:
+terraform fmt -check -recursive    # formatting
+terraform init -backend=false       # download providers
+terraform validate                  # syntax + types
+tflint --recursive                  # extra lint rules
+checkov -d . --framework terraform  # security scan`},
+   ],
+   avoid:'<strong>Do not rely on validate alone</strong> — it cannot check if AMIs exist, if IAM permissions are correct, or if resources already exist. Validate catches syntax; plan catches runtime errors.',
+   tip:'validate runs in under a second. Add it to pre-commit hooks and CI so syntax errors are caught before the slower terraform plan runs.'
+  },
+  {cat:'basics',name:'terraform fmt',syntax:'terraform fmt [options] [DIR]',
+   desc:'Reformats all .tf files to canonical Terraform style — consistent indentation, spacing, and alignment. Essential in teams to prevent noisy whitespace diffs.',
+   flags:[
+     {f:'-recursive',d:'Format all subdirectories, not just the current one'},
+     {f:'-check',d:'Exit code 3 if any files need formatting — for CI enforcement'},
+     {f:'-diff',d:'Show what would change without actually writing files'},
+   ],
+   examples:[
+     {label:'Format all files',code:`terraform fmt -recursive
+terraform fmt -recursive -diff    # preview only
+terraform fmt -check -recursive   # CI check`},
+     {label:'Pre-commit hook',code:`# .pre-commit-config.yaml
+repos:
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    hooks:
+      - id: terraform_fmt
+        args: [--recursive]`},
+   ],
+   avoid:'<strong>Do not run on files you did not write</strong> in a PR — auto-formatting someone else\'s uncommitted work creates messy git blame attribution.',
+   tip:'Set terraform.formatOnSave: true in VSCode. This catches formatting before code even reaches pre-commit or CI.'
+  },
+  {cat:'basics',name:'terraform output',syntax:'terraform output [options] [NAME]',
+   desc:'Reads and displays output values from the current state — used to extract resource details (VPC IDs, endpoints, ARNs) for use in scripts and CI/CD pipelines.',
+   flags:[
+     {f:'-json',d:'All outputs as a JSON object — best for CI scripting'},
+     {f:'-raw',d:'Single value as raw string without quotes — for shell variable assignment'},
+     {f:'-state=FILE',d:'Read outputs from a specific state file'},
+   ],
+   examples:[
+     {label:'Read outputs after apply',code:`terraform output              # human-readable
+terraform output vpc_id        # single output
+VPC=$(terraform output -raw vpc_id)  # shell var
+terraform output -json         # all as JSON`},
+     {label:'Pass TF output to next pipeline step',code:`# GitHub Actions:
+- run: |
+    echo "VPC_ID=$(terraform output -raw vpc_id)" >> $GITHUB_ENV
+- run: echo "Deploying into VPC ${{ env.VPC_ID }}"`},
+   ],
+   avoid:'<strong>Never use -raw with sensitive outputs</strong> — the raw flag strips quotes but does NOT mask values. Sensitive outputs appear in CI logs in plain text.',
+   tip:'Mark outputs as sensitive = true in outputs.tf to hide them from apply logs. The value is still accessible via terraform output -raw for scripts.'
+  },
+  {cat:'basics',name:'terraform show',syntax:'terraform show [options] [PATH]',
+   desc:'Displays state or plan file contents in human-readable format. Essential for reviewing what Terraform knows about infrastructure and for inspecting saved plans before applying.',
+   flags:[
+     {f:'-json',d:'Output as machine-readable JSON — use with jq for programmatic processing'},
+     {f:'-no-color',d:'Remove colour codes for clean log output'},
+   ],
+   examples:[
+     {label:'Inspect state and saved plans',code:`terraform show                          # current state
+terraform show -json | jq '.values.root_module.resources[].address'
+terraform show plan.tfplan              # review saved plan
+terraform show -json plan.tfplan | jq '.resource_changes[] | select(.change.actions[] == "delete")'`},
+   ],
+   avoid:'<strong>Do not run on state containing secrets</strong> in shared/logged environments — show outputs all attribute values including passwords and tokens.',
+   tip:'Use terraform show -json plan.tfplan | jq to catch unexpected deletes in CI before applying: .resource_changes[] | select(.change.actions[] | contains("delete"))'
+  },
+  {cat:'basics',name:'terraform version',syntax:'terraform version [-json]',
+   desc:'Displays the current Terraform CLI and provider versions. Quick sanity check — include in incident reports and support tickets.',
+   flags:[{f:'-json',d:'Output version as JSON for automated version checks in CI'}],
+   examples:[
+     {label:'Check and enforce minimum version',code:`terraform version
+terraform version -json
+
+# Enforce minimum in CI:
+TF=$(terraform version -json | jq -r '.terraform_version')
+REQUIRED="1.5.0"
+printf '%s\n%s' "$REQUIRED" "$TF" | sort -V | head -1 | grep -q "$REQUIRED" || { echo "Too old"; exit 1; }`},
+   ],
+   avoid:'No significant caveats — safe read-only command.',
+   tip:'Always include terraform version output in incident reports. Provider version mismatches between developers are a common source of "works on my machine" issues.'
+  },
+  {cat:'state',name:'terraform state list',syntax:'terraform state list [ADDRESS...]',
+   desc:'Lists all resources tracked in state. Your first command before any state surgery — confirms exact resource addresses.',
+   flags:[
+     {f:'-state=FILE',d:'List from a specific state file'},
+     {f:'-id=ID',d:'Filter by real-world cloud resource ID'},
+   ],
+   examples:[
+     {label:'List and filter resources',code:`terraform state list                    # list everything
+terraform state list | grep aws_subnet  # filter by type
+terraform state list | wc -l           # count resources
+terraform state list -id=vpc-0abc123   # find by AWS ID`},
+   ],
+   avoid:'No caveats — read-only, safe at any time.',
+   tip:'Always run state list before any state mv, rm, or import to confirm you have the correct addresses. One typo can remove the wrong resource.'
+  },
+  {cat:'state',name:'terraform state show',syntax:'terraform state show ADDRESS',
+   desc:'Shows all attributes of a single resource in state. Displays everything Terraform knows about that resource — ID, configuration values, computed attributes.',
+   flags:[{f:'-state=FILE',d:'Read from a specific state file'}],
+   examples:[
+     {label:'Inspect a resource and debug',code:`terraform state show aws_vpc.main
+# resource "aws_vpc" "main" {
+#   id         = "vpc-0abc123"
+#   cidr_block = "10.0.0.0/16"
+#   ...
+# }
+
+# Find endpoint after apply:
+terraform state show aws_db_instance.main | grep endpoint`},
+   ],
+   avoid:'No caveats — read-only, safe at any time.',
+   tip:'Use this to find a resource\'s ID without logging into the cloud console. Pipe to grep for specific attributes.'
+  },
+  {cat:'state',name:'terraform state mv',syntax:'terraform state mv SOURCE DESTINATION',
+   desc:'Renames a resource address in state without destroying it. Used when refactoring — renaming resources or moving them into modules.',
+   flags:[
+     {f:'-dry-run',d:'Preview the move without writing to state'},
+     {f:'-backup=FILE',d:'Override backup file location'},
+   ],
+   examples:[
+     {label:'Rename a resource in state',code:`# Renamed aws_instance.server → aws_instance.web in .tf:
+terraform state mv aws_instance.server aws_instance.web
+
+# Move into a module:
+terraform state mv aws_vpc.main module.networking.aws_vpc.main`},
+   ],
+   avoid:'<strong>Prefer the moved{} block</strong> (Terraform 1.1+) — it is version-controlled and visible in plan output. Use state mv only for emergency one-off changes.',
+   tip:'Always backup before: terraform state pull > backup_$(date +%Y%m%d).json. The automatic .backup only keeps the last operation.'
+  },
+  {cat:'state',name:'terraform state rm',syntax:'terraform state rm ADDRESS',
+   desc:'Removes a resource from state without deleting the real infrastructure. Used when you want Terraform to stop managing a resource.',
+   flags:[
+     {f:'-dry-run',d:'Preview what would be removed without modifying state'},
+   ],
+   examples:[
+     {label:'Remove orphaned resource',code:`# Resource deleted manually — remove from state:
+terraform state rm aws_instance.decommissioned
+
+# Remove entire module:
+terraform state rm -dry-run module.legacy  # preview first
+terraform state rm module.legacy`},
+   ],
+   avoid:'<strong>Do not use if you intend to reimport later</strong> — rm then import is complex. If the resource still exists and you want to keep managing it, use terraform import instead.',
+   tip:'Run terraform state list before AND after rm to confirm the right resource was removed and nothing else was affected.'
+  },
+  {cat:'state',name:'terraform import',syntax:'terraform import ADDRESS ID',
+   desc:'Imports an existing cloud resource into Terraform state, bringing it under management without creating or destroying anything.',
+   flags:[
+     {f:'-var="K=V"',d:'Set variable values needed for provider auth'},
+     {f:'-var-file=FILE',d:'Load variables from file'},
+   ],
+   examples:[
+     {label:'Import an existing S3 bucket',code:`# 1. Write resource block in .tf:
+resource "aws_s3_bucket" "existing" { bucket = "my-bucket" }
+
+# 2. Import into state:
+terraform import aws_s3_bucket.existing my-bucket
+
+# 3. Run plan to check config matches reality:
+terraform plan  # update .tf until plan shows 0 changes`},
+     {label:'Terraform 1.5+ declarative import',code:`# In .tf file (version-controlled, reviewable):
+import {
+  to = aws_s3_bucket.existing
+  id = "my-bucket"
+}
+
+# Auto-generate the config:
+terraform plan -generate-config-out=generated.tf
+terraform apply`},
+   ],
+   avoid:'<strong>After import, always run terraform plan</strong> — import writes to state but does NOT validate config matches reality. Mismatches show as changes in plan.',
+   tip:'Use Terraform 1.5+ import blocks with -generate-config-out. It auto-generates the .tf resource block from live infrastructure — saves hours of manual config writing.'
+  },
+  {cat:'state',name:'terraform force-unlock',syntax:'terraform force-unlock LOCK_ID',
+   desc:'Manually releases a stuck state lock when no Terraform operation is actually running. The Lock ID is shown in the error message.',
+   flags:[{f:'-force',d:'Skip the interactive confirmation prompt'}],
+   examples:[
+     {label:'Unlock a stuck state lock',code:`# Error shows: Lock ID: abc-123-def-456
+# FIRST: verify NO apply is running anywhere
+
+# Then unlock:
+terraform force-unlock abc-123-def-456
+terraform state list  # verify state is accessible
+
+# Find lock ID in DynamoDB:
+aws dynamodb scan --table-name terraform-state-locks \
+  --query "Items[*].LockID"`},
+   ],
+   avoid:'<strong>NEVER force-unlock if an apply is actually running</strong> — this corrupts the state file. Only unlock after confirming with 100% certainty nothing is in progress.',
+   tip:'Set a CloudWatch alarm on your DynamoDB lock table to alert if a lock is held over 30 minutes. Stale locks from crashed CI jobs are the most common cause.'
+  },
+  {cat:'state',name:'terraform workspace',syntax:'terraform workspace <subcommand>',
+   desc:'Manages Terraform workspaces — isolated state instances within one backend. Each workspace gets its own state file for multi-environment deployments.',
+   flags:[
+     {f:'list',d:'Show all workspaces (* = current)'},
+     {f:'new NAME',d:'Create a workspace and switch to it'},
+     {f:'select NAME',d:'Switch to an existing workspace'},
+     {f:'show',d:'Print current workspace name'},
+     {f:'delete NAME',d:'Delete an empty workspace'},
+   ],
+   examples:[
+     {label:'Multi-environment workflow',code:`terraform workspace list
+terraform workspace new prod
+terraform workspace select prod
+
+# Reference in config:
+locals {
+  config = {
+    dev  = { size = "t3.micro" }
+    prod = { size = "t3.medium" }
+  }[terraform.workspace]
+}`},
+     {label:'CI pipeline deployment',code:`# Create if not exists, then select:
+terraform workspace select $ENV || terraform workspace new $ENV
+terraform apply -var-file=envs/$ENV.tfvars`},
+   ],
+   avoid:'<strong>Do not use for structurally different environments</strong> (different modules, providers, regions) — use separate directories or Terragrunt instead.',
+   tip:'Use the || pattern in CI: terraform workspace select ENV || terraform workspace new ENV — creates on first deploy, selects on subsequent ones.'
+  },
+  {cat:'state',name:'terraform state pull',syntax:'terraform state pull',
+   desc:'Downloads current remote state and prints it as JSON. Used to inspect, backup, or manually edit state.',
+   flags:[],
+   examples:[
+     {label:'Backup and inspect state',code:`# Backup before risky operations:
+terraform state pull > backup_$(date +%Y%m%d_%H%M%S).json
+
+# Count resources:
+terraform state pull | jq '.resources | length'
+
+# List all resource types:
+terraform state pull | jq '[.resources[].type] | unique | sort[]'`},
+   ],
+   avoid:'<strong>Never commit the output to Git</strong> — state contains all attribute values including secrets in plain text.',
+   tip:'Combine with state push for emergency state fixes: pull > edit > push. Always increment the serial number before pushing.'
+  },
+  {cat:'modules',name:'terraform get',syntax:'terraform get [-update]',
+   desc:'Downloads and updates module sources referenced in the configuration. Usually terraform init covers this — use get when you add a new module to an already-initialised directory.',
+   flags:[{f:'-update',d:'Download latest version matching version constraints'}],
+   examples:[
+     {label:'Download newly added modules',code:`# After adding a module block to your .tf:
+module "vpc" {
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "~> 5.0"
+}
+
+# Download it without re-initialising providers:
+terraform get
+
+# Or update to latest compatible version:
+terraform get -update`},
+   ],
+   avoid:'<strong>In most cases terraform init is sufficient</strong> — it handles both providers and modules. Use get only when you specifically want to update modules without touching providers.',
+   tip:'Module versions are NOT tracked in .terraform.lock.hcl (only providers are). Always pin module versions explicitly: version = "5.1.2".'
+  },
+  {cat:'modules',name:'terraform graph',syntax:'terraform graph [options]',
+   desc:'Generates the dependency graph in DOT language. Pipe to Graphviz to visualise resource relationships and debug dependency cycles.',
+   flags:[
+     {f:'-draw-cycles',d:'Highlight dependency cycles with bold edges'},
+     {f:'-type=TYPE',d:'Graph type: plan, apply, validate, refresh'},
+   ],
+   examples:[
+     {label:'Render the dependency graph',code:`# Render to SVG (requires Graphviz):
+terraform graph | dot -Tsvg > graph.svg
+open graph.svg
+
+# Or paste DOT output into:
+# dreampuf.github.io/GraphvizOnline`},
+     {label:'Debug a dependency cycle',code:`terraform graph -draw-cycles | dot -Tsvg > cycle.svg
+# Bold edges show the cycle`},
+   ],
+   avoid:'<strong>For large configs</strong> the graph becomes unreadable — filter noise: terraform graph | grep -v "provider\|meta"',
+   tip:'Run terraform graph before refactoring a complex module. What looks like a simple rename can break hidden dependency chains only visible after a failed apply.'
+  },
+  {cat:'debug',name:'terraform console',syntax:'terraform console [options]',
+   desc:'Interactive REPL for evaluating Terraform expressions. Test locals, functions, and variable transformations without writing a full plan.',
+   flags:[
+     {f:'-state=FILE',d:'Use a specific state file'},
+     {f:'-var="K=V"',d:'Set variable values available in the console'},
+   ],
+   examples:[
+     {label:'Test expressions and functions',code:`terraform console
+
+> upper("hello")
+"HELLO"
+> cidrsubnet("10.0.0.0/16", 4, 2)
+"10.0.2.0/20"
+> toset(["a","b","a"])
+toset(["a","b"])
+> { for i,v in ["x","y"] : v => i }
+{"x" = 0, "y" = 1}
+
+Ctrl+C to exit`},
+   ],
+   avoid:'<strong>Console does not write state</strong> — purely for reading and evaluating expressions. You cannot create or modify resources from it.',
+   tip:'Use terraform console to test cidrsubnet() calculations before writing subnet configs — subnet CIDR mistakes are difficult to fix after apply.'
+  },
+  {cat:'debug',name:'TF_LOG env variable',syntax:'TF_LOG=LEVEL terraform <command>',
+   desc:'Enables verbose debug logging. Essential for diagnosing provider issues, auth failures, and unexpected plan results. Set before running any command.',
+   flags:[
+     {f:'TRACE',d:'Most verbose — every API call, HTTP request/response'},
+     {f:'DEBUG',d:'Detailed including provider plugin communication'},
+     {f:'INFO',d:'General operational messages'},
+     {f:'WARN / ERROR',d:'Progressively less verbose'},
+   ],
+   examples:[
+     {label:'Debug auth and provider issues',code:`# Save full debug log to file:
+TF_LOG=DEBUG TF_LOG_PATH=debug.log terraform plan
+
+# Quick auth check:
+TF_LOG=DEBUG terraform plan 2>&1 | grep -i "auth\|credential"
+
+# Provider-only debug:
+TF_LOG_PROVIDER=DEBUG terraform plan
+
+# Unset after debugging:
+unset TF_LOG`},
+   ],
+   avoid:'<strong>Never enable TRACE in production CI</strong> — it logs all HTTP requests including authorization headers. Never log to publicly accessible locations.',
+   tip:'TF_LOG_PATH writes to a file instead of stderr. Combine with grep to find specific patterns: TF_LOG=DEBUG TF_LOG_PATH=/tmp/tf.log terraform plan && grep -i error /tmp/tf.log'
+  },
+  {cat:'debug',name:'terraform plan -refresh-only',syntax:'terraform plan -refresh-only',
+   desc:'Detects infrastructure drift — shows what changed in real infrastructure since last apply, WITHOUT proposing config changes. The safe modern alternative to terraform refresh.',
+   flags:[
+     {f:'-out=FILE',d:'Save the refresh plan to accept drift into state'},
+     {f:'-target=ADDR',d:'Refresh only specific resources'},
+   ],
+   examples:[
+     {label:'Detect and accept drift',code:`# Detect drift without any changes:
+terraform plan -refresh-only
+
+# Output shows what changed outside Terraform:
+# ~ resource "aws_instance" "web" {
+#     ~ tags = { + "PatchedBy" = "ops-team" }
+#   }
+
+# Accept drift into state (if intentional):
+terraform plan -refresh-only -out=refresh.tfplan
+terraform apply refresh.tfplan`},
+   ],
+   avoid:'<strong>Do not accept -refresh-only</strong> if the drift represents a security violation — investigate first, fix the root cause, then refresh.',
+   tip:'Use terraform plan -refresh-only in your nightly drift detection pipeline. Exit code 2 = drift detected → send Slack alert.'
+  },
+  {cat:'basics',name:'terraform apply -replace',syntax:'terraform apply -replace=ADDRESS',
+   desc:'Forces a specific resource to be destroyed and recreated, even without config changes. The modern, safer replacement for the deprecated terraform taint.',
+   flags:[
+     {f:'-replace=ADDR',d:'Can be specified multiple times for multiple resources'},
+     {f:'-auto-approve',d:'Skip confirmation prompt'},
+   ],
+   examples:[
+     {label:'Force-replace a broken resource',code:`# Preview first:
+terraform plan -replace="aws_instance.web"
+# Shows: -/+ resource "aws_instance" "web" { # forces replacement }
+
+# Apply the replacement:
+terraform apply -replace="aws_instance.web"
+
+# Replace multiple at once:
+terraform apply \
+  -replace="aws_instance.web" \
+  -replace="aws_eip.web"`},
+   ],
+   avoid:'<strong>Do not use if you can fix in-place</strong> — replacement causes downtime for stateful resources. Try config changes first.',
+   tip:'For resources attached to load balancers, combine with lifecycle { create_before_destroy = true } to avoid downtime during replacement.'
+  },
+  {cat:'cicd',name:'terraform login',syntax:'terraform login [HOSTNAME]',
+   desc:'Authenticates with HCP Terraform (formerly Terraform Cloud) or a private registry, storing credentials locally.',
+   flags:[],
+   examples:[
+     {label:'Login and CI alternative',code:`# Interactive login (opens browser):
+terraform login
+
+# CI — use environment variable instead:
+export TF_TOKEN_app_terraform_io="your-token"
+
+# GitHub Actions:
+env:
+  TF_TOKEN_app_terraform_io: \${{ secrets.TF_CLOUD_TOKEN }}`},
+   ],
+   avoid:'<strong>Never use interactive login in CI</strong> — it opens a browser. Use TF_TOKEN_hostname env var in pipelines.',
+   tip:'Replace dots with underscores for the env var name: app.terraform.io → TF_TOKEN_app_terraform_io'
+  },
+  {cat:'cicd',name:'terraform apply -target',syntax:'terraform apply -target=ADDR',
+   desc:'Applies changes to only one resource or module — an emergency surgical tool, not a regular workflow.',
+   flags:[
+     {f:'-target=ADDR',d:'Can specify multiple times for multiple resources'},
+   ],
+   examples:[
+     {label:'Emergency targeted apply',code:`# Fix only a broken security group:
+terraform plan -target=aws_security_group_rule.allow_https
+terraform apply -target=aws_security_group_rule.allow_https
+
+# Bootstrap backend infrastructure first:
+terraform apply -target=aws_s3_bucket.tf_state
+terraform apply -target=aws_dynamodb_table.tf_locks
+terraform init  # now initialise the backend`},
+   ],
+   avoid:'<strong>Do not use as regular workflow</strong> — creates partial state missing dependency relationships. Always follow with a full terraform plan.',
+   tip:'After any -target apply, immediately run a full terraform plan with no -target to see any state inconsistencies introduced.'
+  },
+  {cat:'cicd',name:'terraform apply -var-file',syntax:'terraform apply -var-file=FILE.tfvars',
+   desc:'Loads variable values from a .tfvars file — the standard pattern for managing different configurations across environments.',
+   flags:[
+     {f:'-var-file=FILE',d:'Can be specified multiple times — later files override earlier ones'},
+     {f:'-var="K=V"',d:'Override a single variable (higher precedence than -var-file)'},
+   ],
+   examples:[
+     {label:'Environment-specific deployment',code:`# File structure:
+# envs/dev.tfvars, envs/prod.tfvars
+
+# Deploy to dev:
+terraform apply -var-file=envs/dev.tfvars
+
+# Merge multiple var files:
+terraform apply \
+  -var-file=base.tfvars \
+  -var-file=envs/prod.tfvars`},
+   ],
+   avoid:'<strong>Never commit secrets.tfvars to Git</strong> — add it to .gitignore and inject sensitive values from a secrets manager or CI secret store.',
+   tip:'terraform.tfvars is auto-loaded without -var-file. Use it for shared values. Use named env files for environment-specific values to avoid accidentally applying dev config to prod.'
+  },
+  {cat:'cicd',name:'terraform test',syntax:'terraform test [options]',
+   desc:'Runs automated tests using .tftest.hcl files (Terraform 1.6+). Validates module outputs, asserts resource configs, verifies expected infrastructure.',
+   flags:[
+     {f:'-filter=FILE',d:'Only run tests in specific test files'},
+     {f:'-verbose',d:'Show all test assertions'},
+   ],
+   examples:[
+     {label:'Write and run a module test',code:`# tests/vpc.tftest.hcl
+variables { vpc_cidr = "10.0.0.0/16" }
+
+run "vpc_is_created" {
+  command = plan
+  assert {
+    condition     = aws_vpc.this.cidr_block == "10.0.0.0/16"
+    error_message = "VPC CIDR mismatch."
+  }
+}
+
+# Run tests:
+terraform test -verbose`},
+   ],
+   avoid:'<strong>Do not run apply tests on every PR</strong> — they create real infrastructure and cost money. Use command = plan for fast unit tests, apply only for nightly integration tests.',
+   tip:'Combine terraform test (unit) with Terratest (Go-based) for full coverage. terraform test handles module contracts; Terratest handles end-to-end validation.'
+  },
+  {cat:'state',name:'terraform state push',syntax:'terraform state push [options] PATH',
+   desc:'Uploads a local state file to the remote backend, overwriting remote state. An emergency-only tool for recovering from state corruption.',
+   flags:[
+     {f:'-force',d:'Push even if serial is lower than remote — dangerous'},
+   ],
+   examples:[
+     {label:'Restore from a backup',code:`# Validate the backup:
+jq . backup_20241201.json > /dev/null && echo "Valid"
+
+# Restore:
+terraform state push backup_20241201.json
+terraform state list  # verify`},
+     {label:'Manual state edit workflow',code:`terraform state pull > current.json
+# edit current.json carefully
+# increment "serial" field by 1
+terraform state push current.json
+terraform plan  # verify expected state`},
+   ],
+   avoid:'<strong>LAST RESORT ONLY</strong> — state push bypasses safety checks. Always get team sign-off. A wrong push can corrupt production infrastructure management.',
+   tip:'Before any push, increment the serial number in the JSON. Pushing with a lower serial than remote is rejected unless you use -force (which you should avoid).'
+  },
+  {cat:'debug',name:'terraform providers lock',syntax:'terraform providers lock [-platform=OS_ARCH]',
+   desc:'Creates or updates .terraform.lock.hcl with checksums for specified platforms. Run this to add support for all platforms your team uses.',
+   flags:[
+     {f:'-platform=OS_ARCH',d:'Add checksums for a platform (linux_amd64, darwin_arm64, windows_amd64). Specify multiple times'},
+   ],
+   examples:[
+     {label:'Lock for all team platforms',code:`terraform providers lock \
+  -platform=linux_amd64 \
+  -platform=darwin_arm64 \
+  -platform=windows_amd64
+
+# Commit the updated .terraform.lock.hcl`},
+   ],
+   avoid:'<strong>Do not skip this</strong> if your CI runs Linux but developers use macOS — the lock file generated on macOS will fail checksum verification on Linux CI.',
+   tip:'Add providers lock to your onboarding checklist. When a developer joins with a new platform, their platform needs to be added to the lock file before they can init successfully.'
+  },
+  {cat:'debug',name:'terraform validate -json',syntax:'terraform validate -json',
+   desc:'Runs validation and outputs structured JSON with error details, file paths, and line numbers — for CI pipeline parsing.',
+   flags:[],
+   examples:[
+     {label:'Parse validation errors in CI',code:`RESULT=$(terraform validate -json)
+VALID=$(echo $RESULT | jq -r '.valid')
+if [ "$VALID" != "true" ]; then
+  echo $RESULT | jq -r '.diagnostics[] | \
+    "  \(.severity): \(.summary) (\(.range.filename):\(.range.start.line))"'
+  exit 1
+fi`},
+   ],
+   avoid:'No caveats — fast, read-only, safe anywhere.',
+   tip:'In VS Code with the HashiCorp Terraform extension, validation runs automatically on save using this JSON format for inline error highlighting.'
+  },
+  {cat:'state',name:'terraform state replace-provider',syntax:'terraform state replace-provider FROM TO',
+   desc:'Updates all provider references in state from one registry path to another — used when a provider moved namespaces or you are migrating to an official provider.',
+   flags:[{f:'-auto-approve',d:'Skip confirmation prompt'}],
+   examples:[
+     {label:'Migrate provider namespace',code:`# Provider moved to new namespace:
+terraform state replace-provider \
+  registry.terraform.io/community/kubernetes \
+  registry.terraform.io/hashicorp/kubernetes
+
+# Update required_providers in .tf, then:
+terraform init -upgrade`},
+   ],
+   avoid:'<strong>Test in a non-production workspace first</strong> — provider replacement changes all resource addresses.',
+   tip:'After replace-provider, always run terraform plan immediately to check for unexpected changes from the new provider version.'
+  },
+  {cat:'basics',name:'terraform refresh',syntax:'terraform refresh [options]',
+   desc:'Updates state to match actual infrastructure without making changes. In Terraform 0.15+, plan and apply do this automatically — use terraform plan -refresh-only instead.',
+   flags:[
+     {f:'-target=ADDR',d:'Refresh only a specific resource'},
+   ],
+   examples:[
+     {label:'Modern equivalent',code:`# OLD: terraform refresh (standalone, deprecated)
+# NEW: use -refresh-only flag instead:
+terraform plan -refresh-only         # detect drift
+terraform apply -refresh-only        # accept drift into state`},
+   ],
+   avoid:'<strong>Use terraform plan -refresh-only instead</strong> — it is more explicit and shows you the diff before committing to updating state.',
+   tip:'terraform plan -refresh-only is the modern way to detect drift safely. It shows what changed before you decide whether to accept it into state.'
+  },
+  {cat:'debug',name:'terraform taint (deprecated)',syntax:'terraform taint ADDRESS',
+   desc:'[DEPRECATED since 1.3] Marked a resource for forced recreation. Replaced by terraform apply -replace which is safer because it previews the plan before executing.',
+   flags:[],
+   examples:[
+     {label:'Use the modern replacement instead',code:`# DEPRECATED (avoid):
+terraform taint aws_instance.web
+terraform apply
+
+# MODERN (use this):
+terraform apply -replace="aws_instance.web"
+# Shows plan before replacing — much safer`},
+   ],
+   avoid:'<strong>Use terraform apply -replace instead</strong> — it shows you the plan before recreating, unlike taint which marks silently then applies.',
+   tip:'Migration is simple: terraform taint X → terraform apply -replace="X". Search old runbooks for "taint" and update them.'
+  },
+];
+
+// ──────────────────────────────────────────────
+// CMD ENGINE
+// ──────────────────────────────────────────────
+let cmdTimer = null;
+
+function getTodayCmdIdx(){
+  const t = new Date();
+  const doy = Math.floor((t - new Date(t.getFullYear(),0,0)) / 86400000);
+  return doy % CMD_BANK.length;
+}
+
+function initCmd(){
+  const idx = getTodayCmdIdx();
+  const cmd = CMD_BANK[idx];
+  const today = new Date().toISOString().slice(0,10);
+  const viewed = S.cmdViewed && S.cmdViewed[today];
+
+  const catEl = document.getElementById('cmdCatBadge');
+  if(catEl){ catEl.textContent = cmd.cat.toUpperCase(); catEl.className = 'cmd-cat-badge cmdcat-'+cmd.cat; }
+  document.getElementById('cmdName').textContent = cmd.name;
+  document.getElementById('cmdSyntax').textContent = cmd.syntax;
+  document.getElementById('cmdDesc').textContent = cmd.desc;
+
+  // Flags
+  const flagsEl = document.getElementById('cmdFlags');
+  flagsEl.innerHTML = cmd.flags.length
+    ? cmd.flags.map(f=>`<div class="cmd-flag"><span class="cmd-flag-name">${f.f}</span><div class="cmd-flag-desc">${f.d}</div></div>`).join('')
+    : '<div style="font-family:\'Share Tech Mono\',monospace;font-size:11px;color:var(--muted)">No flags — use as shown in syntax.</div>';
+
+  // Examples
+  document.getElementById('cmdExamples').innerHTML = cmd.examples.map((ex,i)=>`
+    <div class="cmd-example-item">
+      <div class="cmd-example-hdr">
+        <span>EXAMPLE ${i+1}: ${ex.label.toUpperCase()}</span>
+        <button class="cmd-copy-btn" onclick="copyCmdEx(${idx},${i})">COPY</button>
+      </div>
+      <div class="cmd-example-code">${cmdHL(ex.code)}</div>
+    </div>`).join('');
+
+  document.getElementById('cmdAvoid').innerHTML = '<strong>⚠ When NOT to use:</strong> '+cmd.avoid;
+  document.getElementById('cmdTip').innerHTML = '<strong>💡 Pro tip:</strong> '+cmd.tip;
+
+  if(viewed){
+    const btn = document.getElementById('cmdViewedBtn');
+    if(btn){ btn.textContent = '✓ VIEWED TODAY'; btn.disabled = true; }
+  }
+
+  clearInterval(cmdTimer);
+  function tick(){
+    const now=new Date(), mid=new Date(now); mid.setHours(24,0,0,0);
+    const d=Math.floor((mid-now)/1000), el=document.getElementById('cmdCountdown');
+    if(el) el.textContent=`${String(Math.floor(d/3600)).padStart(2,'0')}h ${String(Math.floor((d%3600)/60)).padStart(2,'0')}m ${String(d%60).padStart(2,'0')}s`;
+  }
+  tick(); cmdTimer = setInterval(tick,1000);
+  renderCmdHist();
+}
+
+function markCmdViewed(){
+  const idx = getTodayCmdIdx();
+  const today = new Date().toISOString().slice(0,10);
+  S.cmdViewed = S.cmdViewed || {};
+  if(S.cmdViewed[today]) return;
+  S.cmdViewed[today] = {idx, name: CMD_BANK[idx].name};
+  save();
+  addXP(5, 'Command of the Day: '+CMD_BANK[idx].name);
+  toast('⌨️ +5 XP — Command of the Day viewed!','t-xp');
+  const btn=document.getElementById('cmdViewedBtn');
+  if(btn){ btn.textContent='✓ VIEWED TODAY'; btn.disabled=true; }
+  checkBadges();
+}
+
+function cmdHL(code){
+  return code.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/(#[^\n]*)/g,'<span class="cmt">$1</span>')
+    .replace(/\b(resource|data|variable|output|locals|module|terraform|provider|backend|lifecycle|run|assert)\b/g,'<span class="kw">$1</span>')
+    .replace(/(\s-[-\w]+=?)/g,'<span class="fl">$1</span>')
+    .replace(/\b(true|false|null)\b/g,'<span class="val">$1</span>');
+}
+
+function copyCmdEx(ci, ei){
+  const raw = CMD_BANK[ci].examples[ei].code;
+  navigator.clipboard.writeText(raw).then(()=>toast('✓ Code copied!','t-unlock')).catch(()=>{
+    const ta=document.createElement('textarea');ta.value=raw;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('✓ Copied!','t-unlock');
+  });
+}
+
+function renderCmdHist(){
+  const grid=document.getElementById('cmdHistGrid');
+  if(!grid) return;
+  const today=getTodayCmdIdx();
+  const hist=CMD_BANK.map((c,i)=>({c,i})).filter(({i})=>i!==today).slice(0,18);
+  grid.innerHTML=hist.map(({c,i})=>{
+    const seen=S.cmdViewed&&Object.values(S.cmdViewed).some(v=>v.idx===i);
+    return `<div class="cmd-hist-card" onclick="togCmdHist(this,${i})">
+      <div class="cmd-hist-name">${c.name}</div>
+      <div class="cmd-hist-desc">${c.desc.slice(0,80)}...</div>
+      <div class="cmd-hist-meta">
+        <span class="cmd-cat-badge cmdcat-${c.cat}" style="font-size:8px">${c.cat.toUpperCase()}</span>
+        ${seen?'<span class="cmd-viewed-tag">✓ VIEWED</span>':''}
+      </div>
+      <div class="cmd-hist-detail">
+        <div style="font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--accent);margin-bottom:5px">${c.syntax}</div>
+        <div style="font-size:0.81rem;color:#94a3b8;line-height:1.55;margin-bottom:8px">${c.desc}</div>
+        ${c.examples.slice(0,1).map(ex=>`<div class="cmd-example-code" style="font-family:'Share Tech Mono',monospace;font-size:0.75rem;background:#020610;border:1px solid rgba(0,229,255,0.1);border-radius:5px;padding:8px 10px;color:#94a3b8;overflow-x:auto;white-space:pre;line-height:1.6;margin-bottom:6px">${cmdHL(ex.code)}</div>`).join('')}
+        <div style="font-size:0.8rem;color:#94a3b8;padding:7px 11px;background:rgba(245,158,11,0.05);border-left:2px solid rgba(245,158,11,0.3);border-radius:0 4px 4px 0"><strong style="color:var(--accent4)">💡</strong> ${c.tip}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function togCmdHist(card,idx){
+  card.classList.toggle('open');
+  if(card.classList.contains('open')){
+    S.cmdViewed=S.cmdViewed||{};
+    const key=`hist_${idx}_${new Date().toISOString().slice(0,10)}`;
+    if(!Object.values(S.cmdViewed).some(v=>v.idx===idx)){
+      S.cmdViewed[key]={idx,name:CMD_BANK[idx].name}; save();
+    }
+  }
+}
+
 
 // ──────────────────────────────────────────────
 // BOOT
