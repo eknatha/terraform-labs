@@ -212,7 +212,26 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse
 .sim-footer{display:flex;align-items:center;justify-content:space-between}
 .sim-xp{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--accent4)}
 
-/* DAILY CHALLENGE */
+/* DAILY ANSWER PANEL */
+.daily-answer{display:none;margin-top:18px;padding-top:16px;border-top:1px solid rgba(124,58,237,0.2);animation:dcFade 0.4s ease}
+.daily-answer.show{display:block}
+@keyframes dcFade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.daily-ans-label{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--accent3);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.daily-ans-label::after{content:'';flex:1;height:1px;background:rgba(16,185,129,0.18)}
+.daily-ans-text{font-size:0.88rem;color:#e2e8f0;line-height:1.75;margin-bottom:12px}
+.daily-steps{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
+.daily-step{display:flex;gap:10px;align-items:flex-start}
+.daily-step-num{font-family:'Share Tech Mono',monospace;font-size:10px;min-width:22px;height:22px;border-radius:50%;background:rgba(0,229,255,0.1);border:1px solid rgba(0,229,255,0.22);color:var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.daily-step-text{font-size:0.86rem;color:#94a3b8;line-height:1.55}
+.daily-example-label{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--accent);margin-bottom:7px;display:flex;align-items:center;gap:8px}
+.daily-example-label::after{content:'';flex:1;height:1px;background:rgba(0,229,255,0.1)}
+.daily-code-wrap{position:relative;margin-bottom:10px}
+.daily-code{background:#020610;border:1px solid rgba(0,229,255,0.1);border-radius:6px;padding:12px 14px;font-family:'Share Tech Mono',monospace;font-size:0.78rem;color:#94a3b8;line-height:1.7;overflow-x:auto;white-space:pre}
+.daily-code .kw{color:#a78bfa}.daily-code .key{color:var(--accent)}.daily-code .str{color:var(--accent4)}.daily-code .cmt{color:#334155}.daily-code .val{color:var(--accent3)}
+.daily-code-copy{position:absolute;top:7px;right:7px;font-family:'Share Tech Mono',monospace;font-size:9px;padding:3px 9px;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.18);border-radius:3px;color:var(--accent);cursor:pointer;transition:all 0.2s}
+.daily-code-copy:hover{background:rgba(0,229,255,0.16)}
+.daily-tip{font-size:0.83rem;color:#94a3b8;line-height:1.6;padding:9px 12px;background:rgba(245,158,11,0.06);border-left:3px solid rgba(245,158,11,0.35);border-radius:0 4px 4px 0}
+.daily-tip strong{color:var(--accent4)}
 .daily-card{background:linear-gradient(135deg,rgba(124,58,237,0.1),rgba(0,229,255,0.05));border:1px solid var(--border2);border-radius:10px;padding:22px;margin-bottom:28px;position:relative;overflow:hidden}
 .daily-card::before{content:'DAILY CHALLENGE';position:absolute;top:12px;right:16px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--accent2);opacity:0.5}
 .daily-timer-row{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:7px}
@@ -285,6 +304,56 @@ footer span{color:var(--accent)}
 .snip-cat-tag{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--muted)}
 .snip-xp{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--accent4)}
 .snip-empty{text-align:center;padding:60px 20px;font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:1px;grid-column:1/-1}
+
+/* INTERVIEW QUESTION OF THE DAY */
+.iq-hero{background:linear-gradient(135deg,rgba(124,58,237,0.12),rgba(0,229,255,0.06));border:1px solid var(--border2);border-radius:12px;padding:28px;margin-bottom:24px;position:relative;overflow:hidden}
+.iq-hero::before{content:'INTERVIEW Q OF THE DAY';position:absolute;top:12px;right:16px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--accent2);opacity:0.5}
+.iq-meta-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.iq-countdown{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted)}
+.iq-cat-badge{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;padding:3px 10px;border-radius:2px}
+.iqcat-terraform{background:rgba(124,58,237,0.12);color:#a78bfa;border:1px solid rgba(124,58,237,0.22)}
+.iqcat-kubernetes{background:rgba(0,229,255,0.08);color:var(--accent);border:1px solid rgba(0,229,255,0.18)}
+.iqcat-linux{background:rgba(16,185,129,0.1);color:var(--accent3);border:1px solid rgba(16,185,129,0.2)}
+.iqcat-cicd{background:rgba(245,158,11,0.1);color:var(--accent4);border:1px solid rgba(245,158,11,0.2)}
+.iqcat-system{background:rgba(239,68,68,0.08);color:var(--danger);border:1px solid rgba(239,68,68,0.18)}
+.iqcat-aws{background:rgba(245,158,11,0.1);color:var(--accent4);border:1px solid rgba(245,158,11,0.2)}
+.iqcat-gcp{background:rgba(16,185,129,0.1);color:var(--accent3);border:1px solid rgba(16,185,129,0.2)}
+.iq-diff{font-family:'Share Tech Mono',monospace;font-size:9px;padding:3px 8px;border-radius:2px}
+.iq-diff.easy{background:rgba(16,185,129,0.1);color:var(--accent3);border:1px solid rgba(16,185,129,0.2)}
+.iq-diff.medium{background:rgba(0,229,255,0.08);color:var(--accent);border:1px solid rgba(0,229,255,0.18)}
+.iq-diff.hard{background:rgba(239,68,68,0.08);color:var(--danger);border:1px solid rgba(239,68,68,0.18)}
+.iq-question{font-family:'Orbitron',monospace;font-size:clamp(0.95rem,2vw,1.1rem);font-weight:700;color:#fff;line-height:1.5;margin-bottom:20px}
+.iq-reveal-btn{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:2px;padding:10px 22px;background:rgba(124,58,237,0.15);border:1px solid rgba(124,58,237,0.35);border-radius:4px;color:#a78bfa;cursor:pointer;transition:all 0.2s}
+.iq-reveal-btn:hover{background:rgba(124,58,237,0.28)}
+.iq-reveal-btn:disabled{opacity:0.5;cursor:default}
+.iq-answer-block{display:none;margin-top:20px;padding-top:18px;border-top:1px solid rgba(124,58,237,0.18)}
+.iq-answer-block.visible{display:block;animation:iqFade 0.4s ease}
+@keyframes iqFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.iq-answer-label{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;color:var(--accent3);margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.iq-answer-label::after{content:'';flex:1;height:1px;background:rgba(16,185,129,0.18)}
+.iq-answer-text{font-size:0.9rem;color:#e2e8f0;line-height:1.75;margin-bottom:14px}
+.iq-example-label{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--accent);margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.iq-example-label::after{content:'';flex:1;height:1px;background:rgba(0,229,255,0.1)}
+.iq-code-wrap{position:relative;margin-bottom:12px}
+.iq-code{background:#020610;border:1px solid rgba(0,229,255,0.1);border-radius:7px;padding:14px 16px 14px;font-family:'Share Tech Mono',monospace;font-size:0.79rem;color:#94a3b8;line-height:1.75;overflow-x:auto;white-space:pre}
+.iq-code .kw{color:#a78bfa}.iq-code .key{color:var(--accent)}.iq-code .str{color:var(--accent4)}.iq-code .cmt{color:#334155}.iq-code .val{color:var(--accent3)}.iq-code .hd{color:#60a5fa}
+.iq-code-copy{position:absolute;top:8px;right:8px;font-family:'Share Tech Mono',monospace;font-size:9px;padding:3px 9px;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.18);border-radius:3px;color:var(--accent);cursor:pointer;transition:all 0.2s}
+.iq-code-copy:hover{background:rgba(0,229,255,0.16)}
+.iq-tip-box{margin-top:4px;padding:10px 14px;background:rgba(245,158,11,0.06);border-left:3px solid rgba(245,158,11,0.35);border-radius:0 5px 5px 0;font-size:0.84rem;color:#94a3b8;line-height:1.6}
+.iq-tip-box strong{color:var(--accent4)}
+.iq-actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;align-items:center}
+.iq-xp-badge{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--accent4);background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.22);padding:4px 12px;border-radius:3px}
+.iq-history-title{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--accent2);margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.iq-history-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.iq-hist-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px;cursor:pointer;transition:all 0.2s}
+.iq-hist-card:hover{border-color:rgba(124,58,237,0.3);transform:translateY(-2px)}
+.iq-hist-card.expanded{border-color:rgba(124,58,237,0.4)}
+.iq-hist-q{font-size:0.85rem;color:var(--text);line-height:1.4;margin-bottom:8px;font-weight:600}
+.iq-hist-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.iq-hist-date{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--muted)}
+.iq-seen-badge{font-family:'Share Tech Mono',monospace;font-size:9px;padding:2px 7px;background:rgba(16,185,129,0.1);color:var(--accent3);border:1px solid rgba(16,185,129,0.2);border-radius:2px}
+.iq-hist-detail{display:none;margin-top:12px;padding-top:10px;border-top:1px solid var(--border)}
+.iq-hist-card.expanded .iq-hist-detail{display:block}
 .drill-hud{display:flex;align-items:center;gap:14px;flex-wrap:wrap;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin-bottom:24px}
 .drill-stat{display:flex;flex-direction:column;align-items:center;gap:2px;min-width:56px}
 .drill-stat-val{font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:700;color:var(--accent)}
@@ -443,6 +512,7 @@ footer span{color:var(--accent)}
   <button class="tab-btn" onclick="switchTab('simulate')" id="tab-simulate">⚡ SIMULATE</button>
   <button class="tab-btn" onclick="switchTab('drill')" id="tab-drill">🃏 DRILL</button>
   <button class="tab-btn" onclick="switchTab('snippets')" id="tab-snippets">📋 SNIPPETS</button>
+  <button class="tab-btn" onclick="switchTab('iq')" id="tab-iq">🎤 DAILY IQ</button>
   <button class="tab-btn" onclick="switchTab('badges')" id="tab-badges">🏅 BADGES</button>
   <button class="tab-btn" onclick="switchTab('leaderboard')" id="tab-leaderboard">🏆 LEADERBOARD</button>
   <button class="tab-btn" onclick="switchTab('dashboard')" id="tab-dashboard">📊 DASHBOARD</button>
@@ -454,9 +524,20 @@ footer span{color:var(--accent)}
     <div class="daily-timer-row">⏰ RESETS IN: <span id="dailyCountdown">--:--:--</span></div>
     <div class="daily-title" id="dailyTitle">Loading...</div>
     <div class="daily-desc" id="dailyDesc"></div>
-    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px">
       <span class="daily-reward" id="dailyReward"></span>
       <button class="btn btn-sm btn-primary" id="dailyBtn" onclick="claimDaily()">ACCEPT CHALLENGE</button>
+    </div>
+    <div class="daily-answer" id="dailyAnswer">
+      <div class="daily-ans-label">// ANSWER &amp; EXPLANATION</div>
+      <div class="daily-ans-text" id="dailyAnsText"></div>
+      <div class="daily-steps" id="dailySteps"></div>
+      <div class="daily-example-label">// WORKING EXAMPLE</div>
+      <div class="daily-code-wrap">
+        <pre class="daily-code" id="dailyCode"></pre>
+        <button class="daily-code-copy" onclick="copyDailyCode()">COPY</button>
+      </div>
+      <div class="daily-tip" id="dailyTip"></div>
     </div>
   </div>
   <span class="sec-label">// MISSION BOARD</span>
@@ -505,6 +586,41 @@ footer span{color:var(--accent)}
   <div class="stats-strip" id="statsStrip"></div>
   <span class="sec-label" style="margin-top:20px">// ACTIVITY LOG</span>
   <div id="actLog" style="display:flex;flex-direction:column;gap:7px;margin-top:10px"></div>
+</div>
+
+<!-- DAILY IQ -->
+<div class="tab-content" id="content-iq">
+  <span class="sec-label">// INTERVIEW PREP</span>
+  <div class="sec-title">Daily Interview Question</div>
+  <p class="sec-intro">One new Platform Engineer interview question every day — with a full answer and working code example. Reveal the answer, claim your XP, and review past questions below.</p>
+
+  <div class="iq-hero" id="iqHero">
+    <div class="iq-meta-row">
+      <span class="iq-countdown">⏰ RESETS IN: <span id="iqCountdown">--:--:--</span></span>
+      <span class="iq-cat-badge" id="iqCatBadge">TERRAFORM</span>
+      <span class="iq-diff" id="iqDiff">MEDIUM</span>
+    </div>
+    <div class="iq-question" id="iqQuestion">Loading today's question...</div>
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <button class="iq-reveal-btn" id="iqRevealBtn" onclick="revealIQ()">▶ REVEAL ANSWER + EXAMPLE</button>
+      <span class="iq-xp-badge" id="iqXpBadge">+50 XP</span>
+    </div>
+    <div class="iq-answer-block" id="iqAnswerBlock">
+      <div class="iq-answer-label">// ANSWER</div>
+      <div class="iq-answer-text" id="iqAnswerText"></div>
+      <div class="iq-example-label">// WORKING EXAMPLE</div>
+      <div class="iq-code-wrap">
+        <pre class="iq-code" id="iqCodeBlock"></pre>
+        <button class="iq-code-copy" onclick="copyIQCode()">COPY</button>
+      </div>
+      <div class="iq-tip-box" id="iqTipBox"></div>
+    </div>
+  </div>
+
+  <div style="margin-top:8px">
+    <div class="iq-history-title">// PREVIOUS QUESTIONS — click to expand</div>
+    <div class="iq-history-grid" id="iqHistoryGrid"></div>
+  </div>
 </div>
 
 <!-- SNIPPETS -->
@@ -1692,11 +1808,181 @@ const BADGES = [
 ];
 
 const DAILY = [
-  {title:'State File Detective',desc:'Open your latest terraform.tfstate. Identify: (1) resource count, (2) provider version, (3) one dependency chain between resources.',reward:'+75 XP'},
-  {title:'HCL Speed Write',desc:'From memory only — write a valid AWS VPC resource block with 3 required attributes. No docs or autocomplete.',reward:'+60 XP'},
-  {title:'Plan Output Predict',desc:'Make a single tag change to one resource. Before applying, write down exactly what terraform plan will show. Then run it and compare.',reward:'+80 XP'},
-  {title:'Module Input Design',desc:'Design variables.tf for a compute module: instance_type, ami_id, subnet_id, tags (map). Include defaults and descriptions.',reward:'+70 XP'},
-  {title:'Backend Config From Memory',desc:'Write the Terraform backend config block for S3 + DynamoDB locking entirely from memory. Then verify it against the docs.',reward:'+65 XP'},
+  {
+    title:'State File Detective',
+    desc:'Open your latest terraform.tfstate. Identify: (1) resource count, (2) provider version, (3) one dependency chain between resources.',
+    reward:'+75 XP',
+    answer:'The terraform.tfstate file is a JSON document that records every resource Terraform manages. The top-level `resources` array contains each resource with its type, name, and full attribute values. The `serial` number increments on every change — it is used for conflict detection in team environments.',
+    steps:[
+      'Run `terraform apply` on any small config to generate a state file',
+      'Open it with: `cat terraform.tfstate | python3 -m json.tool`',
+      'Count items in the "resources" array — that is your resource count',
+      'Find `"terraform_version"` at the top level for the provider info',
+      'Look for resources that reference another resource\'s `id` attribute — that is a dependency chain'
+    ],
+    example:`# Generate a state file with a simple config:
+resource "local_file" "a" {
+  filename = "a.txt"; content = "hello"
+}
+resource "local_file" "b" {
+  filename = "b.txt"
+  # depends on a — this is the dependency chain:
+  content  = local_file.a.filename
+}
+
+# After terraform apply, inspect state:
+cat terraform.tfstate | python3 -m json.tool
+
+# Key fields to find:
+# "serial": 3          ← increments each apply
+# "resources": [...]   ← count items here
+# "instances[0].attributes" ← all current values`,
+    tip:'Never edit terraform.tfstate manually. Use `terraform state` commands instead — they validate the JSON structure and update the serial number correctly before saving.'
+  },
+  {
+    title:'HCL Speed Write',
+    desc:'From memory only — write a valid AWS VPC resource block with 3 required attributes. No docs or autocomplete.',
+    reward:'+60 XP',
+    answer:'A valid `aws_vpc` resource requires at minimum a `cidr_block`. However production-grade VPC blocks should also enable DNS support and hostnames (required for EKS and other services). The `tags` block is best practice but technically optional. Writing HCL from memory forces you to internalise the attribute names rather than just recognising them.',
+    steps:[
+      'Open a blank file and start with: `resource "aws_vpc" "main" {`',
+      'Add `cidr_block = "10.0.0.0/16"` — the only truly required attribute',
+      'Add `enable_dns_hostnames = true` and `enable_dns_support = true`',
+      'Close the block and run `terraform validate` to verify syntax',
+      'Compare your version against the official docs — note what you missed'
+    ],
+    example:`# Minimal valid aws_vpc resource:
+resource "aws_vpc" "main" {
+  cidr_block = "10.0.0.0/16"
+}
+
+# Production-grade version (what you should aim to write):
+resource "aws_vpc" "main" {
+  cidr_block           = var.vpc_cidr
+  enable_dns_hostnames = true
+  enable_dns_support   = true
+  tags = merge(var.tags, {
+    Name      = "\${var.name}-vpc"
+    ManagedBy = "terraform"
+  })
+}
+
+# Validate your file:
+terraform validate`,
+    tip:'enable_dns_hostnames = true is required for EKS node groups to register with the cluster. Forgetting it is a common cause of mysterious EKS failures.'
+  },
+  {
+    title:'Plan Output Predict',
+    desc:'Make a single tag change to one resource. Before applying, write down exactly what terraform plan will show. Then run it and compare.',
+    reward:'+80 XP',
+    answer:'`terraform plan` shows a diff of what will change. For a tag update you will see a `~` (tilde) symbol meaning in-place update, with the old tag value crossed out and the new value shown. Predicting the exact output before running trains you to read plans confidently — the skill that prevents production incidents.',
+    steps:[
+      'Take any existing Terraform config with a tagged resource',
+      'Change one tag value in your .tf file (e.g. Name = "old" → "new")',
+      'Before running plan, write down: resource address, symbol (~), attribute name, old → new value',
+      'Run `terraform plan -no-color` and compare your prediction',
+      'Notice the format: `~ tags.Name = "old" -> "new"`'
+    ],
+    example:`# Original resource:
+resource "aws_s3_bucket" "main" {
+  bucket = "my-bucket"
+  tags   = { Name = "old-name", Environment = "dev" }
+}
+
+# After changing Name tag to "new-name",
+# terraform plan shows:
+# ~ resource "aws_s3_bucket" "main" {
+#     ~ tags = {
+#         ~ "Name" = "old-name" -> "new-name"
+#           # (1 unchanged element hidden)
+#       }
+#   }
+# Plan: 0 to add, 1 to change, 0 to destroy.
+
+# Save plan output for review:
+terraform plan -no-color 2>&1 | tee plan_review.txt`,
+    tip:'The plan symbols: `+` = create, `-` = destroy, `~` = update in-place, `-/+` = destroy then recreate. The `-/+` is the dangerous one — it means downtime for your resource. Always scan for it before applying.'
+  },
+  {
+    title:'Module Input Design',
+    desc:'Design variables.tf for a compute module: instance_type, ami_id, subnet_id, tags (map). Include defaults and descriptions.',
+    reward:'+70 XP',
+    answer:'A well-designed variables.tf includes type constraints, meaningful descriptions, sensible defaults, and validation rules where appropriate. This file is the module\'s public API — it is what other engineers see when calling your module. Quality here determines how reusable and self-documenting the module is.',
+    steps:[
+      'Create modules/compute/variables.tf',
+      'Declare each variable with type, description, and default (where safe)',
+      'Add a validation block to instance_type to restrict to approved families',
+      'Mark sensitive variables (like passwords) with sensitive = true',
+      'Run terraform validate inside the module directory to check syntax'
+    ],
+    example:`# modules/compute/variables.tf
+variable "instance_type" {
+  type        = string
+  description = "EC2 instance type. Allowed: t3, m5, c5 families."
+  default     = "t3.small"
+  validation {
+    condition     = can(regex("^(t3|m5|c5)\\.", var.instance_type))
+    error_message = "Only t3, m5, or c5 instance families are allowed."
+  }
+}
+
+variable "ami_id" {
+  type        = string
+  description = "AMI ID to launch. Must be an approved hardened image."
+  # No default — caller must provide this explicitly
+}
+
+variable "subnet_id" {
+  type        = string
+  description = "Subnet ID where the instance will be launched."
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "Tags applied to all resources in this module."
+  default     = {}
+}`,
+    tip:'Never set a default for security-critical inputs like ami_id or subnet_id — forcing callers to provide them explicitly prevents accidental use of wrong resources in wrong environments.'
+  },
+  {
+    title:'Backend Config From Memory',
+    desc:'Write the Terraform backend config block for S3 + DynamoDB locking entirely from memory. Then verify it against the docs.',
+    reward:'+65 XP',
+    answer:'The S3 backend configuration requires: bucket (S3 bucket name), key (path to state file within the bucket), region (AWS region), and optionally encrypt (true for at-rest encryption) and dynamodb_table (for state locking). Writing this from memory tests whether you have internalised the production Terraform state management pattern.',
+    steps:[
+      'Open a blank main.tf and write the terraform {} block from scratch',
+      'Inside it, add backend "s3" {} with all required attributes',
+      'Add the dynamodb_table attribute for locking',
+      'Add encrypt = true for security',
+      'Compare against: https://developer.hashicorp.com/terraform/language/settings/backends/s3'
+    ],
+    example:`# Write this from memory — then verify:
+terraform {
+  required_version = ">= 1.5"
+  backend "s3" {
+    bucket         = "my-terraform-state"
+    key            = "prod/terraform.tfstate"
+    region         = "us-east-1"
+    encrypt        = true
+    dynamodb_table = "terraform-state-locks"
+  }
+}
+
+# The DynamoDB table must exist with a hash key named "LockID":
+resource "aws_dynamodb_table" "tf_locks" {
+  name         = "terraform-state-locks"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "LockID"
+  attribute {
+    name = "LockID"
+    type = "S"
+  }
+}
+
+# After adding backend config: terraform init
+# Terraform will ask to migrate local state to S3`,
+    tip:'The S3 bucket must have versioning enabled — it acts as automatic state backup so you can roll back after a bad apply. Add bucket versioning as part of your backend bootstrap Terraform config.'
+  },
 ];
 
 const LB_BASE = [
@@ -1784,6 +2070,7 @@ function switchTab(id){
   if(id==='dashboard') renderDash();
   if(id==='drill') initDrill();
   if(id==='snippets') renderSnippets();
+  if(id==='iq') initIQ();
 }
 
 // ──────────────────────────────────────────────
@@ -2134,37 +2421,70 @@ function renderDash(){
 // ──────────────────────────────────────────────
 // DAILY CHALLENGE
 // ──────────────────────────────────────────────
+function hlDaily(code){
+  return code.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/(#[^\n]*)/g,'<span class="cmt">$1</span>')
+    .replace(/\b(resource|data|variable|output|locals|module|terraform|provider|backend|lifecycle)\b/g,'<span class="kw">$1</span>')
+    .replace(/\b(true|false|null)\b/g,'<span class="val">$1</span>');
+}
+
+function showDailyAnswer(dc){
+  document.getElementById('dailyAnsText').textContent = dc.answer;
+  document.getElementById('dailySteps').innerHTML = dc.steps.map((s,i)=>
+    `<div class="daily-step">
+       <div class="daily-step-num">${i+1}</div>
+       <div class="daily-step-text">${s}</div>
+     </div>`
+  ).join('');
+  document.getElementById('dailyCode').innerHTML = hlDaily(dc.example);
+  document.getElementById('dailyTip').innerHTML = `<strong>💡 Pro tip:</strong> ${dc.tip}`;
+  document.getElementById('dailyAnswer').classList.add('show');
+}
+
+function copyDailyCode(){
+  const idx = new Date().getDate() % DAILY.length;
+  const raw = DAILY[idx].example;
+  navigator.clipboard.writeText(raw).then(()=>toast('✓ Code copied!','t-unlock')).catch(()=>{
+    const ta=document.createElement('textarea');ta.value=raw;
+    document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);
+    toast('✓ Copied!','t-unlock');
+  });
+}
+
 function initDaily(){
-  const today=new Date().toDateString();
-  const idx=new Date().getDate()%DAILY.length;
-  const dc=DAILY[idx];
-  document.getElementById('dailyTitle').textContent=dc.title;
-  document.getElementById('dailyDesc').textContent=dc.desc;
-  document.getElementById('dailyReward').textContent=dc.reward;
-  if(S.dailyDate===today && S.dailyDone){
-    const btn=document.getElementById('dailyBtn');
-    btn.textContent='✓ COMPLETED TODAY'; btn.disabled=true; btn.className='btn btn-sm btn-success';
+  const today = new Date().toDateString();
+  const idx   = new Date().getDate() % DAILY.length;
+  const dc    = DAILY[idx];
+  document.getElementById('dailyTitle').textContent  = dc.title;
+  document.getElementById('dailyDesc').textContent   = dc.desc;
+  document.getElementById('dailyReward').textContent = dc.reward;
+  if(S.dailyDate === today && S.dailyDone){
+    const btn = document.getElementById('dailyBtn');
+    btn.textContent = '✓ COMPLETED TODAY'; btn.disabled = true; btn.className = 'btn btn-sm btn-success';
+    showDailyAnswer(dc);
   }
   function tick(){
-    const now=new Date(), mid=new Date(now); mid.setHours(24,0,0,0);
-    const d=Math.floor((mid-now)/1000);
-    const h=Math.floor(d/3600),m=Math.floor((d%3600)/60),s=d%60;
-    const el=document.getElementById('dailyCountdown');
-    if(el) el.textContent=`${String(h).padStart(2,'0')}h ${String(m).padStart(2,'0')}m ${String(s).padStart(2,'0')}s`;
+    const now = new Date(), mid = new Date(now); mid.setHours(24,0,0,0);
+    const d = Math.floor((mid-now)/1000);
+    const h = Math.floor(d/3600), m = Math.floor((d%3600)/60), s = d%60;
+    const el = document.getElementById('dailyCountdown');
+    if(el) el.textContent = `${String(h).padStart(2,'0')}h ${String(m).padStart(2,'0')}m ${String(s).padStart(2,'0')}s`;
   }
   tick(); setInterval(tick,1000);
 }
 
 function claimDaily(){
-  const today=new Date().toDateString();
-  if(S.dailyDate===today && S.dailyDone){ toast('Already claimed today!','t-error'); return; }
-  const idx=new Date().getDate()%DAILY.length;
-  const xpAmt=parseInt(DAILY[idx].reward.replace(/\D/g,''));
-  S.dailyDone=true; S.dailyDate=today; S.streak=(S.streak||0)+1; save();
-  addXP(xpAmt,'Daily Challenge: '+DAILY[idx].title);
-  toast(`⭐ Daily claimed! +${xpAmt} XP 🔥 Streak: ${S.streak}`,'t-xp');
-  const btn=document.getElementById('dailyBtn');
-  btn.textContent='✓ COMPLETED TODAY'; btn.disabled=true; btn.className='btn btn-sm btn-success';
+  const today = new Date().toDateString();
+  if(S.dailyDate === today && S.dailyDone){ toast('Already claimed today!','t-error'); return; }
+  const idx    = new Date().getDate() % DAILY.length;
+  const dc     = DAILY[idx];
+  const xpAmt  = parseInt(dc.reward.replace(/\D/g,''));
+  S.dailyDone  = true; S.dailyDate = today; S.streak = (S.streak||0) + 1; save();
+  addXP(xpAmt, 'Daily Challenge: ' + dc.title);
+  toast(`⭐ Daily claimed! +${xpAmt} XP 🔥 Streak: ${S.streak}`, 't-xp');
+  const btn = document.getElementById('dailyBtn');
+  btn.textContent = '✓ COMPLETED TODAY'; btn.disabled = true; btn.className = 'btn btn-sm btn-success';
+  showDailyAnswer(dc);
   checkBadges();
 }
 
@@ -3706,6 +4026,1267 @@ function toggleTheme(){
 
 function initTheme(){
   applyTheme(S.lightMode || false);
+}
+
+// ──────────────────────────────────────────────
+// INTERVIEW QUESTION OF THE DAY — DATA (60 Qs)
+// ──────────────────────────────────────────────
+const IQ_BANK = [
+  {cat:'terraform',diff:'medium',xp:50,
+   q:'What is the difference between `terraform taint` and `terraform apply -replace`?',
+   a:'`terraform taint` (deprecated since 1.3) manually marked a resource for forced recreation. The modern equivalent is `terraform apply -replace="address"` which combines marking and applying in one step — safer because it shows a plan before replacing.',
+   code:`# Deprecated (since Terraform 1.3):
+terraform taint aws_instance.web
+
+# Modern approach — shows plan before replacing:
+terraform apply -replace="aws_instance.web"
+# Plan: -/+ resource "aws_instance" "web" { # forces replacement }`,
+   tip:'Always use -replace with a plan review in production — run `terraform plan -replace="..."` first so you can verify exactly what will be recreated before it happens.'
+  },
+  {cat:'terraform',diff:'hard',xp:70,
+   q:'How does Terraform build and use a resource dependency graph?',
+   a:'Terraform automatically builds a Directed Acyclic Graph (DAG) by analysing references between resources. Resources with no dependency are created in parallel. Use `depends_on` only for implicit dependencies Terraform cannot infer (e.g. IAM policy attachment needed before EKS cluster that depends on the policy being active).',
+   code:`# Implicit dependency (Terraform infers this automatically):
+resource "aws_subnet" "main" {
+  vpc_id = aws_vpc.main.id  # reference creates the dependency
+}
+
+# Explicit dependency (for cases Terraform cannot infer):
+resource "aws_eks_cluster" "main" {
+  depends_on = [aws_iam_role_policy_attachment.eks_policy]
+}
+
+# Visualise the dependency graph:
+terraform graph | dot -Tsvg > graph.svg`,
+   tip:'Run `terraform graph` and pipe to Graphviz to see the full dependency diagram. Dependency cycles (A depends on B, B depends on A) are a common module authoring error — the graph makes them obvious.'
+  },
+  {cat:'terraform',diff:'easy',xp:40,
+   q:'What is a Terraform workspace and when should you use one?',
+   a:'A workspace is an isolated instance of state within a single backend. Each workspace gets its own state file. Use workspaces to manage dev/staging/prod environments from one configuration when the environments are structurally identical.',
+   code:`# Create and switch workspaces:
+terraform workspace new staging
+terraform workspace select prod
+terraform workspace list
+
+# Reference workspace in config:
+locals {
+  config = {
+    dev  = { instance_type = "t3.micro"  }
+    prod = { instance_type = "t3.medium" }
+  }[terraform.workspace]
+}`,
+   tip:'Workspaces work best when all environments are structurally identical. For environments that differ significantly (different modules, regions, providers), use separate directories or Terragrunt instead.'
+  },
+  {cat:'terraform',diff:'medium',xp:50,
+   q:'Explain the `lifecycle` meta-argument and its key options.',
+   a:'`lifecycle` is a special block in every resource that controls create/destroy behaviour. Key options: `create_before_destroy` (zero-downtime replacement), `prevent_destroy` (blocks any destroy), `ignore_changes` (ignores external changes to specific attributes), `replace_triggered_by` (forces replacement when another resource changes).',
+   code:`resource "aws_instance" "web" {
+  lifecycle {
+    create_before_destroy = true      # zero-downtime replace
+    prevent_destroy       = true      # never allow terraform destroy
+    ignore_changes        = [ami]     # ignore Packer-managed ami
+    replace_triggered_by = [
+      aws_launch_template.main.latest_version
+    ]
+  }
+}`,
+   tip:'`create_before_destroy = true` is critical for resources attached to load balancers — without it Terraform destroys the old instance first, causing downtime while the replacement is being created.'
+  },
+  {cat:'terraform',diff:'hard',xp:70,
+   q:'What is the `moved` block and how does it differ from `terraform state mv`?',
+   a:'Both rename a resource address in state without destroying it. `moved` is declarative (in .tf files, version-controlled, shows in plan output — Terraform 1.1+). `terraform state mv` is imperative (one-time CLI command, no audit trail). The `moved` block is the recommended modern approach.',
+   code:`# OLD: imperative, no audit trail
+terraform state mv aws_instance.server aws_instance.web_server
+
+# NEW: declarative, shows in plan, version-controlled
+moved {
+  from = aws_instance.server
+  to   = aws_instance.web_server
+}
+# Also works for module refactoring:
+moved {
+  from = aws_vpc.main
+  to   = module.networking.aws_vpc.main
+}`,
+   tip:'Keep moved blocks in a dedicated `moved.tf` file for easy cleanup after the next release. Accumulating them in main.tf makes configurations hard to read.'
+  },
+  {cat:'terraform',diff:'medium',xp:50,
+   q:'How do you manage secrets in Terraform without hardcoding them?',
+   a:'Never hardcode secrets in .tf files. Options: environment variables (TF_VAR_name), AWS Secrets Manager / HashiCorp Vault via data sources, CI/CD secret stores injected as env vars. Mark any sensitive variable or output with `sensitive = true` to prevent it appearing in logs.',
+   code:`# Environment variable (nothing in any file):
+export TF_VAR_db_password="supersecret"
+
+# AWS Secrets Manager data source:
+data "aws_secretsmanager_secret_version" "db" {
+  secret_id = "prod/database/password"
+}
+resource "aws_db_instance" "main" {
+  password = data.aws_secretsmanager_secret_version.db.secret_string
+}
+
+# Mark as sensitive (hides from plan/apply logs):
+variable "db_password" {
+  type      = string
+  sensitive = true
+}`,
+   tip:'Add *.tfvars to .gitignore so variable files with secrets cannot be accidentally committed. The .terraform.lock.hcl is safe to commit — the tfstate file is NOT.'
+  },
+  {cat:'terraform',diff:'easy',xp:40,
+   q:'What does `terraform fmt` do and why is it important in teams?',
+   a:'`terraform fmt` auto-formats all .tf files to canonical Terraform style. In teams it prevents noisy diffs where every PR shows whitespace changes. Run it in CI with `-check` to enforce formatting before merge.',
+   code:`terraform fmt              # format current directory
+terraform fmt -recursive   # format all subdirectories
+terraform fmt -check -recursive  # CI check — fails if unformatted
+terraform fmt -diff        # preview changes without applying
+
+# Pre-commit hook (.pre-commit-config.yaml):
+repos:
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    hooks:
+      - id: terraform_fmt`,
+   tip:'Add terraform fmt -recursive to pre-commit hooks so formatting is enforced locally. The CI check then becomes a safety net rather than the primary enforcement point.'
+  },
+  {cat:'terraform',diff:'hard',xp:70,
+   q:'What is Terragrunt and when would you choose it over workspaces?',
+   a:'Terragrunt wraps Terraform adding DRY configuration, automatic per-environment backend config, dependency management between modules, and hooks. Choose Terragrunt when environments differ structurally (different modules, regions, providers). Use workspaces only when all environments use identical infrastructure.',
+   code:`# terragrunt.hcl — shared backend config for all environments
+remote_state {
+  backend = "s3"
+  config = {
+    bucket = "my-tf-state"
+    key    = "\${path_relative_to_include()}/terraform.tfstate"
+    dynamodb_table = "tf-locks"
+    encrypt = true
+  }
+}
+
+# envs/prod/vpc/terragrunt.hcl
+include "root" { path = find_in_parent_folders() }
+terraform  { source = "../../../../modules//vpc" }
+inputs = { vpc_cidr = "10.0.0.0/16", env = "prod" }
+
+# Run all modules in dependency order:
+terragrunt run-all apply`,
+   tip:'Terragrunt is the standard choice for organisations with 5+ environments and 20+ modules. For simpler setups (< 3 envs, < 10 modules), workspaces with tfvars files are simpler and sufficient.'
+  },
+  {cat:'terraform',diff:'medium',xp:50,
+   q:'How does `for_each` differ from `count` and why is `for_each` preferred?',
+   a:'`count` creates resources by integer index. Deleting item [0] renumbers everything and causes unnecessary recreation. `for_each` uses stable string keys — removing one key only affects that one resource. This makes for_each far safer for production resources.',
+   code:`# count — fragile (deleting index 0 shifts all others):
+resource "aws_subnet" "bad" {
+  count             = length(var.zones)
+  availability_zone = var.zones[count.index]
+}
+
+# for_each — stable keys (only the removed key is destroyed):
+resource "aws_subnet" "good" {
+  for_each          = toset(var.zones)
+  availability_zone = each.key
+  # aws_subnet.good["us-east-1a"] — stable address
+}`,
+   tip:'Use `toset()` to convert a list to a set for for_each when you only need unique keys. Use for_each with a map when you need both key and value in the resource config.'
+  },
+  {cat:'terraform',diff:'easy',xp:40,
+   q:'What does `terraform validate` check and what does it NOT check?',
+   a:'`terraform validate` checks HCL syntax and internal consistency — correct types, no undefined references, valid configurations. It does NOT connect to any cloud API, so it cannot check if AMI IDs exist, IAM permissions are correct, or resources already exist.',
+   code:`terraform validate        # fast, no network calls
+
+# Common errors it catches:
+# Error: Missing required argument
+# Error: Reference to undeclared resource
+# Error: Invalid value for variable (type mismatch)
+
+# Run in CI without a real backend:
+terraform init -backend=false
+terraform validate`,
+   tip:'`terraform validate` runs in milliseconds and is safe in CI. Combine with `terraform fmt -check` and tflint for comprehensive static checks before the slower terraform plan.'
+  },
+  {cat:'terraform',diff:'hard',xp:70,
+   q:'What is the provider lock file and why should you commit it to Git?',
+   a:'`.terraform.lock.hcl` records exact provider versions and checksums. Committing it ensures every engineer and every CI runner uses the identical provider binary. Without it, `terraform init` picks the latest compatible version, causing "works on my machine" issues.',
+   code:`# Auto-generated — always commit this file
+# .terraform.lock.hcl
+provider "registry.terraform.io/hashicorp/aws" {
+  version     = "5.31.0"
+  constraints = "~> 5.0"
+  hashes = ["h1:AbCdEf...", "zh:123456..."]
+}
+
+# Upgrade providers and update lock file:
+terraform init -upgrade
+
+# Add checksums for multiple platforms:
+terraform providers lock \\
+  -platform=linux_amd64 \\
+  -platform=darwin_arm64`,
+   tip:'If CI fails with "checksum mismatch" after a teammate runs terraform init -upgrade, they forgot to commit the updated .terraform.lock.hcl. Add it to your PR checklist.'
+  },
+  {cat:'terraform',diff:'medium',xp:50,
+   q:'How does Terraform remote state work and what are the security considerations?',
+   a:'Remote state stores the tfstate file in a shared backend (S3, GCS, Azure Blob). It enables team collaboration, state locking, and versioning. Security: the state file contains ALL attribute values including sensitive ones in plain text — encrypt at rest, restrict bucket access, never commit tfstate to Git.',
+   code:`terraform {
+  backend "s3" {
+    bucket         = "my-tf-state"
+    key            = "prod/terraform.tfstate"
+    region         = "us-east-1"
+    encrypt        = true          # AES-256 at rest
+    dynamodb_table = "tf-locks"    # prevents concurrent apply
+  }
+}
+
+# Read outputs from another state (cross-stack sharing):
+data "terraform_remote_state" "network" {
+  backend = "s3"
+  config  = { bucket = "my-tf-state"; key = "network/terraform.tfstate"; region = "us-east-1" }
+}
+output "vpc_id" { value = data.terraform_remote_state.network.outputs.vpc_id }`,
+   tip:'Use S3 bucket policies to restrict read/write access to only the CI IAM role. Anyone who can read the state file can see all secrets, resource IDs, and infrastructure details.'
+  },
+  {cat:'terraform',diff:'easy',xp:40,
+   q:'What is the difference between `terraform plan -out` and a regular `terraform apply`?',
+   a:'`terraform plan -out=plan.tfplan` saves the exact plan to a binary file. `terraform apply plan.tfplan` applies that exact plan — nothing can change between review and apply. A regular `terraform apply` re-runs plan at apply time, so infrastructure could have changed since your review.',
+   code:`# Production-safe workflow:
+terraform plan -out=plan.tfplan  # save the plan
+
+terraform show plan.tfplan       # review it
+# Have peer review in CI (posted as PR comment)
+
+terraform apply plan.tfplan      # apply EXACTLY that plan
+
+# View as JSON for programmatic processing:
+terraform show -json plan.tfplan | jq .`,
+   tip:'In CI/CD, save the plan file as an artifact in the plan job and pass it to the apply job. This guarantees the approved plan is what runs — even if someone pushes a commit between plan and apply.'
+  },
+  {cat:'terraform',diff:'medium',xp:50,
+   q:'What are Terraform data sources and how do they differ from resources?',
+   a:'A `resource` block creates, updates, and destroys infrastructure Terraform manages. A `data` block reads existing infrastructure — it is read-only and creates or modifies nothing. Data sources are re-evaluated on every plan run.',
+   code:`# Read existing infrastructure (read-only):
+data "aws_vpc" "existing" {
+  filter { name = "tag:Name"; values = ["prod-vpc"] }
+}
+
+data "aws_ami" "latest_al" {
+  most_recent = true
+  owners      = ["amazon"]
+  filter { name = "name"; values = ["al2023-ami-*-x86_64"] }
+}
+
+# Use data source output in a resource:
+resource "aws_instance" "app" {
+  ami       = data.aws_ami.latest_al.id   # from data source
+  subnet_id = data.aws_vpc.existing.id
+}`,
+   tip:'Data sources evaluate every plan — if the AMI ID changes (new release), your plan will show an instance change. Pin AMI IDs explicitly in production to prevent unexpected instance replacements.'
+  },
+  {cat:'terraform',diff:'hard',xp:70,
+   q:'How do you implement variable validation in Terraform?',
+   a:'Terraform 0.13+ supports `validation` blocks inside variable declarations. Conditions can use any expression that evaluates to a boolean. This catches bad inputs at plan time before any API calls are made, providing clear error messages instead of confusing provider errors.',
+   code:`variable "environment" {
+  type        = string
+  description = "Deployment environment"
+  validation {
+    condition     = contains(["dev","staging","prod"], var.environment)
+    error_message = "environment must be dev, staging, or prod."
+  }
+}
+
+variable "vpc_cidr" {
+  type = string
+  validation {
+    condition     = can(cidrnetmask(var.vpc_cidr))
+    error_message = "Must be a valid CIDR block (e.g. 10.0.0.0/16)."
+  }
+}
+
+variable "instance_type" {
+  type = string
+  validation {
+    condition     = can(regex("^(t3|m5|c5)\\.", var.instance_type))
+    error_message = "Only t3, m5, or c5 instance families allowed."
+  }
+}`,
+   tip:'Write validation error messages that explain WHAT the valid values are, not just that the input is wrong. "environment must be dev, staging, or prod" is far more helpful than "invalid environment".'
+  },
+  // KUBERNETES (10)
+  {cat:'kubernetes',diff:'medium',xp:50,
+   q:'What is the difference between a Deployment and a StatefulSet?',
+   a:'Deployments manage stateless pods — all replicas are identical, interchangeable, and get random names. StatefulSets manage stateful applications — each pod gets a stable identity (ordered name, DNS), stable persistent storage that follows the pod, and ordered deployment/scaling. Use StatefulSets for databases, Kafka, and Zookeeper.',
+   code:`# Deployment: pods are web-7d9f-abc, web-7d9f-xyz (random)
+apiVersion: apps/v1
+kind: Deployment
+spec:
+  replicas: 3
+
+# StatefulSet: pods are postgres-0, postgres-1, postgres-2 (stable)
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres
+spec:
+  serviceName: postgres   # required headless service
+  replicas: 3
+  volumeClaimTemplates:   # each pod gets its own PVC
+  - metadata: {name: data}
+    spec: {resources: {requests: {storage: 10Gi}}}`,
+   tip:'StatefulSet pods start in order (0→1→2) and terminate in reverse (2→1→0). Never delete postgres-0 without first promoting a replica to leader — postgres-0 is typically the primary in most database clusters.'
+  },
+  {cat:'kubernetes',diff:'easy',xp:40,
+   q:'What is the difference between ClusterIP, NodePort, and LoadBalancer Services?',
+   a:'ClusterIP exposes a service only inside the cluster. NodePort exposes it on a static port on every node (reachable externally but not production-ready). LoadBalancer provisions a cloud load balancer pointing to the service — the production standard for public services.',
+   code:`# ClusterIP (default) — internal only:
+spec:
+  type: ClusterIP
+  # Access: service-name.namespace.svc.cluster.local
+
+# NodePort — external via node IP (dev only):
+spec:
+  type: NodePort
+  ports:
+  - port: 80; nodePort: 30080  # range 30000-32767
+
+# LoadBalancer — cloud LB (production):
+spec:
+  type: LoadBalancer
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: nlb`,
+   tip:'In production, use one LoadBalancer (Ingress controller) for all services — it routes via host/path rules to many backend Services. Multiple LoadBalancer-type Services = multiple cloud LBs = expensive.'
+  },
+  {cat:'kubernetes',diff:'medium',xp:50,
+   q:'What is a Kubernetes Ingress and how does it differ from a Service?',
+   a:'A Service exposes one application at a stable IP/port. An Ingress is an HTTP/HTTPS router that directs traffic to multiple services based on hostname and path rules, terminates TLS, and applies middleware — all through one cloud load balancer. Ingress requires an Ingress Controller (nginx, AWS ALB Controller) to function.',
+   code:`apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts: [api.example.com]; secretName: tls-secret
+  rules:
+  - host: api.example.com
+    http:
+      paths:
+      - path: /v1; pathType: Prefix
+        backend:
+          service: {name: api-svc, port: {number: 80}}`,
+   tip:'Use cert-manager with Let\'s Encrypt to auto-provision TLS certificates. One ClusterIssuer manages all certs — no manual certificate renewal.'
+  },
+  {cat:'kubernetes',diff:'hard',xp:70,
+   q:'Explain Kubernetes resource requests, limits, and QoS classes.',
+   a:'`requests` are the guaranteed minimum — used by the scheduler to place the pod. `limits` are the maximum — exceeding CPU causes throttling; exceeding memory causes OOMKill. The combination determines the QoS class: Guaranteed (requests=limits), Burstable (requests < limits), BestEffort (nothing set — first to be evicted).',
+   code:`# Guaranteed QoS (requests = limits):
+resources:
+  requests: {cpu: "500m", memory: "512Mi"}
+  limits:   {cpu: "500m", memory: "512Mi"}
+
+# Burstable QoS (can burst above request):
+resources:
+  requests: {cpu: "100m", memory: "128Mi"}
+  limits:   {cpu: "2",    memory: "1Gi"}
+
+# Check QoS class:
+kubectl get pod my-pod -o jsonpath='{.status.qosClass}'
+
+# OOMKilled pods show exit code 137:
+kubectl describe pod my-pod | grep -A3 "OOMKilled"`,
+   tip:'OOMKilled exit code is 137. Increase the memory limit, but also profile the app first — a memory leak will OOMKill again even after increasing the limit.'
+  },
+  {cat:'kubernetes',diff:'easy',xp:40,
+   q:'What are liveness and readiness probes and why do you need both?',
+   a:'`livenessProbe` checks if a container is alive — failure restarts it. `readinessProbe` checks if it is ready for traffic — failure removes it from the Service endpoints (no restart). You need both: liveness to recover from deadlocks, readiness to prevent traffic to warming-up or temporarily unhealthy pods.',
+   code:`livenessProbe:
+  httpGet: {path: /healthz, port: 8080}
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  failureThreshold: 3      # restart after 3 failures
+
+readinessProbe:
+  httpGet: {path: /ready, port: 8080}  # different endpoint!
+  initialDelaySeconds: 5
+  periodSeconds: 5
+  failureThreshold: 2      # remove from LB after 2 failures`,
+   tip:'Never use the same endpoint for both probes. The readiness endpoint should check dependencies (DB, cache). The liveness endpoint should only check if the process itself is alive — checking DB in liveness would cause a restart loop when the DB is down.'
+  },
+  {cat:'kubernetes',diff:'medium',xp:50,
+   q:'How does Horizontal Pod Autoscaling (HPA) work?',
+   a:'The HPA controller queries the metrics server periodically and calculates: `desired = ceil(current × currentMetric / targetMetric)`. It scales the Deployment up or down within min/max bounds. A stabilisation window prevents flapping.',
+   code:`apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: web
+  minReplicas: 2
+  maxReplicas: 20
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 60
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300  # wait 5 min before scaling down`,
+   tip:'Install the Kubernetes Metrics Server before creating HPAs — without it the HPA shows "unable to fetch metrics". Verify: `kubectl top pods`. Also set resource requests on all pods — HPA uses them for utilisation calculations.'
+  },
+  {cat:'kubernetes',diff:'hard',xp:70,
+   q:'What is RBAC in Kubernetes and how do you create a least-privilege role?',
+   a:'RBAC controls what API operations a subject can perform. Role is namespace-scoped; ClusterRole is cluster-wide. RoleBinding attaches a Role to a subject (user/group/serviceAccount); ClusterRoleBinding does the same cluster-wide.',
+   code:`# Role (namespace-scoped):
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata: {name: pod-reader, namespace: prod}
+rules:
+- apiGroups: [""]
+  resources: ["pods", "pods/log"]
+  verbs: ["get", "list", "watch"]
+
+# Bind to a ServiceAccount:
+kind: RoleBinding
+subjects:
+- kind: ServiceAccount
+  name: app-sa
+  namespace: prod
+roleRef:
+  kind: Role
+  name: pod-reader
+
+# Test permissions:
+kubectl auth can-i get pods \\
+  --as=system:serviceaccount:prod:app-sa`,
+   tip:'Start with zero permissions and add only what the app actually needs. Use `kubectl auth can-i --list --as=system:serviceaccount:ns:name` to audit what a service account can do.'
+  },
+  {cat:'kubernetes',diff:'medium',xp:50,
+   q:'What is the difference between a ConfigMap and a Secret?',
+   a:'Both store configuration for pods. A ConfigMap stores non-sensitive config. A Secret stores sensitive data (passwords, tokens) and is base64-encoded (not encrypted by default). In production, enable KMS encryption for Secrets at rest and restrict access via RBAC.',
+   code:`# ConfigMap — non-sensitive:
+apiVersion: v1
+kind: ConfigMap
+data:
+  APP_ENV: production
+  config.yaml: |
+    server: {port: 8080}
+
+# Secret — sensitive (base64-encoded):
+apiVersion: v1
+kind: Secret
+type: Opaque
+data:
+  password: cGFzc3dvcmQ=  # base64: echo -n 'password' | base64
+
+# Mount both:
+envFrom:
+- configMapRef: {name: app-config}
+- secretRef:    {name: db-secret}`,
+   tip:'Enable envelope encryption for Secrets using a KMS provider (aws-encryption-provider). Without it, Secrets are only base64 in etcd — anyone with etcd access reads them in plain text.'
+  },
+  {cat:'kubernetes',diff:'easy',xp:40,
+   q:'How do you perform a rolling update and rollback in Kubernetes?',
+   a:'Deployments perform rolling updates by default — creating new pods before terminating old ones. kubectl rollout provides commands to monitor and roll back.',
+   code:`# Update image:
+kubectl set image deployment/web web=nginx:1.26
+
+# Monitor rollout:
+kubectl rollout status deployment/web
+
+# View history:
+kubectl rollout history deployment/web
+
+# Rollback to previous version:
+kubectl rollout undo deployment/web
+
+# Rollback to specific revision:
+kubectl rollout undo deployment/web --to-revision=2
+
+# Zero-downtime rolling update strategy:
+strategy:
+  rollingUpdate:
+    maxUnavailable: 0  # never reduce capacity
+    maxSurge: 1        # one extra pod at a time`,
+   tip:'Set maxUnavailable: 0 and maxSurge: 1 for zero-downtime deployments. This ensures new pods are healthy before any old pods are terminated — critical for stateless web services.'
+  },
+  {cat:'kubernetes',diff:'hard',xp:70,
+   q:'How do Linux namespaces and cgroups enable containers?',
+   a:'Linux namespaces isolate what processes can see: PID (process IDs), Network (interfaces), Mount (filesystem), UTS (hostname), IPC, User (UIDs). cgroups limit and measure resource usage: CPU, memory, I/O. Together: namespaces provide isolation, cgroups provide resource limits — these two kernel features are what Docker and Kubernetes build on.',
+   code:`# Inspect a container's namespaces from the host:
+ls -la /proc/$(docker inspect -f '{{.State.Pid}}' mycontainer)/ns/
+
+# Run a command in a container's network namespace:
+nsenter -t PID --net -- ip addr
+
+# Inspect cgroup limits for a Kubernetes pod:
+cat /sys/fs/cgroup/memory/kubepods/pod<UID>/memory.limit_in_bytes
+cat /sys/fs/cgroup/cpu/kubepods/pod<UID>/cpu.cfs_quota_us
+
+# Namespace types:
+# pid   → isolated process tree (PID 1 inside container)
+# net   → isolated network stack
+# mnt   → isolated filesystem (bind mounts + pivot_root)
+# uts   → isolated hostname
+# user  → rootless containers (UID/GID remapping)`,
+   tip:'When debugging "container can\'t see X", think about which namespace is involved. Can\'t see a process → PID namespace. Can\'t reach network → network namespace. Can\'t access a file → mount namespace.'
+  },
+  // LINUX (8)
+  {cat:'linux',diff:'easy',xp:40,
+   q:'How do you troubleshoot a service that is not starting in Linux?',
+   a:'Systematic approach: check service status → read journal logs → verify binary and config → check for port conflicts → check file permissions.',
+   code:`systemctl status nginx
+journalctl -u nginx -n 50 --no-pager
+journalctl -u nginx --since "1 hour ago"
+
+# Verify config is valid:
+nginx -t
+
+# Check port conflict:
+ss -tlnp | grep :80
+lsof -i :80
+
+# Check permissions:
+ls -la /etc/nginx/nginx.conf`,
+   tip:'Always check `journalctl -xe` immediately after a failed systemctl start — it shows the exact launch error before log entries get pushed down by other events.'
+  },
+  {cat:'linux',diff:'medium',xp:50,
+   q:'How do you diagnose high load average on a Linux server?',
+   a:'Load average counts running + waiting processes over 1/5/15 minutes. High load can be CPU-bound, I/O-bound (processes in D state), or memory pressure (swapping). Each has different resolution strategies.',
+   code:`uptime  # load average: 8.52, 7.31, 5.22
+
+# CPU-bound: high %cpu in top
+top
+
+# I/O-bound: processes in D state
+ps aux | awk '$8 ~ /D/ {print $0}'
+iostat -x 1 5   # look at %iowait column
+iotop -o -P     # top I/O consumers
+
+# Memory pressure:
+free -h
+vmstat 1 10     # r=runqueue, b=blocked, si/so=swap in/out`,
+   tip:'Load > number of CPU cores = system is overloaded. If load is high but %cpu is low, it is almost always I/O wait. Check iostat and disk health with `smartctl -a /dev/sda`.'
+  },
+  {cat:'linux',diff:'hard',xp:70,
+   q:'Explain Linux memory management and what causes OOM kills.',
+   a:'Linux uses demand paging — pages are loaded from disk to RAM on first access. The page cache speeds up I/O. When memory is critically low, the OOM Killer selects and kills a process. The victim is chosen by `oom_score` (higher = more likely to be killed).',
+   code:`free -h
+cat /proc/meminfo | grep -E 'MemFree|Cached|SwapFree'
+
+# Check OOM events:
+dmesg | grep -i "out of memory"
+journalctl -k | grep -i "oom"
+
+# Check process oom_score (0=safe, 1000=first to die):
+cat /proc/PID/oom_score
+
+# Protect a critical process:
+echo -1000 > /proc/PID/oom_score_adj
+
+# Check real available memory (includes reclaimable cache):
+# "Available" in free -h is more accurate than "free"`,
+   tip:'In Kubernetes, OOMKilled = container exceeded memory limit (exit code 137). Check kubectl describe pod for the OOMKill event. Also check if a sidecar (envoy, fluentd) is consuming unexpected memory.'
+  },
+  {cat:'linux',diff:'easy',xp:40,
+   q:'How do you find and kill a process using a specific port?',
+   a:'Finding which process owns a port and stopping it is a common daily task — needed when a port is in use or a service needs forceful stopping.',
+   code:`# Find process using port 8080:
+ss -tlnp | grep :8080
+lsof -i :8080
+
+# Kill by PID:
+kill -15 1234   # SIGTERM (graceful shutdown)
+kill -9 1234    # SIGKILL (force — last resort)
+
+# Kill by port directly:
+kill $(lsof -t -i:8080)
+
+# Or using fuser:
+fuser -k 8080/tcp`,
+   tip:'Always try SIGTERM (kill -15) first. SIGKILL (kill -9) does not allow the process to flush buffers or close connections cleanly — use it only if SIGTERM fails after a few seconds.'
+  },
+  {cat:'linux',diff:'medium',xp:50,
+   q:'What is `systemd` and how does it differ from SysV init?',
+   a:'systemd is the modern init system and service manager. Unlike SysV init\'s sequential startup, systemd starts services in parallel using dependency declarations. It manages the full service lifecycle, logging (journald), and device management (udevd).',
+   code:`# Service management:
+systemctl start|stop|restart|reload nginx
+systemctl enable|disable nginx      # boot persistence
+systemctl status nginx
+systemctl list-units --type=service --state=running
+
+# Logs:
+journalctl -u nginx -f              # follow
+journalctl -u nginx --since "1h ago"
+journalctl -p err -b                # errors since last boot
+
+# Custom service unit (/etc/systemd/system/myapp.service):
+[Service]
+ExecStart=/usr/bin/myapp --port 8080
+Restart=always
+User=appuser`,
+   tip:'Use `systemctl edit nginx` to create a drop-in override (in /etc/systemd/system/nginx.d/) without modifying the package-installed unit file. Changes survive package updates.'
+  },
+  {cat:'linux',diff:'hard',xp:70,
+   q:'How do you use `grep`, `awk`, and `sed` in a DevOps pipeline?',
+   a:'grep filters lines, awk extracts and transforms fields, sed substitutes text. Combined with pipes they form the core of Linux text processing — used constantly for log parsing, config manipulation, and automation scripts.',
+   code:`# Extract CPU usage:
+top -bn1 | grep "Cpu(s)" | awk '{print "CPU:", $2+$4, "%"}'
+
+# Top 10 IPs from nginx log:
+awk '{print $1}' /var/log/nginx/access.log | sort | uniq -c | sort -rn | head
+
+# Replace config value in-place:
+sed -i.bak 's/max_connections = 100/max_connections = 500/' /etc/postgresql.conf
+
+# Count HTTP status codes:
+awk '{print $9}' /var/log/nginx/access.log | sort | uniq -c | sort -rn
+
+# Find OOMKilled pods:
+kubectl get pods -A | grep -v "Running\|Completed" | awk '{print $1,$2,$4}'`,
+   tip:'Prefer awk over cut for field extraction when fields have variable spacing. Use `grep -P` for Perl regex (more powerful). Use `sed -i.bak` to always create a backup before in-place edits.'
+  },
+  {cat:'linux',diff:'medium',xp:50,
+   q:'What is the difference between a process and a thread in Linux?',
+   a:'A process is an independent execution unit with its own memory address space, file descriptors, and PID. A thread shares memory and file descriptors with sibling threads but has its own stack and registers. A crashed thread can kill the whole process; a crashed child process does not affect the parent.',
+   code:`# List processes:
+ps aux
+ps -ef --forest    # show parent-child tree
+
+# List threads of a specific process:
+ps -L -p PID
+ls /proc/PID/task/  # one directory per thread
+
+# Count threads of a process:
+cat /proc/PID/status | grep Threads
+
+# Kill entire process group (parent + all children):
+kill -TERM -PGID`,
+   tip:'In Kubernetes, each container runs in its own PID namespace. A crash in one container restarts only that container — the pod and sibling containers keep running. This is different from crashing a thread in a multi-threaded process.'
+  },
+  {cat:'linux',diff:'easy',xp:40,
+   q:'Explain Linux file permissions and octal vs symbolic notation.',
+   a:'Permissions have three groups (owner, group, others) each with read(4), write(2), execute(1). Octal notation uses numbers (755). Symbolic notation uses letters (u+x). Special permissions include setuid, setgid, and sticky bit.',
+   code:`ls -la /etc/nginx/nginx.conf
+# -rw-r--r--  owner:rw-  group:r--  others:r--
+
+# Octal:
+chmod 755 script.sh    # rwxr-xr-x
+chmod 644 config.conf  # rw-r--r--
+chmod 600 private.key  # rw-------
+
+# Symbolic:
+chmod u+x script.sh    # add execute for owner
+chmod g-w file.txt     # remove write from group
+chmod a+r file.txt     # add read for all
+
+# Recursive:
+chmod -R 755 /var/www/html
+
+# Check octal value:
+stat -c "%a %n" file`,
+   tip:'Never use 777 in production. Use 644 for config files, 755 for directories and executables, 600 for private keys. For web servers, use 640 (owner rw, group r) so the web process user can read but not write configs.'
+  },
+  // CI/CD (8)
+  {cat:'cicd',diff:'medium',xp:50,
+   q:'What is GitOps and how does it differ from traditional CI/CD?',
+   a:'In traditional CI/CD, a pipeline pushes changes to infrastructure with elevated credentials. In GitOps, an operator (ArgoCD, Flux) running inside the cluster pulls from a Git repository and continuously reconciles live state to match it. Git is the single source of truth. Changes to infrastructure = commits to Git.',
+   code:`# GitOps with ArgoCD:
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+spec:
+  source:
+    repoURL: https://github.com/eknatha/terraform-labs
+    targetRevision: main
+    path: k8s/production
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: production
+  syncPolicy:
+    automated:
+      prune: true       # delete resources removed from Git
+      selfHeal: true    # revert manual changes to cluster`,
+   tip:'GitOps provides automatic audit trail — every change to production is a Git commit with author, timestamp, and diff. Compliance reporting and incident investigation become trivial.'
+  },
+  {cat:'cicd',diff:'easy',xp:40,
+   q:'What is the difference between CI and CD pipelines?',
+   a:'CI (Continuous Integration) automates integrating code changes — tests, linting, building artifacts on every commit. CD means Continuous Delivery (every build deployable, manual trigger) or Continuous Deployment (every passing build auto-deploys to production).',
+   code:`jobs:
+  ci:                   # Continuous Integration
+    steps:
+    - run: npm test       # unit tests
+    - run: npm run lint   # code quality
+    - run: npm run build  # build artifact
+
+  cd-staging:           # Continuous Delivery
+    needs: ci
+    - run: kubectl apply -f k8s/staging/
+
+  cd-production:        # Continuous Deployment
+    needs: cd-staging
+    environment: production  # manual approval gate
+    - run: kubectl apply -f k8s/production/`,
+   tip:'Start with Continuous Delivery (manual production trigger) and evolve to Continuous Deployment once you have sufficient test coverage, feature flags, and automated rollback in place.'
+  },
+  {cat:'cicd',diff:'hard',xp:70,
+   q:'How do you implement blue-green deployments in Kubernetes?',
+   a:'Maintain two identical environments (Blue = current, Green = new). Deploy to Green, test, then shift all traffic atomically by swapping the Service selector. Zero-downtime switch. Instant rollback by swapping back.',
+   code:`# Blue deployment (current live, receiving traffic):
+kind: Deployment
+metadata: {name: web-blue}
+spec:
+  selector: {matchLabels: {app: web, version: blue}}
+
+# Green deployment (new version, no traffic yet):
+kind: Deployment
+metadata: {name: web-green}
+spec:
+  selector: {matchLabels: {app: web, version: green}}
+
+# Service (points to blue initially):
+spec:
+  selector: {app: web, version: blue}
+
+# Atomic traffic switch — zero downtime:
+kubectl patch service web -p '{"spec":{"selector":{"version":"green"}}}'
+
+# Instant rollback:
+kubectl patch service web -p '{"spec":{"selector":{"version":"blue"}}}'`,
+   tip:'Blue-green requires stateless apps or careful database migration planning. Run backward-compatible schema migrations before the switch. Only run destructive migrations after Blue is fully decommissioned.'
+  },
+  {cat:'cicd',diff:'medium',xp:50,
+   q:'What is Docker layer caching and how do you optimise a Dockerfile?',
+   a:'Docker builds layer by layer. Layers are cached and reused if unchanged. Poor ordering causes cache invalidation on every code change. The golden rule: order from least-changed (base image, deps) to most-changed (source code).',
+   code:`# BAD — cache busted on every code change:
+FROM node:20
+COPY . .          # any file change invalidates all layers below
+RUN npm install
+
+# GOOD — deps cached separately from code:
+FROM node:20-alpine
+WORKDIR /app
+COPY package*.json ./     # only changes when deps change
+RUN npm ci                # cached until package.json changes
+COPY . .                  # code changes only invalidate this + below
+RUN npm run build
+
+# Multi-stage — smaller production image:
+FROM node:20 AS builder
+# ... build steps ...
+FROM node:20-alpine AS prod
+COPY --from=builder /app/dist .
+CMD ["node", "dist/server.js"]`,
+   tip:'Use `docker build --progress=plain` to see which layers are CACHED vs rebuilt. For monorepos, use BuildKit `--cache-from` with a registry to share layers across CI runners.'
+  },
+  {cat:'cicd',diff:'easy',xp:40,
+   q:'How do you manage secrets securely in CI/CD pipelines?',
+   a:'Secrets must never appear in logs, source code, or artifact layers. Use CI platform secret stores (GitHub Secrets), cloud secrets managers (AWS Secrets Manager), or OIDC (no stored secret at all). Mark registered secrets so CI masks them in logs.',
+   code:`# GitHub Actions — secrets are masked in logs:
+steps:
+- name: Deploy
+  env:
+    DB_PASSWORD: \${{ secrets.DB_PASSWORD }}  # shown as *** in logs
+  run: |
+    echo "Password: \$DB_PASSWORD"   # logs: Password: ***
+
+# Best practice — OIDC (no secret stored anywhere):
+- uses: aws-actions/configure-aws-credentials@v4
+  with:
+    role-to-assume: arn:aws:iam::123:role/deploy-role
+    # GitHub gets short-lived token via OIDC — zero stored credential`,
+   tip:'Audit CI logs regularly for leaks — search for AKIA (AWS key prefix) or long base64 strings. GitHub automatically masks registered secrets but custom credential formats can slip through.'
+  },
+  {cat:'cicd',diff:'hard',xp:70,
+   q:'How do you implement canary deployments in Kubernetes?',
+   a:'A canary routes a small traffic percentage to the new version. You gradually increase it as confidence grows. This limits blast radius — only 5% of users affected instead of 100%. Use Argo Rollouts for automated metrics-gated promotion.',
+   code:`# Method 1: Replica ratio (crude but simple):
+# 9 stable + 1 canary = 10% canary traffic
+kind: Deployment
+metadata: {name: web-stable}
+spec: {replicas: 9}
+# Service selector: app: web (matches both)
+
+kind: Deployment
+metadata: {name: web-canary}
+spec: {replicas: 1}
+
+# Method 2: Argo Rollouts (proper canary with metrics):
+strategy:
+  canary:
+    steps:
+    - setWeight: 5           # 5% canary
+    - pause: {duration: 10m}
+    - setWeight: 50
+    - pause: {duration: 10m}
+    analysis:
+      templates:
+      - templateName: error-rate  # auto-abort if errors spike`,
+   tip:'Use Argo Rollouts or Flagger for production — they auto-abort and rollback if error rate or latency exceeds thresholds. Manual canary is risky: it requires an engineer to watch metrics and pull the trigger.'
+  },
+  {cat:'cicd',diff:'medium',xp:50,
+   q:'What is semantic versioning and how does it apply to CI/CD?',
+   a:'SemVer uses MAJOR.MINOR.PATCH. MAJOR = breaking change, MINOR = new backward-compatible feature, PATCH = bug fix. In CI/CD it enables automated dependency management and meaningful changelogs. Tools like semantic-release auto-bump versions from conventional commit messages.',
+   code:`# Conventional commits → auto version bump:
+feat: add retry logic          → MINOR bump  1.2.0 → 1.3.0
+fix: fix login redirect bug    → PATCH bump  1.3.0 → 1.3.1
+feat!: new auth API            → MAJOR bump  1.3.1 → 2.0.0
+
+# Tag images with commit SHA (immutable):
+docker build -t myapp:\${{ github.sha }} .
+docker push ecr.amazonaws.com/myapp:\${{ github.sha }}
+
+# In Terraform — pin provider with SemVer:
+required_providers {
+  aws = { version = "~> 5.0" }  # allows 5.x, blocks 6.x
+}`,
+   tip:'Tag Docker images with the Git commit SHA, not just "latest". latest is mutable — you can never know what code it contains. SHA tags are immutable and traceable to exact code for rollback and incident investigation.'
+  },
+  {cat:'cicd',diff:'hard',xp:70,
+   q:'What is trunk-based development and how does it enable true CI?',
+   a:'Everyone commits to the main branch (trunk) or uses very short-lived feature branches (< 1 day). The trunk is always deployable. Feature flags decouple deployment from feature release. This enables true CI — integration happens multiple times daily, not weekly.',
+   code:`# Trunk-based workflow:
+git pull origin main
+# Make a small, atomic change:
+git checkout -b feat/retry-logic
+git commit -m "feat: add exponential backoff to API client"
+# Open PR → CI runs → merge SAME DAY
+
+# Feature flag (not branching) controls rollout:
+if featureFlags.IsEnabled("new-retry-logic", userID) {
+  return clientWithRetry.Call(endpoint)
+} else {
+  return legacyClient.Call(endpoint)
+}
+
+# CI triggers on every commit to trunk:
+on:
+  push:
+    branches: [main]   # every commit runs full CI`,
+   tip:'Feature flags are the key enabler of trunk-based development. Tools: LaunchDarkly, Unleash (open source), or simple config-file flags. They let you ship code to production before it\'s visible to users.'
+  },
+  // AWS (9)
+  {cat:'aws',diff:'medium',xp:50,
+   q:'What is AWS IAM and how do you implement least-privilege access?',
+   a:'IAM controls who can do what in AWS. Least privilege means granting only exact permissions needed. Start with zero and add specific Allow statements for the resources and actions actually used.',
+   code:`# BAD — overly broad:
+{"Effect":"Allow","Action":"s3:*","Resource":"*"}
+
+# GOOD — least privilege:
+{
+  "Effect": "Allow",
+  "Action": ["s3:GetObject","s3:ListBucket"],
+  "Resource": [
+    "arn:aws:s3:::my-bucket",
+    "arn:aws:s3:::my-bucket/*"
+  ]
+}
+
+# Simulate what a role can do:
+aws iam simulate-principal-policy \\
+  --policy-source-arn arn:aws:iam::123:role/MyRole \\
+  --action-names s3:GetObject \\
+  --resource-arns arn:aws:s3:::my-bucket/*`,
+   tip:'Use IAM Access Analyzer to identify unused permissions and generate least-privilege policies from CloudTrail activity. Also use permission boundaries to limit the maximum permissions a role can have.'
+  },
+  {cat:'aws',diff:'easy',xp:40,
+   q:'What is the difference between a Security Group and a Network ACL?',
+   a:'Security Groups are stateful (return traffic auto-allowed), attached to resources. NACLs are stateless (must explicitly allow both inbound and outbound), attached to subnets. Security Groups are the primary tool; NACLs add subnet-level defence.',
+   code:`# Security Group (stateful — attached to EC2/RDS):
+ingress {
+  from_port   = 443; to_port = 443
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+}
+# Return traffic for port 443 automatically allowed
+
+# Network ACL (stateless — attached to subnet):
+# Must explicitly allow BOTH directions:
+rule 100: inbound  TCP 443  ALLOW
+rule 200: outbound TCP 1024-65535  ALLOW  # ephemeral ports!`,
+   tip:'NACLs process rules in order by rule number — lower numbers evaluated first. Use NACLs for broad subnet-level blocks (blocking an attacking IP range). Use Security Groups for per-resource access control.'
+  },
+  {cat:'aws',diff:'hard',xp:70,
+   q:'How does AWS Auto Scaling work and what scaling policies work for different workloads?',
+   a:'Auto Scaling adjusts EC2/ECS/EKS capacity based on demand. Target tracking maintains a metric at a value (simplest). Step scaling responds to alarm thresholds with different actions. Scheduled scaling handles predictable patterns. Predictive scaling uses ML to pre-scale.',
+   code:`# Target tracking (recommended for most workloads):
+resource "aws_autoscaling_policy" "cpu" {
+  policy_type = "TargetTrackingScaling"
+  target_tracking_configuration {
+    predefined_metric_type = "ASGAverageCPUUtilization"
+    target_value           = 60.0  # maintain 60% CPU
+  }
+}
+
+# Scheduled scaling — anticipate Monday morning load:
+resource "aws_autoscaling_schedule" "monday" {
+  recurrence       = "0 7 * * 1"  # Monday 7am UTC
+  desired_capacity = 20
+  min_size         = 10
+  max_size         = 50
+}`,
+   tip:'Use Target Tracking for most workloads — it is self-adjusting and needs no manual threshold tuning. Add Predictive Scaling for consistent daily/weekly load patterns to pre-scale before load arrives.'
+  },
+  {cat:'aws',diff:'medium',xp:50,
+   q:'What is VPC peering vs Transit Gateway and when would you use each?',
+   a:'VPC Peering connects two VPCs directly — non-transitive (A↔B, B↔C does NOT mean A can reach C). Transit Gateway is a regional hub — connects many VPCs and is transitive. Use peering for 2-VPC connections; Transit Gateway for 3+ VPCs or hub-and-spoke architectures.',
+   code:`# VPC Peering (2 VPCs):
+resource "aws_vpc_peering_connection" "main" {
+  vpc_id      = aws_vpc.main.id
+  peer_vpc_id = aws_vpc.peer.id
+  auto_accept = true
+}
+# Must add routes to BOTH VPCs' route tables
+
+# Transit Gateway (hub-and-spoke, scales to 100s of VPCs):
+resource "aws_ec2_transit_gateway" "main" {}
+resource "aws_ec2_transit_gateway_vpc_attachment" "spoke1" {
+  transit_gateway_id = aws_ec2_transit_gateway.main.id
+  vpc_id             = aws_vpc.spoke1.id
+  subnet_ids         = var.spoke1_subnets
+}`,
+   tip:'VPC peering has no per-GB charge for same-AZ traffic. Transit Gateway charges per-attachment ($0.05/hr) and per-GB ($0.02). For < 5 VPCs with stable topology, peering is cheaper and simpler.'
+  },
+  {cat:'aws',diff:'easy',xp:40,
+   q:'What is the difference between Amazon S3 storage classes?',
+   a:'S3 offers tiers at different price/access trade-offs. Standard for frequent access. Standard-IA (Infrequent Access) cheaper but has retrieval fee. Glacier for archival. Intelligent-Tiering auto-moves between tiers. Use Lifecycle policies to transition objects based on age.',
+   code:`# Lifecycle policy — auto-transition by age:
+rule {
+  filter { prefix = "logs/" }
+  transition {
+    days          = 30
+    storage_class = "STANDARD_IA"
+  }
+  transition {
+    days          = 90
+    storage_class = "GLACIER"
+  }
+  expiration { days = 365 }
+}
+
+# Storage class quick reference:
+# STANDARD         $0.023/GB  frequent access
+# STANDARD_IA      $0.0125/GB infrequent + $0.01/GB retrieval
+# GLACIER          $0.0036/GB archival, 1-5 min restore
+# GLACIER_DEEP     $0.00099/GB cheapest, 12hr restore`,
+   tip:'Use Intelligent-Tiering for data with unknown access patterns — it auto-optimises cost with no retrieval fees. The $0.0025/1000 object monitoring fee pays for itself once objects start transitioning to cheaper tiers.'
+  },
+  {cat:'aws',diff:'hard',xp:70,
+   q:'How do you design a highly available multi-AZ architecture on AWS?',
+   a:'HA means no single AZ failure affects availability. Distribute compute across 3 AZs, use stateless compute tier, database with automated failover, load balancing across AZs, and health checks that trigger replacement.',
+   code:`# Spread ASG across all AZs:
+resource "aws_autoscaling_group" "main" {
+  vpc_zone_identifier = values(aws_subnet.private)[*].id
+  min_size = 3; max_size = 12
+}
+
+# ALB spans all AZs automatically:
+resource "aws_lb" "main" {
+  subnets = values(aws_subnet.public)[*].id
+}
+
+# RDS Multi-AZ (synchronous standby, auto-failover ~60-120s):
+resource "aws_db_instance" "main" {
+  multi_az                = true
+  backup_retention_period = 7
+  deletion_protection     = true
+}`,
+   tip:'For RDS Multi-AZ failover, set DB connection timeout > 120s and implement retry with exponential backoff. The DNS record flips automatically during failover — in-flight connections fail and MUST be retried.'
+  },
+  {cat:'aws',diff:'medium',xp:50,
+   q:'How do you set up meaningful CloudWatch alerting?',
+   a:'Alert on symptoms (user-facing impact) not causes alone. Use the SRE golden signals: latency, traffic, errors, saturation. Use composite alarms to reduce noise. High CPU with no user impact is not an emergency.',
+   code:`resource "aws_cloudwatch_metric_alarm" "error_rate" {
+  alarm_name          = "api-error-rate-high"
+  comparison_operator = "GreaterThanThreshold"
+  evaluation_periods  = 3       # breach 3 consecutive periods
+  threshold           = 1.0     # 1% error rate SLO
+
+  metric_query {
+    id         = "error_rate"
+    expression = "errors / requests * 100"
+    return_data = true
+  }
+  alarm_actions = [aws_sns_topic.alerts.arn]
+}
+
+# Composite alarm — only alert when BOTH metrics are bad:
+resource "aws_cloudwatch_composite_alarm" "degraded" {
+  alarm_rule = "ALARM(\\"error-rate\\") AND ALARM(\\"latency-p99\\")"
+}`,
+   tip:'Work backwards from SLOs to define alert thresholds. If your SLO is 99.9% availability, alert when error rate hits 0.1%. Composite alarms prevent alert storms when one root cause triggers many individual alarms.'
+  },
+  {cat:'aws',diff:'easy',xp:40,
+   q:'What is the difference between Amazon RDS and Amazon Aurora?',
+   a:'RDS manages standard database engines on EC2-backed instances with Multi-AZ replication (failover ~60-120s). Aurora is cloud-native with distributed storage across 3 AZs (6 copies), up to 15 read replicas, faster failover (< 30s), and up to 5× MySQL throughput. Aurora Serverless v2 auto-scales capacity.',
+   code:`# RDS PostgreSQL (standard):
+resource "aws_db_instance" "pg" {
+  engine            = "postgres"
+  instance_class    = "db.t3.medium"
+  multi_az          = true
+  storage_encrypted = true
+}
+
+# Aurora PostgreSQL (cloud-native, faster, more replicas):
+resource "aws_rds_cluster" "aurora" {
+  engine         = "aurora-postgresql"
+  engine_version = "15.4"
+  # 6 copies across 3 AZs built-in — no multi_az flag needed
+}
+
+# Aurora Serverless v2 (auto-scales instantly):
+instance_class = "db.serverless"
+serverlessv2_scaling_configuration {
+  min_capacity = 0.5; max_capacity = 16
+}`,
+   tip:'Choose Aurora for new apps needing > 1,000 IOPS, fast failover, or read scaling. Use RDS for migrating existing apps from on-premises (easier engine compatibility) or when Aurora\'s cost premium isn\'t justified.'
+  },
+  {cat:'aws',diff:'hard',xp:70,
+   q:'How do you implement cost optimisation for AWS infrastructure?',
+   a:'AWS cost optimisation: tagging for allocation visibility, rightsizing instances, Spot Instances for fault-tolerant workloads (up to 90% savings), Savings Plans for committed compute, Lifecycle policies for storage, and scheduling dev environments off overnight.',
+   code:`# Tag everything (cost allocation):
+locals {
+  common_tags = {
+    Project = var.project; Environment = var.env
+    CostCenter = var.cost_center; ManagedBy = "terraform"
+  }
+}
+
+# 80% Spot Instances in ASG (non-critical workloads):
+mixed_instances_policy {
+  instances_distribution {
+    on_demand_percentage_above_base_capacity = 20
+    spot_allocation_strategy = "capacity-optimized"
+  }
+}
+
+# Schedule dev environments off at night:
+resource "aws_autoscaling_schedule" "dev_off" {
+  recurrence       = "0 20 * * 1-5"  # weekdays 8pm UTC
+  desired_capacity = 0; min_size = 0; max_size = 0
+}`,
+   tip:'Use AWS Compute Optimizer for rightsizing recommendations — it analyses 14 days of CloudWatch metrics and suggests instance types matching actual usage. Applying its recommendations typically saves 20-40% on over-provisioned instances.'
+  },
+  // GCP (5)
+  {cat:'gcp',diff:'medium',xp:50,
+   q:'What is GCP\'s resource hierarchy and how does IAM inheritance work?',
+   a:'GCP hierarchy: Organisation → Folder → Project → Resources. IAM policies inherit downward — a binding at Organisation level applies to all projects. Folders group projects for policy inheritance. Project is the primary billing and resource boundary.',
+   code:`# Project-level IAM binding:
+resource "google_project_iam_binding" "viewer" {
+  project = var.project_id
+  role    = "roles/compute.viewer"
+  members = ["serviceAccount:\${google_service_account.app.email}"]
+}
+
+# Folder-level (applies to ALL projects in folder):
+resource "google_folder_iam_binding" "security" {
+  folder  = "folders/\${var.folder_id}"
+  role    = "roles/securitycenter.viewer"
+  members = ["group:security-team@company.com"]
+}
+
+# Workload Identity (GKE keyless auth — no JSON key):
+resource "google_service_account_iam_binding" "wi" {
+  service_account_id = google_service_account.app.name
+  role               = "roles/iam.workloadIdentityUser"
+  members = ["serviceAccount:\${var.project}.svc.id.goog[\${var.ns}/\${var.ksa}]"]
+}`,
+   tip:'Use Workload Identity instead of service account key files for GKE pods — it maps a Kubernetes ServiceAccount to a GCP Service Account without storing credentials anywhere. GCP\'s equivalent of AWS OIDC/IRSA.'
+  },
+  {cat:'gcp',diff:'easy',xp:40,
+   q:'What is GKE Autopilot and how does it differ from Standard mode?',
+   a:'GKE Autopilot is fully managed — Google manages all nodes, you only define pods. Standard mode gives you control over node pools but requires managing node lifecycle, machine types, and autoscaling yourself.',
+   code:`# Autopilot — no node management, pay per pod:
+resource "google_container_cluster" "autopilot" {
+  name             = "prod-cluster"
+  location         = var.region
+  enable_autopilot = true
+  # No node_pool block — Google provisions nodes automatically
+}
+
+# Standard — you manage node pools:
+resource "google_container_node_pool" "main" {
+  cluster    = google_container_cluster.standard.name
+  node_count = 3
+  node_config { machine_type = "e2-standard-4" }
+  autoscaling { min_node_count = 2; max_node_count = 20 }
+}`,
+   tip:'Autopilot charges per pod CPU/memory request — often cheaper for variable workloads since you pay for exactly what pods consume. Standard is better when you need GPU nodes, spot VMs, or specific machine families.'
+  },
+  {cat:'gcp',diff:'hard',xp:70,
+   q:'How do you set up Cloud SQL with private IP for a GKE application?',
+   a:'Cloud SQL with private IP connects through VPC peering — no public internet. The Cloud SQL Auth Proxy (as a sidecar) handles authentication, encryption, and credential rotation. Workload Identity avoids storing service account keys.',
+   code:`# Cloud SQL with private IP:
+resource "google_sql_database_instance" "main" {
+  database_version = "POSTGRES_15"
+  settings {
+    tier = "db-custom-4-16384"
+    ip_configuration {
+      ipv4_enabled    = false        # no public IP
+      private_network = google_compute_network.main.id
+    }
+  }
+  deletion_protection = true
+}
+
+# Cloud SQL Auth Proxy sidecar in GKE pod:
+containers:
+- name: cloud-sql-proxy
+  image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2
+  args: ["--port=5432", "\${PROJECT}:\${REGION}:\${INSTANCE}"]
+- name: app
+  env:
+  - name: DB_HOST
+    value: "127.0.0.1"  # connects to proxy sidecar`,
+   tip:'The Auth Proxy v2 handles authentication via Workload Identity, encrypts all connections, and automatically refreshes credentials. Never hardcode database IPs — they can change after maintenance.'
+  },
+  {cat:'gcp',diff:'medium',xp:50,
+   q:'How does GCP VPC differ from AWS VPC?',
+   a:'GCP VPC is global — subnets are regional but the VPC spans all regions. Resources in different regions of the same VPC communicate without peering. AWS VPC is regional — inter-region communication requires VPC Peering or Transit Gateway. GCP also supports Shared VPC for multi-project architectures.',
+   code:`# GCP VPC — global, subnets in different regions, same VPC:
+resource "google_compute_network" "main" {
+  name         = "prod-vpc"
+  routing_mode = "GLOBAL"  # routes available globally
+}
+
+resource "google_compute_subnetwork" "us" {
+  region  = "us-central1"; ip_cidr_range = "10.0.0.0/20"
+  network = google_compute_network.main.id
+}
+resource "google_compute_subnetwork" "eu" {
+  region  = "europe-west1"; ip_cidr_range = "10.2.0.0/20"
+  network = google_compute_network.main.id
+}
+# us and eu resources communicate directly — no peering needed`,
+   tip:'GCP\'s global VPC simplifies multi-region architectures — one VPC and one IAM policy set for all regions. Use Shared VPC in multi-project GCP orgs (equivalent to AWS multi-account + Transit Gateway) to centralise network management.'
+  },
+  {cat:'gcp',diff:'easy',xp:40,
+   q:'What is a GCP Service Account and when would you use Workload Identity vs a key?',
+   a:'A service account is a non-human identity for applications. Service account keys are JSON files — long-lived, must be rotated and secured. Workload Identity binds a GKE pod\'s Kubernetes ServiceAccount to a GCP Service Account — no key file, credentials are automatically managed by GKE.',
+   code:`# Workload Identity (preferred for GKE):
+resource "google_service_account" "app" {
+  account_id = "myapp-sa"
+}
+resource "google_service_account_iam_binding" "wi" {
+  service_account_id = google_service_account.app.name
+  role               = "roles/iam.workloadIdentityUser"
+  members = [
+    "serviceAccount:\${var.project}.svc.id.goog[namespace/ksa-name]"
+  ]
+}
+# Annotate Kubernetes ServiceAccount:
+# iam.gke.io/gcp-service-account=myapp-sa@project.iam.gserviceaccount.com
+# Pod automatically gets GCP credentials — no JSON key file`,
+   tip:'Use Workload Identity for all GKE workloads. Service account keys are appropriate for CI/CD systems outside GCP until you can use OIDC federation. Rotate keys every 90 days maximum if you must use them.'
+  },
+];
+
+// ──────────────────────────────────────────────
+// DAILY IQ ENGINE
+// ──────────────────────────────────────────────
+let iqCountdownTimer = null;
+
+function getTodayIQIdx(){
+  const today = new Date();
+  const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
+  return dayOfYear % IQ_BANK.length;
+}
+function getTodayKey(){ return new Date().toISOString().slice(0,10); }
+
+function initIQ(){
+  const idx = getTodayIQIdx();
+  const iq  = IQ_BANK[idx];
+  const claimed = S.iqClaimed && S.iqClaimed[getTodayKey()];
+  const catEl = document.getElementById('iqCatBadge');
+  if(catEl){ catEl.textContent=iq.cat.toUpperCase(); catEl.className=`iq-cat-badge iqcat-${iq.cat}`; }
+  const diffEl = document.getElementById('iqDiff');
+  if(diffEl){ diffEl.textContent=iq.diff.toUpperCase(); diffEl.className=`iq-diff ${iq.diff}`; }
+  document.getElementById('iqQuestion').textContent = iq.q;
+  document.getElementById('iqXpBadge').textContent = `+${iq.xp} XP`;
+  if(claimed){ showIQAnswer(iq); const btn=document.getElementById('iqRevealBtn'); if(btn){btn.textContent='✓ ANSWERED TODAY';btn.disabled=true;} }
+  startIQCountdown();
+  renderIQHistory();
+}
+
+function startIQCountdown(){
+  clearInterval(iqCountdownTimer);
+  function tick(){
+    const now=new Date(),mid=new Date(now); mid.setHours(24,0,0,0);
+    const d=Math.floor((mid-now)/1000);
+    const el=document.getElementById('iqCountdown');
+    if(el) el.textContent=`${String(Math.floor(d/3600)).padStart(2,'0')}h ${String(Math.floor((d%3600)/60)).padStart(2,'0')}m ${String(d%60).padStart(2,'0')}s`;
+  }
+  tick(); iqCountdownTimer=setInterval(tick,1000);
+}
+
+function revealIQ(){
+  const idx=getTodayIQIdx(), iq=IQ_BANK[idx], todayKey=getTodayKey();
+  showIQAnswer(iq);
+  const btn=document.getElementById('iqRevealBtn');
+  if(btn){btn.textContent='✓ ANSWERED TODAY';btn.disabled=true;}
+  if(!S.iqClaimed||!S.iqClaimed[todayKey]){
+    S.iqClaimed=S.iqClaimed||{};
+    S.iqClaimed[todayKey]={idx,cat:iq.cat,q:iq.q};
+    save();
+    addXP(iq.xp,`Daily IQ: ${iq.q.slice(0,45)}...`);
+    toast(`🎤 +${iq.xp} XP — Interview question answered!`,'t-badge');
+    checkBadges();
+  }
+}
+
+function showIQAnswer(iq){
+  document.getElementById('iqAnswerText').textContent=iq.a;
+  document.getElementById('iqCodeBlock').innerHTML=iqHL(iq.code);
+  document.getElementById('iqTipBox').innerHTML=`<strong>💡 Pro tip:</strong> ${iq.tip}`;
+  document.getElementById('iqAnswerBlock').classList.add('visible');
+}
+
+function copyIQCode(){
+  const raw=IQ_BANK[getTodayIQIdx()].code;
+  navigator.clipboard.writeText(raw).then(()=>toast('✓ Code copied!','t-unlock')).catch(()=>{
+    const ta=document.createElement('textarea');ta.value=raw;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('✓ Copied!','t-unlock');
+  });
+}
+
+function iqHL(code){
+  return code.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/(#[^\n]*)/g,'<span class="cmt">$1</span>')
+    .replace(/(\/\/[^\n]*)/g,'<span class="cmt">$1</span>')
+    .replace(/\b(resource|data|variable|output|locals|module|terraform|provider|backend|lifecycle|for_each|count|depends_on|import|moved|kind|spec|metadata|apiVersion)\b/g,'<span class="kw">$1</span>')
+    .replace(/\b(true|false|null)\b/g,'<span class="val">$1</span>');
+}
+
+function renderIQHistory(){
+  const grid=document.getElementById('iqHistoryGrid');
+  if(!grid) return;
+  const todayIdx=getTodayIQIdx();
+  const history=IQ_BANK.map((iq,i)=>({iq,i})).filter(({i})=>i!==todayIdx).slice(0,18);
+  grid.innerHTML=history.map(({iq,i})=>{
+    const seen=S.iqClaimed&&Object.values(S.iqClaimed).some(v=>v.idx===i);
+    return `<div class="iq-hist-card" onclick="toggleIQHist(this,${i})">
+      <div class="iq-hist-q">${iq.q}</div>
+      <div class="iq-hist-meta">
+        <span class="iq-cat-badge iqcat-${iq.cat}" style="font-size:8px">${iq.cat.toUpperCase()}</span>
+        <span class="iq-diff ${iq.diff}" style="font-size:8px">${iq.diff.toUpperCase()}</span>
+        ${seen?'<span class="iq-seen-badge">✓ SEEN</span>':''}
+      </div>
+      <div class="iq-hist-detail">
+        <div style="font-size:0.82rem;color:#94a3b8;line-height:1.65;margin-bottom:10px">${iq.a}</div>
+        <div class="iq-example-label">// EXAMPLE</div>
+        <pre class="iq-code" style="max-height:180px;overflow-y:auto;font-size:0.75rem">${iqHL(iq.code)}</pre>
+        <div class="iq-tip-box" style="margin-top:8px"><strong>💡</strong> ${iq.tip}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function toggleIQHist(card,idx){
+  card.classList.toggle('expanded');
+  if(card.classList.contains('expanded')){
+    const key=`hist_${idx}_${getTodayKey()}`;
+    S.iqClaimed=S.iqClaimed||{};
+    if(!Object.values(S.iqClaimed).some(v=>v.idx===idx)){
+      S.iqClaimed[key]={idx,cat:IQ_BANK[idx].cat,q:IQ_BANK[idx].q};
+      save();
+    }
+  }
 }
 
 // ──────────────────────────────────────────────
