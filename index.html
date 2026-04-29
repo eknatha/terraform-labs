@@ -306,6 +306,92 @@ footer span{color:var(--accent)}
 .snip-empty{text-align:center;padding:60px 20px;font-family:'Share Tech Mono',monospace;font-size:12px;color:var(--muted);letter-spacing:1px;grid-column:1/-1}
 
 
+
+/* TERM OF THE DAY */
+.term-card{background:linear-gradient(135deg,rgba(245,158,11,0.07),rgba(16,185,129,0.05));border:1px solid rgba(245,158,11,0.22);border-radius:12px;padding:26px;margin-bottom:22px;position:relative;overflow:hidden}
+.term-card::before{content:'TERM OF THE DAY';position:absolute;top:12px;right:16px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--accent4);opacity:0.45}
+.term-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.term-countdown{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted)}
+.term-cat-badge{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;padding:3px 10px;border-radius:2px}
+.termcat-terraform{background:rgba(124,58,237,0.1);color:#a78bfa;border:1px solid rgba(124,58,237,0.2)}
+.termcat-devops{background:rgba(0,229,255,0.08);color:var(--accent);border:1px solid rgba(0,229,255,0.18)}
+.termcat-kubernetes{background:rgba(16,185,129,0.1);color:var(--accent3);border:1px solid rgba(16,185,129,0.2)}
+.termcat-cicd{background:rgba(245,158,11,0.1);color:var(--accent4);border:1px solid rgba(245,158,11,0.2)}
+.termcat-security{background:rgba(239,68,68,0.08);color:var(--danger);border:1px solid rgba(239,68,68,0.18)}
+.term-word{font-family:'Orbitron',monospace;font-size:clamp(1.1rem,3vw,1.5rem);font-weight:900;color:var(--accent4);margin-bottom:6px;letter-spacing:1px}
+.term-pronunciation{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--muted);margin-bottom:14px}
+.term-section-lbl{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;margin-bottom:7px;display:flex;align-items:center;gap:8px}
+.term-section-lbl.def{color:var(--accent3)}.term-section-lbl.def::after{content:'';flex:1;height:1px;background:rgba(16,185,129,0.18)}
+.term-section-lbl.ana{color:var(--accent4)}.term-section-lbl.ana::after{content:'';flex:1;height:1px;background:rgba(245,158,11,0.15)}
+.term-section-lbl.why{color:var(--accent)}.term-section-lbl.why::after{content:'';flex:1;height:1px;background:rgba(0,229,255,0.12)}
+.term-section-lbl.ex{color:#a78bfa}.term-section-lbl.ex::after{content:'';flex:1;height:1px;background:rgba(124,58,237,0.15)}
+.term-definition{font-size:0.92rem;color:#e2e8f0;line-height:1.75;margin-bottom:14px}
+.term-analogy{font-size:0.87rem;color:#94a3b8;line-height:1.65;padding:10px 14px;background:rgba(245,158,11,0.05);border-left:3px solid rgba(245,158,11,0.3);border-radius:0 5px 5px 0;margin-bottom:14px;font-style:italic}
+.term-why{font-size:0.87rem;color:#94a3b8;line-height:1.65;margin-bottom:14px}
+.term-code{background:#020610;border:1px solid rgba(245,158,11,0.12);border-radius:6px;padding:12px 14px;font-family:'Share Tech Mono',monospace;font-size:0.79rem;color:#94a3b8;line-height:1.7;overflow-x:auto;white-space:pre;margin-bottom:14px;position:relative}
+.term-code .cmt{color:#334155}.term-code .kw{color:#a78bfa}.term-code .str{color:var(--accent4)}.term-code .val{color:var(--accent3)}
+.term-code-copy{position:absolute;top:7px;right:7px;font-family:'Share Tech Mono',monospace;font-size:9px;padding:3px 9px;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);border-radius:3px;color:var(--accent4);cursor:pointer;transition:all 0.2s}
+.term-code-copy:hover{background:rgba(245,158,11,0.16)}
+.term-actions{display:flex;gap:10px;margin-top:4px;flex-wrap:wrap;align-items:center}
+.term-viewed-btn{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1px;padding:9px 18px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);border-radius:4px;color:var(--accent4);cursor:pointer;transition:all 0.2s}
+.term-viewed-btn:hover{background:rgba(245,158,11,0.2)}.term-viewed-btn:disabled{opacity:0.5;cursor:default}
+.term-xp-badge{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--accent3);background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);padding:4px 12px;border-radius:3px}
+.term-hist-label{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--accent4);margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.term-hist-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.term-hist-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 14px;cursor:pointer;transition:all 0.2s}
+.term-hist-card:hover{border-color:rgba(245,158,11,0.3);transform:translateY(-2px)}
+.term-hist-card.open{border-color:rgba(245,158,11,0.4)}
+.term-hist-word{font-family:'Orbitron',monospace;font-size:0.85rem;color:var(--accent4);margin-bottom:4px;font-weight:700}
+.term-hist-def{font-size:0.81rem;color:#94a3b8;line-height:1.4;margin-bottom:8px}
+.term-hist-meta{display:flex;gap:6px;align-items:center}
+.term-hist-detail{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
+.term-hist-card.open .term-hist-detail{display:block}
+.term-seen-tag{font-family:'Share Tech Mono',monospace;font-size:8px;padding:2px 7px;background:rgba(245,158,11,0.08);color:var(--accent4);border:1px solid rgba(245,158,11,0.2);border-radius:2px}
+
+/* ERROR OF THE DAY */
+.err-card{background:linear-gradient(135deg,rgba(239,68,68,0.07),rgba(124,58,237,0.04));border:1px solid rgba(239,68,68,0.25);border-radius:12px;padding:26px;margin-bottom:22px;position:relative;overflow:hidden}
+.err-card::before{content:'ERROR OF THE DAY';position:absolute;top:12px;right:16px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--danger);opacity:0.45}
+.err-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.err-countdown{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted)}
+.err-severity{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;padding:3px 10px;border-radius:2px}
+.err-sev-high{background:rgba(239,68,68,0.12);color:var(--danger);border:1px solid rgba(239,68,68,0.25)}
+.err-sev-med{background:rgba(245,158,11,0.1);color:var(--accent4);border:1px solid rgba(245,158,11,0.22)}
+.err-sev-low{background:rgba(16,185,129,0.1);color:var(--accent3);border:1px solid rgba(16,185,129,0.2)}
+.err-area{font-family:'Share Tech Mono',monospace;font-size:9px;padding:3px 8px;border-radius:2px;background:rgba(100,116,139,0.1);color:var(--muted);border:1px solid rgba(100,116,139,0.18)}
+.err-title{font-family:'Orbitron',monospace;font-size:clamp(0.9rem,2vw,1.1rem);font-weight:700;color:var(--danger);margin-bottom:10px;line-height:1.3}
+.err-section-lbl{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;margin-bottom:7px;display:flex;align-items:center;gap:8px}
+.err-section-lbl.msg{color:var(--danger)}.err-section-lbl.msg::after{content:'';flex:1;height:1px;background:rgba(239,68,68,0.18)}
+.err-section-lbl.cause{color:var(--accent4)}.err-section-lbl.cause::after{content:'';flex:1;height:1px;background:rgba(245,158,11,0.15)}
+.err-section-lbl.fix{color:var(--accent3)}.err-section-lbl.fix::after{content:'';flex:1;height:1px;background:rgba(16,185,129,0.18)}
+.err-section-lbl.tip{color:var(--accent)}.err-section-lbl.tip::after{content:'';flex:1;height:1px;background:rgba(0,229,255,0.12)}
+.err-msg-block{background:#0a0404;border:1px solid rgba(239,68,68,0.2);border-radius:6px;padding:12px 14px;font-family:'Share Tech Mono',monospace;font-size:0.79rem;color:#f87171;line-height:1.7;overflow-x:auto;white-space:pre;margin-bottom:14px}
+.err-cause{font-size:0.88rem;color:#e2e8f0;line-height:1.7;margin-bottom:14px}
+.err-steps{display:flex;flex-direction:column;gap:7px;margin-bottom:14px}
+.err-step{display:flex;gap:10px;align-items:flex-start}
+.err-step-num{font-family:'Share Tech Mono',monospace;font-size:10px;min-width:22px;height:22px;border-radius:50%;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.22);color:var(--accent3);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.err-step-text{font-size:0.86rem;color:#94a3b8;line-height:1.55}
+.err-code{background:#020610;border:1px solid rgba(16,185,129,0.12);border-radius:6px;padding:12px 14px;font-family:'Share Tech Mono',monospace;font-size:0.79rem;color:#94a3b8;line-height:1.7;overflow-x:auto;white-space:pre;margin-bottom:12px;position:relative}
+.err-code .cmt{color:#334155}.err-code .kw{color:#a78bfa}.err-code .str{color:var(--accent4)}.err-code .val{color:var(--accent3)}
+.err-code-copy{position:absolute;top:7px;right:7px;font-family:'Share Tech Mono',monospace;font-size:9px;padding:3px 9px;background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.2);border-radius:3px;color:var(--accent3);cursor:pointer;transition:all 0.2s}
+.err-code-copy:hover{background:rgba(16,185,129,0.15)}
+.err-prevent{font-size:0.85rem;color:#94a3b8;line-height:1.6;padding:9px 13px;background:rgba(0,229,255,0.05);border-left:3px solid rgba(0,229,255,0.25);border-radius:0 5px 5px 0;margin-bottom:14px}
+.err-prevent strong{color:var(--accent)}
+.err-actions{display:flex;gap:10px;margin-top:4px;flex-wrap:wrap;align-items:center}
+.err-viewed-btn{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1px;padding:9px 18px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:4px;color:var(--danger);cursor:pointer;transition:all 0.2s}
+.err-viewed-btn:hover{background:rgba(239,68,68,0.18)}.err-viewed-btn:disabled{opacity:0.5;cursor:default}
+.err-xp-badge{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--accent);background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.2);padding:4px 12px;border-radius:3px}
+.err-hist-label{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--danger);margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.err-hist-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.err-hist-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 14px;cursor:pointer;transition:all 0.2s}
+.err-hist-card:hover{border-color:rgba(239,68,68,0.3);transform:translateY(-2px)}
+.err-hist-card.open{border-color:rgba(239,68,68,0.4)}
+.err-hist-title{font-size:0.85rem;color:var(--danger);font-weight:600;margin-bottom:4px;line-height:1.3}
+.err-hist-cause{font-size:0.8rem;color:#94a3b8;line-height:1.4;margin-bottom:8px}
+.err-hist-meta{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.err-hist-detail{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
+.err-hist-card.open .err-hist-detail{display:block}
+.err-seen-tag{font-family:'Share Tech Mono',monospace;font-size:8px;padding:2px 7px;background:rgba(239,68,68,0.08);color:var(--danger);border:1px solid rgba(239,68,68,0.2);border-radius:2px}
+
 /* COMMAND OF THE DAY */
 .cmd-card{background:linear-gradient(135deg,rgba(0,229,255,0.07),rgba(124,58,237,0.06));border:1px solid rgba(0,229,255,0.2);border-radius:12px;padding:26px;margin-bottom:22px;position:relative;overflow:hidden}
 .cmd-card::before{content:'COMMAND OF THE DAY';position:absolute;top:12px;right:16px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--accent);opacity:0.45}
@@ -500,7 +586,7 @@ footer span{color:var(--accent)}
     <p class="ob-sub">Enter your callsign to begin. This personalises your HUD, dashboard, and progress reports.</p>
     <div class="ob-input-wrap">
       <span class="ob-prefix">OPERATOR //</span>
-      <input class="ob-input" id="obInput" type="text" maxlength="20" placeholder="e.g. Eknatha" autocomplete="off" onkeydown="if(event.key==='Enter')obConfirm()">
+      <input class="ob-input" id="obInput" type="text" maxlength="20" placeholder="e.g. Your Name" autocomplete="off" onkeydown="if(event.key==='Enter')obConfirm()">
     </div>
     <p class="ob-tip" id="obTip">YOU CAN CHANGE THIS ANYTIME BY CLICKING YOUR NAME IN THE HUD</p>
     <button class="btn btn-primary" style="width:100%;margin-top:4px" onclick="obConfirm()">&#9654; INITIALIZE MISSION</button>
@@ -562,6 +648,8 @@ footer span{color:var(--accent)}
   <button class="tab-btn" onclick="switchTab('drill')" id="tab-drill">🃏 DRILL</button>
   <button class="tab-btn" onclick="switchTab('snippets')" id="tab-snippets">📋 SNIPPETS</button>
   <button class="tab-btn" onclick="switchTab('cmd')" id="tab-cmd">⌨️ CMD</button>
+  <button class="tab-btn" onclick="switchTab('term')" id="tab-term">🔤 TERM</button>
+  <button class="tab-btn" onclick="switchTab('error')" id="tab-error">⚠️ ERROR</button>
   <button class="tab-btn" onclick="switchTab('iq')" id="tab-iq">🎤 DAILY IQ</button>
   <button class="tab-btn" onclick="switchTab('badges')" id="tab-badges">🏅 BADGES</button>
   <button class="tab-btn" onclick="switchTab('leaderboard')" id="tab-leaderboard">🏆 LEADERBOARD</button>
@@ -636,6 +724,90 @@ footer span{color:var(--accent)}
   <div class="stats-strip" id="statsStrip"></div>
   <span class="sec-label" style="margin-top:20px">// ACTIVITY LOG</span>
   <div id="actLog" style="display:flex;flex-direction:column;gap:7px;margin-top:10px"></div>
+</div>
+
+<!-- TERM OF THE DAY -->
+<div class="tab-content" id="content-term">
+  <span class="sec-label">// DAILY TERM</span>
+  <div class="sec-title">Term of the Day</div>
+  <p class="sec-intro">One Terraform or DevOps term every day — plain-English definition, real-world analogy, why it matters, and a code example. Mark as learned to earn +3 XP.</p>
+
+  <div class="term-card" id="termCard">
+    <div class="term-meta">
+      <span class="term-countdown">⏰ RESETS IN: <span id="termCountdown">--:--:--</span></span>
+      <span class="term-cat-badge termcat-terraform" id="termCatBadge">TERRAFORM</span>
+    </div>
+    <div class="term-word" id="termWord">Loading...</div>
+    <div class="term-pronunciation" id="termPron"></div>
+
+    <div class="term-section-lbl def">// DEFINITION</div>
+    <div class="term-definition" id="termDef"></div>
+
+    <div class="term-section-lbl ana">// ANALOGY</div>
+    <div class="term-analogy" id="termAnalogy"></div>
+
+    <div class="term-section-lbl why">// WHY IT MATTERS</div>
+    <div class="term-why" id="termWhy"></div>
+
+    <div class="term-section-lbl ex">// CODE EXAMPLE</div>
+    <div style="position:relative">
+      <pre class="term-code" id="termCode"></pre>
+      <button class="term-code-copy" onclick="copyTermCode()">COPY</button>
+    </div>
+
+    <div class="term-actions">
+      <button class="term-viewed-btn" id="termViewedBtn" onclick="markTermViewed()">✓ MARK AS LEARNED  +3 XP</button>
+      <span class="term-xp-badge">+3 XP</span>
+    </div>
+  </div>
+
+  <div>
+    <div class="term-hist-label">// PREVIOUS TERMS — click to expand</div>
+    <div class="term-hist-grid" id="termHistGrid"></div>
+  </div>
+</div>
+
+<!-- ERROR OF THE DAY -->
+<div class="tab-content" id="content-error">
+  <span class="sec-label">// DAILY ERROR</span>
+  <div class="sec-title">Error of the Day</div>
+  <p class="sec-intro">One real Terraform error every day — the exact error text you see in the terminal, the root cause, and the step-by-step fix. +5 XP for marking as fixed.</p>
+
+  <div class="err-card" id="errCard">
+    <div class="err-meta">
+      <span class="err-countdown">⏰ RESETS IN: <span id="errCountdown">--:--:--</span></span>
+      <span class="err-severity err-sev-high" id="errSeverity">HIGH</span>
+      <span class="err-area" id="errArea">STATE</span>
+    </div>
+    <div class="err-title" id="errTitle">Loading...</div>
+
+    <div class="err-section-lbl msg">// ERROR MESSAGE</div>
+    <pre class="err-msg-block" id="errMsg"></pre>
+
+    <div class="err-section-lbl cause">// ROOT CAUSE</div>
+    <div class="err-cause" id="errCause"></div>
+
+    <div class="err-section-lbl fix">// HOW TO FIX IT</div>
+    <div class="err-steps" id="errSteps"></div>
+
+    <div style="position:relative;margin-bottom:12px">
+      <pre class="err-code" id="errCode"></pre>
+      <button class="err-code-copy" onclick="copyErrCode()">COPY FIX</button>
+    </div>
+
+    <div class="err-section-lbl tip">// HOW TO PREVENT IT</div>
+    <div class="err-prevent" id="errPrevent"></div>
+
+    <div class="err-actions">
+      <button class="err-viewed-btn" id="errViewedBtn" onclick="markErrViewed()">✓ MARK AS FIXED  +5 XP</button>
+      <span class="err-xp-badge">+5 XP</span>
+    </div>
+  </div>
+
+  <div>
+    <div class="err-hist-label">// PREVIOUS ERRORS — click to expand</div>
+    <div class="err-hist-grid" id="errHistGrid"></div>
+  </div>
 </div>
 
 <!-- COMMAND OF THE DAY -->
@@ -921,7 +1093,7 @@ terraform version`,
 }
 
 variable "operator_name" {
-  default = "Eknatha"
+  default = "User"
 }
 
 resource "local_file" "mission_log" {
@@ -2210,6 +2382,8 @@ function switchTab(id){
   if(id==='snippets') renderSnippets();
   if(id==='iq') initIQ();
   if(id==='cmd') initCmd();
+  if(id==='term') initTerm();
+  if(id==='error') initErr();
 }
 
 // ──────────────────────────────────────────────
@@ -6165,6 +6339,1893 @@ function togCmdHist(card,idx){
     const key=`hist_${idx}_${new Date().toISOString().slice(0,10)}`;
     if(!Object.values(S.cmdViewed).some(v=>v.idx===idx)){
       S.cmdViewed[key]={idx,name:CMD_BANK[idx].name}; save();
+    }
+  }
+}
+
+
+
+// ──────────────────────────────────────────────
+// TERM OF THE DAY — 50 terms
+// ──────────────────────────────────────────────
+const TERM_BANK = [
+  {cat:'terraform',word:'Idempotency',pron:'eye-DEM-po-ten-see',
+   def:'An operation that produces the same result no matter how many times it is run. Applying the same operation once or ten times has an identical outcome.',
+   analogy:'Like setting a thermostat to 22°C — pressing the button 10 times still results in 22°C. The operation is safe to repeat.',
+   why:'terraform apply is idempotent: if infrastructure already matches the config, running apply a second time makes zero changes. This makes automation safe — you can run apply in CI on every commit without fear of accidental duplication.',
+   code:`# First apply — creates the VPC:
+# Plan: 1 to add, 0 to change, 0 to destroy.
+
+# Second apply — nothing to do:
+# Plan: 0 to add, 0 to change, 0 to destroy.
+# (Infrastructure is already in the desired state)`},
+
+  {cat:'terraform',word:'Drift',pron:'drift',
+   def:'When the actual state of cloud infrastructure differs from what Terraform state expects. Drift happens when resources are changed outside of Terraform.',
+   analogy:'Like a recipe that says "add 1 tsp of salt" but someone already added 2 — the expected and actual state diverge, and the dish will taste different from what the recipe intends.',
+   why:'Drift causes unexpected plan output and can trigger resource replacement if not caught early. Detecting drift before applying prevents surprise outages in production.',
+   code:`# Detect drift without making any changes:
+terraform plan -refresh-only
+
+# Output shows what changed outside Terraform:
+# ~ resource "aws_instance" "web" {
+#     ~ tags = { + "PatchedBy" = "ops-team" }
+#   }
+# This plan will update state to match reality.`},
+
+  {cat:'terraform',word:'State',pron:'stayt',
+   def:'A JSON file (terraform.tfstate) that records every resource Terraform manages — including all attribute values, dependencies, and metadata. The single source of truth for Terraform.',
+   analogy:'Like an inventory ledger for a warehouse — it tracks exactly what exists, where it is, and what condition it is in. Without the ledger, the warehouse manager has no idea what they own.',
+   why:'Terraform compares state against your config to calculate the plan. If state is lost or corrupted, Terraform cannot determine what already exists and may try to recreate everything.',
+   code:`# Inspect current state:
+terraform state list          # list all resources
+terraform state show aws_vpc.main  # show all attributes
+
+# State file is plain JSON:
+cat terraform.tfstate | python3 -m json.tool | head -30`},
+
+  {cat:'terraform',word:'Backend',pron:'BAK-end',
+   def:'The configuration that tells Terraform where to store its state file. The default backend stores state locally. Remote backends (S3, GCS, Azure Blob) enable team collaboration and state locking.',
+   analogy:'Like choosing where to save a shared Google Doc — you could save it only on your laptop (risky) or in Google Drive where everyone can access it safely.',
+   why:'Without a remote backend, only one engineer can run Terraform and state can be lost if the laptop is damaged. Remote backends with locking prevent concurrent applies from corrupting state.',
+   code:`terraform {
+  backend "s3" {
+    bucket         = "my-tf-state"
+    key            = "prod/terraform.tfstate"
+    region         = "us-east-1"
+    encrypt        = true
+    dynamodb_table = "tf-locks"  # enables state locking
+  }
+}`},
+
+  {cat:'terraform',word:'Provider',pron:'pro-VY-der',
+   def:'A plugin that enables Terraform to interact with a specific cloud or service API. Each provider exposes a set of resources and data sources for that platform.',
+   analogy:'Like a universal remote control adapter — the remote (Terraform) is the same, but you need the right adapter for each TV brand (AWS, GCP, Azure).',
+   why:'Providers must be declared and downloaded before any resources can be created. Pinning provider versions prevents breaking changes from automatic upgrades.',
+   code:`terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"   # allow 5.x, block 6.x
+    }
+    google = {
+      source  = "hashicorp/google"
+      version = "~> 5.0"
+    }
+  }
+}`},
+
+  {cat:'terraform',word:'Module',pron:'MOD-yool',
+   def:'A reusable, self-contained group of Terraform resources with defined inputs (variables) and outputs. Modules are called from a root module with different variable values for each environment.',
+   analogy:'Like a LEGO kit — the kit (module) is the same design, but you can build it in different colours (variables) for different rooms.',
+   why:'Modules enforce consistency across environments, reduce duplication, and make infrastructure composable. A well-written VPC module can be reused across 10 projects without copy-pasting code.',
+   code:`# Call a module with different inputs per environment:
+module "vpc_prod" {
+  source   = "./modules/vpc"
+  name     = "prod-vpc"
+  vpc_cidr = "10.0.0.0/16"
+  tags     = { Environment = "prod" }
+}
+module "vpc_dev" {
+  source   = "./modules/vpc"
+  name     = "dev-vpc"
+  vpc_cidr = "10.1.0.0/16"
+  tags     = { Environment = "dev" }
+}`},
+
+  {cat:'terraform',word:'Resource',pron:'REE-sors',
+   def:'A block in Terraform configuration that declares a piece of infrastructure to be created, managed, and tracked in state. Each resource has a type, a name, and a set of arguments.',
+   analogy:'Like a line item on a shopping list — it declares exactly what you want (type: aws_s3_bucket, name: my-bucket) and the specific properties (encrypted: true).',
+   why:'Resources are the fundamental building blocks of Terraform. Terraform creates, updates, and destroys resources to match the declared configuration.',
+   code:`resource "aws_s3_bucket" "my_bucket" {
+  bucket = "eknatha-labs-state"
+  tags   = { ManagedBy = "terraform" }
+}
+# Syntax: resource "TYPE" "NAME" { arguments }`},
+
+  {cat:'terraform',word:'Data Source',pron:'DAY-ta SORS',
+   def:'A read-only block that fetches information about existing infrastructure — resources that exist outside the current Terraform config. Data sources do not create or modify anything.',
+   analogy:'Like a library catalogue — you look up a book (existing resource) to find its location (attributes), but you are not creating a new book.',
+   why:'Data sources let you reference existing infrastructure (VPCs, AMIs, DNS zones) without importing them into state. Essential for connecting independently managed Terraform configs.',
+   code:`# Fetch the latest Amazon Linux AMI dynamically:
+data "aws_ami" "amazon_linux" {
+  most_recent = true
+  owners      = ["amazon"]
+  filter {
+    name   = "name"
+    values = ["al2023-ami-*-x86_64"]
+  }
+}
+# Use it:
+resource "aws_instance" "web" {
+  ami = data.aws_ami.amazon_linux.id
+}`},
+
+  {cat:'terraform',word:'Plan',pron:'plan',
+   def:'A preview of the changes Terraform will make to reach the desired state — created by comparing the configuration against the current state. No changes are made during a plan.',
+   analogy:'Like an architect\'s blueprint review before construction begins — everyone can see exactly what will be built, changed, or demolished before any work starts.',
+   why:'Reading the plan carefully before applying is the primary safety mechanism in Terraform. A plan that shows unexpected destroys (-/+) is a warning to stop and investigate.',
+   code:`terraform plan             # preview changes interactively
+terraform plan -out=p.tfplan  # save for guaranteed reproducibility
+
+# Plan symbols:
+# + = create   (safe)
+# ~ = update   (usually safe)
+# - = destroy  (REVIEW CAREFULLY)
+# -/+ = destroy then recreate (MEANS DOWNTIME)`},
+
+  {cat:'terraform',word:'Apply',pron:'ah-PLY',
+   def:'The command that executes the plan — creating, updating, or destroying cloud resources to match the desired configuration. The command that makes real changes.',
+   analogy:'Like pressing "Confirm Order" on a shopping checkout — the plan was your cart review, apply is the point of no return.',
+   why:'Apply changes real infrastructure. Understanding what it does (and what it cannot undo) is critical. Always run plan and review it before apply, especially in production.',
+   code:`terraform apply           # interactive (prompts "yes")
+terraform apply plan.tfplan  # apply exactly the saved plan
+terraform apply -auto-approve  # no prompt (CI only)
+
+# After apply: state is updated to reflect new reality
+# Failed apply: run plan again before retrying`},
+
+  {cat:'terraform',word:'Workspace',pron:'WERK-spays',
+   def:'An isolated instance of Terraform state within a single backend. Each workspace gets its own state file, enabling multiple environments (dev/staging/prod) from one codebase.',
+   analogy:'Like Git branches — same codebase, different isolated timelines. dev workspace and prod workspace each have their own state but share the same .tf files.',
+   why:'Workspaces enable environment separation without duplicating code. Reference the current workspace with terraform.workspace to select environment-specific values.',
+   code:`terraform workspace new prod
+terraform workspace select prod
+terraform workspace list
+
+# Reference in config:
+locals {
+  size = {
+    dev  = "t3.micro"
+    prod = "t3.medium"
+  }[terraform.workspace]
+}`},
+
+  {cat:'terraform',word:'Locals',pron:'LOH-kulz',
+   def:'Named values computed once from expressions within a Terraform configuration. Locals reduce repetition and make complex expressions readable by naming them.',
+   analogy:'Like variables in algebra — instead of writing "2πr" three times, you assign it to a named variable and reuse the name. Cleaner and less error-prone.',
+   why:'Locals are evaluated once and can reference other locals, variables, and resource attributes. They are the primary tool for keeping Terraform DRY (Don\'t Repeat Yourself).',
+   code:`locals {
+  name_prefix  = "\${var.env}-\${var.project}"
+  common_tags  = merge(var.tags, {
+    Environment = var.env
+    ManagedBy   = "terraform"
+  })
+  is_prod = var.env == "prod"
+}
+
+# Usage:
+resource "aws_vpc" "main" {
+  cidr_block = var.vpc_cidr
+  tags       = merge(local.common_tags, { Name = "\${local.name_prefix}-vpc" })
+}`},
+
+  {cat:'devops',word:'Infrastructure as Code',pron:'IN-fra-struk-cher az kode',
+   def:'Managing and provisioning infrastructure through machine-readable configuration files rather than manual processes or interactive configuration tools.',
+   analogy:'Like a construction blueprint vs. verbal instructions. A blueprint (IaC) is precise, reproducible, shareable, and version-controlled. Verbal instructions are inconsistent and not auditable.',
+   why:'IaC enables repeatability, peer review, version control, rollback, and automated testing of infrastructure. It is the foundation of all modern Platform Engineering practice.',
+   code:`# Without IaC (manual, error-prone, not auditable):
+# Click in AWS Console → Create VPC → fill in form...
+
+# With IaC (repeatable, reviewable, version-controlled):
+resource "aws_vpc" "main" {
+  cidr_block           = "10.0.0.0/16"
+  enable_dns_hostnames = true
+  tags = { Name = "prod-vpc", ManagedBy = "terraform" }
+}
+# git add main.tf && git commit -m "feat: add prod VPC"
+# git log shows full audit trail`},
+
+  {cat:'devops',word:'Declarative',pron:'dih-KLAIR-ah-tiv',
+   def:'Describing the desired end state of a system rather than the specific steps to reach it. You declare "I want 3 EC2 instances" and the tool figures out how to get there.',
+   analogy:'Like telling a chef "I want a Caesar salad" (declarative) vs. giving them step-by-step cooking instructions (imperative). The chef knows how to make it.',
+   why:'Terraform is declarative — you define what you want, not how to build it. This makes configs shorter, easier to read, and idempotent by design.',
+   code:`# Declarative (Terraform):
+resource "aws_instance" "web" {
+  count         = 3          # "I want 3 instances"
+  instance_type = "t3.small"
+}
+# Terraform works out create/update/destroy automatically.
+
+# Imperative (what you'd have to write instead):
+# if instance doesn't exist: create it
+# elif instance type is wrong: update it
+# elif too many: delete the extras`},
+
+  {cat:'devops',word:'GitOps',pron:'GIT-ops',
+   def:'A practice where the desired state of infrastructure and applications is stored in Git, and automated tooling continuously reconciles the live system to match what is in Git.',
+   analogy:'Like a ship\'s autopilot — the destination (Git) is set, and the autopilot (ArgoCD/Flux) continuously corrects course whenever the ship drifts from the target.',
+   why:'GitOps provides an automatic, immutable audit trail — every production change is a Git commit with author and timestamp. It also enables instant rollback (revert the commit) and enforces peer review via PRs.',
+   code:`# ArgoCD Application (GitOps for Kubernetes):
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+spec:
+  source:
+    repoURL: https://github.com/eknatha/platform
+    targetRevision: main
+    path: k8s/production
+  syncPolicy:
+    automated:
+      prune: true      # delete resources removed from Git
+      selfHeal: true   # revert manual cluster changes`},
+
+  {cat:'devops',word:'Immutable Infrastructure',pron:'ih-MYOO-tah-bul',
+   def:'A pattern where servers and infrastructure components are never modified after deployment. Instead of patching in place, you replace the entire component with a new version.',
+   analogy:'Like disposable coffee cups vs. a ceramic mug — instead of washing and reusing (mutable), you throw away the old cup and get a fresh one every time (immutable).',
+   why:'Immutable infrastructure eliminates configuration drift, simplifies rollback (just deploy the previous image), and makes deployments more predictable and auditable.',
+   code:`# Mutable (BAD — ssh in and patch):
+# ssh ec2-user@prod-server
+# sudo yum update -y
+# (server is now in unknown state vs. original)
+
+# Immutable (GOOD — replace with new AMI):
+resource "aws_launch_template" "web" {
+  image_id = var.latest_ami  # new AMI = new server
+}
+# Old servers are terminated, new ones launch.
+# Every server is identical and known.`},
+
+  {cat:'devops',word:'SLA / SLO / SLI',pron:'S-L-A / S-L-O / S-L-I',
+   def:'SLI (Indicator): a metric measuring service behaviour (e.g. request latency). SLO (Objective): the target for that metric (e.g. 99.9% of requests < 200ms). SLA (Agreement): a contractual commitment to customers, usually with financial penalties.',
+   analogy:'SLI = thermometer reading, SLO = "keep room at 22°C", SLA = "I contractually guarantee 22°C or I refund you".',
+   why:'Platform engineers define and monitor SLOs to set alert thresholds, prioritise work, and avoid both over-engineering (99.999% when 99.9% is fine) and under-serving customers.',
+   code:`# CloudWatch alarm based on SLO:
+resource "aws_cloudwatch_metric_alarm" "latency" {
+  alarm_name  = "api-p99-latency-slo"
+  # Alert when P99 latency exceeds the SLO target:
+  threshold   = 200        # 200ms SLO
+  metric_name = "p99Latency"
+  # SLI: measured P99 latency from application metrics
+  # SLO: < 200ms for 99.9% of requests
+  # SLA: contractual guarantee to enterprise customers
+}`},
+
+  {cat:'devops',word:'Blast Radius',pron:'blast RAY-dee-us',
+   def:'The scope of impact if a change, failure, or security breach affects a system. Reducing blast radius means designing so that failures affect the smallest possible number of users or services.',
+   analogy:'Like firebreaks in a forest — strategic gaps that prevent a fire from spreading across the entire forest. If one section catches fire, the damage is contained.',
+   why:'Multi-account AWS architectures, separate VPCs per environment, and independent Terraform state files all reduce blast radius. A mistake in dev should never be able to affect prod.',
+   code:`# Multi-account = reduced blast radius:
+# Dev account:    111111111111
+# Staging account: 222222222222
+# Prod account:   333333333333
+# Security issue in dev cannot reach prod.
+
+# Separate state per environment:
+backend "s3" {
+  key = "env/\${terraform.workspace}/terraform.tfstate"
+}
+# A corrupt dev state cannot affect prod state.`},
+
+  {cat:'devops',word:'MTTR',pron:'M-T-T-R',
+   def:'Mean Time To Recovery — the average time between a failure occurring and the system being restored to normal operation. A key reliability metric.',
+   analogy:'Like ambulance response time — the faster the response (low MTTR), the less harm the patient suffers. A high MTTR means incidents cause long, costly outages.',
+   why:'Platform engineers optimise MTTR through automation: runbooks, automated rollback, pre-baked golden AMIs, and Terraform drift detection all reduce the time to restore service.',
+   code:`# Reduce MTTR with automated rollback in CI:
+# If canary deploy shows error rate > 1%:
+# → Automatically roll back to previous image
+
+# Reduce MTTR with terraform:
+# Instead of manual console clicking (30 min):
+terraform apply -replace="aws_instance.broken"
+# Replaces the broken instance in ~3 minutes.`},
+
+  {cat:'devops',word:'Observability',pron:'ob-zer-vah-BIL-ih-tee',
+   def:'The ability to understand the internal state of a system by examining its external outputs — metrics, logs, and traces (the three pillars). A system is observable if you can debug new failure modes without deploying new code.',
+   analogy:'Like an aircraft\'s black box combined with instrument panel — you can understand what happened during a crash even without having observed the flight.',
+   why:'Platform engineers build observable systems so that when something breaks at 3am, the on-call engineer can diagnose the issue from dashboards and logs rather than guessing.',
+   code:`# Three pillars of observability:
+
+# 1. Metrics (CloudWatch, Prometheus):
+aws_cloudwatch_metric_alarm.error_rate
+
+# 2. Logs (CloudWatch Logs, ELK):
+aws_cloudwatch_log_group.app
+
+# 3. Traces (X-Ray, Jaeger):
+# Traces show the path of a request across services
+# helping identify which service caused a slowdown.`},
+
+  {cat:'devops',word:'Zero Downtime Deployment',pron:'ZEE-ro DOWN-tyme',
+   def:'A deployment strategy where new code or infrastructure is rolled out without any interruption to users. Traffic continues to be served throughout the deployment.',
+   analogy:'Like changing the wheels on a moving car — theoretically impossible naively, but with the right technique (rolling update, blue-green) it can be done without stopping.',
+   why:'Users expect 24/7 availability. Zero downtime deployments require explicit design: blue-green switching, rolling updates with maxUnavailable:0, or canary releases.',
+   code:`# Kubernetes rolling update — zero downtime:
+strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxUnavailable: 0   # never reduce capacity
+    maxSurge: 1         # create 1 extra pod at a time
+
+# New pods become healthy BEFORE old pods terminate.
+# Traffic is always being served throughout the rollout.`},
+
+  {cat:'kubernetes',word:'Pod',pron:'pod',
+   def:'The smallest deployable unit in Kubernetes. A pod wraps one or more containers that share the same network namespace (IP address) and storage volumes.',
+   analogy:'Like a shared apartment — multiple roommates (containers) share the same address (IP) and common areas (volumes) but each has their own room (process space).',
+   why:'Understanding pods is the foundation of Kubernetes. Pod scheduling, resource requests, health probes, and affinity rules all operate at the pod level.',
+   code:`apiVersion: v1
+kind: Pod
+metadata:
+  name: web-app
+spec:
+  containers:
+  - name: app
+    image: nginx:1.25
+    ports:
+    - containerPort: 80
+    resources:
+      requests: { cpu: "100m", memory: "128Mi" }
+      limits:   { cpu: "500m", memory: "256Mi" }`},
+
+  {cat:'kubernetes',word:'Deployment',pron:'dih-PLOY-ment',
+   def:'A Kubernetes object that manages a set of identical, stateless pods. It handles rolling updates, rollbacks, and maintains the desired number of healthy replicas automatically.',
+   analogy:'Like a staffing agency contract — you tell the agency "I need 3 workers" and they handle hiring, training, and replacing workers who leave.',
+   why:'Never run bare pods in production — use Deployments. They automatically restart crashed pods, handle rolling updates, and maintain availability during node failures.',
+   code:`apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+spec:
+  replicas: 3
+  selector:
+    matchLabels: { app: web }
+  template:
+    metadata:
+      labels: { app: web }
+    spec:
+      containers:
+      - name: web
+        image: nginx:1.25`},
+
+  {cat:'kubernetes',word:'Service',pron:'SER-vis',
+   def:'A stable network endpoint that provides a consistent IP and DNS name for a set of pods. Services load balance traffic across matching pods even as pods are created and destroyed.',
+   analogy:'Like a company\'s switchboard — callers dial the company number (Service) and the switchboard routes them to whichever employee (pod) is available, regardless of who is in that day.',
+   why:'Pods get new IPs every time they restart. A Service provides a stable endpoint so other services do not need to track pod IPs. This decouples consumers from producers.',
+   code:`apiVersion: v1
+kind: Service
+metadata:
+  name: web-svc
+spec:
+  selector:
+    app: web          # routes to pods with this label
+  ports:
+  - port: 80
+    targetPort: 8080
+  type: ClusterIP     # internal only (default)`},
+
+  {cat:'kubernetes',word:'Namespace',pron:'NAYM-spays',
+   def:'A virtual cluster within a Kubernetes cluster. Namespaces isolate resources — pods, services, and config maps in one namespace cannot see those in another by default.',
+   analogy:'Like floors in an office building — each floor (namespace) has its own teams, equipment, and access rules. People on floor 3 cannot walk into floor 7 without permission.',
+   why:'Namespaces enable multi-tenancy, environment separation within a cluster, and RBAC at the team level. Standard namespaces: default, kube-system, monitoring, production.',
+   code:`# Create a namespace:
+kubectl create namespace production
+
+# Deploy into a specific namespace:
+kubectl apply -f deployment.yaml -n production
+
+# View resources in a namespace:
+kubectl get pods -n production
+kubectl get all -n production
+
+# Namespace in YAML:
+metadata:
+  namespace: production`},
+
+  {cat:'kubernetes',word:'ConfigMap',pron:'KON-fig-map',
+   def:'A Kubernetes object that stores non-sensitive configuration data as key-value pairs. Pods consume ConfigMaps as environment variables or mounted files.',
+   analogy:'Like a settings file for an application — instead of hardcoding "LOG_LEVEL=info" in the container, you put it in a ConfigMap and inject it at runtime.',
+   why:'ConfigMaps decouple configuration from container images, allowing the same image to run in dev (LOG_LEVEL=debug) and prod (LOG_LEVEL=warn) without rebuilding.',
+   code:`apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  LOG_LEVEL: info
+  APP_ENV: production
+  DB_HOST: postgres.internal
+
+# Mount in pod:
+envFrom:
+- configMapRef:
+    name: app-config`},
+
+  {cat:'cicd',word:'Pipeline',pron:'PYP-lyne',
+   def:'An automated sequence of steps that transforms source code into a deployed, tested application. Typically: build → test → security scan → deploy to staging → deploy to production.',
+   analogy:'Like a car assembly line — each station performs one step (paint, engine, quality check) and the car moves to the next automatically, with quality gates between stages.',
+   why:'Pipelines enforce consistency, catch bugs early (when they are cheapest to fix), and eliminate human error from repetitive deployment tasks.',
+   code:`# GitHub Actions pipeline (simplified):
+jobs:
+  build:
+    steps:
+    - run: npm ci && npm test && npm run build
+
+  deploy-staging:
+    needs: build
+    steps:
+    - run: kubectl apply -f k8s/staging/
+
+  deploy-prod:
+    needs: deploy-staging
+    environment: production  # requires human approval
+    steps:
+    - run: kubectl apply -f k8s/production/`},
+
+  {cat:'cicd',word:'Artifact',pron:'AR-tih-fakt',
+   def:'The compiled, tested output of a CI build — a Docker image, binary, JAR file, or zip archive. Artifacts are stored in a registry and deployed to environments. The same artifact that passed tests is what gets deployed to production.',
+   analogy:'Like a numbered batch of medicine from a pharmaceutical factory — the batch number traces the exact production run, ingredients, and quality checks. Each deployment references a specific, tested batch.',
+   why:'Build once, deploy many times. Rebuilding at deploy time risks producing a different binary than what was tested. Immutable artifacts with version tags guarantee consistency.',
+   code:`# Tag image with Git SHA (immutable, traceable):
+IMAGE="my-ecr-repo/app:\${{ github.sha }}"
+docker build -t $IMAGE .
+docker push $IMAGE
+
+# Deploy staging:
+kubectl set image deployment/app app=$IMAGE
+
+# Deploy prod (SAME image — what was tested is what runs):
+kubectl set image deployment/app app=$IMAGE`},
+
+  {cat:'cicd',word:'Canary Release',pron:'kah-NAIR-ee',
+   def:'A deployment strategy that routes a small percentage of production traffic to the new version before rolling it out fully. Named after canaries used in coal mines as early warning systems.',
+   analogy:'Like a restaurant testing a new dish by offering it to 5% of tables before adding it to the full menu. If customers complain, you pull it before 95% of customers are affected.',
+   why:'Canary releases limit blast radius — a bad deployment only affects 5% of users instead of 100%. Automated metrics gates can roll back automatically if error rate spikes.',
+   code:`# Argo Rollouts canary:
+strategy:
+  canary:
+    steps:
+    - setWeight: 5       # 5% of traffic to new version
+    - pause: {duration: 10m}
+    - setWeight: 25      # increase if metrics look good
+    - pause: {duration: 10m}
+    - setWeight: 100     # full rollout
+    analysis:
+      templates:
+      - templateName: error-rate  # auto-abort if > 1%`},
+
+  {cat:'security',word:'Least Privilege',pron:'leest PRIV-ih-lij',
+   def:'A security principle: grant only the exact permissions needed to perform a task — nothing more. Every user, service, and application should have the minimum access required.',
+   analogy:'Like a hotel key card — a guest gets access to their room and the gym, not every room in the building. The principle limits what damage a compromised key can do.',
+   why:'Least privilege limits the blast radius of a security breach. A compromised service with read-only S3 access cannot delete buckets. Implement it from day one — it is much harder to reduce permissions later.',
+   code:`# BAD — overly broad:
+{ "Effect":"Allow", "Action":"s3:*", "Resource":"*" }
+
+# GOOD — least privilege:
+{
+  "Effect": "Allow",
+  "Action": ["s3:GetObject", "s3:ListBucket"],
+  "Resource": [
+    "arn:aws:s3:::my-specific-bucket",
+    "arn:aws:s3:::my-specific-bucket/*"
+  ]
+}`},
+
+  {cat:'security',word:'OIDC',pron:'O-I-D-C',
+   def:'OpenID Connect — an identity protocol that enables GitHub Actions (and other systems) to assume cloud IAM roles using short-lived tokens instead of storing long-lived credentials as secrets.',
+   analogy:'Like a visitor badge system — instead of giving a visitor a master key (long-lived credential), the building issues a temporary badge valid for 1 hour (OIDC token). When it expires, it is useless.',
+   why:'OIDC eliminates the need to store AWS access keys as GitHub secrets. No stored credentials = no credential leak risk. This is the current industry standard for CI/CD authentication.',
+   code:`# GitHub Actions OIDC — no stored AWS credentials:
+- uses: aws-actions/configure-aws-credentials@v4
+  with:
+    role-to-assume: arn:aws:iam::123:role/deploy-role
+    aws-region: us-east-1
+    # GitHub sends a JWT → AWS validates it
+    # → issues temporary STS credentials
+    # → credentials expire when job ends`},
+
+  {cat:'terraform',word:'Output',pron:'OWT-put',
+   def:'A named value exported from a Terraform module or configuration, making it available to other modules, root configs, or external tools after an apply.',
+   analogy:'Like a contract delivery receipt — once construction (apply) is done, the contractor hands you the keys (output: vpc_id, endpoint) so you can use the result.',
+   why:'Outputs are the API of a module. They expose internal resource attributes (VPC ID, RDS endpoint, load balancer DNS) to consumers without exposing the full resource.',
+   code:`# outputs.tf
+output "vpc_id" {
+  description = "ID of the VPC — use for subnet and SG creation"
+  value       = aws_vpc.main.id
+}
+output "db_endpoint" {
+  description = "RDS endpoint — use for app connection strings"
+  value       = aws_db_instance.main.endpoint
+  sensitive   = true   # hides from logs
+}
+
+# Read from CLI:
+terraform output vpc_id
+terraform output -json`},
+
+  {cat:'terraform',word:'Variable',pron:'VAIR-ee-uh-bul',
+   def:'A named input parameter for a Terraform configuration or module. Variables make configs reusable by replacing hardcoded values with parameters that can differ per environment.',
+   analogy:'Like a template letter — instead of writing a separate letter for each recipient, you have one template with {{NAME}} and {{CITY}} placeholders filled at print time.',
+   why:'Variables enable the same Terraform code to deploy dev (t3.micro) and prod (t3.large) without any code changes — only the variable values change.',
+   code:`variable "instance_type" {
+  type        = string
+  description = "EC2 instance type"
+  default     = "t3.small"
+  validation {
+    condition     = can(regex("^(t3|m5)\\.", var.instance_type))
+    error_message = "Only t3 or m5 instance families allowed."
+  }
+}
+
+# Pass values:
+terraform apply -var="instance_type=t3.large"
+# Or in prod.tfvars: instance_type = "t3.large"`},
+
+  {cat:'devops',word:'Runbook',pron:'RUN-buk',
+   def:'A documented set of procedures for performing routine or emergency operations. A runbook tells an on-call engineer exactly what to do in a specific situation, step by step.',
+   analogy:'Like an aircraft emergency checklist — when an engine fails, pilots do not improvise. They follow a precise checklist designed and tested in advance. Runbooks do the same for infrastructure.',
+   why:'Good runbooks reduce MTTR by enabling junior engineers to handle incidents confidently. They capture institutional knowledge that otherwise lives only in senior engineers\' heads.',
+   code:`# Runbook: Terraform state lock not releasing
+# Severity: P2
+# Time to resolve: < 10 minutes
+
+# Step 1: Confirm no apply is running
+# Check GitHub Actions: look for running workflows
+# Check local: ps aux | grep terraform
+
+# Step 2: Find the Lock ID
+aws dynamodb scan \
+  --table-name terraform-state-locks \
+  --query "Items[*].LockID"
+
+# Step 3: Force-unlock (only after Step 1 confirmed)
+terraform force-unlock <LOCK_ID>`},
+
+  {cat:'devops',word:'Blue-Green Deployment',pron:'bloo-green',
+   def:'A deployment strategy with two identical production environments (Blue = current, Green = new). Traffic is switched from Blue to Green atomically, enabling instant rollback.',
+   analogy:'Like a theatre with two identical stage sets — one is performing for the audience (live) while the other is being prepared (new version). At intermission, you switch which stage the audience sees.',
+   why:'Blue-green provides zero-downtime deployments and instant rollback — just switch the traffic selector back. The old environment stays available until confidence is established.',
+   code:`# Switch traffic with a Kubernetes Service selector swap:
+
+# Current state: Service points to "blue"
+spec:
+  selector: { app: web, version: blue }
+
+# After green is ready and tested:
+kubectl patch service web \
+  -p '{"spec":{"selector":{"version":"green"}}}'
+# Atomic switch — all traffic moves instantly.
+
+# Instant rollback if issues found:
+kubectl patch service web \
+  -p '{"spec":{"selector":{"version":"blue"}}}'`},
+
+  {cat:'security',word:'mTLS',pron:'M-T-L-S',
+   def:'Mutual TLS — both sides of a connection authenticate each other with certificates, not just the server authenticating to the client. Used for service-to-service authentication in microservices.',
+   analogy:'Like a two-factor entrance to a secure facility — the security guard checks your badge (server auth) AND you check the guard\'s badge (mutual/client auth). Both sides verify.',
+   why:'mTLS ensures that even within a private network, services can only talk to other verified services. A compromised service cannot impersonate a legitimate one.',
+   code:`# Enabled automatically by Istio service mesh:
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: default
+  namespace: production
+spec:
+  mtls:
+    mode: STRICT  # all traffic must use mTLS
+# No code changes in the application — Istio
+# handles certificate issuance and rotation.`},
+
+  {cat:'devops',word:'Technical Debt',pron:'TEK-nih-kul det',
+   def:'The accumulated cost of choosing quick, easy solutions now instead of better, longer-term approaches. Like financial debt, it accrues interest — the longer it is left unaddressed, the more expensive it becomes to fix.',
+   analogy:'Like deferred car maintenance — skipping oil changes (quick, saves time now) leads to engine damage later (expensive, time-consuming). The "interest" is the escalating repair cost.',
+   why:'Platform engineers must balance delivering features quickly with managing technical debt. Terraform workspaces with no locking, hardcoded values, and no modules are examples of infrastructure technical debt.',
+   code:`# Technical debt example in Terraform:
+# DEBT: hardcoded values in every resource
+resource "aws_instance" "web" {
+  instance_type = "t3.small"  # hardcoded
+  ami           = "ami-0abc123"  # hardcoded, will break
+  tags = { env = "prod" }  # no variables
+}
+
+# Paying the debt:
+resource "aws_instance" "web" {
+  instance_type = var.instance_type  # variable
+  ami           = data.aws_ami.latest.id  # dynamic
+  tags          = local.common_tags  # consistent
+}`},
+
+  {cat:'terraform',word:'for_each',pron:'for-each',
+   def:'A meta-argument that creates multiple instances of a resource from a map or set, using stable string keys instead of integer indexes. The recommended alternative to count.',
+   analogy:'Like a mail merge — instead of writing 100 identical letters with different names, you define the template once and merge in each name. Stable keys mean removing one letter does not renumber all the others.',
+   why:'Unlike count, for_each uses stable string keys. Removing one item only destroys that one resource — all others are untouched. This is critical for production resources where arbitrary recreation causes outages.',
+   code:`# count — fragile (remove index 0 → all shift):
+resource "aws_subnet" "bad" {
+  count = length(var.azs)
+  availability_zone = var.azs[count.index]
+}
+
+# for_each — stable (remove one key → one destroyed):
+resource "aws_subnet" "good" {
+  for_each          = toset(var.azs)
+  availability_zone = each.key
+  # aws_subnet.good["us-east-1a"] — stable address
+}`},
+
+  {cat:'terraform',word:'Lifecycle',pron:'LYF-sykul',
+   def:'A meta-argument block in Terraform resources that controls how Terraform handles the resource during plan and apply operations — creation, replacement, and destruction behaviour.',
+   analogy:'Like a birth/death certificate system — lifecycle rules govern exactly when a resource is "born" (create_before_destroy), protected from "death" (prevent_destroy), or allowed to change unmonitored (ignore_changes).',
+   why:'Lifecycle rules are critical for production stability. prevent_destroy protects databases from accidental deletion. create_before_destroy prevents downtime during replacements.',
+   code:`resource "aws_rds_instance" "main" {
+  # ... config ...
+  lifecycle {
+    prevent_destroy       = true    # block terraform destroy
+    create_before_destroy = true    # zero-downtime replace
+    ignore_changes        = [
+      engine_version,  # managed by RDS auto-upgrade
+    ]
+  }
+}`},
+
+  {cat:'devops',word:'On-Call',pron:'ON-kawl',
+   def:'A rotation where engineers take turns being the first responder for production incidents outside business hours. The on-call engineer is paged when an alert fires and must respond within an SLA.',
+   analogy:'Like a doctor on-call at a hospital — they may not be actively working, but they must be reachable and able to respond to emergencies within a defined time.',
+   why:'Platform engineers are frequently on-call. Understanding how to read dashboards, use runbooks, and make quick decisions under pressure is a core PE skill.',
+   code:`# Good on-call setup (reduces alert fatigue):
+
+# 1. Alert on symptoms, not causes:
+#    BAD: CPU > 80%  (low urgency, high noise)
+#    GOOD: Error rate > 1% (user-facing impact)
+
+# 2. Link dashboards in every alert
+# 3. Runbooks for every P1/P2 alert
+# 4. PagerDuty / OpsGenie for escalation
+
+# 5. Terraform helps — detect drift nightly:
+terraform plan -detailed-exitcode
+# Exit 2 = drift detected → page on-call`},
+
+  {cat:'kubernetes',word:'Ingress',pron:'IN-gres',
+   def:'A Kubernetes API object that manages external HTTP/HTTPS routing to services inside the cluster. An Ingress controller processes Ingress rules and configures a load balancer accordingly.',
+   analogy:'Like a hotel concierge — one entry point who routes guests (requests) to the right room (service) based on their name (hostname) or what they need (path).',
+   why:'Without Ingress, each service needs its own load balancer (expensive). Ingress lets one load balancer route to hundreds of services by hostname and path rules.',
+   code:`apiVersion: networking.k8s.io/v1
+kind: Ingress
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts: [api.example.com]
+    secretName: tls-cert    # from cert-manager
+  rules:
+  - host: api.example.com
+    http:
+      paths:
+      - path: /v1
+        pathType: Prefix
+        backend:
+          service: { name: api-svc, port: { number: 80 } }`},
+
+  {cat:'devops',word:'Shift Left',pron:'shift left',
+   def:'Moving testing, security scanning, and quality checks earlier (left) in the development pipeline — to developers\' workstations and PRs — rather than waiting until post-deployment.',
+   analogy:'Like proofreading a document while writing (shift left) vs. finding typos after printing 10,000 copies (shift right). Catching problems early is exponentially cheaper.',
+   why:'Shift left reduces the cost of fixing bugs. A security issue caught in a PR review costs minutes. The same issue found post-deployment costs hours or days of incident response.',
+   code:`# Shift left examples — run these on every PR:
+
+# Terraform formatting (seconds):
+terraform fmt -check -recursive
+
+# Security scanning (seconds):
+tflint --recursive
+checkov -d . --framework terraform
+
+# Policy enforcement (seconds):
+conftest test plan.json --policy ./policy/
+
+# Compare: finding the same issue post-deploy
+# costs an incident report + rollback + postmortem`},
+
+  {cat:'devops',word:'Toil',pron:'toyl',
+   def:'Manual, repetitive, tactical work that is automatable, lacks enduring value, and scales linearly with service growth. A concept from Google\'s SRE book. Platform engineers aim to keep toil below 50% of their time.',
+   analogy:'Like manually entering the same data into a spreadsheet every week — it is necessary, it consumes time, but it adds no new insight and could be scripted.',
+   why:'Toil is the enemy of engineering leverage. Every hour spent on toil is an hour not spent building systems that reduce future toil. Terraform itself exists to eliminate infrastructure toil.',
+   code:`# Common infrastructure toil:
+# - Manually clicking "Create subnet" in AWS Console
+# - Running terraform apply from a laptop
+# - Copy-pasting config between environments
+# - Manually updating AMI IDs every month
+
+# How Terraform eliminates toil:
+data "aws_ami" "latest" {
+  most_recent = true  # never update AMI manually again
+  owners = ["amazon"]
+}
+# Automated CI/CD pipeline: no manual terraform apply
+# Modules: no copy-pasting config between environments`},
+
+  {cat:'terraform',word:'Dynamic Block',pron:'dy-NAM-ik blok',
+   def:'A special block in Terraform that generates repeated nested configuration blocks from a collection — replacing multiple hardcoded blocks with a single template.',
+   analogy:'Like a mail-merge for config blocks — instead of writing 5 separate ingress rules by hand, you define the pattern once and Terraform generates all 5 from a variable.',
+   why:'Dynamic blocks eliminate repetition in resource configuration, making it easier to manage variable numbers of rules, routes, or settings without hardcoding each one.',
+   code:`variable "ingress_rules" {
+  default = [
+    { port = 80,  cidr = "0.0.0.0/0" },
+    { port = 443, cidr = "0.0.0.0/0" },
+    { port = 22,  cidr = "10.0.0.0/8" },
+  ]
+}
+
+resource "aws_security_group" "main" {
+  dynamic "ingress" {
+    for_each = var.ingress_rules
+    content {
+      from_port   = ingress.value.port
+      to_port     = ingress.value.port
+      protocol    = "tcp"
+      cidr_blocks = [ingress.value.cidr]
+    }
+  }
+}`},
+
+  {cat:'devops',word:'Golden Path',pron:'GOL-den path',
+   def:'A pre-built, opinionated, well-supported route for common tasks (deploy a service, create a database) that teams can follow without needing to make low-level infrastructure decisions.',
+   analogy:'Like a paved walking trail in a park — you could forge your own path through the bushes, but the paved trail is faster, safer, and maintained. Most people should use the path.',
+   why:'Golden paths reduce cognitive load on development teams and ensure consistent, secure patterns are used by default. Platform engineers build and maintain golden paths.',
+   code:`# Golden path: deploy a new microservice
+# Instead of figuring out ECS/EKS/EC2 + networking + IAM...
+
+# Call the golden path module:
+module "microservice" {
+  source = "git::https://github.com/eknatha/platform//modules/microservice"
+  name        = "payment-service"
+  image       = var.image_tag
+  cpu         = "256m"
+  memory      = "512Mi"
+  port        = 8080
+  # IAM, networking, logging, monitoring — all handled by the module
+}`},
+
+  {cat:'terraform',word:'Sensitive Value',pron:'SEN-sih-tiv VAL-yoo',
+   def:'A variable or output marked as sensitive = true in Terraform, which prevents its value from appearing in plan, apply, or state output logs — protecting secrets from accidental exposure.',
+   analogy:'Like a redaction stamp on a classified document — the data is still there and usable, but it is hidden from anyone casually reading the log.',
+   why:'Marking secrets as sensitive prevents passwords and API keys from appearing in CI logs, terminal output, and screen shares — a common and overlooked security gap.',
+   code:`variable "db_password" {
+  type      = string
+  sensitive = true  # hidden from plan/apply logs
+}
+
+output "connection_string" {
+  value     = "postgres://admin:\${var.db_password}@\${aws_db_instance.main.endpoint}"
+  sensitive = true  # hidden from terraform output
+}
+
+# terraform plan shows:
+# ~ db_password = (sensitive value)`},
+];
+
+// ──────────────────────────────────────────────
+// ERROR OF THE DAY — 30 errors
+// ──────────────────────────────────────────────
+const ERR_BANK = [
+  {sev:'high',area:'STATE',
+   title:'Error acquiring the state lock',
+   msg:`Error: Error acquiring the state lock
+  Error message: ConditionalCheckFailedException
+  Lock Info:
+    ID: abc-123-def-456
+    Path: my-bucket/prod/terraform.tfstate
+    Operation: OperationTypePlan`,
+   cause:'Another Terraform process currently holds the DynamoDB state lock, OR a previous run crashed and left a stale lock behind. The lock prevents two simultaneous applies from corrupting state.',
+   steps:[
+     'Check if any terraform apply or plan is actively running in CI pipelines or locally',
+     'Search GitHub Actions runs, Jenkins, or your CI system for running Terraform jobs',
+     'If NO process is running, find the Lock ID in the error message (shown above)',
+     'Force release the stale lock using the Lock ID',
+   ],
+   code:`# Find the Lock ID from the error message, then:
+terraform force-unlock abc-123-def-456
+
+# If you lost the Lock ID, find it in DynamoDB:
+aws dynamodb scan \\
+  --table-name terraform-state-locks \\
+  --query "Items[*].LockID"
+
+# Verify lock is released:
+terraform state list  # should work without error`,
+   prevent:'<strong>Prevention:</strong> Set a CloudWatch alarm on your DynamoDB lock table — alert if a lock is held for more than 30 minutes. Stale locks from crashed CI jobs are the most common cause and should be automatically detected and alerted.'
+  },
+  {sev:'high',area:'AUTH',
+   title:'No valid credential sources found',
+   msg:`Error: No valid credential sources found for AWS Provider.
+Please see https://registry.terraform.io/providers/hashicorp/aws/latest/docs#authentication
+for more information about providing credentials.`,
+   cause:'Terraform cannot find valid AWS credentials. This happens when running locally without AWS CLI configured, in CI without credentials injected, or when an IAM role session has expired.',
+   steps:[
+     'Locally: run aws sts get-caller-identity to check if credentials are active',
+     'If expired: run aws configure or refresh your SSO session with aws sso login',
+     'In CI: verify the OIDC role ARN or AWS_ACCESS_KEY_ID/SECRET env vars are set',
+     'Check that the AWS region is set: export AWS_DEFAULT_REGION=us-east-1',
+   ],
+   code:`# Check current credentials locally:
+aws sts get-caller-identity
+
+# Configure new credentials:
+aws configure
+
+# For SSO:
+aws sso login --profile my-profile
+
+# In GitHub Actions (OIDC — recommended):
+- uses: aws-actions/configure-aws-credentials@v4
+  with:
+    role-to-assume: \${{ vars.AWS_ROLE_ARN }}
+    aws-region: us-east-1`,
+   prevent:'<strong>Prevention:</strong> Use OIDC in CI (no stored credentials to expire) and set up AWS SSO for local development with short-lived credentials. Store the aws configure profile name in team docs.'
+  },
+  {sev:'med',area:'CONFIG',
+   title:'Missing required argument',
+   msg:`Error: Missing required argument
+  on main.tf line 5, in resource "aws_instance" "web":
+   5:   resource "aws_instance" "web" {
+
+The argument "ami" is required, but no definition was found.`,
+   cause:'A required argument for the resource type was not provided in the configuration. Every resource type has required arguments that must be set — Terraform cannot proceed without them.',
+   steps:[
+     'Check the Terraform registry documentation for the resource type (e.g. aws_instance)',
+     'Find all required arguments — they are listed without a "default" value in the docs',
+     'Add the missing argument to your resource block',
+     'Run terraform validate to check for any remaining missing arguments',
+   ],
+   code:`# BEFORE (missing required "ami"):
+resource "aws_instance" "web" {
+  instance_type = "t3.small"
+}
+
+# AFTER (ami added — either hardcoded or from data source):
+data "aws_ami" "latest" {
+  most_recent = true
+  owners      = ["amazon"]
+  filter { name = "name"; values = ["al2023-ami-*-x86_64"] }
+}
+
+resource "aws_instance" "web" {
+  ami           = data.aws_ami.latest.id  # required
+  instance_type = "t3.small"
+}`,
+   prevent:'<strong>Prevention:</strong> Run terraform validate before plan in CI. It catches missing required arguments in under a second without any cloud API calls. Also use the hashicorp.terraform VSCode extension for inline validation.'
+  },
+  {sev:'high',area:'STATE',
+   title:'Error refreshing state: resource not found',
+   msg:`Error: error reading EC2 Instance (i-0abc123def456789): InvalidInstanceID.NotFound
+  status code: 400
+
+  on main.tf line 12, in resource "aws_instance" "web":
+  12: resource "aws_instance" "web" {`,
+   cause:'The resource exists in Terraform state but has been deleted outside of Terraform (manually in the console, by another tool, or it expired). Terraform cannot refresh its state because the resource no longer exists.',
+   steps:[
+     'Confirm the resource is actually gone in the AWS console or CLI',
+     'Decide: do you want to recreate it, or stop managing it?',
+     'To recreate: run terraform apply — Terraform will create a new instance',
+     'To stop managing: remove it from state with terraform state rm',
+   ],
+   code:`# Option A: Let Terraform recreate the missing resource:
+terraform apply  # will create a new aws_instance.web
+
+# Option B: Remove from state (stop managing it):
+terraform state rm aws_instance.web
+
+# Option C: Import a different existing instance:
+terraform import aws_instance.web i-0xyz789abc123def
+
+# Check what Terraform knows about the instance:
+terraform state show aws_instance.web`,
+   prevent:'<strong>Prevention:</strong> Use lifecycle { prevent_destroy = true } on critical resources to block accidental deletion. Add CloudTrail → CloudWatch alarms to alert when instances are terminated outside of Terraform.'
+  },
+  {sev:'high',area:'STATE',
+   title:'Error loading state: state data is not valid JSON',
+   msg:`Error: Failed to load state: state data is not valid JSON
+
+Error occurred with remote state: malformed state file for path
+my-bucket/prod/terraform.tfstate. Your state file is not JSON.`,
+   cause:'The state file in S3 has been corrupted — it contains invalid JSON. This can happen from partial writes due to network failures, manual edits to the state file, or concurrent writes without locking.',
+   steps:[
+     'Do NOT run terraform apply — stop immediately to prevent further corruption',
+     'Download the corrupted state: aws s3 cp s3://bucket/path/terraform.tfstate ./corrupted.json',
+     'If S3 versioning is enabled, list previous versions and restore the most recent valid one',
+     'Validate the restored state: cat terraform.tfstate | python3 -m json.tool',
+   ],
+   code:`# Step 1: Download and inspect the corrupted state
+aws s3 cp s3://my-bucket/prod/terraform.tfstate ./corrupted.json
+cat corrupted.json | python3 -m json.tool  # will show JSON error
+
+# Step 2: Restore from S3 version history
+aws s3api list-object-versions \\
+  --bucket my-bucket \\
+  --prefix prod/terraform.tfstate \\
+  --query 'Versions[*].{VersionId:VersionId, LastModified:LastModified}'
+
+# Step 3: Download the last valid version
+aws s3api get-object \\
+  --bucket my-bucket \\
+  --key prod/terraform.tfstate \\
+  --version-id <VERSION_ID> \\
+  ./restored.json
+
+# Step 4: Push restored state
+terraform state push ./restored.json`,
+   prevent:'<strong>Prevention:</strong> Enable S3 bucket versioning on your state bucket — this is your automatic state backup. Without it, a corrupted state file means starting from scratch. Also use DynamoDB locking to prevent concurrent writes.'
+  },
+  {sev:'med',area:'CONFIG',
+   title:'Unsupported argument',
+   msg:`Error: Unsupported argument
+  on main.tf line 8, in resource "aws_s3_bucket" "main":
+   8:   acl = "private"
+
+An argument named "acl" is not expected here. Did you mean to set the
+"acl" attribute of resource "aws_s3_bucket_acl" instead?`,
+   cause:'An argument that was previously supported has been moved to a separate resource in a newer provider version, or it never existed for this resource type. This often happens during AWS provider major version upgrades.',
+   steps:[
+     'Read the error message carefully — it often tells you where to move the argument',
+     'Check the provider changelog for breaking changes in the version you upgraded to',
+     'Create a new resource (e.g. aws_s3_bucket_acl) for the moved argument',
+     'Remove the unsupported argument from the original resource',
+   ],
+   code:`# BEFORE (aws provider v3 — acl inside bucket):
+resource "aws_s3_bucket" "main" {
+  bucket = "my-bucket"
+  acl    = "private"  # ERROR in provider v4+
+}
+
+# AFTER (aws provider v4+ — separate resource):
+resource "aws_s3_bucket" "main" {
+  bucket = "my-bucket"
+}
+
+resource "aws_s3_bucket_acl" "main" {
+  bucket = aws_s3_bucket.main.id
+  acl    = "private"
+}`,
+   prevent:'<strong>Prevention:</strong> Pin provider versions with ~> X.Y in required_providers and only upgrade deliberately. Always read the CHANGELOG before major version upgrades. Use terraform plan after upgrades to catch all breaking changes.'
+  },
+  {sev:'med',area:'CONFIG',
+   title:'Reference to undeclared resource',
+   msg:`Error: Reference to undeclared resource
+
+  on main.tf line 15, in resource "aws_subnet" "main":
+  15:   vpc_id = aws_vpc.production.id
+
+A managed resource "aws_vpc" "production" has not been declared in the root
+module. Did you mean aws_vpc.main?`,
+   cause:'The configuration references a resource by a name that does not match any declared resource. Usually a typo in the resource name, or the resource was renamed without updating all references.',
+   steps:[
+     'Run terraform state list to see the actual resource names in state',
+     'Check your .tf files for the correct resource declaration name',
+     'Update the reference to use the correct name',
+     'Run terraform validate to confirm all references are resolved',
+   ],
+   code:`# Find all declared VPC resources:
+terraform state list | grep aws_vpc
+
+# WRONG (typo: "production" vs actual "main"):
+resource "aws_subnet" "main" {
+  vpc_id = aws_vpc.production.id  # ERROR
+}
+
+# CORRECT:
+resource "aws_subnet" "main" {
+  vpc_id = aws_vpc.main.id  # matches the declaration
+}
+
+# Double-check with validate:
+terraform validate`,
+   prevent:'<strong>Prevention:</strong> Use the VS Code HashiCorp Terraform extension — it highlights unresolved references inline as you type, before you even run validate. Also use consistent naming conventions across all resources.'
+  },
+  {sev:'high',area:'PLAN',
+   title:'Cycle: circular dependency detected',
+   msg:`Error: Cycle: aws_security_group.web, aws_security_group.db
+
+  Terraform detected a cycle in the following resources:
+  aws_security_group.web → aws_security_group.db → aws_security_group.web`,
+   cause:'Two or more resources reference each other, creating a circular dependency that Terraform cannot resolve. Resource A needs B to exist first, but B also needs A — an impossible situation.',
+   steps:[
+     'Run terraform graph | dot -Tsvg > graph.svg to visualise the dependency cycle',
+     'Identify which reference creates the cycle (B → A that closes the loop)',
+     'Break the cycle by extracting the circular reference into a separate resource',
+     'For security groups, use aws_security_group_rule instead of inline rules',
+   ],
+   code:`# PROBLEM: web SG references db SG, db SG references web SG
+resource "aws_security_group" "web" {
+  ingress {
+    security_groups = [aws_security_group.db.id]  # ref to db
+  }
+}
+resource "aws_security_group" "db" {
+  ingress {
+    security_groups = [aws_security_group.web.id]  # ref to web → CYCLE
+  }
+}
+
+# SOLUTION: use aws_security_group_rule to break the cycle
+resource "aws_security_group" "web" { name = "web" }
+resource "aws_security_group" "db"  { name = "db" }
+
+resource "aws_security_group_rule" "db_from_web" {
+  type                     = "ingress"
+  security_group_id        = aws_security_group.db.id
+  source_security_group_id = aws_security_group.web.id
+  from_port = 5432; to_port = 5432; protocol = "tcp"
+}`,
+   prevent:'<strong>Prevention:</strong> Avoid inline ingress/egress rules in aws_security_group for resources that reference each other. Always use aws_security_group_rule for cross-SG references — this is the standard pattern for preventing cycles.'
+  },
+  {sev:'med',area:'BACKEND',
+   title:'Backend configuration changed',
+   msg:`Error: Backend configuration changed
+
+A change in the backend configuration has been detected, which may require
+migrating existing state.
+
+If you wish to attempt automatic migration of the state, use "terraform init -migrate-state".
+If you wish to store the current configuration with no changes to the state backend,
+use "terraform init -reconfigure".`,
+   cause:'The backend configuration in your .tf files has changed since the last terraform init — the bucket name, key, region, or backend type was modified. Terraform detected the mismatch and stopped.',
+   steps:[
+     'Decide whether to migrate state to the new backend or revert the config change',
+     'To migrate: run terraform init -migrate-state (Terraform copies state to new location)',
+     'To keep existing backend: run terraform init -reconfigure (discards old config)',
+     'Verify the state is accessible after migration: terraform state list',
+   ],
+   code:`# Option A: Migrate state to new backend location:
+terraform init -migrate-state
+# Terraform will ask: "Do you want to copy state to new backend? yes"
+
+# Option B: Re-initialise with current config (no migration):
+terraform init -reconfigure
+
+# Verify after migration:
+terraform state list
+terraform plan  # should show no unexpected changes`,
+   prevent:'<strong>Prevention:</strong> Treat backend config changes like database migrations — plan carefully, communicate with the team, and test in a non-production environment first. Never change backend config and apply new resources in the same commit.'
+  },
+  {sev:'high',area:'PLAN',
+   title:'Error: Provider produced inconsistent result after apply',
+   msg:`Error: Provider produced inconsistent result after apply
+
+When applying changes to aws_s3_bucket.main, provider "registry.terraform.io/
+hashicorp/aws" produced an unexpected new value: .tags_all["aws:cloudformation:*"]
+is not expected, or unknown.`,
+   cause:'The AWS provider received additional attributes from the API that were not declared in the configuration. Often caused by AWS automatically adding tags (CloudFormation, AWS Config), or by provider version mismatches between team members.',
+   steps:[
+     'Check if any AWS service (CloudFormation, AWS Config, AWS Organizations) is auto-adding tags or attributes',
+     'Add lifecycle { ignore_changes = [...] } to ignore the auto-added attributes',
+     'Alternatively, run terraform providers lock to ensure everyone uses the same provider version',
+     'Check .terraform.lock.hcl is committed and consistent across the team',
+   ],
+   code:`# Ignore auto-added AWS tags:
+resource "aws_s3_bucket" "main" {
+  bucket = "my-bucket"
+
+  lifecycle {
+    ignore_changes = [
+      tags["aws:cloudformation:stack-name"],
+      tags["aws:cloudformation:stack-id"],
+      tags_all,  # ignore all auto-added tags
+    ]
+  }
+}
+
+# Lock provider version to prevent inconsistencies:
+terraform providers lock \\
+  -platform=linux_amd64 \\
+  -platform=darwin_arm64`,
+   prevent:'<strong>Prevention:</strong> Commit .terraform.lock.hcl to Git so all engineers use identical provider versions. Use lifecycle ignore_changes for any attributes managed by AWS-native tooling (CloudFormation, AWS Config, AWS Organizations).'
+  },
+  {sev:'med',area:'CONFIG',
+   title:'Invalid value for variable (validation failed)',
+   msg:`Error: Invalid value for variable
+
+  on terraform.tfvars line 3:
+   3: instance_type = "t2.micro"
+    |----------------
+    | var.instance_type is "t2.micro"
+
+  Error: Only t3 or m5 instance families are allowed in production.`,
+   cause:'A variable value was provided that failed the validation block defined in variables.tf. This is working as designed — the validation caught an invalid input before any infrastructure was created.',
+   steps:[
+     'Read the error message — the validation rule tells you exactly what values are acceptable',
+     'Update your .tfvars file or -var flag to provide a valid value',
+     'If the validation is wrong, update the condition in variables.tf',
+   ],
+   code:`# WRONG value in prod.tfvars:
+instance_type = "t2.micro"  # fails validation
+
+# CORRECT — use an allowed family:
+instance_type = "t3.small"
+
+# The validation that caught it (variables.tf):
+variable "instance_type" {
+  type = string
+  validation {
+    condition     = can(regex("^(t3|m5)\\.", var.instance_type))
+    error_message = "Only t3 or m5 instance families are allowed."
+  }
+}`,
+   prevent:'<strong>Prevention:</strong> This error is the validation feature working correctly — it caught a bad value before any resources were created. Add validation blocks to all variables where only specific values make sense. This saves debugging time later.'
+  },
+  {sev:'high',area:'IAM',
+   title:'AccessDenied: not authorized to perform action',
+   msg:`Error: error creating S3 Bucket (my-prod-bucket): AccessDenied:
+  Access Denied
+  status code: 403, request id: ABCDEF1234567890
+
+  on main.tf line 5, in resource "aws_s3_bucket" "main":
+   5: resource "aws_s3_bucket" "main" {`,
+   cause:'The IAM role or user running Terraform does not have permission to create the requested resource. The operation was blocked by an IAM policy, Service Control Policy (SCP), or resource-based policy.',
+   steps:[
+     'Find the IAM principal running Terraform: aws sts get-caller-identity',
+     'Check what policies are attached to that role/user in the IAM console',
+     'Use IAM Policy Simulator to test the specific action that failed',
+     'Add the missing permission (s3:CreateBucket in this case) to the role policy',
+   ],
+   code:`# Find who Terraform is running as:
+aws sts get-caller-identity
+
+# Test the specific permission:
+aws iam simulate-principal-policy \\
+  --policy-source-arn arn:aws:iam::123:role/TerraformRole \\
+  --action-names s3:CreateBucket \\
+  --resource-arns "arn:aws:s3:::my-prod-bucket"
+
+# Add missing permission to the Terraform execution role:
+resource "aws_iam_role_policy" "terraform_s3" {
+  role = aws_iam_role.terraform_exec.name
+  policy = jsonencode({
+    Statement = [{
+      Effect   = "Allow"
+      Action   = ["s3:CreateBucket", "s3:PutBucketVersioning"]
+      Resource = "arn:aws:s3:::my-prod-*"
+    }]
+  })
+}`,
+   prevent:'<strong>Prevention:</strong> Use IAM Access Analyzer to generate least-privilege policies from CloudTrail activity. Start a new Terraform project by running all the actions once with AdministratorAccess, then use Access Analyzer to generate the minimal policy needed.'
+  },
+  {sev:'med',area:'CONFIG',
+   title:'Error: Inconsistent conditional result types',
+   msg:`Error: Inconsistent conditional result types
+
+  The true and false result expressions must have consistent types. The 'true'
+  value includes object attribute "id" which is absent in the 'false' value.
+
+  on main.tf line 10:
+  10:   subnet_id = var.use_existing ? data.aws_subnet.existing.id : aws_subnet.new.id`,
+   cause:'A conditional expression (condition ? true_val : false_val) has values of different types. Terraform requires both branches of a conditional to return the same type.',
+   steps:[
+     'Ensure both branches of the conditional return the same type (both strings, both objects, etc.)',
+     'Use tostring() to convert values to strings if needed',
+     'Consider using local values to compute each branch separately before combining',
+   ],
+   code:`# WRONG — types might differ between branches:
+subnet_id = var.use_existing ? data.aws_subnet.existing.id : aws_subnet.new.id
+
+# SAFE — explicit tostring() on both sides:
+subnet_id = var.use_existing \\
+  ? tostring(data.aws_subnet.existing.id) \\
+  : tostring(aws_subnet.new.id)
+
+# Or use locals for clarity:
+locals {
+  subnet_id = var.use_existing \\
+    ? data.aws_subnet.existing.id \\
+    : aws_subnet.new.id
+}`,
+   prevent:'<strong>Prevention:</strong> When using conditional expressions, always verify both branches return the same Terraform type. Use the terraform console to test complex expressions interactively before putting them in .tf files.'
+  },
+  {sev:'high',area:'PLAN',
+   title:'Error acquiring the state lock: timeout',
+   msg:`Error: Error locking state: Error acquiring the state lock
+  timeout after 0s waiting for state lock
+  
+  Lock Info:
+    ID:        xyz-789-abc-012
+    Operation: OperationTypeApply
+    Who:       github-actions@ip-10-0-1-5`,
+   cause:'The state is currently locked by another active Terraform operation — in this case a running GitHub Actions job. The lock prevents concurrent applies from corrupting state.',
+   steps:[
+     'Do NOT force-unlock — another apply is actually running',
+     'Find the running job: check GitHub Actions for in-progress Terraform workflows',
+     'Wait for the running job to complete before proceeding',
+     'If the job is stuck or frozen (not making progress), cancel it and then force-unlock',
+   ],
+   code:`# DO NOT force-unlock yet — find the running job first
+
+# Check GitHub Actions via CLI:
+gh run list --workflow=terraform-apply.yml --status=in_progress
+
+# Cancel a stuck job:
+gh run cancel <RUN_ID>
+
+# Only AFTER confirming no job is running:
+terraform force-unlock xyz-789-abc-012
+
+# Verify:
+terraform state list`,
+   prevent:'<strong>Prevention:</strong> Use GitHub Actions concurrency groups to prevent parallel Terraform runs on the same environment. This prevents the lock timeout entirely by serialising applies at the CI level.'
+  },
+  {sev:'med',area:'CONFIG',
+   title:'Error: Invalid function argument',
+   msg:`Error: Invalid function argument
+
+  Call to function "toset" failed: invalid value for set element: string required,
+  set element values must all be of the same type.
+
+  on main.tf line 12:
+  12:   for_each = toset(var.mixed_list)`,
+   cause:'The toset() function was called with a list containing values of different types (e.g. strings and numbers mixed together). Sets require all elements to be of the same type.',
+   steps:[
+     'Check the variable type definition — ensure it is list(string) not list(any)',
+     'Convert all elements to strings before calling toset() using [for v in list : tostring(v)]',
+     'Review the input values to ensure they are all the same type',
+   ],
+   code:`# WRONG — mixed types in list:
+variable "azs" { type = list(any) }  # allows mixed types
+for_each = toset(var.azs)  # ERROR if types differ
+
+# CORRECT — enforce string type:
+variable "azs" {
+  type    = list(string)  # enforces type at input
+  default = ["us-east-1a", "us-east-1b"]
+}
+for_each = toset(var.azs)  # works correctly
+
+# If you have mixed input, convert explicitly:
+for_each = toset([for v in var.azs : tostring(v)])`,
+   prevent:'<strong>Prevention:</strong> Always declare specific types for variables (list(string), map(number), etc.) rather than list(any). Type constraints catch bad inputs at validation time before plan runs.'
+  },
+  {sev:'high',area:'PROVIDER',
+   title:'Provider hashicorp/aws: version constraint mismatch',
+   msg:`Error: Failed to query available provider packages
+
+Could not retrieve the list of available versions for provider
+hashicorp/aws: locked provider registry.terraform.io/hashicorp/aws
+5.31.0 does not match configured version constraint ~> 4.0;
+must use terraform init -upgrade to allow selection of new versions`,
+   cause:'The .terraform.lock.hcl file has a provider version pinned to a specific version that conflicts with the version constraint in required_providers. This often happens when the constraint was updated but init was not re-run.',
+   steps:[
+     'Check the current lock file: cat .terraform.lock.hcl',
+     'Check the constraint in required_providers in your .tf files',
+     'Run terraform init -upgrade to update the lock file to match the new constraint',
+     'Commit the updated .terraform.lock.hcl to Git',
+   ],
+   code:`# Check what version is locked:
+cat .terraform.lock.hcl | grep -A2 'hashicorp/aws'
+
+# Update the lock file to match new constraints:
+terraform init -upgrade
+
+# Add checksums for all team platforms:
+terraform providers lock \\
+  -platform=linux_amd64 \\
+  -platform=darwin_arm64
+
+# Commit the updated lock file:
+git add .terraform.lock.hcl
+git commit -m "chore: upgrade aws provider to ~> 5.0"`,
+   prevent:'<strong>Prevention:</strong> Commit .terraform.lock.hcl to Git. When a team member runs terraform init -upgrade, they must also commit the updated lock file. Add .terraform.lock.hcl to your PR review checklist.'
+  },
+  {sev:'med',area:'CONFIG',
+   title:'Error: Variables not allowed in lifecycle blocks',
+   msg:`Error: Variables not allowed
+
+  on main.tf line 18, in resource "aws_instance" "web":
+  18:   prevent_destroy = var.is_prod
+
+Variables may not be used here; a static boolean is required.`,
+   cause:'The lifecycle meta-argument does not support dynamic expressions — its arguments (prevent_destroy, create_before_destroy, etc.) must be static boolean values known at plan time, not variables or expressions.',
+   steps:[
+     'Replace the variable reference with a static boolean (true or false)',
+     'Use separate resource blocks for prod vs non-prod if different lifecycle behaviour is needed',
+     'Or use different .tf files per environment that the workspace selects',
+   ],
+   code:`# WRONG — variables not allowed in lifecycle:
+lifecycle {
+  prevent_destroy = var.is_prod  # ERROR
+}
+
+# OPTION A: static value (always protect):
+lifecycle {
+  prevent_destroy = true
+}
+
+# OPTION B: separate resource blocks per environment:
+# In prod.tf (only loaded in prod workspace):
+resource "aws_instance" "web_prod" {
+  # ... same config ...
+  lifecycle { prevent_destroy = true }
+}
+
+# OPTION C: use ignore_changes for dynamic behaviour:
+lifecycle {
+  ignore_changes = [tags["LastDeployed"]]
+}`,
+   prevent:'<strong>Prevention:</strong> Remember that lifecycle blocks are evaluated at plan time before any expressions are resolved. They require static values. Design your module structure to handle lifecycle differences between environments at the module level, not through variables.'
+  },
+  {sev:'high',area:'STATE',
+   title:'Error: Two resources with the same identifier',
+   msg:`Error: Two resources have the same identifier
+
+  Two different resource instances both have the resource identifier
+  "i-0abc123def456789".
+
+  This means that multiple resources share the same underlying AWS EC2 instance.
+  This is typically the result of importing an existing resource into a module.`,
+   cause:'The same real-world cloud resource has been imported into Terraform state twice under different addresses, or a resource was moved without using the moved{} block, leaving a duplicate reference.',
+   steps:[
+     'Run terraform state list to find all resources with overlapping addresses',
+     'Use terraform state show on each to find the duplicate cloud resource ID',
+     'Remove the duplicate entry: terraform state rm <duplicate_address>',
+     'Run terraform plan to verify the remaining state is consistent',
+   ],
+   code:`# Find all instances of the same resource:
+terraform state list | grep aws_instance
+
+# Check which ones have the same ID:
+terraform state show aws_instance.web_old | grep '"id"'
+terraform state show aws_instance.web_new | grep '"id"'
+
+# Remove the duplicate (the old address):
+terraform state rm aws_instance.web_old
+
+# Use moved{} block to properly rename without duplicates:
+moved {
+  from = aws_instance.web_old
+  to   = aws_instance.web_new
+}`,
+   prevent:'<strong>Prevention:</strong> Always use the moved{} block (Terraform 1.1+) when renaming resources instead of deleting and re-importing. Never run terraform import without first checking terraform state list to confirm the resource is not already tracked.'
+  },
+  {sev:'med',area:'BACKEND',
+   title:'Error: Failed to get existing workspaces',
+   msg:`Error: Failed to get existing workspaces: S3 bucket does not exist.
+
+  The S3 bucket "my-terraform-state" for remote state storage does not exist.
+
+  Please create the S3 bucket manually before running "terraform init".`,
+   cause:'The S3 bucket configured as the Terraform backend does not exist in AWS. The bucket must be created before Terraform can use it for state storage.',
+   steps:[
+     'Create the S3 bucket manually in AWS before running terraform init',
+     'Also create the DynamoDB table for state locking if it does not exist',
+     'Consider using a separate bootstrap Terraform config to create the state infrastructure',
+     'Run terraform init again after the bucket and table exist',
+   ],
+   code:`# Create state infrastructure manually (one time):
+aws s3api create-bucket \\
+  --bucket my-terraform-state \\
+  --region us-east-1
+
+aws s3api put-bucket-versioning \\
+  --bucket my-terraform-state \\
+  --versioning-configuration Status=Enabled
+
+aws dynamodb create-table \\
+  --table-name terraform-state-locks \\
+  --attribute-definitions AttributeName=LockID,AttributeType=S \\
+  --key-schema AttributeName=LockID,KeyType=HASH \\
+  --billing-mode PAY_PER_REQUEST
+
+# Now run init:
+terraform init`,
+   prevent:'<strong>Prevention:</strong> Create a bootstrap/ directory in your repo with a separate Terraform config that creates the state bucket and DynamoDB table using the local backend. This "chicken and egg" setup is a one-time manual step.'
+  },
+  {sev:'med',area:'CONFIG',
+   title:'Error: Argument "count" cannot be used with "for_each"',
+   msg:`Error: Invalid combination of "count" and "for_each"
+
+  on main.tf line 5, in resource "aws_subnet" "main":
+   5: resource "aws_subnet" "main" {
+
+  The arguments "count" and "for_each" are both defined. Only one of these is
+  allowed.`,
+   cause:'Both count and for_each meta-arguments were specified on the same resource. They are mutually exclusive — you must choose one or the other.',
+   steps:[
+     'Decide which meta-argument to use: count (integer-indexed) or for_each (string-keyed)',
+     'Remove the one you do not want',
+     'Generally prefer for_each unless you specifically need integer-indexed resources',
+   ],
+   code:`# WRONG — both count and for_each specified:
+resource "aws_subnet" "main" {
+  count    = length(var.azs)           # ERROR
+  for_each = toset(var.azs)            # ERROR — cannot have both
+  availability_zone = each.key
+}
+
+# CORRECT — choose one (for_each preferred):
+resource "aws_subnet" "main" {
+  for_each          = toset(var.azs)
+  availability_zone = each.key
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = cidrsubnet(var.vpc_cidr, 4, index(var.azs, each.key))
+}`,
+   prevent:'<strong>Prevention:</strong> Use for_each by default — it produces stable resource addresses that survive element removal. Only use count when you explicitly need integer-indexed resources (e.g. creating N identical items with no meaningful key).'
+  },
+  {sev:'high',area:'PLAN',
+   title:'Error: The argument "source" is required',
+   msg:`Error: The argument "source" is required.
+
+  on main.tf line 3, in module "vpc":
+   3: module "vpc" {
+
+The argument "source" is required when calling a module.`,
+   cause:'A module block was declared without a source argument. Terraform needs to know where to download or find the module code — this is always required.',
+   steps:[
+     'Add a source argument to the module block',
+     'The source can be a local path (./modules/vpc), a Git URL, or a Terraform registry path',
+     'Run terraform init after adding the source so Terraform can download the module',
+   ],
+   code:`# WRONG — missing source:
+module "vpc" {
+  name     = "prod-vpc"
+  vpc_cidr = "10.0.0.0/16"
+}
+
+# CORRECT — with local path source:
+module "vpc" {
+  source   = "./modules/vpc"  # required
+  name     = "prod-vpc"
+  vpc_cidr = "10.0.0.0/16"
+}
+
+# CORRECT — with registry source:
+module "vpc" {
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "~> 5.0"
+  name    = "prod-vpc"
+}`,
+   prevent:'<strong>Prevention:</strong> The terraform validate command catches missing source arguments immediately. Always run validate before plan in CI pipelines. The VS Code HashiCorp extension also highlights missing required arguments inline.'
+  },
+  {sev:'med',area:'AUTH',
+   title:'Error: assume role failed',
+   msg:`Error: error configuring Terraform AWS Provider: error assuming role
+  "arn:aws:iam::123456789:role/TerraformRole": NoCredentialProviders:
+  no valid providers in chain. Deprecated.`,
+   cause:'Terraform is configured to assume an IAM role (assume_role in the provider block) but the current credentials do not have permission to assume that role, or the role does not exist.',
+   steps:[
+     'Verify the role ARN is correct: aws iam get-role --role-name TerraformRole',
+     'Check the role\'s trust policy allows the current principal to assume it',
+     'Verify the current credentials: aws sts get-caller-identity',
+     'Test role assumption manually: aws sts assume-role --role-arn <ARN> --role-session-name test',
+   ],
+   code:`# Test if you can assume the role:
+aws sts assume-role \\
+  --role-arn arn:aws:iam::123:role/TerraformRole \\
+  --role-session-name test
+
+# Check the trust policy allows your identity:
+aws iam get-role \\
+  --role-name TerraformRole \\
+  --query "Role.AssumeRolePolicyDocument"
+
+# Correct trust policy should include your identity:
+# {
+#   "Effect": "Allow",
+#   "Principal": { "AWS": "arn:aws:iam::123:user/your-user" },
+#   "Action": "sts:AssumeRole"
+# }`,
+   prevent:'<strong>Prevention:</strong> Test role assumption manually with aws sts assume-role before configuring it in Terraform. In CI, use OIDC instead of assume_role with static credentials — OIDC is simpler, more secure, and eliminates the trust policy complexity.'
+  },
+  {sev:'med',area:'CONFIG',
+   title:'Error: An argument named "tags" is not supported',
+   msg:`Error: Unsupported argument
+
+  on main.tf line 14:
+  14:   tags = var.tags
+
+An argument named "tags" is not expected here.`,
+   cause:'The resource type does not support the tags argument directly. Not all AWS resources accept tags — some require tags to be applied through a separate resource or through a different mechanism.',
+   steps:[
+     'Check the Terraform registry documentation for the specific resource type',
+     'Look for a separate tagging resource (e.g. aws_ec2_tag, aws_route53_zone_tag)',
+     'Some resources use tag-like arguments with different names',
+   ],
+   code:`# Not all resources support tags directly.
+# Example: aws_route_table_association has no tags argument
+
+# WRONG:
+resource "aws_route_table_association" "main" {
+  subnet_id      = aws_subnet.main.id
+  route_table_id = aws_route_table.main.id
+  tags           = var.tags  # ERROR — not supported
+}
+
+# CORRECT — remove unsupported argument:
+resource "aws_route_table_association" "main" {
+  subnet_id      = aws_subnet.main.id
+  route_table_id = aws_route_table.main.id
+}
+
+# Tag the parent resources instead (route table, subnet)`,
+   prevent:'<strong>Prevention:</strong> Check the Terraform registry docs for each resource type before assuming tags are supported. Use aws_resourcegroups_group to tag resources that do not support the tags argument directly.'
+  },
+  {sev:'high',area:'PLAN',
+   title:'Error: Resource already exists',
+   msg:`Error: error creating S3 Bucket: BucketAlreadyOwnedByYou:
+  Your previous request to create the named bucket succeeded and you already
+  own it.
+
+  on main.tf line 5, in resource "aws_s3_bucket" "main":
+   5: resource "aws_s3_bucket" "main" {`,
+   cause:'Terraform tried to create a resource that already exists in AWS (created manually or by a previous Terraform run that was not tracked in state). The resource exists but Terraform does not know about it.',
+   steps:[
+     'Do NOT rerun apply — the resource already exists and you need to import it',
+     'Write the resource configuration in .tf to match the existing resource',
+     'Run terraform import to bring the existing resource under Terraform management',
+     'Run terraform plan to verify there are no differences between config and reality',
+   ],
+   code:`# The resource exists in AWS but not in state.
+# Import it rather than trying to create it:
+
+# Step 1: Write the resource block in .tf
+resource "aws_s3_bucket" "main" {
+  bucket = "my-existing-bucket"
+}
+
+# Step 2: Import it into state
+terraform import aws_s3_bucket.main my-existing-bucket
+
+# Step 3: Check plan shows no changes
+terraform plan
+# Plan: 0 to add, 0 to change, 0 to destroy.
+
+# Modern approach (Terraform 1.5+):
+import {
+  to = aws_s3_bucket.main
+  id = "my-existing-bucket"
+}`,
+   prevent:'<strong>Prevention:</strong> Before creating resources with Terraform in an existing AWS account, check if they already exist. Use terraform import as the standard process for adopting manually created resources. Never manually create resources that Terraform should manage.'
+  },
+  {sev:'med',area:'CONFIG',
+   title:'Error: Invalid provider configuration',
+   msg:`Error: Invalid provider configuration
+
+Provider "registry.terraform.io/hashicorp/aws" requires explicit configuration.
+Add a provider block to the root module with appropriate configuration, or pass
+-var="aws_region=us-east-1" to terraform init.`,
+   cause:'A required provider has no configuration block in the root module. Providers need at least a minimal configuration (usually region for AWS) to initialise correctly.',
+   steps:[
+     'Add a provider block to your root main.tf or provider.tf',
+     'At minimum, specify the required attributes (region for AWS)',
+     'Run terraform init after adding the provider configuration',
+   ],
+   code:`# Add a provider block to your root module:
+provider "aws" {
+  region = var.region
+}
+
+variable "region" {
+  type    = string
+  default = "us-east-1"
+}
+
+# For multiple regions (use aliases):
+provider "aws" {
+  alias  = "us"
+  region = "us-east-1"
+}
+provider "aws" {
+  alias  = "eu"
+  region = "eu-west-1"
+}`,
+   prevent:'<strong>Prevention:</strong> Always include a provider.tf file in your root module with explicit provider configurations. Use variables for region so the same config works across environments without code changes.'
+  },
+  {sev:'med',area:'CONFIG',
+   title:'Warning: Deprecated attribute used',
+   msg:`Warning: Deprecated attribute
+
+  on main.tf line 8:
+   8:   instance_initiated_shutdown_behavior = "terminate"
+
+The attribute "instance_initiated_shutdown_behavior" is deprecated. Use
+"instance_initiated_shutdown_behavior" attribute of "aws_instance" resource.
+This will become an error in a future provider version.`,
+   cause:'A resource argument has been deprecated in the current provider version and will be removed in a future version. While it still works now, it will break when the provider is upgraded.',
+   steps:[
+     'Read the deprecation message carefully — it usually tells you the replacement',
+     'Check the provider changelog and resource documentation for the replacement attribute',
+     'Update your .tf files to use the new argument before upgrading the provider',
+     'Run terraform plan to verify the change has no unintended effects',
+   ],
+   code:`# This is a WARNING not an error — but fix it before provider upgrade.
+# Check the provider docs for the correct attribute name/location.
+
+# Common deprecation pattern — moved to separate resource:
+# DEPRECATED:
+resource "aws_s3_bucket" "main" {
+  acl = "private"  # deprecated in provider v4
+}
+
+# CURRENT:
+resource "aws_s3_bucket_acl" "main" {
+  bucket = aws_s3_bucket.main.id
+  acl    = "private"
+}
+
+# Run plan to check impact:
+terraform plan -no-color 2>&1 | grep -i "deprecated\|warning"`,
+   prevent:'<strong>Prevention:</strong> Treat all deprecation warnings as errors-in-waiting. Set up a scheduled CI job that runs terraform validate and flags any deprecation warnings. Fix them promptly rather than accumulating them into a large breaking upgrade.'
+  },
+  {sev:'high',area:'PLAN',
+   title:'Error: Unsupported Terraform Core version',
+   msg:`Error: Unsupported Terraform Core version
+
+  This configuration does not support Terraform version 1.3.9. To proceed,
+  either choose another supported Terraform version or update the root module's
+  version constraint. Module "root" requires Terraform >= 1.5.0.`,
+   cause:'The configuration has a required_version constraint in the terraform block that excludes the currently installed Terraform CLI version. The installed version is too old for the configuration.',
+   steps:[
+     'Check what version is required: grep required_version *.tf',
+     'Check what version is installed: terraform version',
+     'Upgrade Terraform CLI to meet the minimum version requirement',
+     'Use tfenv to manage multiple Terraform versions if needed',
+   ],
+   code:`# Check required version:
+grep -r "required_version" .
+
+# Check installed version:
+terraform version
+
+# Install the required version with tfenv:
+tfenv install 1.6.4
+tfenv use 1.6.4
+
+# Or update the constraint if your version is acceptable:
+terraform {
+  required_version = ">= 1.3.0"  # lower the minimum
+}
+
+# Verify:
+terraform version  # must satisfy the constraint`,
+   prevent:'<strong>Prevention:</strong> Use tfenv (github.com/tfutils/tfenv) and commit a .terraform-version file to your repo. This ensures every engineer and CI runner uses the exact same Terraform version without manual management.'
+  },
+  {sev:'med',area:'CONFIG',
+   title:'Error: Invalid for_each argument — must be known',
+   msg:`Error: Invalid for_each argument
+
+  The "for_each" value depends on resource attributes that cannot be determined
+  until apply, so Terraform cannot predict how many instances will be created.
+  To work around this, use the -target argument to first apply only the
+  resources that the for_each depends on.`,
+   cause:'The for_each expression references a value that is only known after apply (e.g. a newly created resource\'s ID or ARN). Terraform cannot calculate the for_each map at plan time.',
+   steps:[
+     'First apply the resource that produces the unknown value using -target',
+     'Then apply the full configuration without -target',
+     'Or restructure the config to use a known value (a variable, locals, or data source)',
+   ],
+   code:`# Problem: for_each uses a value unknown until apply
+resource "aws_subnet" "main" {
+  for_each = aws_vpc.main.id  # ERROR — VPC ID not known yet
+}
+
+# Solution A: Apply VPC first, then subnets
+terraform apply -target=aws_vpc.main
+terraform apply  # now VPC ID is known
+
+# Solution B: Use a known value instead
+variable "subnet_azs" {
+  default = ["us-east-1a", "us-east-1b", "us-east-1c"]
+}
+resource "aws_subnet" "main" {
+  for_each = toset(var.subnet_azs)  # known at plan time
+  vpc_id   = aws_vpc.main.id  # reference is fine here
+}`,
+   prevent:'<strong>Prevention:</strong> Use known values (variables, toset, tomaps of literals) as the for_each expression. If you must use a computed value, use -target for a two-step apply. Consider restructuring the config to avoid the dependency.'
+  },
+];
+
+// ──────────────────────────────────────────────
+// TERM ENGINE
+// ──────────────────────────────────────────────
+let termTimer = null;
+
+function getTodayTermIdx(){
+  const t = new Date();
+  const doy = Math.floor((t - new Date(t.getFullYear(),0,0)) / 86400000);
+  return doy % TERM_BANK.length;
+}
+
+function initTerm(){
+  const idx = getTodayTermIdx();
+  const term = TERM_BANK[idx];
+  const today = new Date().toISOString().slice(0,10);
+  const viewed = S.termViewed && S.termViewed[today];
+
+  const catEl = document.getElementById('termCatBadge');
+  if(catEl){ catEl.textContent = term.cat.toUpperCase(); catEl.className = 'term-cat-badge termcat-'+term.cat; }
+  document.getElementById('termWord').textContent = term.word;
+  document.getElementById('termPron').textContent = '/' + term.pron + '/';
+  document.getElementById('termDef').textContent = term.def;
+  document.getElementById('termAnalogy').textContent = term.analogy;
+  document.getElementById('termWhy').textContent = term.why;
+  document.getElementById('termCode').innerHTML = termHL(term.code);
+
+  if(viewed){ const btn=document.getElementById('termViewedBtn'); if(btn){btn.textContent='✓ LEARNED TODAY';btn.disabled=true;} }
+
+  clearInterval(termTimer);
+  function tick(){
+    const now=new Date(), mid=new Date(now); mid.setHours(24,0,0,0);
+    const d=Math.floor((mid-now)/1000), el=document.getElementById('termCountdown');
+    if(el) el.textContent=String(Math.floor(d/3600)).padStart(2,'0')+'h '+String(Math.floor((d%3600)/60)).padStart(2,'0')+'m '+String(d%60).padStart(2,'0')+'s';
+  }
+  tick(); termTimer=setInterval(tick,1000);
+  renderTermHist();
+}
+
+function markTermViewed(){
+  const idx=getTodayTermIdx(), today=new Date().toISOString().slice(0,10);
+  S.termViewed=S.termViewed||{};
+  if(S.termViewed[today]) return;
+  S.termViewed[today]={idx,word:TERM_BANK[idx].word}; save();
+  addXP(3,'Term of the Day: '+TERM_BANK[idx].word);
+  toast('🔤 +3 XP — Term learned!','t-xp');
+  const btn=document.getElementById('termViewedBtn');
+  if(btn){btn.textContent='✓ LEARNED TODAY';btn.disabled=true;}
+  checkBadges();
+}
+
+function copyTermCode(){
+  const idx=getTodayTermIdx();
+  const raw=TERM_BANK[idx].code;
+  navigator.clipboard.writeText(raw).then(()=>toast('✓ Code copied!','t-unlock')).catch(()=>{
+    const ta=document.createElement('textarea');ta.value=raw;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('✓ Copied!','t-unlock');
+  });
+}
+
+function termHL(code){
+  return code.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/(#[^\n]*)/g,'<span class="cmt">$1</span>')
+    .replace(/\b(resource|data|variable|output|locals|module|terraform|provider|backend|lifecycle|for_each|count|depends_on)\b/g,'<span class="kw">$1</span>')
+    .replace(/\b(true|false|null)\b/g,'<span class="val">$1</span>');
+}
+
+function renderTermHist(){
+  const grid=document.getElementById('termHistGrid');
+  if(!grid) return;
+  const today=getTodayTermIdx();
+  const hist=TERM_BANK.map((t,i)=>({t,i})).filter(({i})=>i!==today).slice(0,18);
+  grid.innerHTML=hist.map(({t,i})=>{
+    const seen=S.termViewed&&Object.values(S.termViewed).some(v=>v.idx===i);
+    return `<div class="term-hist-card" onclick="togTermHist(this,${i})">
+      <div class="term-hist-word">${t.word}</div>
+      <div class="term-hist-def">${t.def.slice(0,70)}...</div>
+      <div class="term-hist-meta">
+        <span class="term-cat-badge termcat-${t.cat}" style="font-size:8px">${t.cat.toUpperCase()}</span>
+        ${seen?'<span class="term-seen-tag">✓ LEARNED</span>':''}
+      </div>
+      <div class="term-hist-detail">
+        <div style="font-size:0.82rem;color:#e2e8f0;line-height:1.65;margin-bottom:8px">${t.def}</div>
+        <div style="font-size:0.8rem;color:#94a3b8;font-style:italic;padding:7px 10px;background:rgba(245,158,11,0.05);border-left:2px solid rgba(245,158,11,0.3);border-radius:0 4px 4px 0;margin-bottom:8px">${t.analogy}</div>
+        <pre style="font-family:'Share Tech Mono',monospace;font-size:0.74rem;background:#020610;border:1px solid rgba(245,158,11,0.1);border-radius:5px;padding:8px 10px;color:#94a3b8;overflow-x:auto;white-space:pre;line-height:1.6">${termHL(t.code)}</pre>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function togTermHist(card,idx){
+  card.classList.toggle('open');
+  if(card.classList.contains('open')){
+    S.termViewed=S.termViewed||{};
+    const key='hist_'+idx+'_'+new Date().toISOString().slice(0,10);
+    if(!Object.values(S.termViewed).some(v=>v.idx===idx)){
+      S.termViewed[key]={idx,word:TERM_BANK[idx].word}; save();
+    }
+  }
+}
+
+// ──────────────────────────────────────────────
+// ERROR ENGINE
+// ──────────────────────────────────────────────
+let errTimer = null;
+
+function getTodayErrIdx(){
+  const t = new Date();
+  const doy = Math.floor((t - new Date(t.getFullYear(),0,0)) / 86400000);
+  return (doy + 7) % ERR_BANK.length;
+}
+
+function initErr(){
+  const idx = getTodayErrIdx();
+  const err = ERR_BANK[idx];
+  const today = new Date().toISOString().slice(0,10);
+  const viewed = S.errViewed && S.errViewed[today];
+
+  const sevEl=document.getElementById('errSeverity');
+  if(sevEl){ sevEl.textContent=err.sev.toUpperCase(); sevEl.className='err-severity err-sev-'+err.sev; }
+  const areaEl=document.getElementById('errArea');
+  if(areaEl) areaEl.textContent=err.area;
+  document.getElementById('errTitle').textContent=err.title;
+  document.getElementById('errMsg').textContent=err.msg;
+  document.getElementById('errCause').textContent=err.cause;
+  document.getElementById('errCode').innerHTML=errHL(err.code);
+  document.getElementById('errPrevent').innerHTML=err.prevent;
+
+  document.getElementById('errSteps').innerHTML=err.steps.map((s,i)=>`
+    <div class="err-step">
+      <div class="err-step-num">${i+1}</div>
+      <div class="err-step-text">${s}</div>
+    </div>`).join('');
+
+  if(viewed){ const btn=document.getElementById('errViewedBtn'); if(btn){btn.textContent='✓ FIXED TODAY';btn.disabled=true;} }
+
+  clearInterval(errTimer);
+  function tick(){
+    const now=new Date(), mid=new Date(now); mid.setHours(24,0,0,0);
+    const d=Math.floor((mid-now)/1000), el=document.getElementById('errCountdown');
+    if(el) el.textContent=String(Math.floor(d/3600)).padStart(2,'0')+'h '+String(Math.floor((d%3600)/60)).padStart(2,'0')+'m '+String(d%60).padStart(2,'0')+'s';
+  }
+  tick(); errTimer=setInterval(tick,1000);
+  renderErrHist();
+}
+
+function markErrViewed(){
+  const idx=getTodayErrIdx(), today=new Date().toISOString().slice(0,10);
+  S.errViewed=S.errViewed||{};
+  if(S.errViewed[today]) return;
+  S.errViewed[today]={idx,title:ERR_BANK[idx].title}; save();
+  addXP(5,'Error of the Day: '+ERR_BANK[idx].title);
+  toast('⚠️ +5 XP — Error understood!','t-xp');
+  const btn=document.getElementById('errViewedBtn');
+  if(btn){btn.textContent='✓ FIXED TODAY';btn.disabled=true;}
+  checkBadges();
+}
+
+function copyErrCode(){
+  const raw=ERR_BANK[getTodayErrIdx()].code;
+  navigator.clipboard.writeText(raw).then(()=>toast('✓ Fix copied!','t-unlock')).catch(()=>{
+    const ta=document.createElement('textarea');ta.value=raw;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('✓ Copied!','t-unlock');
+  });
+}
+
+function errHL(code){
+  return code.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/(#[^\n]*)/g,'<span class="cmt">$1</span>')
+    .replace(/\b(resource|data|variable|terraform|provider|lifecycle|module)\b/g,'<span class="kw">$1</span>')
+    .replace(/\b(true|false|null)\b/g,'<span class="val">$1</span>');
+}
+
+function renderErrHist(){
+  const grid=document.getElementById('errHistGrid');
+  if(!grid) return;
+  const today=getTodayErrIdx();
+  const hist=ERR_BANK.map((e,i)=>({e,i})).filter(({i})=>i!==today).slice(0,18);
+  grid.innerHTML=hist.map(({e,i})=>{
+    const seen=S.errViewed&&Object.values(S.errViewed).some(v=>v.idx===i);
+    return `<div class="err-hist-card" onclick="togErrHist(this,${i})">
+      <div class="err-hist-title">${e.title}</div>
+      <div class="err-hist-cause">${e.cause.slice(0,75)}...</div>
+      <div class="err-hist-meta">
+        <span class="err-severity err-sev-${e.sev}" style="font-size:8px">${e.sev.toUpperCase()}</span>
+        <span class="err-area" style="font-size:8px">${e.area}</span>
+        ${seen?'<span class="err-seen-tag">✓ SEEN</span>':''}
+      </div>
+      <div class="err-hist-detail">
+        <pre style="font-family:'Share Tech Mono',monospace;font-size:0.72rem;background:#0a0404;border:1px solid rgba(239,68,68,0.18);border-radius:5px;padding:8px 10px;color:#f87171;overflow-x:auto;white-space:pre;line-height:1.6;margin-bottom:8px">${e.msg.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre>
+        <div style="font-size:0.81rem;color:#94a3b8;line-height:1.55;margin-bottom:8px">${e.cause}</div>
+        <pre style="font-family:'Share Tech Mono',monospace;font-size:0.74rem;background:#020610;border:1px solid rgba(16,185,129,0.12);border-radius:5px;padding:8px 10px;color:#94a3b8;overflow-x:auto;white-space:pre;line-height:1.6">${errHL(e.code)}</pre>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function togErrHist(card,idx){
+  card.classList.toggle('open');
+  if(card.classList.contains('open')){
+    S.errViewed=S.errViewed||{};
+    const key='hist_'+idx+'_'+new Date().toISOString().slice(0,10);
+    if(!Object.values(S.errViewed).some(v=>v.idx===idx)){
+      S.errViewed[key]={idx,title:ERR_BANK[idx].title}; save();
     }
   }
 }
