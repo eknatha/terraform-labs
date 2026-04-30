@@ -574,6 +574,65 @@ footer span{color:var(--accent)}
   .stats-strip{grid-template-columns:1fr 1fr}
 }
 
+
+/* ARCHITECTURE PATTERN OF THE DAY */
+.arch-card{background:linear-gradient(135deg,rgba(124,58,237,0.07),rgba(245,158,11,0.05));border:1px solid rgba(124,58,237,0.22);border-radius:12px;padding:26px;margin-bottom:22px;position:relative;overflow:hidden}
+.arch-card::before{content:'PATTERN OF THE DAY';position:absolute;top:12px;right:16px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:#a78bfa;opacity:0.45}
+.arch-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.arch-countdown{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted)}
+.arch-cat{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;padding:3px 10px;border-radius:2px}
+.archcat-networking{background:rgba(0,229,255,0.08);color:var(--accent);border:1px solid rgba(0,229,255,0.18)}
+.archcat-compute{background:rgba(16,185,129,0.1);color:var(--accent3);border:1px solid rgba(16,185,129,0.2)}
+.archcat-security{background:rgba(239,68,68,0.08);color:var(--danger);border:1px solid rgba(239,68,68,0.18)}
+.archcat-cicd{background:rgba(245,158,11,0.1);color:var(--accent4);border:1px solid rgba(245,158,11,0.2)}
+.archcat-storage{background:rgba(124,58,237,0.1);color:#a78bfa;border:1px solid rgba(124,58,237,0.2)}
+.archcat-kubernetes{background:rgba(0,229,255,0.08);color:var(--accent);border:1px solid rgba(0,229,255,0.18)}
+.archcat-resilience{background:rgba(239,68,68,0.08);color:var(--danger);border:1px solid rgba(239,68,68,0.18)}
+.archcat-multicloud{background:rgba(16,185,129,0.1);color:var(--accent3);border:1px solid rgba(16,185,129,0.2)}
+.arch-cloud-badge{font-family:'Share Tech Mono',monospace;font-size:9px;padding:3px 8px;border-radius:2px;background:rgba(100,116,139,0.1);color:var(--muted);border:1px solid rgba(100,116,139,0.18)}
+.arch-title{font-family:'Orbitron',monospace;font-size:clamp(0.95rem,2vw,1.15rem);font-weight:700;color:#a78bfa;margin-bottom:8px;line-height:1.4}
+.arch-when{font-size:0.87rem;color:#94a3b8;line-height:1.6;margin-bottom:18px;padding:10px 14px;background:rgba(124,58,237,0.06);border-left:3px solid rgba(124,58,237,0.3);border-radius:0 5px 5px 0}
+.arch-section-lbl{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:3px;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.arch-section-lbl.diag{color:var(--accent)}.arch-section-lbl.diag::after{content:'';flex:1;height:1px;background:rgba(0,229,255,0.12)}
+.arch-section-lbl.tf{color:var(--accent4)}.arch-section-lbl.tf::after{content:'';flex:1;height:1px;background:rgba(245,158,11,0.15)}
+.arch-section-lbl.pros{color:var(--accent3)}.arch-section-lbl.pros::after{content:'';flex:1;height:1px;background:rgba(16,185,129,0.18)}
+.arch-section-lbl.cons{color:var(--danger)}.arch-section-lbl.cons::after{content:'';flex:1;height:1px;background:rgba(239,68,68,0.15)}
+.arch-section-lbl.tip{color:#a78bfa}.arch-section-lbl.tip::after{content:'';flex:1;height:1px;background:rgba(124,58,237,0.15)}
+.arch-diagram{background:#020610;border:1px solid rgba(0,229,255,0.12);border-radius:7px;padding:16px;margin-bottom:14px;font-family:'Share Tech Mono',monospace;font-size:0.78rem;color:#64748b;line-height:1.9;overflow-x:auto;white-space:pre}
+.arch-diagram .node{color:var(--accent)}.arch-diagram .arrow{color:#334155}.arch-diagram .label{color:var(--accent4)}.arch-diagram .comment{color:#1e293b}
+.arch-tf-code{background:#020610;border:1px solid rgba(245,158,11,0.12);border-radius:7px;padding:14px 16px;font-family:'Share Tech Mono',monospace;font-size:0.79rem;color:#94a3b8;line-height:1.7;overflow-x:auto;white-space:pre;margin-bottom:14px;position:relative}
+.arch-tf-code .kw{color:#a78bfa}.arch-tf-code .key{color:var(--accent)}.arch-tf-code .str{color:var(--accent4)}.arch-tf-code .cmt{color:#334155}.arch-tf-code .val{color:var(--accent3)}
+.arch-copy-btn{position:absolute;top:8px;right:8px;font-family:'Share Tech Mono',monospace;font-size:9px;padding:3px 9px;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);border-radius:3px;color:var(--accent4);cursor:pointer;transition:all 0.2s}
+.arch-copy-btn:hover{background:rgba(245,158,11,0.16)}
+.arch-tradeoffs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.arch-pros,.arch-cons{border-radius:6px;padding:10px 14px}
+.arch-pros{background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.15)}
+.arch-cons{background:rgba(239,68,68,0.05);border:1px solid rgba(239,68,68,0.15)}
+.arch-tradeoff-label{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;margin-bottom:7px}
+.arch-pros .arch-tradeoff-label{color:var(--accent3)}
+.arch-cons .arch-tradeoff-label{color:var(--danger)}
+.arch-tradeoff-item{font-size:0.82rem;color:#94a3b8;line-height:1.5;padding:2px 0;padding-left:12px;position:relative}
+.arch-tradeoff-item::before{position:absolute;left:0}
+.arch-pros .arch-tradeoff-item::before{content:'✓';color:var(--accent3)}
+.arch-cons .arch-tradeoff-item::before{content:'✗';color:var(--danger)}
+.arch-tip{font-size:0.84rem;color:#94a3b8;line-height:1.6;padding:10px 14px;background:rgba(124,58,237,0.05);border-left:3px solid rgba(124,58,237,0.25);border-radius:0 5px 5px 0;margin-bottom:14px}
+.arch-tip strong{color:#a78bfa}
+.arch-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.arch-viewed-btn{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1px;padding:9px 18px;background:rgba(124,58,237,0.1);border:1px solid rgba(124,58,237,0.3);border-radius:4px;color:#a78bfa;cursor:pointer;transition:all 0.2s}
+.arch-viewed-btn:hover{background:rgba(124,58,237,0.2)}.arch-viewed-btn:disabled{opacity:0.5;cursor:default}
+.arch-xp-badge{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--accent4);background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.2);padding:4px 12px;border-radius:3px}
+.arch-hist-label{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:3px;color:#a78bfa;margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.arch-hist-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.arch-hist-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 14px;cursor:pointer;transition:all 0.2s}
+.arch-hist-card:hover{border-color:rgba(124,58,237,0.3);transform:translateY(-2px)}
+.arch-hist-card.open{border-color:rgba(124,58,237,0.4)}
+.arch-hist-title{font-family:'Orbitron',monospace;font-size:0.82rem;color:#a78bfa;font-weight:700;margin-bottom:4px;line-height:1.3}
+.arch-hist-when{font-size:0.8rem;color:#94a3b8;margin-bottom:8px;line-height:1.4}
+.arch-hist-meta{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.arch-hist-detail{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
+.arch-hist-card.open .arch-hist-detail{display:block}
+.arch-seen-tag{font-family:'Share Tech Mono',monospace;font-size:8px;padding:2px 7px;background:rgba(124,58,237,0.08);color:#a78bfa;border:1px solid rgba(124,58,237,0.2);border-radius:2px}
+
 /* VISITOR COUNTER */
 .visitor-counter-footer{display:inline-flex;align-items:center;gap:6px;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--muted)}
 .visitor-counter-footer .vc-dot{width:6px;height:6px;border-radius:50%;background:var(--accent3);display:inline-block;animation:vcPulse 2s ease infinite}
@@ -660,6 +719,7 @@ footer span{color:var(--accent)}
   <button class="tab-btn" onclick="switchTab('drill')" id="tab-drill">🃏 DRILL</button>
   <button class="tab-btn" onclick="switchTab('snippets')" id="tab-snippets">📋 SNIPPETS</button>
   <button class="tab-btn" onclick="switchTab('cmd')" id="tab-cmd">⌨️ CMD</button>
+  <button class="tab-btn" onclick="switchTab('arch')" id="tab-arch">📐 ARCH</button>
   <button class="tab-btn" onclick="switchTab('term')" id="tab-term">🔤 TERM</button>
   <button class="tab-btn" onclick="switchTab('error')" id="tab-error">⚠️ ERROR</button>
   <button class="tab-btn" onclick="switchTab('iq')" id="tab-iq">🎤 DAILY IQ</button>
@@ -736,6 +796,59 @@ footer span{color:var(--accent)}
   <div class="stats-strip" id="statsStrip"></div>
   <span class="sec-label" style="margin-top:20px">// ACTIVITY LOG</span>
   <div id="actLog" style="display:flex;flex-direction:column;gap:7px;margin-top:10px"></div>
+</div>
+
+<!-- ARCH PATTERN OF THE DAY -->
+<div class="tab-content" id="content-arch">
+  <span class="sec-label">// DAILY ARCHITECTURE</span>
+  <div class="sec-title">Architecture Pattern of the Day</div>
+  <p class="sec-intro">One cloud architecture pattern every day — ASCII diagram, Terraform sketch, trade-offs, and a pro tip. +10 XP for marking as studied.</p>
+
+  <div class="arch-card" id="archCard">
+    <div class="arch-meta">
+      <span class="arch-countdown">⏰ RESETS IN: <span id="archCountdown">--:--:--</span></span>
+      <span class="arch-cat archcat-networking" id="archCatBadge">NETWORKING</span>
+      <span class="arch-cloud-badge" id="archCloud">AWS</span>
+    </div>
+    <div class="arch-title" id="archTitle">Loading...</div>
+
+    <div class="arch-section-lbl diag">// WHEN TO USE</div>
+    <div class="arch-when" id="archWhen"></div>
+
+    <div class="arch-section-lbl diag">// ARCHITECTURE DIAGRAM</div>
+    <pre class="arch-diagram" id="archDiagram"></pre>
+
+    <div class="arch-section-lbl tf">// TERRAFORM SKETCH</div>
+    <div style="position:relative">
+      <pre class="arch-tf-code" id="archCode"></pre>
+      <button class="arch-copy-btn" onclick="copyArchCode()">COPY</button>
+    </div>
+
+    <div class="arch-section-lbl pros">// TRADE-OFFS</div>
+    <div class="arch-tradeoffs">
+      <div class="arch-pros">
+        <div class="arch-tradeoff-label">ADVANTAGES</div>
+        <div id="archPros"></div>
+      </div>
+      <div class="arch-cons">
+        <div class="arch-tradeoff-label">DISADVANTAGES</div>
+        <div id="archCons"></div>
+      </div>
+    </div>
+
+    <div class="arch-section-lbl tip">// PRO TIP</div>
+    <div class="arch-tip" id="archTip"></div>
+
+    <div class="arch-actions">
+      <button class="arch-viewed-btn" id="archViewedBtn" onclick="markArchViewed()">✓ MARK AS STUDIED  +10 XP</button>
+      <span class="arch-xp-badge">+10 XP</span>
+    </div>
+  </div>
+
+  <div>
+    <div class="arch-hist-label">// PREVIOUS PATTERNS — click to expand</div>
+    <div class="arch-hist-grid" id="archHistGrid"></div>
+  </div>
 </div>
 
 <!-- TERM OF THE DAY -->
@@ -2402,6 +2515,7 @@ function switchTab(id){
   if(id==='iq') initIQ();
   if(id==='cmd') initCmd();
   if(id==='term') initTerm();
+  if(id==='arch') initArch();
   if(id==='error') initErr();
 }
 
@@ -8317,6 +8431,1467 @@ async function initVisitorCounter(){
     console.warn('Visitor counter unavailable:', e.message);
   }
 }
+
+
+// ──────────────────────────────────────────────
+// ARCHITECTURE PATTERN OF THE DAY — 30 patterns
+// ──────────────────────────────────────────────
+const ARCH_BANK = [
+  {
+    cat:'networking', cloud:'AWS',
+    title:'Hub-and-Spoke VPC',
+    when:'When you need centralised security inspection, shared services (DNS, NTP, monitoring), and isolated workloads in separate VPCs. Standard pattern for AWS multi-account organisations.',
+    diagram:`
+Internet
+    |
+    v
+[Hub VPC]  ─── Transit Gateway ───────────────────────
+    |                    |              |              |
+[Shared Svcs]     [Spoke VPC A]  [Spoke VPC B]  [Spoke VPC C]
+ DNS / NTP          Dev/Test        Staging        Production
+ Monitoring         10.1.0.0/16    10.2.0.0/16    10.3.0.0/16
+ Egress NAT
+
+All internet traffic routes through Hub NAT Gateway.
+Spoke-to-Spoke traffic is blocked by TGW route tables.`,
+    code:`resource "aws_ec2_transit_gateway" "main" {
+  description                     = "hub-and-spoke-tgw"
+  default_route_table_association = "disable"
+  default_route_table_propagation = "disable"
+  tags = { Name = "central-tgw" }
+}
+
+module "hub_vpc" {
+  source     = "./modules/vpc"
+  name       = "hub"
+  vpc_cidr   = "10.0.0.0/16"
+  attach_tgw = true
+  tgw_id     = aws_ec2_transit_gateway.main.id
+}
+
+module "spoke_prod" {
+  source     = "./modules/vpc"
+  name       = "prod"
+  vpc_cidr   = "10.3.0.0/16"
+  attach_tgw = true
+  tgw_id     = aws_ec2_transit_gateway.main.id
+}
+
+# TGW route table: prod spoke → hub for egress
+# Hub route table: 0.0.0.0/0 → NAT Gateway`,
+    pros:['Centralised egress — one NAT Gateway for all spokes','Shared services (DNS, monitoring) in one place','Spoke isolation — prod cannot reach dev by default','Scales to 100s of VPCs with one TGW'],
+    cons:['Transit Gateway costs $0.05/hr per attachment plus $0.02/GB','Single TGW is a potential bottleneck','More complex routing tables to manage','Hub VPC becomes a critical dependency'],
+    tip:'Create separate TGW route tables per environment (prod vs non-prod) so you can control exactly which spokes can reach each other. By default, block all spoke-to-spoke traffic and only open specific paths explicitly.'
+  },
+  {
+    cat:'security', cloud:'AWS',
+    title:'Zero-Trust Network with PrivateLink',
+    when:'When services must communicate privately across VPC boundaries without VPC peering or Transit Gateway. Ideal for exposing internal APIs to partners or between accounts with strict access control.',
+    diagram:`
+Consumer VPC                    Provider VPC
+(Account A)                    (Account B)
+    |                               |
+[App Server]                   [API Service]
+    |                               |
+    +──→ [Interface Endpoint] ──→ [NLB] ──→ [API]
+         (PrivateLink ENI)    (VPC Endpoint Svc)
+
+No VPC peering needed. No route table changes.
+Traffic never leaves AWS backbone.
+Consumer only sees the ENI IP — provider VPC is invisible.`,
+    code:`# Provider side (Account B): expose service via NLB
+resource "aws_lb" "api" {
+  name               = "api-nlb"
+  internal           = true
+  load_balancer_type = "network"
+  subnets            = var.private_subnet_ids
+}
+
+resource "aws_vpc_endpoint_service" "api" {
+  acceptance_required        = true
+  network_load_balancer_arns = [aws_lb.api.arn]
+  allowed_principals         = ["arn:aws:iam::CONSUMER_ACCT:root"]
+}
+
+# Consumer side (Account A): connect to the service
+resource "aws_vpc_endpoint" "api" {
+  vpc_id              = aws_vpc.main.id
+  service_name        = var.provider_endpoint_service_name
+  vpc_endpoint_type   = "Interface"
+  subnet_ids          = var.private_subnet_ids
+  security_group_ids  = [aws_security_group.endpoint.id]
+  private_dns_enabled = true
+}`,
+    pros:['No VPC peering — provider VPC stays fully private','Granular access control via allowed_principals','Traffic never leaves AWS backbone','Works across accounts and organisations'],
+    cons:['Costs $0.01/hr per AZ plus $0.01/GB data processed','Requires an NLB on the provider side','Endpoint service acceptance adds operational overhead','Cannot be used for UDP traffic'],
+    tip:'Enable private_dns_enabled = true on the consumer endpoint so applications can use the service\'s original DNS name without any code changes. The DNS resolution happens transparently inside the VPC.'
+  },
+  {
+    cat:'resilience', cloud:'AWS',
+    title:'Multi-AZ Active-Active with ALB',
+    when:'When your application must survive the complete loss of an Availability Zone with zero downtime and no manual intervention. The standard HA pattern for stateless web services.',
+    diagram:`
+              [Route 53]
+                  |
+         [Application LB]  ← spans all 3 AZs
+        /         |         \
+   [AZ-1a]    [AZ-1b]    [AZ-1c]
+      |           |           |
+ [Private SN] [Private SN] [Private SN]
+      |           |           |
+  [EC2 x2]   [EC2 x2]   [EC2 x2]   ← ASG distributes evenly
+      |           |           |
+   [NAT GW]  [NAT GW]   [NAT GW]   ← one NAT per AZ
+
+AZ-1b fails → ALB stops routing there in ~30s
+Remaining instances absorb traffic automatically`,
+    code:`resource "aws_autoscaling_group" "web" {
+  name                = "web-asg"
+  min_size            = 3       # at least 1 per AZ
+  max_size            = 12
+  desired_capacity    = 6
+  vpc_zone_identifier = values(aws_subnet.private)[*].id
+  target_group_arns   = [aws_lb_target_group.web.arn]
+
+  health_check_type         = "ELB"
+  health_check_grace_period = 300
+
+  launch_template {
+    id      = aws_launch_template.web.id
+    version = "$Latest"
+  }
+
+  # Spread across AZs:
+  availability_zone_rebalancing = "enabled"
+}
+
+resource "aws_lb" "web" {
+  internal        = false
+  subnets         = values(aws_subnet.public)[*].id
+  # ALB automatically handles AZ failover
+}`,
+    pros:['Survives single AZ failure with zero downtime','Automatic failover via ALB health checks','Linear horizontal scaling by adding instances','No active-passive complexity or failover scripts'],
+    cons:['Stateful applications need sticky sessions or external session store','Minimum 2-3 instances required for true HA','NAT Gateway per AZ adds ~$32/month per AZ','Data consistency challenges for write-heavy workloads'],
+    tip:'Set min_size to at least the number of AZs (3) so each AZ always has at least one instance. If you set min=2 and one AZ gets both instances, a single AZ failure takes you to zero capacity.'
+  },
+  {
+    cat:'compute', cloud:'AWS',
+    title:'Blue-Green Deployment with ALB Weighted Routing',
+    when:'When you need zero-downtime deployments with instant rollback capability. Especially useful for stateless applications where you can switch all traffic atomically.',
+    diagram:`
+[Route 53] ──→ [ALB]
+                 |
+         ┌───── weighted ─────┐
+         |                   |
+   [Blue TG]           [Green TG]
+   weight=100           weight=0
+   (current)           (new version)
+
+Switch:
+   [Blue TG]           [Green TG]
+   weight=0             weight=100
+
+Instant rollback: flip weights back in seconds`,
+    code:`resource "aws_lb_listener_rule" "blue_green" {
+  listener_arn = aws_lb_listener.https.arn
+  priority     = 100
+
+  action {
+    type = "forward"
+    forward {
+      target_group {
+        arn    = aws_lb_target_group.blue.arn
+        weight = var.blue_weight   # 100 normally, 0 during switch
+      }
+      target_group {
+        arn    = aws_lb_target_group.green.arn
+        weight = var.green_weight  # 0 normally, 100 during switch
+      }
+      stickiness {
+        enabled  = true
+        duration = 300
+      }
+    }
+  }
+}
+
+# Switch traffic (zero downtime):
+# terraform apply -var="blue_weight=0" -var="green_weight=100"`,
+    pros:['Atomic traffic switch — all users move instantly','Instant rollback by flipping weights back','Both environments running before switch','No DNS TTL wait — ALB switches immediately'],
+    cons:['Requires double the compute cost during deployment','Stateful sessions need careful handling','Database schema must be backward-compatible','ALB weighted routing needs both TGs healthy'],
+    tip:'Use stickiness with a short duration (5 min) during the transition so existing sessions stay on Blue while new sessions go to Green. This gives you zero-downtime without breaking long-running requests.'
+  },
+  {
+    cat:'storage', cloud:'AWS',
+    title:'S3 Multi-Region Replication',
+    when:'When objects in S3 must be available in a second region for disaster recovery, compliance (data residency), or latency reduction for globally distributed users.',
+    diagram:`
+    Region: us-east-1              Region: eu-west-1
+┌─────────────────┐          ┌─────────────────┐
+│ S3 Bucket       │          │ S3 Bucket       │
+│ (source)        │ ─────→   │ (replica)       │
+│ Versioning: ON  │  CRR     │ Versioning: ON  │
+│ Events: SQS     │          │ Read-only       │
+└─────────────────┘          └─────────────────┘
+        |
+   S3 replicates:
+   - New objects automatically
+   - Encrypted with KMS
+   - Preserves object metadata`,
+    code:`resource "aws_s3_bucket" "source" {
+  provider = aws.us
+  bucket   = "my-source-bucket"
+}
+resource "aws_s3_bucket_versioning" "source" {
+  provider = aws.us
+  bucket   = aws_s3_bucket.source.id
+  versioning_configuration { status = "Enabled" }
+}
+
+resource "aws_s3_bucket" "replica" {
+  provider = aws.eu
+  bucket   = "my-replica-bucket"
+}
+
+resource "aws_s3_bucket_replication_configuration" "main" {
+  provider = aws.us
+  role     = aws_iam_role.replication.arn
+  bucket   = aws_s3_bucket.source.id
+  rule {
+    id     = "replicate-all"
+    status = "Enabled"
+    destination {
+      bucket        = aws_s3_bucket.replica.arn
+      storage_class = "STANDARD_IA"
+    }
+  }
+}`,
+    pros:['Automatic replication of new objects with no code changes','Supports replication into encrypted replica bucket','Replica can be in a different AWS account','Replication metrics available in CloudWatch'],
+    cons:['Does not replicate existing objects — only new ones after enabling','Replication lag (usually seconds, can be minutes)','Both buckets must have versioning enabled','Additional storage and data transfer costs'],
+    tip:'Use S3 Batch Operations to replicate existing objects after enabling CRR. Without this step, your replica starts empty and only captures objects uploaded after replication was configured.'
+  },
+  {
+    cat:'kubernetes', cloud:'GCP',
+    title:'GKE Private Cluster with Cloud SQL Proxy',
+    when:'Production GKE workload that must connect to a managed database without exposing the database to the internet or using public IPs. The standard production pattern for GKE + Cloud SQL.',
+    diagram:`
+Internet
+   |
+[Cloud Armor] ──→ [GKE Ingress/LB]
+                        |
+                  [GKE Cluster]  ← private nodes (no public IP)
+                  [Namespace: prod]
+                        |
+                  [App Pod]  ←── [Cloud SQL Proxy Sidecar]
+                                          |
+                              [Cloud SQL (Private IP)]
+                              PostgreSQL 15 — no public IP
+
+Workload Identity: Pod KSA → GSA → Cloud SQL Client role
+No JSON key files. No public DB endpoint.`,
+    code:`# GKE Autopilot (private):
+resource "google_container_cluster" "main" {
+  name             = "prod-cluster"
+  location         = var.region
+  enable_autopilot = true
+  private_cluster_config {
+    enable_private_nodes    = true
+    enable_private_endpoint = false
+    master_ipv4_cidr_block  = "172.16.0.0/28"
+  }
+  workload_identity_config {
+    workload_pool = "\${var.project}.svc.id.goog"
+  }
+}
+
+# Cloud SQL Proxy sidecar in pod spec:
+# containers:
+# - name: cloud-sql-proxy
+#   image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2
+#   args: ["--port=5432", "PROJECT:REGION:INSTANCE"]
+# - name: app
+#   env: [{name: DB_HOST, value: "127.0.0.1"}]`,
+    pros:['Private nodes — no public IPs on GKE nodes','Workload Identity eliminates service account key files','Cloud SQL Proxy handles auth, encryption, credential rotation','Database has no public IP exposure'],
+    cons:['Cloud SQL Proxy adds a sidecar container to every pod','Private cluster requires Cloud NAT for pulling images','Master endpoint still publicly accessible by default','Slightly more complex networking setup'],
+    tip:'Use enable_private_endpoint = false for the cluster master so you can still run kubectl from your laptop. Set enable_private_nodes = true to keep the worker nodes private. This is the right balance for most teams.'
+  },
+  {
+    cat:'cicd', cloud:'AWS',
+    title:'GitOps with ArgoCD on EKS',
+    when:'When your team wants every Kubernetes change to go through Git review, automatic reconciliation, and drift detection — without giving CI pipelines kubectl access to production.',
+    diagram:`
+Developer
+    |
+git push ──→ [GitHub PR]
+                 |
+         [GitHub Actions] ─── CI: test, build, push image
+                 |
+         merge to main
+                 |
+         [ArgoCD] ←── polls Git every 3 min
+         (in-cluster)
+                 |
+         compares desired (Git) vs actual (cluster)
+                 |
+         kubectl apply (if diff found)
+                 |
+         [EKS Production Cluster]
+
+No external kubectl access to prod.
+Every change is a Git commit with author + timestamp.`,
+    code:`# Install ArgoCD via Terraform Helm provider:
+resource "helm_release" "argocd" {
+  name             = "argocd"
+  repository       = "https://argoproj.github.io/argo-helm"
+  chart            = "argo-cd"
+  namespace        = "argocd"
+  create_namespace = true
+  values = [yamlencode({
+    server = { ingress = { enabled = true } }
+  })]
+}
+
+# ArgoCD Application (declarative GitOps):
+# apiVersion: argoproj.io/v1alpha1
+# kind: Application
+# spec:
+#   source:
+#     repoURL: https://github.com/eknatha/platform
+#     targetRevision: main
+#     path: k8s/production
+#   syncPolicy:
+#     automated:
+#       prune: true      # delete removed resources
+#       selfHeal: true   # revert manual changes`,
+    pros:['Full audit trail — every production change is a git commit','No external kubectl access needed for deployments','Automatic drift detection and self-healing','Instant rollback by reverting a git commit'],
+    cons:['ArgoCD itself must be managed and kept available','Secret management needs careful handling (never commit secrets)','Initial learning curve for the team','PR-based deployments slower than direct kubectl apply'],
+    tip:'Use ArgoCD Image Updater alongside ArgoCD to automatically create PRs when a new container image is pushed. This keeps the GitOps loop closed without manual image tag updates.'
+  },
+  {
+    cat:'networking', cloud:'AWS',
+    title:'VPC Endpoint Gateway for S3/DynamoDB',
+    when:'When EC2 instances in private subnets need to access S3 or DynamoDB without routing traffic through a NAT Gateway. Eliminates NAT costs for high-volume S3 traffic.',
+    diagram:`
+Private Subnet
+    |
+[EC2 Instance]
+    |
+    +──→ Route Table: pl-xxxxx (S3 prefix list)
+                        |
+              [VPC Gateway Endpoint]
+                        |
+                  [Amazon S3]  ← traffic never leaves AWS
+                                 no NAT Gateway needed
+                                 no data transfer costs
+
+Compare with NAT path (expensive):
+EC2 → NAT GW ($0.045/hr) → Internet → S3 ($0.09/GB out)
+vs
+EC2 → Endpoint → S3 (FREE)`,
+    code:`# Gateway endpoint for S3 (free):
+resource "aws_vpc_endpoint" "s3" {
+  vpc_id            = aws_vpc.main.id
+  service_name      = "com.amazonaws.\${var.region}.s3"
+  vpc_endpoint_type = "Gateway"
+  route_table_ids   = values(aws_route_table.private)[*].id
+  tags = { Name = "s3-gateway-endpoint" }
+}
+
+# Gateway endpoint for DynamoDB (free):
+resource "aws_vpc_endpoint" "dynamodb" {
+  vpc_id            = aws_vpc.main.id
+  service_name      = "com.amazonaws.\${var.region}.dynamodb"
+  vpc_endpoint_type = "Gateway"
+  route_table_ids   = values(aws_route_table.private)[*].id
+  tags = { Name = "dynamodb-gateway-endpoint" }
+}
+
+# Add endpoint policy to restrict which buckets can be accessed:
+# policy = jsonencode({...allow only specific buckets...})`,
+    pros:['Completely free — no hourly or data processing charges','Traffic stays on AWS backbone — faster and more secure','No NAT Gateway needed for S3/DynamoDB','Endpoint policy adds bucket-level access control'],
+    cons:['Only works for S3 and DynamoDB (not other AWS services)','Gateway type — does not support private DNS','Cannot be used from on-premises via VPN/Direct Connect','One endpoint per VPC per service'],
+    tip:'Always create both S3 and DynamoDB gateway endpoints in every VPC that uses them. They are free, take 2 minutes to add, and immediately reduce NAT Gateway bills for teams with heavy S3 usage (which is almost everyone).'
+  },
+  {
+    cat:'security', cloud:'AWS',
+    title:'AWS IAM Permission Boundaries',
+    when:'When platform teams want to allow application teams to create their own IAM roles but need to prevent privilege escalation — ensuring no team can grant themselves more than their assigned maximum permissions.',
+    diagram:`
+Platform Team creates:
+  ┌─────────────────────────────────┐
+  │ Permission Boundary Policy      │
+  │ Maximum allowed: S3, DynamoDB   │
+  │ Denied: IAM, EC2, RDS           │
+  └─────────────────────────────────┘
+           |
+           ↓ attached to
+  ┌─────────────────────────────────┐
+  │ App Team Role A                 │
+  │ Policy: S3:* (their grant)      │
+  │ Effective = INTERSECTION        │
+  │ = S3 only (not EC2 or RDS)      │
+  └─────────────────────────────────┘
+
+Even if App Team grants themselves EC2 access,
+the boundary blocks it. Effective = min(policy, boundary).`,
+    code:`# Platform team creates the boundary:
+resource "aws_iam_policy" "app_boundary" {
+  name = "app-team-boundary"
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect   = "Allow"
+        Action   = ["s3:*", "dynamodb:*", "cloudwatch:*", "logs:*"]
+        Resource = "*"
+      },
+      {
+        Effect   = "Deny"
+        Action   = ["iam:*", "organizations:*", "account:*"]
+        Resource = "*"
+      }
+    ]
+  })
+}
+
+# App team creates role — must attach boundary:
+resource "aws_iam_role" "app" {
+  name                 = "app-role"
+  assume_role_policy   = data.aws_iam_policy_document.trust.json
+  permissions_boundary = aws_iam_policy.app_boundary.arn
+}`,
+    pros:['Prevents privilege escalation even if app team has IAM:CreateRole','App teams retain self-service IAM within guardrails','Audit-friendly — boundary is a named, visible policy','Works alongside SCPs for defence-in-depth'],
+    cons:['Complex to explain to developers unfamiliar with IAM','Effective permissions require checking both policy AND boundary','Adding new services requires updating the boundary','Boundaries must be attached — IAM admin must enforce this'],
+    tip:'Use an SCP (Service Control Policy) at the AWS Organizations level to deny any IAM role creation that does NOT attach the permission boundary. This enforces the pattern automatically and prevents boundary bypass.'
+  },
+  {
+    cat:'networking', cloud:'AWS',
+    title:'AWS Direct Connect with VPN Backup',
+    when:'When on-premises workloads need private, low-latency, high-bandwidth connectivity to AWS with automatic failover to a VPN if the Direct Connect circuit goes down.',
+    diagram:`
+On-Premises DC
+      |
+      +──[Direct Connect]──────────────→ [Direct Connect GW]
+      |   (primary: 1Gbps, low latency)         |
+      |                                    [Private VIF]
+      +──[Site-to-Site VPN]─────────────→ [Virtual GW]
+          (backup: ~100Mbps, IPsec)              |
+                                           [VPC / TGW]
+                                           [AWS Resources]
+
+BGP routing: DC route preferred (higher weight)
+If DC fails: BGP withdraws DC route, VPN takes over
+Failover: ~30-60 seconds automatic`,
+    code:`resource "aws_dx_gateway" "main" {
+  name            = "primary-dxgw"
+  amazon_side_asn = "64512"
+}
+
+resource "aws_vpn_gateway" "backup" {
+  vpc_id = aws_vpc.main.id
+  tags   = { Name = "vpn-backup-gw" }
+}
+
+resource "aws_customer_gateway" "on_prem" {
+  bgp_asn    = 65000
+  ip_address = var.on_prem_public_ip
+  type       = "ipsec.1"
+}
+
+resource "aws_vpn_connection" "backup" {
+  vpn_gateway_id      = aws_vpn_gateway.backup.id
+  customer_gateway_id = aws_customer_gateway.on_prem.id
+  type                = "ipsec.1"
+  static_routes_only  = false  # use BGP
+  # Set lower BGP weight than Direct Connect routes
+}`,
+    pros:['Direct Connect: consistent sub-10ms latency, no internet path','Automatic failover to VPN with no manual intervention','BGP enables route-based failover without any scripts','Supports up to 100Gbps with Direct Connect LAG bundles'],
+    cons:['Direct Connect is expensive: $0.03-$0.30/GB + port fees','Setup time: Direct Connect provisioning takes 2-4 weeks','VPN backup has variable latency and lower bandwidth','Requires BGP knowledge and on-premises router configuration'],
+    tip:'Set the BGP LOCAL_PREF on the Direct Connect route higher than the VPN route (e.g. 200 vs 100). This makes AWS prefer Direct Connect without any additional configuration when both paths are healthy.'
+  },
+  {
+    cat:'compute', cloud:'AWS',
+    title:'Spot Instance Fleet with On-Demand Base',
+    when:'When running fault-tolerant, stateless workloads (batch processing, CI/CD runners, data pipeline workers) and you want to cut EC2 costs by 60-90% using Spot Instances with automatic fallback.',
+    diagram:`
+Auto Scaling Group (Mixed Instances Policy)
+┌────────────────────────────────────────┐
+│ Base capacity: 2 On-Demand (always up) │
+│ Scale-out: 80% Spot / 20% On-Demand    │
+│                                        │
+│ Instance pool (diversified):           │
+│   m5.large, m5a.large, m4.large       │
+│   c5.large, c5a.large                 │
+│   → capacity-optimized allocation     │
+└────────────────────────────────────────┘
+
+Spot interruption (2-min warning via SNS):
+→ Instance Termination Notice
+→ ASG launches replacement from another pool
+→ Drains in-flight work via lifecycle hook`,
+    code:`resource "aws_autoscaling_group" "workers" {
+  name                = "spot-workers"
+  min_size            = 2
+  max_size            = 50
+  desired_capacity    = 10
+  vpc_zone_identifier = var.private_subnet_ids
+
+  mixed_instances_policy {
+    instances_distribution {
+      on_demand_base_capacity                  = 2
+      on_demand_percentage_above_base_capacity = 20
+      spot_allocation_strategy                 = "capacity-optimized"
+    }
+    launch_template {
+      launch_template_specification {
+        launch_template_id = aws_launch_template.worker.id
+        version            = "$Latest"
+      }
+      override { instance_type = "m5.large"  }
+      override { instance_type = "m5a.large" }
+      override { instance_type = "m4.large"  }
+      override { instance_type = "c5.large"  }
+    }
+  }
+}`,
+    pros:['60-90% cost reduction vs On-Demand pricing','capacity-optimized strategy minimises interruptions','Multiple instance types reduce Spot pool exhaustion','Base On-Demand capacity ensures minimum availability'],
+    cons:['Spot Instances can be interrupted with 2-minute notice','Not suitable for stateful or latency-sensitive workloads','Application must handle graceful shutdown on interruption','More complex ASG configuration to manage'],
+    tip:'Handle Spot interruption notices using the EC2 instance metadata endpoint (169.254.169.254/latest/meta-data/spot/termination-time). When this endpoint returns a time, your application has exactly 2 minutes to checkpoint and exit cleanly.'
+  },
+  {
+    cat:'resilience', cloud:'AWS',
+    title:'Multi-Region Active-Passive with Route 53 Failover',
+    when:'When your application needs DR capability with an RTO of < 5 minutes and an RPO measured in seconds. You want automatic failover without manual intervention during a region outage.',
+    diagram:`
+[Route 53] Health Checks
+      |
+      +──[PRIMARY: us-east-1]──────── health check OK → serve traffic
+      |   ALB → ECS → Aurora Primary
+      |
+      +──[SECONDARY: eu-west-1]────── health check fail → take over
+          ALB → ECS → Aurora Replica
+
+Route 53 Failover:
+1. Health check fails on primary endpoint
+2. Route 53 automatically switches DNS to secondary
+3. Secondary starts serving traffic (warm standby)
+4. Aurora Global Database: replica promotes in ~1 min`,
+    code:`resource "aws_route53_health_check" "primary" {
+  fqdn              = aws_lb.primary.dns_name
+  port              = 443
+  type              = "HTTPS"
+  failure_threshold = 3
+  request_interval  = 10
+}
+
+resource "aws_route53_record" "primary" {
+  zone_id = aws_route53_zone.main.zone_id
+  name    = "api.example.com"
+  type    = "A"
+  set_identifier = "primary"
+  failover_routing_policy { type = "PRIMARY" }
+  health_check_id = aws_route53_health_check.primary.id
+  alias { name = aws_lb.primary.dns_name; ... }
+}
+
+resource "aws_route53_record" "secondary" {
+  zone_id = aws_route53_zone.main.zone_id
+  name    = "api.example.com"
+  type    = "A"
+  set_identifier = "secondary"
+  failover_routing_policy { type = "SECONDARY" }
+  alias { name = aws_lb.secondary.dns_name; ... }
+}`,
+    pros:['Automatic DNS failover — no human intervention required','Aurora Global Database: < 1 second data replication lag','Secondary is warm — no cold start delay','Route 53 health checks detect failure in 30-90 seconds'],
+    cons:['DNS TTL means some clients see stale records for 60-300 seconds','Secondary region runs at full cost even when idle (warm standby)','Aurora Global promotion takes ~1 minute during failover','Complex to test without actually simulating a region failure'],
+    tip:'Set your Route 53 record TTL to 60 seconds maximum. Lower TTLs speed up failover recovery at the cost of slightly more DNS query volume. For critical APIs, 30 seconds is a reasonable balance.'
+  },
+  {
+    cat:'kubernetes', cloud:'AWS',
+    title:'EKS with IRSA (IAM Roles for Service Accounts)',
+    when:'When pods running on EKS need to access AWS services (S3, DynamoDB, Secrets Manager) without storing credentials in the pod, environment variables, or instance profiles that grant all pods the same access.',
+    diagram:`
+Pod (namespace: prod, serviceaccount: app-sa)
+    |
+    | (OIDC token in pod filesystem)
+    |
+    +──→ STS AssumeRoleWithWebIdentity
+              |
+              | validate OIDC token against EKS OIDC provider
+              |
+         [IAM Role: app-role]
+              |
+         [S3 Bucket Policy: allow app-role]
+              |
+         [S3 Bucket] ← pod can now access
+
+Each pod gets scoped credentials.
+node instance profile NOT used for pod AWS calls.`,
+    code:`# Enable OIDC on EKS:
+data "tls_certificate" "eks" {
+  url = aws_eks_cluster.main.identity[0].oidc[0].issuer
+}
+resource "aws_iam_openid_connect_provider" "eks" {
+  client_id_list  = ["sts.amazonaws.com"]
+  thumbprint_list = [data.tls_certificate.eks.certificates[0].sha1_fingerprint]
+  url             = aws_eks_cluster.main.identity[0].oidc[0].issuer
+}
+
+# IAM role trusted by a specific pod service account:
+resource "aws_iam_role" "app" {
+  assume_role_policy = jsonencode({
+    Statement = [{
+      Effect = "Allow"
+      Principal = { Federated = aws_iam_openid_connect_provider.eks.arn }
+      Action = "sts:AssumeRoleWithWebIdentity"
+      Condition = { StringEquals = {
+        "\${replace(aws_eks_cluster.main.identity[0].oidc[0].issuer, "https://", "")}:sub" =
+          "system:serviceaccount:prod:app-sa"
+      }}
+    }]
+  })
+}
+
+# Annotate the Kubernetes ServiceAccount:
+# iam.eks.amazonaws.com/role-arn: arn:aws:iam::123:role/app-role`,
+    pros:['Pod-level credential scoping — each SA gets separate permissions','No static credentials stored anywhere','Credentials auto-rotate (15-min STS tokens)','Works across namespaces and multi-tenant clusters'],
+    cons:['Requires OIDC provider setup per cluster','Annotation must be added to every ServiceAccount','Debugging credential issues is harder than instance profiles','IAM role per service account can multiply quickly in large clusters'],
+    tip:'Use the AWS Load Balancer Controller and External DNS with IRSA — these are the two most common EKS add-ons that need AWS API access. Setting up IRSA for them correctly is a great first test of the pattern.'
+  },
+  {
+    cat:'networking', cloud:'AWS',
+    title:'AWS WAF with ALB for API Protection',
+    when:'When your ALB-fronted API is exposed to the internet and needs protection against OWASP Top 10 attacks, SQL injection, XSS, bot traffic, and rate limiting — without modifying application code.',
+    diagram:`
+Internet
+    |
+[CloudFront] ← optional CDN layer
+    |
+[WAF Web ACL]
+    |
+    ├── AWS Managed Rules (OWASP Top 10)
+    ├── Rate limiting (100 req/5min per IP)
+    ├── IP reputation list (known bad actors)
+    ├── SQL injection rule
+    └── XSS rule
+    |
+[ALB]
+    |
+[Application]
+
+Blocked requests never reach ALB.
+WAF logs → CloudWatch → alerts on spike.`,
+    code:`resource "aws_wafv2_web_acl" "api" {
+  name  = "api-waf"
+  scope = "REGIONAL"
+
+  default_action { allow {} }
+
+  rule {
+    name     = "AWSManagedRulesCommonRuleSet"
+    priority = 1
+    override_action { none {} }
+    statement {
+      managed_rule_group_statement {
+        name        = "AWSManagedRulesCommonRuleSet"
+        vendor_name = "AWS"
+      }
+    }
+    visibility_config {
+      cloudwatch_metrics_enabled = true
+      metric_name                = "CommonRules"
+      sampled_requests_enabled   = true
+    }
+  }
+
+  rule {
+    name     = "RateLimit"
+    priority = 2
+    action { block {} }
+    statement {
+      rate_based_statement {
+        limit              = 100
+        aggregate_key_type = "IP"
+      }
+    }
+  }
+}
+
+resource "aws_wafv2_web_acl_association" "api" {
+  resource_arn = aws_lb.api.arn
+  web_acl_arn  = aws_wafv2_web_acl.api.arn
+}`,
+    pros:['No application code changes required','AWS Managed Rules updated by AWS as new threats emerge','Rate limiting prevents DDoS and credential stuffing','Detailed logs for security analysis and incident response'],
+    cons:['~$5/month base plus $0.60/million requests plus $1/rule/month','Managed rules can cause false positives on legitimate traffic','WAF adds 1-2ms latency to every request','Rule tuning requires ongoing attention to avoid blocking real users'],
+    tip:'Start WAF in Count mode (not Block) for the first 2 weeks. Review CloudWatch logs to identify any legitimate traffic that would have been blocked. Only switch to Block mode after tuning to avoid locking out real users.'
+  },
+  {
+    cat:'multicloud', cloud:'AWS + GCP',
+    title:'Multi-Cloud Active-Active (AWS + GCP)',
+    when:'When regulatory requirements mandate no single cloud dependency, or when you want to leverage best-of-breed services across clouds (AWS for data, GCP for ML/AI) with traffic split across both.',
+    diagram:`
+Users (Global)
+      |
+[Cloudflare Load Balancer / Traffic Manager]
+      |                    |
+      | 50%                | 50%
+      |                    |
+[AWS ALB]             [GCP Load Balancer]
+us-east-1             us-central1
+      |                    |
+[EKS Cluster]        [GKE Autopilot]
+      |                    |
+[RDS Aurora]         [Cloud SQL]
+      |                    |
+      +─── Shared Data ────+
+         [Pub/Sub → SQS]
+         [GCS ↔ S3 replication]`,
+    code:`# Cloudflare Load Balancer (Terraform cloudflare provider):
+resource "cloudflare_load_balancer" "multi_cloud" {
+  zone_id          = var.zone_id
+  name             = "api.example.com"
+  default_pool_ids = [cloudflare_load_balancer_pool.aws.id,
+                      cloudflare_load_balancer_pool.gcp.id]
+  fallback_pool_id = cloudflare_load_balancer_pool.aws.id
+  steering_policy  = "geo"
+}
+
+resource "cloudflare_load_balancer_pool" "aws" {
+  name = "aws-us-east-1"
+  origins { name    = "aws-alb"
+             address = aws_lb.main.dns_name; weight = 1 }
+  health_checks = [cloudflare_load_balancer_monitor.https.id]
+}
+
+resource "cloudflare_load_balancer_pool" "gcp" {
+  name = "gcp-us-central1"
+  origins { name    = "gcp-lb"
+             address = google_compute_global_address.main.address }
+}`,
+    pros:['No single cloud provider dependency — true vendor neutrality','Geo-routing sends users to the nearest cloud','Each cloud can run its best-fit services','Regulatory compliance for data residency requirements'],
+    cons:['Significantly higher operational complexity','Data consistency across clouds is a major engineering challenge','Double the infrastructure costs and management overhead','Requires multi-cloud expertise on the team'],
+    tip:'Start with active-passive multi-cloud (one cloud primary, one cloud DR) before attempting active-active. Active-active multi-cloud requires solving data synchronisation which is genuinely hard. Most teams overestimate the need for it.'
+  },
+  {
+    cat:'cicd', cloud:'AWS',
+    title:'Terraform GitOps with Atlantis',
+    when:'When multiple engineers run Terraform against shared infrastructure and you need PR-based plan review, automatic apply on merge, and a complete audit trail of who changed what and when.',
+    diagram:`
+Engineer opens PR with .tf changes
+            |
+[Atlantis] detects PR via webhook
+            |
+Atlantis runs: terraform plan
+            |
+Posts plan output as PR comment ← team reviews
+            |
+Engineer types: "atlantis apply"
+            |
+Atlantis runs: terraform apply
+            |
+Posts apply output as PR comment
+            |
+PR is merged ← state is updated
+
+No local terraform apply in production.
+Every apply is a git commit + approved PR.`,
+    code:`# atlantis.yaml (repo root):
+version: 3
+automerge: false
+projects:
+  - name: networking
+    dir: ./infra/networking
+    workspace: prod
+    autoplan:
+      when_modified: ["*.tf","*.tfvars","../modules/**"]
+      enabled: true
+    apply_requirements:
+      - approved        # at least 1 PR approval
+      - mergeable       # all CI checks pass
+
+  - name: compute
+    dir: ./infra/compute
+    workspace: prod
+    depends_on: [networking]
+    apply_requirements:
+      - approved
+      - mergeable
+
+# Atlantis runs as a Kubernetes deployment:
+# terraform-aws-modules/atlantis/aws
+# Exposes a webhook endpoint for GitHub to call`,
+    pros:['Full audit trail — every apply is a reviewed PR + comment','No local credentials needed — Atlantis has the cloud access','Automatic plan on every PR — no manual plan runs','Dependency between projects ensures correct ordering'],
+    cons:['Atlantis must be deployed and maintained as a service','Webhook requires public endpoint (or GitHub App + VPN)','Not ideal for very large repos with many concurrent PRs','apply_requirements must be enforced by policy, not just config'],
+    tip:'Use the atlantis apply command (not auto-apply) for production environments. Auto-apply means any merge triggers an apply immediately — a risky pattern when multiple PRs are merged in quick succession.'
+  },
+  {
+    cat:'security', cloud:'AWS',
+    title:'Secrets Management with AWS Secrets Manager',
+    when:'When applications need database passwords, API keys, and TLS certificates at runtime — without hardcoding them in environment variables, container images, or Terraform state.',
+    diagram:`
+Developer stores secret:
+  aws secretsmanager create-secret --name prod/db/password
+            |
+Terraform references it at apply time:
+  data "aws_secretsmanager_secret_version" ...
+            |
+App retrieves at runtime (not deploy time):
+  GET https://secretsmanager.us-east-1.amazonaws.com
+  (via IRSA or instance profile — no stored credentials)
+            |
+Secrets Manager auto-rotates:
+  → Calls Lambda rotation function every 30 days
+  → Updates RDS password
+  → Secret version updated
+  → App retrieves new version on next call`,
+    code:`# Store secret (via CLI, not Terraform — keep out of state!):
+# aws secretsmanager create-secret \
+#   --name prod/rds/master-password \
+#   --secret-string "MySecurePassword123!"
+
+# Reference in Terraform (read-only):
+data "aws_secretsmanager_secret" "db" {
+  name = "prod/rds/master-password"
+}
+data "aws_secretsmanager_secret_version" "db" {
+  secret_id = data.aws_secretsmanager_secret.db.id
+}
+
+resource "aws_db_instance" "main" {
+  password = data.aws_secretsmanager_secret_version.db.secret_string
+}
+
+# In application code (runtime retrieval):
+# import boto3
+# sm = boto3.client('secretsmanager')
+# pwd = sm.get_secret_value(SecretId='prod/rds/master-password')`,
+    pros:['Secrets never in source code, environment variables, or images','Automatic rotation with zero application downtime','Fine-grained IAM access control per secret','Versioning and audit trail for all secret access'],
+    cons:['$0.40/secret/month + $0.05/10,000 API calls','Application must handle secret retrieval at startup','Rotation Lambda requires careful implementation for RDS','Regional service — cross-region replication adds cost'],
+    tip:'Never create secrets in Terraform (they end up in tfstate in plain text). Use the AWS CLI or Console to create secrets, then reference them in Terraform with a data source. This keeps secrets completely out of state and version control.'
+  },
+  {
+    cat:'compute', cloud:'AWS',
+    title:'Serverless API with Lambda + API Gateway',
+    when:'When building event-driven APIs or microservices with unpredictable or highly variable traffic — zero infrastructure management, pay only for actual requests, automatic scaling to zero.',
+    diagram:`
+Client
+  |
+[API Gateway] ← TLS termination, auth, throttling
+  |
+  +──[GET /users]──→ [Lambda: list-users]──→ [DynamoDB]
+  |
+  +──[POST /users]─→ [Lambda: create-user]──→ [DynamoDB]
+  |                                          ↘ [SQS: welcome-email]
+  +──[GET /health]─→ [Lambda: health]           |
+                                          [Lambda: send-email]
+                                                 |
+                                           [SES: Email]
+
+Cold start: 100-500ms (first request after idle)
+Warm: < 10ms overhead per invocation`,
+    code:`resource "aws_api_gateway_rest_api" "main" {
+  name        = "users-api"
+  description = "Users service REST API"
+}
+
+resource "aws_lambda_function" "list_users" {
+  function_name = "list-users"
+  runtime       = "python3.12"
+  handler       = "handler.lambda_handler"
+  filename      = data.archive_file.lambda.output_path
+  role          = aws_iam_role.lambda.arn
+
+  environment {
+    variables = {
+      TABLE_NAME = aws_dynamodb_table.users.name
+    }
+  }
+
+  reserved_concurrent_executions = 100  # throttle limit
+}
+
+resource "aws_lambda_function_url" "list_users" {
+  function_name      = aws_lambda_function.list_users.arn
+  authorization_type = "AWS_IAM"
+}`,
+    pros:['Zero infrastructure management — no EC2 or containers to manage','Scales from 0 to 10,000+ concurrent requests automatically','Pay per request ($0.20/million) and duration ($0.0000166667/GB-second)','Built-in fault tolerance — Lambda manages retries and AZ distribution'],
+    cons:['Cold starts add 100-500ms latency on idle functions (use Provisioned Concurrency for latency-sensitive paths)','15-minute maximum execution time per invocation','Stateless — no shared memory or local storage between invocations','Debugging and tracing distributed Lambda chains is complex'],
+    tip:'Use Lambda Powertools (Python or Java) for structured logging, tracing, and metrics in one import. It handles X-Ray tracing, CloudWatch metrics, and structured JSON logging with almost zero configuration.'
+  },
+  {
+    cat:'networking', cloud:'GCP',
+    title:'GCP Shared VPC (Host + Service Projects)',
+    when:'When multiple GCP projects need to share a centrally managed VPC network — enabling the networking team to control subnets and firewall rules while allowing app teams to deploy resources into shared subnets.',
+    diagram:`
+Organization
+  └── Folder: Platform
+        └── [Host Project] ← owns the VPC
+              VPC: prod-vpc
+              Subnets: app-subnet, db-subnet
+              Firewall Rules: centralised
+              IAM: networkUser role → service projects
+
+            Service Project A (App Team 1)
+            └── GKE Cluster → uses app-subnet (from host)
+
+            Service Project B (App Team 2)
+            └── Cloud Run → uses app-subnet (from host)
+
+App teams deploy compute. Host team controls networking.
+Billing split: resources billed to service projects.`,
+    code:`resource "google_compute_shared_vpc_host_project" "host" {
+  project = var.host_project_id
+}
+
+resource "google_compute_shared_vpc_service_project" "app1" {
+  host_project    = var.host_project_id
+  service_project = var.app1_project_id
+  depends_on      = [google_compute_shared_vpc_host_project.host]
+}
+
+# Grant app team subnet access:
+resource "google_compute_subnetwork_iam_binding" "app1_subnet" {
+  project    = var.host_project_id
+  region     = var.region
+  subnetwork = google_compute_subnetwork.app.name
+  role       = "roles/compute.networkUser"
+  members    = [
+    "serviceAccount:\${var.app1_gke_sa}",
+    "group:app-team-1@company.com"
+  ]
+}`,
+    pros:['Centralised network control — one place for firewall rules and subnets','App teams still control their compute resources independently','No VPC peering needed between service projects','Billing remains separate per service project'],
+    cons:['Host project becomes a critical dependency for all service projects','Shared VPC requires careful IAM to prevent cross-team access','GKE in shared VPC needs specific secondary ranges per cluster','More complex initial setup than standalone project VPCs'],
+    tip:'Create one shared VPC host project per environment (prod, staging, dev) rather than one for all environments. This prevents a dev network misconfiguration from affecting production networking.'
+  },
+  {
+    cat:'resilience', cloud:'AWS',
+    title:'Circuit Breaker Pattern for Microservices',
+    when:'When a downstream service failure causes your service to queue up requests that will all eventually timeout — creating cascading failures across the entire system. The circuit breaker stops the cascade.',
+    diagram:`
+Normal (CLOSED state):
+App ──→ [Circuit Breaker] ──→ Payment Service ✓
+
+Failure detected (threshold: 5 failures/10s):
+App ──→ [Circuit Breaker] ──✗ Payment Service ✗
+        OPEN state: fail fast, return error immediately
+
+Recovery (HALF-OPEN state after 30s):
+App ──→ [Circuit Breaker] ──→ test 1 request
+        if success → CLOSED again
+        if fail    → OPEN again
+
+Fail fast: response in <10ms vs waiting 30s for timeout`,
+    code:`# Circuit breaker via AWS App Mesh / Envoy proxy:
+resource "aws_appmesh_virtual_node" "payment" {
+  name      = "payment-svc"
+  mesh_name = aws_appmesh_mesh.main.id
+  spec {
+    listener {
+      port_mapping { port=8080; protocol="http" }
+      health_check {
+        protocol            = "http"
+        path                = "/health"
+        healthy_threshold   = 2
+        unhealthy_threshold = 3
+        timeout_millis      = 2000
+        interval_millis     = 5000
+      }
+    }
+    service_discovery {
+      aws_cloud_map { namespace_name="prod.local"; service_name="payment" }
+    }
+    # Outlier detection (circuit breaker config):
+    # consecutive_5xx_errors: 5
+    # interval: 10s
+    # base_ejection_duration: 30s
+  }
+}`,
+    pros:['Prevents cascading failures when one service degrades','Fail fast response: milliseconds vs seconds waiting for timeout','Automatic recovery testing without manual intervention','Reduces load on struggling downstream service during recovery'],
+    cons:['Adds complexity — another component to configure and monitor','False positives can trip the breaker unnecessarily','State must be shared if running multiple instances of the caller','Requires careful threshold tuning per service'],
+    tip:'Set the circuit breaker timeout slightly longer than your P99 response time for the downstream service. If P99 is 200ms, set timeout to 300ms. This trips the breaker on genuine failures without false positives on normal slow responses.'
+  },
+  {
+    cat:'security', cloud:'AWS',
+    title:'VPC Flow Logs → Athena for Network Analysis',
+    when:'When you need to audit network traffic, investigate security incidents, detect anomalies (unexpected connections, data exfiltration), or understand bandwidth usage patterns across your VPC.',
+    diagram:`
+[VPC Flow Logs]
+    |
+    ↓ (streams every 10 minutes)
+[S3 Bucket: vpc-flow-logs]
+    |
+[Glue Crawler] ─→ [Glue Data Catalog]
+                          |
+                   [Athena] ← SQL queries
+                          |
+                   [QuickSight] ← dashboards
+
+Query example:
+"Show me all traffic from 10.0.1.5 to port 3389
+ in the last 24 hours"
+→ Results in seconds against GB of raw logs`,
+    code:`resource "aws_flow_log" "main" {
+  iam_role_arn    = aws_iam_role.flow_logs.arn
+  log_destination = aws_s3_bucket.flow_logs.arn
+  log_destination_type = "s3"
+  traffic_type    = "ALL"
+  vpc_id          = aws_vpc.main.id
+
+  destination_options {
+    file_format        = "parquet"       # 50% smaller than plain text
+    hive_compatible_partitions = true     # year/month/day partitions
+    per_hour_partition = true
+  }
+}
+
+# Athena table (created once):
+# CREATE EXTERNAL TABLE vpc_flow_logs (
+#   srcaddr STRING, dstaddr STRING,
+#   srcport INT,    dstport INT,
+#   action STRING,  bytes BIGINT
+# ) STORED AS PARQUET LOCATION 's3://vpc-flow-logs/'
+# PARTITIONED BY (year, month, day)`,
+    pros:['Parquet format: 10x cheaper queries vs plain text in Athena','Hive partitioning: queries scan only relevant date ranges','No additional agent required — native VPC feature','Athena pricing: $5/TB scanned — typical queries cost cents'],
+    cons:['10-15 minute log delivery delay — not real-time','Flow logs show IP + port only — no payload content','Can generate large volumes of data for busy VPCs ($0.50/GB)','Setting up Glue crawler and Athena table adds complexity'],
+    tip:'Use parquet format and per_hour_partition = true. This makes Athena queries 10x cheaper because queries only scan the specific partitions matching your WHERE clause on date/time, instead of scanning the entire log dataset.'
+  },
+  {
+    cat:'compute', cloud:'AWS',
+    title:'ECS Fargate with Service Connect',
+    when:'When you want container orchestration without managing EC2 nodes, and need service-to-service networking with built-in service discovery, load balancing, and observability — without running a full Kubernetes control plane.',
+    diagram:`
+[ECS Cluster] (Fargate — no EC2 nodes to manage)
+      |
+  [Service: frontend]──→ [Service Connect Proxy]
+      |                         |
+      |                    service discovery
+      |                         |
+  [Service: api]←────── [Service Connect Proxy]
+      |                         |
+      |              CloudMap namespace: prod.local
+      |
+  [Service: worker]
+      |
+  [SQS Queue] ← decoupled async processing`,
+    code:`resource "aws_ecs_cluster" "main" {
+  name = "prod-cluster"
+  service_connect_defaults {
+    namespace = aws_service_discovery_http_namespace.prod.arn
+  }
+}
+
+resource "aws_ecs_service" "api" {
+  name            = "api"
+  cluster         = aws_ecs_cluster.main.id
+  task_definition = aws_ecs_task_definition.api.arn
+  desired_count   = 3
+  launch_type     = "FARGATE"
+
+  service_connect_configuration {
+    enabled   = true
+    namespace = aws_service_discovery_http_namespace.prod.arn
+    service {
+      port_name      = "api-port"
+      client_alias { port = 8080; dns_name = "api" }
+    }
+  }
+
+  network_configuration {
+    subnets          = var.private_subnet_ids
+    security_groups  = [aws_security_group.api.id]
+    assign_public_ip = false
+  }
+}`,
+    pros:['Zero node management — Fargate handles EC2 provisioning','Service Connect: built-in service discovery without Route 53','Native CloudWatch Container Insights for metrics and logs','Simpler operational model than EKS for smaller teams'],
+    cons:['Higher per-vCPU cost than EC2 (no Spot discounts on Fargate for task size)','Less flexibility than EKS for complex scheduling requirements','Service Connect is newer — less community documentation','Cold starts for new tasks: 30-60 seconds vs Kubernetes pod scheduling'],
+    tip:'Use Fargate Spot for batch/worker tasks (up to 70% cost reduction) and standard Fargate for user-facing services. Set a separate capacity provider strategy per service type to get cost savings where interruptions are acceptable.'
+  },
+  {
+    cat:'resilience', cloud:'AWS',
+    title:'SQS Dead Letter Queue Pattern',
+    when:'When Lambda (or ECS, or EC2) consumers process messages from SQS and you need to handle processing failures gracefully — retrying transiently failed messages while isolating permanently failed ones for analysis.',
+    diagram:`
+Producer ──→ [SQS Main Queue]
+                    |
+            maxReceiveCount: 3
+                    |
+             [Lambda Consumer]
+             1st attempt fails ─→ retry after visibility timeout
+             2nd attempt fails ─→ retry after visibility timeout
+             3rd attempt fails ─→ message moves to DLQ
+                    |
+            [SQS Dead Letter Queue]
+                    |
+            [CloudWatch Alarm]
+            DLQ depth > 0 → alert
+                    |
+            Engineer investigates
+            Fix root cause
+            Redrive messages back to main queue`,
+    code:`resource "aws_sqs_queue" "main" {
+  name                       = "order-processing"
+  visibility_timeout_seconds = 300
+  message_retention_seconds  = 86400  # 1 day
+
+  redrive_policy = jsonencode({
+    deadLetterTargetArn = aws_sqs_queue.dlq.arn
+    maxReceiveCount     = 3    # retry 3 times, then DLQ
+  })
+}
+
+resource "aws_sqs_queue" "dlq" {
+  name                      = "order-processing-dlq"
+  message_retention_seconds = 1209600  # 14 days to investigate
+}
+
+resource "aws_cloudwatch_metric_alarm" "dlq_depth" {
+  alarm_name          = "dlq-messages-alert"
+  comparison_operator = "GreaterThanThreshold"
+  threshold           = 0
+  metric_name         = "ApproximateNumberOfMessagesVisible"
+  namespace           = "AWS/SQS"
+  dimensions          = { QueueName = aws_sqs_queue.dlq.name }
+  alarm_actions       = [var.sns_alert_arn]
+}`,
+    pros:['Failed messages are preserved for analysis — not lost','Clear separation between transient and permanent failures','DLQ alarm provides operational visibility into failure rate','Messages can be redriven back to main queue after fix'],
+    cons:['DLQ messages require manual investigation and remediation','maxReceiveCount tuning is application-specific — wrong values waste time or lose messages too fast','Visibility timeout must be longer than max processing time','Message ordering not guaranteed after DLQ redrive'],
+    tip:'Set visibility_timeout_seconds on the main queue to at least 6× your Lambda function\'s timeout. If Lambda runs for 60 seconds, set visibility timeout to 360 seconds. This prevents a still-processing message from becoming visible to another consumer.'
+  },
+  {
+    cat:'storage', cloud:'AWS',
+    title:'S3 Event-Driven Processing Pipeline',
+    when:'When files are uploaded to S3 and need to be processed automatically — image resizing, document parsing, ETL pipelines, virus scanning — without polling or a running server waiting for uploads.',
+    diagram:`
+User uploads file to S3
+    |
+[S3 Event Notification]
+    |
+    +──→ [SQS Queue] ── decouples upload from processing
+              |
+         [Lambda] ── triggered by SQS
+              |
+         processes file:
+         - reads from S3 source bucket
+         - transforms (resize/parse/encrypt)
+         - writes to S3 destination bucket
+         - updates DynamoDB job status
+              |
+         [SNS] ── notify downstream consumers
+              |
+         [Email / Slack / Next Lambda]`,
+    code:`resource "aws_s3_bucket_notification" "uploads" {
+  bucket = aws_s3_bucket.uploads.id
+  queue {
+    queue_arn     = aws_sqs_queue.processing.arn
+    events        = ["s3:ObjectCreated:*"]
+    filter_prefix = "uploads/"
+    filter_suffix = ".pdf"
+  }
+}
+
+resource "aws_lambda_event_source_mapping" "s3_processor" {
+  event_source_arn                   = aws_sqs_queue.processing.arn
+  function_name                      = aws_lambda_function.processor.arn
+  batch_size                         = 10
+  maximum_batching_window_in_seconds = 30
+
+  function_response_types = ["ReportBatchItemFailures"]
+  # ^ retry only failed messages, not the whole batch
+}
+
+resource "aws_lambda_function" "processor" {
+  function_name = "s3-file-processor"
+  timeout       = 900  # 15 min max for large files
+  memory_size   = 1024
+}`,
+    pros:['Fully serverless — no polling, no always-on servers','S3 → SQS → Lambda is extremely reliable and battle-tested','ReportBatchItemFailures retries only failed items in a batch','Scales automatically with upload volume — zero configuration'],
+    cons:['S3 notifications can occasionally deliver duplicate events — make processor idempotent','Lambda has 15-minute limit — not suitable for very large file processing','SQS → Lambda polling adds 0-20 second latency vs direct S3 trigger','Debugging multi-step async pipelines is harder than synchronous code'],
+    tip:'Always make your S3 processing Lambda idempotent — S3 event notifications can deliver the same event twice. Use the S3 object ETag or a DynamoDB conditional write to detect and skip already-processed files.'
+  },
+  {
+    cat:'multicloud', cloud:'AWS',
+    title:'Terraform Multi-Account Landing Zone',
+    when:'When an organisation adopts AWS at scale and needs guardrails, cost isolation, blast radius control, and security boundaries between environments, teams, and workloads — without managing each account manually.',
+    diagram:`
+AWS Organizations (Management Account)
+  │
+  ├── OU: Security
+  │     ├── Log Archive Account  ← all CloudTrail logs
+  │     └── Security Tooling     ← GuardDuty, Security Hub
+  │
+  ├── OU: Infrastructure
+  │     ├── Shared Services      ← CI/CD, ECR, DNS
+  │     └── Network Hub          ← Transit Gateway
+  │
+  ├── OU: Workloads-Prod
+  │     ├── Prod-AppTeamA        ← SCP: no public S3
+  │     └── Prod-AppTeamB        ← SCP: no disable CloudTrail
+  │
+  └── OU: Workloads-NonProd
+        ├── Dev-AppTeamA
+        └── Staging-AppTeamA`,
+    code:`# AWS Control Tower via Terraform (account factory):
+module "account_factory" {
+  source  = "aws-ia/control_tower_account_factory/aws"
+
+  accounts = {
+    prod_app_a = {
+      name  = "Prod-AppTeamA"
+      email = "aws+prod-app-a@company.com"
+      ou    = "Workloads-Prod"
+    }
+    dev_app_a = {
+      name  = "Dev-AppTeamA"
+      email = "aws+dev-app-a@company.com"
+      ou    = "Workloads-NonProd"
+    }
+  }
+}
+
+# Service Control Policy (applied at OU level):
+resource "aws_organizations_policy" "deny_public_s3" {
+  name = "DenyPublicS3"
+  content = jsonencode({
+    Statement = [{
+      Effect   = "Deny"
+      Action   = ["s3:PutBucketPublicAccessBlock"]
+      Resource = "*"
+      Condition = {
+        "StringEquals" = { "s3:public-access-block-config": "false" }
+      }
+    }]
+  })
+}`,
+    pros:['Account-level blast radius — dev mistake cannot affect prod','SCP guardrails enforced at OU level — cannot be bypassed by account admins','Centralised billing with per-account cost visibility','Standard account template ensures consistent security baseline'],
+    cons:['Significant initial setup complexity and time investment','Account factory provisioning takes 15-30 minutes per account','Control Tower vending machine has limited customisation vs pure Terraform','Cross-account IAM roles require careful management and documentation'],
+    tip:'Use AWS Control Tower Account Factory for Terraform (AFT) for new accounts — it provides a Git-based account provisioning pipeline with customisation hooks. Start simple: create a baseline with CloudTrail, GuardDuty, and Security Hub in every account before adding more controls.'
+  },
+  {
+    cat:'kubernetes', cloud:'AWS',
+    title:'EKS Cluster Autoscaler vs Karpenter',
+    when:'When your EKS cluster needs to automatically add and remove EC2 nodes based on pod scheduling pressure. Karpenter is the modern replacement for Cluster Autoscaler for most new EKS deployments.',
+    diagram:`
+Cluster Autoscaler (legacy):
+Pending pod ──→ CA polls ASG ──→ adds node (2-5 min)
+               (works with pre-defined ASG groups)
+
+Karpenter (modern):
+Pending pod ──→ Karpenter sees immediately
+            ──→ provisions EC2 directly (30-60s)
+            ──→ chooses cheapest instance type
+            ──→ consolidates underused nodes
+            ──→ terminates empty nodes in minutes
+
+Key difference:
+CA: scales ASGs (EC2 groups you pre-define)
+Karpenter: provisions EC2 directly (any instance type)`,
+    code:`# Karpenter installation via Helm:
+resource "helm_release" "karpenter" {
+  namespace        = "karpenter"
+  name             = "karpenter"
+  repository       = "oci://public.ecr.aws/karpenter"
+  chart            = "karpenter"
+  version          = "0.35.0"
+  create_namespace = true
+
+  set { name="settings.clusterName";   value=aws_eks_cluster.main.name }
+  set { name="settings.clusterEndpoint"; value=aws_eks_cluster.main.endpoint }
+}
+
+# NodePool — defines what nodes Karpenter can provision:
+# apiVersion: karpenter.sh/v1beta1
+# kind: NodePool
+# spec:
+#   template:
+#     spec:
+#       requirements:
+#       - key: karpenter.sh/capacity-type
+#         operator: In
+#         values: ["spot", "on-demand"]
+#       - key: node.kubernetes.io/instance-type
+#         operator: In
+#         values: ["m5.large","m5a.large","m5.xlarge"]
+#   disruption:
+#     consolidationPolicy: WhenUnderutilized`,
+    pros:['Karpenter: 30-60s provisioning vs 2-5min for Cluster Autoscaler','Any instance type — Karpenter picks cheapest/most available','Automatic node consolidation reduces idle node costs','Spot + On-Demand mix handled natively'],
+    cons:['Karpenter requires newer EKS (1.23+) and specific IAM setup','NodePool and NodeClass are new concepts to learn','Cluster Autoscaler is more battle-tested and documented','Karpenter directly calls EC2 — requires EC2:RunInstances IAM permission'],
+    tip:'Use Karpenter for new EKS clusters. For existing clusters with Cluster Autoscaler, migrate one NodePool at a time. Start by configuring Karpenter for a non-critical workload namespace and compare provisioning speed and cost before full migration.'
+  },
+  {
+    cat:'networking', cloud:'AWS',
+    title:'DNS-Based Service Discovery with Route 53 Private Zones',
+    when:'When microservices inside a VPC need to discover and connect to each other using stable DNS names rather than hardcoded IP addresses — enabling service relocation without configuration changes.',
+    diagram:`
+VPC: 10.0.0.0/16
+Private Hosted Zone: internal.prod
+    |
+    ├── api.internal.prod          → ALB: 10.0.1.100
+    ├── db.internal.prod           → RDS: 10.0.2.50
+    ├── cache.internal.prod        → ElastiCache: 10.0.3.20
+    ├── payments.internal.prod     → ECS Service IP
+    └── *.internal.prod            → catch-all
+
+App config: DB_HOST=db.internal.prod
+           (no IP changes needed when RDS fails over)
+
+Route 53 Resolver: resolves internal.prod inside VPC only
+External DNS: cannot resolve internal.prod`,
+    code:`resource "aws_route53_zone" "internal" {
+  name = "internal.prod"
+  vpc {
+    vpc_id = aws_vpc.main.id
+  }
+  tags = { Name = "internal-dns" }
+}
+
+# Service DNS records:
+resource "aws_route53_record" "api" {
+  zone_id = aws_route53_zone.internal.zone_id
+  name    = "api.internal.prod"
+  type    = "A"
+  alias {
+    name                   = aws_lb.api.dns_name
+    zone_id                = aws_lb.api.zone_id
+    evaluate_target_health = true
+  }
+}
+
+resource "aws_route53_record" "db" {
+  zone_id = aws_route53_zone.internal.zone_id
+  name    = "db.internal.prod"
+  type    = "CNAME"
+  ttl     = 60
+  records = [aws_db_instance.main.address]
+}`,
+    pros:['Services reference each other by name — no hardcoded IPs','RDS failover: DNS automatically updates — apps reconnect with no config change','Private zone: only resolvable inside the associated VPC','Zero additional cost — Route 53 private zones are $0.50/zone/month'],
+    cons:['DNS TTL means changes propagate slowly (RDS failover takes 60-120s + TTL)','Services must wait for DNS propagation during failover','Requires VPC DNS settings: enableDnsHostnames = true','Private zone must be explicitly associated with each VPC that needs it'],
+    tip:'Set TTL to 60 seconds for RDS and ALB records. This balances caching (reducing DNS query load) with failover speed. Use alias records for ALBs instead of CNAME — alias records have no TTL charge and update instantly when the ALB endpoint changes.'
+  },
+];
+
+// ──────────────────────────────────────────────
+// ARCH ENGINE
+// ──────────────────────────────────────────────
+let archTimer = null;
+
+function getTodayArchIdx(){
+  const t = new Date();
+  const doy = Math.floor((t - new Date(t.getFullYear(),0,0)) / 86400000);
+  return (doy + 13) % ARCH_BANK.length;
+}
+
+function initArch(){
+  const idx   = getTodayArchIdx();
+  const arch  = ARCH_BANK[idx];
+  const today = new Date().toISOString().slice(0,10);
+  const viewed = S.archViewed && S.archViewed[today];
+
+  const catEl = document.getElementById('archCatBadge');
+  if(catEl){ catEl.textContent = arch.cat.toUpperCase(); catEl.className = 'arch-cat archcat-'+arch.cat; }
+  const cloudEl = document.getElementById('archCloud');
+  if(cloudEl) cloudEl.textContent = arch.cloud;
+
+  document.getElementById('archTitle').textContent   = arch.title;
+  document.getElementById('archWhen').textContent    = arch.when;
+  document.getElementById('archDiagram').innerHTML   = archHL(arch.diagram);
+  document.getElementById('archCode').innerHTML      = archHL(arch.code);
+  document.getElementById('archTip').innerHTML       = '<strong>💡 Pro tip:</strong> ' + arch.tip;
+
+  document.getElementById('archPros').innerHTML = arch.pros
+    .map(p=>`<div class="arch-tradeoff-item">${p}</div>`).join('');
+  document.getElementById('archCons').innerHTML = arch.cons
+    .map(c=>`<div class="arch-tradeoff-item">${c}</div>`).join('');
+
+  if(viewed){
+    const btn = document.getElementById('archViewedBtn');
+    if(btn){ btn.textContent = '✓ STUDIED TODAY'; btn.disabled = true; }
+  }
+
+  clearInterval(archTimer);
+  function tick(){
+    const now=new Date(), mid=new Date(now); mid.setHours(24,0,0,0);
+    const d=Math.floor((mid-now)/1000), el=document.getElementById('archCountdown');
+    if(el) el.textContent=String(Math.floor(d/3600)).padStart(2,'0')+'h '+String(Math.floor((d%3600)/60)).padStart(2,'0')+'m '+String(d%60).padStart(2,'0')+'s';
+  }
+  tick(); archTimer = setInterval(tick,1000);
+  renderArchHist();
+}
+
+function markArchViewed(){
+  const idx   = getTodayArchIdx();
+  const today = new Date().toISOString().slice(0,10);
+  S.archViewed = S.archViewed || {};
+  if(S.archViewed[today]) return;
+  S.archViewed[today] = {idx, title: ARCH_BANK[idx].title};
+  save();
+  addXP(10, 'Architecture Pattern: '+ARCH_BANK[idx].title);
+  toast('📐 +10 XP — Architecture pattern studied!', 't-badge');
+  const btn = document.getElementById('archViewedBtn');
+  if(btn){ btn.textContent = '✓ STUDIED TODAY'; btn.disabled = true; }
+  checkBadges();
+}
+
+function archHL(code){
+  return code.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/(#[^\n]*)/g,'<span class="cmt">$1</span>')
+    .replace(/\b(resource|data|variable|output|locals|module|terraform|provider|backend|lifecycle|for_each|rule|statement)\b/g,'<span class="kw">$1</span>')
+    .replace(/\b(true|false|null)\b/g,'<span class="val">$1</span>');
+}
+
+function copyArchCode(){
+  const idx = getTodayArchIdx();
+  const raw = ARCH_BANK[idx].code;
+  navigator.clipboard.writeText(raw).then(()=>toast('✓ Code copied!','t-unlock')).catch(()=>{
+    const ta=document.createElement('textarea');ta.value=raw;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);toast('✓ Copied!','t-unlock');
+  });
+}
+
+function renderArchHist(){
+  const grid = document.getElementById('archHistGrid');
+  if(!grid) return;
+  const today = getTodayArchIdx();
+  const hist  = ARCH_BANK.map((a,i)=>({a,i})).filter(({i})=>i!==today).slice(0,18);
+  grid.innerHTML = hist.map(({a,i})=>{
+    const seen = S.archViewed && Object.values(S.archViewed).some(v=>v.idx===i);
+    return `<div class="arch-hist-card" onclick="togArchHist(this,${i})">
+      <div class="arch-hist-title">${a.title}</div>
+      <div class="arch-hist-when">${a.when.slice(0,80)}...</div>
+      <div class="arch-hist-meta">
+        <span class="arch-cat archcat-${a.cat}" style="font-size:8px">${a.cat.toUpperCase()}</span>
+        <span class="arch-cloud-badge" style="font-size:8px">${a.cloud}</span>
+        ${seen?'<span class="arch-seen-tag">✓ STUDIED</span>':''}
+      </div>
+      <div class="arch-hist-detail">
+        <div style="font-size:0.81rem;color:#94a3b8;line-height:1.55;margin-bottom:8px;padding:8px 10px;background:rgba(124,58,237,0.05);border-left:2px solid rgba(124,58,237,0.25);border-radius:0 4px 4px 0">${a.when}</div>
+        <pre style="font-family:'Share Tech Mono',monospace;font-size:0.74rem;background:#020610;border:1px solid rgba(0,229,255,0.1);border-radius:5px;padding:8px 10px;color:#94a3b8;overflow-x:auto;white-space:pre;line-height:1.7;margin-bottom:8px">${archHL(a.diagram)}</pre>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px">
+          <div style="background:rgba(16,185,129,0.05);border:1px solid rgba(16,185,129,0.15);border-radius:5px;padding:8px 10px">
+            <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--accent3);margin-bottom:5px">ADVANTAGES</div>
+            ${a.pros.slice(0,2).map(p=>`<div style="font-size:0.78rem;color:#94a3b8;padding-left:12px;position:relative;margin-bottom:2px"><span style="position:absolute;left:0;color:var(--accent3)">✓</span>${p}</div>`).join('')}
+          </div>
+          <div style="background:rgba(239,68,68,0.04);border:1px solid rgba(239,68,68,0.15);border-radius:5px;padding:8px 10px">
+            <div style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--danger);margin-bottom:5px">WATCH OUT</div>
+            ${a.cons.slice(0,2).map(c=>`<div style="font-size:0.78rem;color:#94a3b8;padding-left:12px;position:relative;margin-bottom:2px"><span style="position:absolute;left:0;color:var(--danger)">✗</span>${c}</div>`).join('')}
+          </div>
+        </div>
+        <div style="font-size:0.79rem;color:#94a3b8;padding:7px 10px;background:rgba(124,58,237,0.05);border-left:2px solid rgba(124,58,237,0.25);border-radius:0 4px 4px 0"><strong style="color:#a78bfa">💡</strong> ${a.tip}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function togArchHist(card,idx){
+  card.classList.toggle('open');
+  if(card.classList.contains('open')){
+    S.archViewed = S.archViewed||{};
+    const key='hist_'+idx+'_'+new Date().toISOString().slice(0,10);
+    if(!Object.values(S.archViewed).some(v=>v.idx===idx)){
+      S.archViewed[key]={idx,title:ARCH_BANK[idx].title}; save();
+    }
+  }
+}
+
 
 // ──────────────────────────────────────────────
 // BOOT
