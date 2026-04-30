@@ -573,6 +573,18 @@ footer span{color:var(--accent)}
   .quest-grid,.sim-grid,.badges-grid,.stats-strip{grid-template-columns:1fr}
   .stats-strip{grid-template-columns:1fr 1fr}
 }
+
+/* VISITOR COUNTER */
+.visitor-counter-footer{display:inline-flex;align-items:center;gap:6px;font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:1px;color:var(--muted)}
+.visitor-counter-footer .vc-dot{width:6px;height:6px;border-radius:50%;background:var(--accent3);display:inline-block;animation:vcPulse 2s ease infinite}
+@keyframes vcPulse{0%,100%{opacity:1}50%{opacity:0.3}}
+.visitor-count-val{color:var(--accent3);font-weight:700}
+.vc-dash-box{background:rgba(16,185,129,0.07);border:1px solid rgba(16,185,129,0.2);border-radius:8px;padding:14px 18px;display:flex;align-items:center;gap:16px;grid-column:1/-1}
+.vc-dash-icon{width:40px;height:40px;border-radius:50%;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.22);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.vc-dash-info{flex:1}
+.vc-dash-num{font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:900;color:var(--accent3);letter-spacing:1px}
+.vc-dash-label{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--muted);margin-top:2px}
+.vc-dash-live{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--accent3);display:flex;align-items:center;gap:5px}
 </style>
 </head>
 <body>
@@ -586,7 +598,7 @@ footer span{color:var(--accent)}
     <p class="ob-sub">Enter your callsign to begin. This personalises your HUD, dashboard, and progress reports.</p>
     <div class="ob-input-wrap">
       <span class="ob-prefix">OPERATOR //</span>
-      <input class="ob-input" id="obInput" type="text" maxlength="20" placeholder="e.g. Your Name" autocomplete="off" onkeydown="if(event.key==='Enter')obConfirm()">
+      <input class="ob-input" id="obInput" type="text" maxlength="20" placeholder="e.g. Eknatha" autocomplete="off" onkeydown="if(event.key==='Enter')obConfirm()">
     </div>
     <p class="ob-tip" id="obTip">YOU CAN CHANGE THIS ANYTIME BY CLICKING YOUR NAME IN THE HUD</p>
     <button class="btn btn-primary" style="width:100%;margin-top:4px" onclick="obConfirm()">&#9654; INITIALIZE MISSION</button>
@@ -986,7 +998,14 @@ footer span{color:var(--accent)}
 
 <div class="toast-wrap" id="toasts"></div>
 
-<footer>EKNATHA LABS &nbsp;/&nbsp; <span>eknathalabs.com</span> &nbsp;/&nbsp; TERRAFORM MISSION CONTROL v2.0</footer>
+<footer>
+  EKNATHA LABS &nbsp;/&nbsp; <span>eknathalabs.com</span> &nbsp;/&nbsp; TERRAFORM MISSION CONTROL v2.0
+  &nbsp;&nbsp;
+  <span class="visitor-counter-footer">
+    <span class="vc-dot"></span>
+    <span id="footerVisitorCount">—</span> VISITORS
+  </span>
+</footer>
 
 <script>
 let S = load();
@@ -1093,7 +1112,7 @@ terraform version`,
 }
 
 variable "operator_name" {
-  default = "User"
+  default = "Eknatha"
 }
 
 resource "local_file" "mission_log" {
@@ -2724,7 +2743,22 @@ function renderDash(){
     <div class="stat-box"><div class="sv amber">${Object.keys(S.cb).length}</div><div class="sl">BADGES</div></div>
     <div class="stat-box"><div class="sv">${Object.keys(S.cs).length}</div><div class="sl">SIMS DONE</div></div>
     <div class="stat-box"><div class="sv green">${S.streak}</div><div class="sl">DAY STREAK</div></div>
+    <div class="vc-dash-box" id="vcDashBox">
+      <div class="vc-dash-icon">🌐</div>
+      <div class="vc-dash-info">
+        <div class="vc-dash-num" id="vcDashNum">Loading...</div>
+        <div class="vc-dash-label">TOTAL SITE VISITORS</div>
+      </div>
+      <div class="vc-dash-live"><span class="vc-dot"></span> LIVE COUNTER</div>
+    </div>
   `;
+  // Inject visitor count box into dashboard
+  const vcBox = document.getElementById('vcDashBox');
+  if(vcBox){
+    const cached = S.visitorCount;
+    if(cached) vcBox.querySelector('.vc-dash-num').textContent = Number(cached).toLocaleString();
+  }
+
   const al=document.getElementById('actLog');
   al.innerHTML=S.log.length
     ? S.log.map(a=>`<div style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:9px 13px;display:flex;justify-content:space-between;align-items:center"><span style="font-size:0.87rem;color:#94a3b8">${a.t}</span><span style="font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--muted)">${a.ts}</span></div>`).join('')
@@ -8231,6 +8265,59 @@ function togErrHist(card,idx){
 }
 
 
+
+// ──────────────────────────────────────────────
+// VISITOR COUNTER — counterapi.dev V1 (free, no auth)
+// ──────────────────────────────────────────────
+const VC_NAMESPACE = 'eknathalabs';
+const VC_KEY       = 'terraform-labs-visitors';
+const VC_API       = `https://api.counterapi.dev/v1/${VC_NAMESPACE}/${VC_KEY}/up`;
+
+function fmtCount(n){
+  if(n >= 1000000) return (n/1000000).toFixed(1) + 'M';
+  if(n >= 1000)    return (n/1000).toFixed(1) + 'K';
+  return n.toLocaleString();
+}
+
+async function initVisitorCounter(){
+  try{
+    // Use a session flag so refreshing the same tab doesn't keep incrementing
+    const sessionKey = 'vc_counted_' + new Date().toISOString().slice(0,10);
+    const alreadyCounted = sessionStorage.getItem(sessionKey);
+
+    let count;
+    if(alreadyCounted){
+      // Just fetch current count without incrementing
+      const r = await fetch(`https://api.counterapi.dev/v1/${VC_NAMESPACE}/${VC_KEY}`);
+      const d = await r.json();
+      count = d.count ?? d.value ?? d.data?.count ?? 0;
+    } else {
+      // Increment on first visit of the day
+      const r = await fetch(VC_API);
+      const d = await r.json();
+      count = d.count ?? d.value ?? d.data?.count ?? 0;
+      sessionStorage.setItem(sessionKey, '1');
+    }
+
+    // Cache in state
+    S.visitorCount = count; save();
+
+    // Update footer
+    const footerEl = document.getElementById('footerVisitorCount');
+    if(footerEl) footerEl.textContent = fmtCount(count);
+
+    // Update dashboard if visible
+    const dashEl = document.getElementById('vcDashNum');
+    if(dashEl) dashEl.textContent = Number(count).toLocaleString();
+
+  } catch(e){
+    // Silent fail — visitor count is non-critical
+    const footerEl = document.getElementById('footerVisitorCount');
+    if(footerEl) footerEl.textContent = '—';
+    console.warn('Visitor counter unavailable:', e.message);
+  }
+}
+
 // ──────────────────────────────────────────────
 // BOOT
 // ──────────────────────────────────────────────
@@ -8242,6 +8329,7 @@ checkBadges();
 initTips();
 initOnboarding();
 initTheme();
+initVisitorCounter();
 </script>
 </body>
 </html>
