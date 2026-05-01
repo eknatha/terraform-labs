@@ -5,7 +5,7 @@
 # 🚀 terraform-labs
 
 **A fully gamified, interactive Terraform learning platform.**
-Complete quests, earn XP, flip flashcards, copy snippets, and level up from Beginner to Platform Engineer.
+Complete quests, earn XP, study architecture patterns, flip flashcards, copy snippets, and level up from Beginner to Platform Engineer.
 
 [![Live Demo](https://img.shields.io/badge/🌐_Live-terraform.eknathalabs.com-00e5ff?style=for-the-badge)](https://terraform.eknathalabs.com)
 [![License: MIT](https://img.shields.io/badge/License-MIT-7c3aed?style=for-the-badge)](LICENSE)
@@ -22,7 +22,7 @@ Complete quests, earn XP, flip flashcards, copy snippets, and level up from Begi
 
 ## 📸 What Is This?
 
-`terraform-labs` is a **single-file, offline-capable gamified web app** that turns Terraform learning into a real game — with XP, levels, quests, timed simulations, flashcard drills, a snippet library, leaderboard, and achievement badges.
+`terraform-labs` is a **single-file, offline-capable gamified web app** that turns Terraform learning into a real game — with XP, levels, quests, timed simulations, flashcard drills, a snippet library, daily micro-learning features, an architecture pattern library, interactive concept map, quiz mode, leaderboard, and achievement badges.
 
 No backend. No login. No subscription. Everything runs in the browser and persists in `localStorage`.
 
@@ -33,16 +33,21 @@ No backend. No login. No subscription. Everything runs in the browser and persis
 ## ✨ Features
 
 ### 🎮 Core Game Engine
+
 | Feature | Description |
 |---|---|
-| **XP & Level System** | Earn XP for every action — objectives, quizzes, drills, simulations, daily challenges. 8 levels from `ROOKIE` → `PRINCIPAL` |
-| **Operator Profile** | Enter your callsign on first launch. Personalises the HUD, hero greeting, and dashboard |
+| **XP & Level System** | Earn XP for every action — objectives, quizzes, drills, simulations, daily features. 8 levels from `ROOKIE` → `PRINCIPAL` |
+| **Operator Profile** | Enter your callsign on first launch — personalises the HUD, hero greeting, and dashboard |
 | **Day Streak Tracker** | Claim the daily challenge every day to build your streak |
 | **Confetti Celebrations** | Canvas-based particle burst fires on every quest completion |
-| **Dark / Light Mode** | Toggle between terminal-dark and clean-light themes. Preference saved across sessions |
+| **Dark / Light Mode** | Toggle between terminal-dark and clean-light themes — preference saved across sessions |
 | **Live XP in Tab Title** | Browser tab shows your current XP so you can track progress while switching tabs |
+| **Live Visitor Counter** | Real-time global visitor count in the footer and dashboard (counterapi.dev, session-deduplicated) |
+
+---
 
 ### ⚔️ Quest System (6 Quests)
+
 | Quest | Level | Topic | XP |
 |---|---|---|---|
 | Quest 1 — Origin Story | 🟢 Beginner | First `main.tf`, init/plan/apply cycle, local provider | +250 |
@@ -54,11 +59,14 @@ No backend. No login. No subscription. Everything runs in the browser and persis
 
 **Each quest includes:**
 - ✅ **Interactive objectives** — click to complete and earn XP
-- 💡 **Solution guides** — every objective has a `▼ SOLUTION` toggle with a full explanation, syntax-highlighted HCL/YAML code, and a pro tip
+- 💡 **Solution guides** — every objective has a `▼ SOLUTION` toggle with explanation, syntax-highlighted HCL/YAML, and a pro tip
 - 🧠 **Knowledge quiz** — a multiple-choice question that must be passed to complete the quest
 - 🔒 **Locked progression** — quests unlock sequentially, no skipping
 
+---
+
 ### 🃏 Flashcard Drill Mode
+
 - **60 cards** across 5 categories: Basics, State, Modules, CI/CD, Security
 - **3D flip animation** — click to flip from question to answer
 - **Spaced repetition** — cards marked "Review Again" reappear 2× more often
@@ -66,26 +74,22 @@ No backend. No login. No subscription. Everything runs in the browser and persis
 - **Session summary** — Got It / Review count, XP earned, accuracy %
 - **Review queue** — all missed cards in one filtered view
 
+---
+
 ### 📋 HCL Snippet Library
+
 - **62 production-ready snippets** across AWS, GCP, Azure, and multi-cloud patterns
 - **Live search** — filters across title, description, code, provider, and type simultaneously
 - **10 filter buttons** — ALL / AWS / GCP / AZURE / STATE / NETWORKING / COMPUTE / IAM / CI/CD / SECURITY
 - **Syntax highlighting** — keywords, strings, keys, comments colour-coded
 - **One-click copy** — copies raw HCL to clipboard and earns +2 XP
 
-**Snippet categories include:**
-- S3/GCS/Azure remote backends
-- AWS VPC, subnets, NAT Gateway, security groups
-- EC2, Launch Templates, Auto Scaling Groups
-- IAM roles, OIDC trust policies, instance profiles
-- GitHub Actions plan-on-PR and apply-on-merge workflows
-- Module structure patterns (`variables.tf`, `outputs.tf`, `locals`, `dynamic`, `for_each`)
-- GCP VPC, GKE autopilot cluster, Cloud SQL, service accounts
-- Azure VNet, AKS cluster, resource groups
-- Security patterns: `prevent_destroy`, `sensitive`, `precondition`, variable validation
-- Advanced: `moved` block, `check` block, `import` block, multi-region aliases, provider aliases
+Snippet categories: S3/GCS/Azure backends · AWS VPC/subnets/NAT/security groups · EC2/Launch Templates/ASG · IAM roles/OIDC · GitHub Actions workflows · Module patterns (`variables.tf`, `outputs.tf`, `locals`, `dynamic`, `for_each`) · GCP VPC/GKE/Cloud SQL · Azure VNet/AKS · `moved`, `check`, `import` blocks · multi-region provider aliases
+
+---
 
 ### ⚡ Timed Simulations
+
 6 scenario-based drills with real countdown timers:
 
 | Simulation | Difficulty | Time | XP |
@@ -97,7 +101,77 @@ No backend. No login. No subscription. Everything runs in the browser and persis
 | Multi-Cloud Parity Build | Advanced | 40 min | +250 |
 | Terratest Gauntlet | Expert | 60 min | +300 |
 
+---
+
+## 📅 Daily Micro-Learning — 7 Daily Features
+
+Build a 15-minute daily study habit. Fresh content rotates every day across all seven features.
+
+| Tab | What you get | XP | Resets |
+|---|---|---|---|
+| ⌨️ **CMD** | Command of the Day — syntax, all flags, 2 examples with COPY, when NOT to use | +5 | Daily |
+| 📐 **ARCH** | Architecture Pattern — ASCII diagram, Terraform sketch, trade-offs, pro tip | +10 | Daily |
+| 🔤 **TERM** | Term of the Day — pronunciation, definition, analogy, why it matters, code | +3 | Daily |
+| ⚠️ **ERROR** | Error of the Day — exact error text, root cause, numbered fix steps, prevention | +5 | Daily |
+| 🎤 **DAILY IQ** | Interview Question — full answer, working code example, pro tip | +40–70 | Daily |
+| ❓ **QUIZ** | Multiple-choice question mapped to Terraform Associate exam domains | +4 correct / +1 try | Daily |
+| 📅 **Daily Challenge** | Hands-on challenge with full answer, numbered steps, HCL example | Varies | Daily |
+
+### ⌨️ Command of the Day — 40 commands
+
+Rotating daily across Basics · State · Modules · CI/CD · Debug. Every card shows: syntax, all flags with descriptions, 2 real-world examples with COPY buttons, a "When NOT to use" warning, and a pro tip. Previous 18 commands shown in an expandable history grid.
+
+### 📐 Architecture Pattern of the Day — 30 patterns
+
+One production architecture pattern every day. Every card shows an ASCII topology diagram, Terraform code sketch with COPY button, side-by-side pros/cons trade-off panel, and a pro tip. Previous 18 patterns in expandable history grid.
+
+**Pattern categories:** Networking · Compute · Security · CI/CD · Storage · Kubernetes · Resilience · Multi-cloud
+
+**Sample patterns:** Hub-and-Spoke VPC · Zero-Trust with PrivateLink · Multi-AZ Active-Active · Blue-Green with ALB Weighted Routing · S3 Multi-Region Replication · GKE Private Cluster + Cloud SQL Proxy · GitOps with ArgoCD on EKS · VPC Endpoint Gateway · IAM Permission Boundaries · Direct Connect + VPN Backup · Spot Instance Fleet · Multi-Region Active-Passive + Route 53 · EKS IRSA · AWS WAF + ALB · Multi-Cloud Active-Active · Terraform GitOps with Atlantis · Secrets Manager · VPC Flow Logs → Athena · ECS Fargate + Service Connect · SQS Dead Letter Queue · S3 Event Pipeline · Terraform Multi-Account Landing Zone · EKS Karpenter · DNS Service Discovery · and 6 more
+
+### 🔤 Term of the Day — 50 terms
+
+Across Terraform · DevOps · Kubernetes · CI/CD · Security. Each term: phonetic pronunciation, plain-English definition, a real-world analogy, why it matters in production, and a code example.
+
+**Sample terms:** Idempotency · Drift · State · Backend · Provider · Module · GitOps · Immutable Infrastructure · SLA/SLO/SLI · Blast Radius · MTTR · Observability · Zero Downtime Deployment · Least Privilege · OIDC · for\_each · Lifecycle · Dynamic Block · Golden Path · Sensitive Value · Technical Debt · Toil · Shift Left · Canary Release · mTLS · On-Call · and 25 more
+
+### ⚠️ Error of the Day — 30 real errors
+
+Across STATE · AUTH · CONFIG · PLAN · BACKEND · IAM · PROVIDER. Every error card: exact terminal error text, root cause, numbered fix steps, exact commands with COPY button, and how to prevent recurrence. Severity: HIGH (red) · MED (amber).
+
+**Sample errors:** Error acquiring state lock · No valid credentials · Missing required argument · Resource not found in state · Corrupted state file · Unsupported argument (provider upgrade) · Reference to undeclared resource · Circular dependency cycle · Backend config changed · Provider inconsistent result · Validation failed · AccessDenied 403 · Corrupted JSON state · Assume role failed · Resource already exists · Invalid for\_each argument · Provider version mismatch · and 13 more
+
+### 🎤 Interview Question of the Day — 60 questions
+
+Across Terraform · Kubernetes · Linux · CI/CD · AWS · GCP. Full answers, working code examples with COPY, and pro tips. Previous 18 questions in an expandable history grid showing full answers inline.
+
+### ❓ Quiz of the Day — 100 questions
+
+Mapped to the 6 official Terraform Associate exam domains. Instant feedback — correct turns green, wrong turns red, correct answer always revealed. Explanation shown after every answer. Separate **Quiz Streak** tracks consecutive correct days. Live stats: Quiz Streak · Correct · Total · Accuracy %.
+
+| Exam Domain | Weight |
+|---|---|
+| Terraform Basics | 36% |
+| Terraform Modules | 22% |
+| Terraform Cloud / HCP | 16% |
+| IaC Concepts | 14% |
+| Terraform Purpose | 8% |
+| Terraform Workflow | 4% |
+
+---
+
+## 🗺️ Terraform Concept Map
+
+Interactive SVG diagram showing all core Terraform concepts and their relationships — rendered in-browser, no external libraries.
+
+**10 clickable nodes:** Provider · Resource · Variable · Output · Module · State · Locals · Backend · Plan/Apply · Workspace
+
+Click any node → see its definition, why it matters in production, a code example, and a **▶ OPEN QUEST** button that jumps directly to the relevant quest. Animated dashed dependency edges show relationship labels (creates · tracked in · stored in · inputs to · isolates · etc.).
+
+---
+
 ### 🏅 Achievement Badges
+
 10 badges that auto-unlock when you hit milestones:
 
 `🟢 FIRST APPLY` `🔐 STATE GUARDIAN` `📦 MODULE BUILDER` `⚡ PIPELINE RUNNER` `🚨 DRIFT BUSTER` `🏆 PLATFORM ENGINEER` `🏎️ SPEED RUNNER` `🌍 MULTI-CLOUD OPS` `⭐ DAILY WARRIOR` `💯 XP CENTURION`
@@ -106,15 +180,34 @@ No backend. No login. No subscription. Everything runs in the browser and persis
 Live rank against 7 simulated competitors. Your real XP is inserted and re-sorted dynamically.
 
 ### 📊 Dashboard
-- Operator profile card with initials avatar, level, join date
-- Live stats: Total XP, Quests Done, Objectives, Badges, Simulations, Streak
+- Operator profile card with initials avatar, level, and join date
+- Live stats: Total XP · Quests Done · Objectives · Badges · Simulations · Streak
+- Global visitor counter — live total visits to terraform.eknathalabs.com
 - Full activity log with timestamps
 
 ### 💡 Did You Know? Tip Bar
-20 rotating production Terraform tips displayed in a persistent bar below the HUD. Auto-rotates every 8 seconds. Manual navigation with `‹` / `›` buttons.
+20 rotating production Terraform tips in a persistent bar below the HUD. Auto-rotates every 8 seconds. Manual `‹` / `›` navigation.
 
-### 📅 Daily Challenge
-5 rotating challenges (resets at midnight). Claim each day to earn bonus XP and maintain your streak.
+---
+
+## 📊 Content at a Glance
+
+| Content Type | Count |
+|---|---|
+| Quests with full solution guides | 6 |
+| Quest objectives with ▼ SOLUTION toggles | 30 |
+| Flashcards (5 categories) | 60 |
+| HCL snippets (AWS / GCP / Azure / multi-cloud) | 62 |
+| Timed simulations | 6 |
+| Achievement badges | 10 |
+| Concept map nodes | 10 |
+| Architecture patterns (ARCH tab) | 30 |
+| Commands of the day (CMD tab) | 40 |
+| Terms of the day (TERM tab) | 50 |
+| Real Terraform errors (ERROR tab) | 30 |
+| Interview questions (DAILY IQ tab) | 60 |
+| Quiz questions — exam-mapped (QUIZ tab) | 100 |
+| Daily challenges with full answers | 5 |
 
 ---
 
@@ -130,7 +223,7 @@ terraform-labs/
         └── snippet-submission.md
 ```
 
-> The entire application — all game logic, 62 snippets, 60 flashcards, 6 quests with solutions, simulations, and themes — is contained in a **single `index.html` file** with no external dependencies beyond Google Fonts.
+> The entire application — 10+ learning tabs, 100 quiz questions, 30 architecture patterns, 50 terms, 30 errors, 40 commands, 60 interview questions, 62 snippets, 60 flashcards, 6 quests with solutions, simulations, concept map, and dual themes — is a **single `index.html` file** with zero external dependencies beyond Google Fonts.
 
 ---
 
@@ -144,7 +237,7 @@ Open **[terraform.eknathalabs.com](https://terraform.eknathalabs.com)** in your 
 git clone https://github.com/eknatha/terraform-labs.git
 cd terraform-labs
 
-# No build step needed — just open the file:
+# No build step — just open the file:
 open index.html          # macOS
 xdg-open index.html      # Linux
 start index.html         # Windows
@@ -156,12 +249,11 @@ python3 -m http.server 8080
 
 ### Option 3 — Host on GitHub Pages
 ```bash
-# Already set up at terraform.eknathalabs.com
+# Already live at terraform.eknathalabs.com
 # To fork and host your own:
 # 1. Fork this repo
-# 2. Go to Settings → Pages
-# 3. Source: Deploy from branch → main → / (root)
-# 4. Add your custom domain (optional)
+# 2. Settings → Pages → Deploy from branch → main → / (root)
+# 3. Add your custom domain (optional)
 ```
 
 ---
@@ -170,11 +262,12 @@ python3 -m http.server 8080
 
 | Person | How to use it |
 |---|---|
-| **DevOps engineer learning Terraform** | Work through Quests 1–3 in order. Use the Snippets tab during KodeKloud labs |
-| **Platform Engineering aspirant** | Complete all 6 quests. Focus on Quest 4–6 for production-grade patterns |
-| **Preparing for Terraform Associate cert** | Use Flashcard Drill Mode daily. Filter by each exam domain category |
-| **Preparing for a PE interview** | Quest 5 & 6 solutions map directly to "describe a production incident" questions |
-| **Senior engineer onboarding a team** | Share the URL — it's a free, no-login training resource for your team |
+| **DevOps engineer learning Terraform** | Work through Quests 1–3 in order. Use Snippets and CMD tab during KodeKloud labs |
+| **Platform Engineering aspirant** | Complete all 6 quests. Use ARCH tab daily for architecture interview preparation |
+| **Preparing for Terraform Associate cert** | Use QUIZ tab daily — 100 questions across all 6 official exam domains |
+| **Preparing for a PE interview** | ARCH patterns + DAILY IQ map directly to "describe a production design" questions |
+| **Building a daily study habit** | CMD + TERM + ERROR + QUIZ = 15-minute daily ritual |
+| **Senior engineer onboarding a team** | Share the URL — free, no-login, production-grade reference for the whole team |
 
 ---
 
@@ -187,6 +280,8 @@ python3 -m http.server 8080
 | **Storage** | Browser `localStorage` — all progress persists client-side |
 | **Confetti** | Custom canvas particle engine (no library) |
 | **Syntax highlighting** | Regex-based HCL tokeniser (no library) |
+| **Concept map** | SVG rendered in-browser with animated edges (no library) |
+| **Visitor counter** | counterapi.dev free tier — session-deduplicated daily counts |
 | **Themes** | CSS custom properties with `body.light-mode` toggle |
 | **Hosting** | GitHub Pages with custom domain |
 
@@ -210,31 +305,42 @@ Skill tiers unlock automatically as you complete quests. Each tier maps to real 
 
 ## 🏗️ Roadmap
 
-- [ ] Interview simulation mode (AI-scored PE interview questions)
-- [ ] GCP learning track (4 dedicated quests)
-- [ ] Study calendar heatmap (GitHub-style activity grid)
-- [ ] Shareable progress card (PNG download for LinkedIn)
-- [ ] Mock Terraform Associate exam (57Q / 60 min)
-- [ ] Terraform Plan Explainer (paste plan output → plain English)
-- [ ] Pomodoro focus timer in HUD
-- [ ] LinkedIn post generator (auto-trigger on milestones)
-- [ ] Community snippet submissions (GitHub Issue → PR flow)
+- [ ] Study heatmap — GitHub-style 12-week XP activity grid in the dashboard
+- [ ] Progress card download — PNG card (name, level, XP, badges) for LinkedIn / GitHub README
+- [ ] Cert readiness gauge — live % toward Terraform Associate pass mark, green at 70%
+- [ ] Mock exam — 57Q / 60 min, per-domain scoring, "Book the exam" CTA
+- [ ] AI interview coach — Claude grades your IQ answers with strengths, gaps, and ideal answer
+- [ ] LinkedIn post generator — pre-written post auto-triggered after quest/badge/level milestones
+- [ ] Pomodoro focus timer — 25-min HUD timer, +30 XP per completed session
+- [ ] XP combo multiplier — complete CMD + Challenge + IQ in one day = 1.5× XP until midnight
+- [ ] Streak freeze token — earn 1 freeze every 7 streak days, auto-protects on a missed day
+- [ ] GCP learning track — 4 dedicated quests: GKE, Cloud SQL, VPC, Workload Identity
+- [ ] 30-day Terraform challenge — one task per day, pledge card on day 1, certificate on day 30
+- [ ] Hall of Fame — list of engineers who completed all 6 quests (submit via GitHub Issue)
+- [ ] Community snippet submissions — GitHub Issue → PR flow with contributors section
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome — especially new HCL snippets, flashcard questions, and quest objectives.
+Contributions are welcome — especially new HCL snippets, flashcard questions, architecture patterns, and quiz questions.
 
 ### Submit a Snippet
 1. Open an [Issue](https://github.com/eknatha/terraform-labs/issues/new) using the **Snippet Submission** template
 2. Provide: title, provider (aws/gcp/azure/multi), type, HCL code, one-line description
-3. I'll review and merge into the Snippets tab
+3. Reviewed and merged into the Snippets tab
+
+### Submit a Quiz Question
+Open an Issue with the **Quiz Question** label and include:
+- Question text
+- 4 answer options with the correct one indicated
+- Exam domain: Terraform Basics / Modules / Cloud / IaC Concepts / Purpose / Workflow
+- One-sentence explanation of why the correct answer is right
 
 ### Submit a Flashcard
 Open an Issue with the **Flashcard** label:
 - Front: the question
-- Back: the answer (ideally with a code example)
+- Back: the answer (with a code example where possible)
 - Category: basics / state / modules / cicd / security
 
 ### General PRs
@@ -246,7 +352,7 @@ git push origin feat/your-feature
 # Open PR against main
 ```
 
-Commit message convention: `feat:` / `fix:` / `docs:` / `chore:` — keeps the git log clean.
+Commit message convention: `feat:` / `fix:` / `docs:` / `chore:`
 
 ---
 
