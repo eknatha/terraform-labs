@@ -644,6 +644,67 @@ footer span{color:var(--accent)}
 .vc-dash-num{font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:900;color:var(--accent3);letter-spacing:1px}
 .vc-dash-label{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--muted);margin-top:2px}
 .vc-dash-live{font-family:'Share Tech Mono',monospace;font-size:9px;color:var(--accent3);display:flex;align-items:center;gap:5px}
+
+/* CONCEPT MAP */
+.cmap-wrap{background:var(--surface);border:1px solid var(--border2);border-radius:12px;overflow:hidden;margin-bottom:20px}
+.cmap-toolbar{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border)}
+.cmap-title{font-family:'Orbitron',monospace;font-size:0.9rem;font-weight:700;color:var(--accent)}
+.cmap-hint{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--muted)}
+.cmap-svg-wrap{width:100%;overflow-x:auto;background:#020610;padding:20px 10px}
+.cmap-svg-wrap svg{display:block;margin:0 auto}
+.cmap-node rect{cursor:pointer;transition:all 0.2s;rx:8}
+.cmap-node:hover rect{filter:brightness(1.3)}
+.cmap-node text{font-family:'Share Tech Mono',monospace;pointer-events:none;dominant-baseline:central}
+.cmap-node .node-label{font-size:12px;font-weight:700}
+.cmap-node .node-sub{font-size:9px;opacity:0.75}
+.cmap-edge{stroke-dasharray:4 3;animation:dashAnim 20s linear infinite}
+@keyframes dashAnim{to{stroke-dashoffset:-100}}
+.cmap-edge-label{font-family:'Share Tech Mono',monospace;font-size:9px;fill:#334155}
+.cmap-info-panel{padding:18px 20px;border-top:1px solid var(--border);min-height:80px;transition:all 0.2s}
+.cmap-info-name{font-family:'Orbitron',monospace;font-size:0.95rem;font-weight:700;color:var(--accent);margin-bottom:6px}
+.cmap-info-desc{font-size:0.85rem;color:#94a3b8;line-height:1.65;margin-bottom:8px}
+.cmap-info-code{font-family:'Share Tech Mono',monospace;font-size:0.78rem;background:#020610;border:1px solid rgba(0,229,255,0.1);border-radius:5px;padding:8px 12px;color:#94a3b8;overflow-x:auto;white-space:pre;line-height:1.65}
+.cmap-info-goto{display:inline-flex;align-items:center;gap:6px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;padding:4px 12px;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.2);border-radius:3px;color:var(--accent);cursor:pointer;margin-top:10px;transition:all 0.2s}
+.cmap-info-goto:hover{background:rgba(0,229,255,0.16)}
+.cmap-placeholder{font-family:'Share Tech Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:1px;padding:10px 0}
+
+/* QUIZ OF THE DAY */
+.quiz-card{background:linear-gradient(135deg,rgba(239,68,68,0.07),rgba(124,58,237,0.05));border:1px solid rgba(239,68,68,0.22);border-radius:12px;padding:26px;margin-bottom:22px;position:relative;overflow:hidden}
+.quiz-card::before{content:'QUIZ OF THE DAY';position:absolute;top:12px;right:16px;font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--danger);opacity:0.45}
+.quiz-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.quiz-countdown{font-family:'Share Tech Mono',monospace;font-size:10px;color:var(--muted)}
+.quiz-domain{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;padding:3px 10px;border-radius:2px;background:rgba(239,68,68,0.1);color:var(--danger);border:1px solid rgba(239,68,68,0.22)}
+.quiz-streak{font-family:'Share Tech Mono',monospace;font-size:9px;padding:3px 10px;border-radius:2px;background:rgba(245,158,11,0.1);color:var(--accent4);border:1px solid rgba(245,158,11,0.22)}
+.quiz-question{font-family:'Orbitron',monospace;font-size:clamp(0.9rem,2vw,1.05rem);font-weight:700;color:#fff;margin-bottom:18px;line-height:1.45}
+.quiz-options{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.quiz-opt{display:flex;align-items:center;gap:12px;padding:11px 16px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:7px;cursor:pointer;transition:all 0.18s;font-size:0.88rem;color:#94a3b8;text-align:left}
+.quiz-opt:hover:not(.answered){background:rgba(0,229,255,0.06);border-color:rgba(0,229,255,0.25);color:#e2e8f0}
+.quiz-opt.correct{background:rgba(16,185,129,0.12);border-color:rgba(16,185,129,0.4);color:var(--accent3)}
+.quiz-opt.wrong{background:rgba(239,68,68,0.08);border-color:rgba(239,68,68,0.3);color:var(--danger)}
+.quiz-opt.revealed{background:rgba(16,185,129,0.06);border-color:rgba(16,185,129,0.2);color:var(--accent3)}
+.quiz-opt-letter{font-family:'Orbitron',monospace;font-size:10px;font-weight:700;width:22px;height:22px;border-radius:50%;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.18s}
+.quiz-opt.correct .quiz-opt-letter{background:var(--accent3);border-color:var(--accent3);color:#fff}
+.quiz-opt.wrong .quiz-opt-letter{background:var(--danger);border-color:var(--danger);color:#fff}
+.quiz-explain{display:none;margin-top:4px;padding:12px 16px;background:rgba(0,229,255,0.05);border:1px solid rgba(0,229,255,0.15);border-radius:7px;font-size:0.86rem;color:#94a3b8;line-height:1.65}
+.quiz-explain.show{display:block;animation:quizFade 0.3s ease}
+@keyframes quizFade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.quiz-explain-label{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:2px;color:var(--accent);margin-bottom:6px}
+.quiz-result-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px}
+.quiz-result-badge{font-family:'Share Tech Mono',monospace;font-size:11px;padding:5px 14px;border-radius:3px;letter-spacing:1px}
+.quiz-result-badge.correct{background:rgba(16,185,129,0.12);color:var(--accent3);border:1px solid rgba(16,185,129,0.3)}
+.quiz-result-badge.wrong{background:rgba(239,68,68,0.08);color:var(--danger);border:1px solid rgba(239,68,68,0.25)}
+.quiz-hist-label{font-family:'Share Tech Mono',monospace;font-size:10px;letter-spacing:3px;color:var(--danger);margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.quiz-stats-row{display:flex;gap:14px;margin-bottom:16px;flex-wrap:wrap}
+.quiz-stat{background:var(--surface);border:1px solid var(--border);border-radius:7px;padding:10px 16px;text-align:center}
+.quiz-stat-n{font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:700;color:var(--accent)}
+.quiz-stat-l{font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:1px;color:var(--muted);margin-top:2px}
+.quiz-hist-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px}
+.quiz-hist-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 14px}
+.quiz-hist-q{font-size:0.83rem;color:var(--text);line-height:1.4;margin-bottom:6px}
+.quiz-hist-meta{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.quiz-hist-correct{font-family:'Share Tech Mono',monospace;font-size:8px;padding:2px 7px;background:rgba(16,185,129,0.1);color:var(--accent3);border:1px solid rgba(16,185,129,0.2);border-radius:2px}
+.quiz-hist-wrong{font-family:'Share Tech Mono',monospace;font-size:8px;padding:2px 7px;background:rgba(239,68,68,0.08);color:var(--danger);border:1px solid rgba(239,68,68,0.2);border-radius:2px}
+.quiz-hist-domain{font-family:'Share Tech Mono',monospace;font-size:8px;padding:2px 7px;background:rgba(100,116,139,0.1);color:var(--muted);border:1px solid rgba(100,116,139,0.18);border-radius:2px}
 </style>
 </head>
 <body>
@@ -720,6 +781,8 @@ footer span{color:var(--accent)}
   <button class="tab-btn" onclick="switchTab('snippets')" id="tab-snippets">📋 SNIPPETS</button>
   <button class="tab-btn" onclick="switchTab('cmd')" id="tab-cmd">⌨️ CMD</button>
   <button class="tab-btn" onclick="switchTab('arch')" id="tab-arch">📐 ARCH</button>
+  <button class="tab-btn" onclick="switchTab('cmap')" id="tab-cmap">🗺️ CONCEPTS</button>
+  <button class="tab-btn" onclick="switchTab('quiz')" id="tab-quiz">❓ QUIZ</button>
   <button class="tab-btn" onclick="switchTab('term')" id="tab-term">🔤 TERM</button>
   <button class="tab-btn" onclick="switchTab('error')" id="tab-error">⚠️ ERROR</button>
   <button class="tab-btn" onclick="switchTab('iq')" id="tab-iq">🎤 DAILY IQ</button>
@@ -796,6 +859,60 @@ footer span{color:var(--accent)}
   <div class="stats-strip" id="statsStrip"></div>
   <span class="sec-label" style="margin-top:20px">// ACTIVITY LOG</span>
   <div id="actLog" style="display:flex;flex-direction:column;gap:7px;margin-top:10px"></div>
+</div>
+
+<!-- CONCEPT MAP -->
+<div class="tab-content" id="content-cmap">
+  <span class="sec-label">// TERRAFORM CONCEPTS</span>
+  <div class="sec-title">Terraform Concept Map</div>
+  <p class="sec-intro">Click any concept node to see its definition, why it matters, and a code example. Click the quest link to jump straight to the relevant quest.</p>
+
+  <div class="cmap-wrap">
+    <div class="cmap-toolbar">
+      <span class="cmap-title">⌨ TERRAFORM MENTAL MODEL</span>
+      <span class="cmap-hint">CLICK ANY NODE TO EXPLORE</span>
+    </div>
+    <div class="cmap-svg-wrap">
+      <svg id="cmapSvg" width="760" height="340" viewBox="0 0 760 340" xmlns="http://www.w3.org/2000/svg"></svg>
+    </div>
+    <div class="cmap-info-panel" id="cmapInfo">
+      <div class="cmap-placeholder">← Click a concept node above to see its definition, examples, and which quest covers it.</div>
+    </div>
+  </div>
+</div>
+
+<!-- QUIZ OF THE DAY -->
+<div class="tab-content" id="content-quiz">
+  <span class="sec-label">// DAILY QUIZ</span>
+  <div class="sec-title">Quiz of the Day</div>
+  <p class="sec-intro">One multiple-choice question every day from a 100-question bank mapped to Terraform Associate exam domains. +4 XP correct, +1 XP for trying. Build your exam-day recall one question at a time.</p>
+
+  <div class="quiz-stats-row">
+    <div class="quiz-stat"><div class="quiz-stat-n" id="quizStreakDisplay">0</div><div class="quiz-stat-l">QUIZ STREAK</div></div>
+    <div class="quiz-stat"><div class="quiz-stat-n" id="quizCorrectDisplay">0</div><div class="quiz-stat-l">CORRECT</div></div>
+    <div class="quiz-stat"><div class="quiz-stat-n" id="quizTotalDisplay">0</div><div class="quiz-stat-l">ATTEMPTED</div></div>
+    <div class="quiz-stat"><div class="quiz-stat-n" id="quizPctDisplay">—</div><div class="quiz-stat-l">ACCURACY</div></div>
+  </div>
+
+  <div class="quiz-card" id="quizCard">
+    <div class="quiz-meta">
+      <span class="quiz-countdown">⏰ RESETS IN: <span id="quizCountdown">--:--:--</span></span>
+      <span class="quiz-domain" id="quizDomain">BASICS</span>
+      <span class="quiz-streak" id="quizStreakBadge">🔥 0 DAY STREAK</span>
+    </div>
+    <div class="quiz-question" id="quizQuestion">Loading today's question...</div>
+    <div class="quiz-options" id="quizOptions"></div>
+    <div class="quiz-explain" id="quizExplain">
+      <div class="quiz-explain-label">// EXPLANATION</div>
+      <div id="quizExplainText"></div>
+    </div>
+    <div class="quiz-result-row" id="quizResultRow" style="display:none"></div>
+  </div>
+
+  <div>
+    <div class="quiz-hist-label">// PREVIOUS QUESTIONS</div>
+    <div class="quiz-hist-grid" id="quizHistGrid"></div>
+  </div>
 </div>
 
 <!-- ARCH PATTERN OF THE DAY -->
@@ -2517,6 +2634,8 @@ function switchTab(id){
   if(id==='term') initTerm();
   if(id==='arch') initArch();
   if(id==='error') initErr();
+  if(id==='cmap') initCmap();
+  if(id==='quiz') initQuiz();
 }
 
 // ──────────────────────────────────────────────
@@ -9890,6 +10009,511 @@ function togArchHist(card,idx){
       S.archViewed[key]={idx,title:ARCH_BANK[idx].title}; save();
     }
   }
+}
+
+
+
+// ──────────────────────────────────────────────
+// CONCEPT MAP ENGINE
+// ──────────────────────────────────────────────
+const CMAP_NODES = [
+  {
+    id:'provider', x:60, y:170, w:120, h:52, color:'#0e7490', border:'#00e5ff',
+    label:'Provider', sub:'hashicorp/aws',
+    quest:'q1',
+    desc:'A plugin that enables Terraform to communicate with a specific cloud or service API. Providers must be declared in required_providers, downloaded via terraform init, and configured before any resources can be created.',
+    code:`terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+provider "aws" { region = "us-east-1" }`,
+    connects:[{to:'resource',label:'creates'}]
+  },
+  {
+    id:'resource', x:230, y:170, w:120, h:52, color:'#6b21a8', border:'#a78bfa',
+    label:'Resource', sub:'aws_vpc.main',
+    quest:'q1',
+    desc:'A block that declares a piece of infrastructure Terraform will create, manage, and track. Resources have a type (aws_vpc), a local name (main), and arguments that configure the resource.',
+    code:`resource "aws_vpc" "main" {
+  cidr_block           = "10.0.0.0/16"
+  enable_dns_hostnames = true
+  tags = { Name = "prod-vpc", ManagedBy = "terraform" }
+}
+# Reference: aws_vpc.main.id`,
+    connects:[{to:'state',label:'tracked in'},{to:'plan',label:'shown in'}]
+  },
+  {
+    id:'variable', x:60, y:60, w:120, h:52, color:'#92400e', border:'#f59e0b',
+    label:'Variable', sub:'var.vpc_cidr',
+    quest:'q3',
+    desc:'A named input parameter that makes Terraform configurations reusable. Variables replace hardcoded values, letting the same config deploy dev (t3.micro) and prod (t3.large) without code changes.',
+    code:`variable "vpc_cidr" {
+  type        = string
+  description = "CIDR block for the VPC"
+  default     = "10.0.0.0/16"
+  validation {
+    condition     = can(cidrnetmask(var.vpc_cidr))
+    error_message = "Must be a valid CIDR."
+  }
+}`,
+    connects:[{to:'module',label:'inputs to'},{to:'resource',label:'configures'}]
+  },
+  {
+    id:'output', x:400, y:60, w:120, h:52, color:'#065f46', border:'#34d399',
+    label:'Output', sub:'output.vpc_id',
+    quest:'q3',
+    desc:'A named value exported from a Terraform configuration or module. Outputs expose resource attributes (VPC IDs, endpoints, ARNs) to callers after apply — they are the API of a module.',
+    code:`output "vpc_id" {
+  description = "ID of the created VPC"
+  value       = aws_vpc.main.id
+}
+output "db_endpoint" {
+  value     = aws_db_instance.main.endpoint
+  sensitive = true
+}`,
+    connects:[{to:'state',label:'read from'}]
+  },
+  {
+    id:'module', x:230, y:60, w:120, h:52, color:'#1e3a5f', border:'#60a5fa',
+    label:'Module', sub:'module.vpc',
+    quest:'q3',
+    desc:'A reusable, self-contained group of Terraform resources with defined inputs (variables) and outputs. Modules make infrastructure composable — the same VPC module can deploy dev and prod with different variable values.',
+    code:`module "vpc" {
+  source   = "./modules/vpc"
+  name     = "prod-vpc"
+  vpc_cidr = "10.0.0.0/16"
+  tags     = { Environment = "prod" }
+}
+# Access outputs: module.vpc.vpc_id`,
+    connects:[{to:'resource',label:'contains'},{to:'output',label:'exposes'}]
+  },
+  {
+    id:'state', x:400, y:170, w:120, h:52, color:'#1e3a5f', border:'#60a5fa',
+    label:'State', sub:'terraform.tfstate',
+    quest:'q2',
+    desc:'A JSON file recording every resource Terraform manages — IDs, attribute values, dependencies. State is the source of truth: Terraform compares it against config to calculate the plan. Losing state means Terraform cannot determine what already exists.',
+    code:`# Inspect state:
+terraform state list
+terraform state show aws_vpc.main
+
+# State file is plain JSON:
+{
+  "serial": 42,
+  "resources": [
+    { "type": "aws_vpc", "name": "main",
+      "instances": [{"attributes": {"id": "vpc-abc"}}] }
+  ]
+}`,
+    connects:[{to:'backend',label:'stored in'},{to:'plan',label:'compared by'}]
+  },
+  {
+    id:'locals', x:60, y:280, w:120, h:52, color:'#134e4a', border:'#2dd4bf',
+    label:'Locals', sub:'local.name_prefix',
+    quest:'q3',
+    desc:'Named values computed once from expressions inside a configuration. Locals reduce repetition and name complex expressions — like intermediate variables in programming. Evaluated once at plan time.',
+    code:`locals {
+  name_prefix = "\${var.env}-\${var.project}"
+  common_tags = merge(var.tags, {
+    Environment = var.env
+    ManagedBy   = "terraform"
+  })
+}
+# Use: local.name_prefix, local.common_tags`,
+    connects:[{to:'resource',label:'used in'}]
+  },
+  {
+    id:'backend', x:400, y:280, w:120, h:52, color:'#4c0519', border:'#f43f5e',
+    label:'Backend', sub:'backend "s3"',
+    quest:'q2',
+    desc:'The configuration specifying where Terraform stores state. Local backend (default) stores state in terraform.tfstate on disk. Remote backends (S3, GCS, Azure Blob) enable team collaboration, state locking, and versioned history.',
+    code:`terraform {
+  backend "s3" {
+    bucket         = "my-tf-state"
+    key            = "prod/terraform.tfstate"
+    region         = "us-east-1"
+    encrypt        = true
+    dynamodb_table = "tf-locks"
+  }
+}`,
+    connects:[]
+  },
+  {
+    id:'plan', x:570, y:170, w:120, h:52, color:'#4a1d96', border:'#c084fc',
+    label:'Plan / Apply', sub:'terraform plan',
+    quest:'q1',
+    desc:'Plan generates an execution plan — a preview of what Terraform will create, update, or destroy — without making changes. Apply executes the plan. Plan symbols: + create, ~ update, - destroy, -/+ destroy then recreate (means downtime).',
+    code:`# Generate and save the plan:
+terraform plan -out=plan.tfplan
+
+# Apply the saved plan exactly:
+terraform apply plan.tfplan
+
+# Drift detection in CI:
+terraform plan -detailed-exitcode
+# Exit 0=no change, 1=error, 2=changes`,
+    connects:[]
+  },
+  {
+    id:'workspace', x:230, y:280, w:120, h:52, color:'#064e3b', border:'#10b981',
+    label:'Workspace', sub:'terraform.workspace',
+    quest:'q2',
+    desc:'An isolated instance of state within a single backend. Each workspace gets its own state file. Use workspaces to manage dev/staging/prod environments from one codebase when environments are structurally identical.',
+    code:`terraform workspace new prod
+terraform workspace select prod
+terraform workspace list
+
+# Reference in config:
+locals {
+  size = {
+    dev  = "t3.micro"
+    prod = "t3.medium"
+  }[terraform.workspace]
+}`,
+    connects:[{to:'state',label:'isolates'},{to:'backend',label:'stored in'}]
+  },
+];
+
+const CMAP_EDGES_EXTRA = [
+  {from:'variable', to:'module',   label:'inputs to', curved:true},
+];
+
+let cmapSelectedNode = null;
+
+function initCmap(){
+  renderCmapSvg();
+}
+
+function renderCmapSvg(){
+  const svg = document.getElementById('cmapSvg');
+  if(!svg) return;
+
+  // Build edges list
+  const edges = [];
+  CMAP_NODES.forEach(n=>{
+    (n.connects||[]).forEach(c=>{
+      edges.push({from:n.id, to:c.to, label:c.label});
+    });
+  });
+  CMAP_EDGES_EXTRA.forEach(e=>edges.push(e));
+
+  let html = `<defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#334155"/>
+    </marker>
+  </defs>`;
+
+  // Draw edges first (below nodes)
+  edges.forEach(e=>{
+    const from = CMAP_NODES.find(n=>n.id===e.from);
+    const to   = CMAP_NODES.find(n=>n.id===e.to);
+    if(!from||!to) return;
+    const x1=from.x+from.w/2, y1=from.y+from.h/2;
+    const x2=to.x+to.w/2,    y2=to.y+to.h/2;
+    const mx=(x1+x2)/2, my=(y1+y2)/2;
+    html += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"
+      stroke="#1e3a5f" stroke-width="1.5" marker-end="url(#arr)"
+      class="cmap-edge" opacity="0.6"/>
+      <text x="${mx}" y="${my-5}" text-anchor="middle" class="cmap-edge-label">${e.label}</text>`;
+  });
+
+  // Draw nodes
+  CMAP_NODES.forEach(n=>{
+    const isSelected = cmapSelectedNode === n.id;
+    html += `<g class="cmap-node" onclick="selectCmapNode('${n.id}')" style="cursor:pointer">
+      <rect x="${n.x}" y="${n.y}" width="${n.w}" height="${n.h}"
+        fill="${n.color}" stroke="${n.border}"
+        stroke-width="${isSelected?2.5:1.5}" rx="8" opacity="${isSelected?1:0.85}"/>
+      <text x="${n.x+n.w/2}" y="${n.y+18}" text-anchor="middle"
+        fill="${n.border}" class="node-label">${n.label}</text>
+      <text x="${n.x+n.w/2}" y="${n.y+34}" text-anchor="middle"
+        fill="#64748b" class="node-sub">${n.sub}</text>
+    </g>`;
+  });
+
+  svg.innerHTML = html;
+}
+
+function selectCmapNode(id){
+  cmapSelectedNode = id;
+  renderCmapSvg();
+  const node = CMAP_NODES.find(n=>n.id===id);
+  if(!node) return;
+  const panel = document.getElementById('cmapInfo');
+  panel.innerHTML = `
+    <div class="cmap-info-name">${node.label}</div>
+    <div class="cmap-info-desc">${node.desc}</div>
+    <pre class="cmap-info-code">${node.code.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}</pre>
+    <button class="cmap-info-goto" onclick="switchTab('quests');setTimeout(()=>openQuestModal('${node.quest}'),200)">
+      ▶ OPEN ${node.quest.toUpperCase()} — ${getQuestTitle(node.quest)}
+    </button>
+  `;
+}
+
+function getQuestTitle(id){
+  const q = QUESTS.find(q=>q.id===id);
+  return q ? q.title.replace('Quest '+id.replace('q','')+' — ','') : id;
+}
+
+// ──────────────────────────────────────────────
+// QUIZ OF THE DAY — 100 questions
+// ──────────────────────────────────────────────
+const QUIZ_BANK = [
+  // TERRAFORM BASICS (36%)
+  {domain:'Terraform Basics',q:'Which command downloads provider plugins and initialises the working directory?',opts:['terraform get','terraform init','terraform plan','terraform validate'],correct:1,explain:'terraform init downloads providers into .terraform/, sets up the backend, and installs modules. It must be run before any other command in a new working directory.'},
+  {domain:'Terraform Basics',q:'What does "terraform plan" do?',opts:['Creates infrastructure immediately','Shows what changes will be made without applying them','Downloads provider plugins','Destroys all managed resources'],correct:1,explain:'terraform plan generates an execution plan showing exactly what Terraform will create, update, or destroy — without making any real changes. Always review the plan before applying.'},
+  {domain:'Terraform Basics',q:'Which plan output symbol indicates a resource will be DESTROYED then RECREATED?',opts:['~','+',' -','-/+'],correct:3,explain:'-/+ means destroy then recreate — this causes downtime for the resource. Always look for this symbol before applying in production. It is different from ~ (update in-place) which is usually safer.'},
+  {domain:'Terraform Basics',q:'What does "terraform validate" check?',opts:['Whether cloud resources already exist','HCL syntax and internal config consistency','Provider version compatibility','State file integrity'],correct:1,explain:'terraform validate checks HCL syntax and internal consistency — types, undefined references, missing arguments. It makes NO network calls and runs in under a second. It cannot verify if AMI IDs exist or IAM permissions are correct.'},
+  {domain:'Terraform Basics',q:'Which file records exact provider versions and checksums to ensure consistent installs?',opts:['terraform.tfstate','.terraform/providers.json','.terraform.lock.hcl','versions.tf'],correct:2,explain:'.terraform.lock.hcl is automatically generated by terraform init. Always commit it to Git so every engineer and CI runner uses identical provider binaries — preventing "works on my machine" issues.'},
+  {domain:'Terraform Basics',q:'What is the purpose of "terraform fmt"?',opts:['Validates HCL syntax','Reformats .tf files to canonical style','Updates provider versions','Generates documentation'],correct:1,explain:'terraform fmt auto-formats all .tf files to canonical Terraform style — consistent indentation, spacing, alignment. Run terraform fmt -check -recursive in CI to enforce formatting before merge.'},
+  {domain:'Terraform Basics',q:'Which argument to "terraform apply" skips the interactive confirmation prompt?',opts:['-force','-yes','-auto-approve','-no-confirm'],correct:2,explain:'-auto-approve skips the "yes" confirmation prompt. Use it in CI pipelines but never manually in production without reviewing the plan first. Always combine with a prior terraform plan review.'},
+  {domain:'Terraform Basics',q:'What does "terraform destroy" do?',opts:['Removes resources from state without deleting them','Destroys all infrastructure managed by the current config','Resets provider configurations','Removes the .terraform directory'],correct:1,explain:'terraform destroy destroys ALL infrastructure managed by the current configuration. Always run terraform plan -destroy first to preview what will be deleted. Add lifecycle { prevent_destroy = true } to critical resources.'},
+  {domain:'Terraform Basics',q:'What is the terraform.tfvars file used for?',opts:['Declaring variable types and defaults','Providing variable values automatically loaded by Terraform','Storing output values after apply','Configuring the Terraform backend'],correct:1,explain:'terraform.tfvars is automatically loaded by Terraform without a -var-file flag. It provides variable values. Never commit secrets.tfvars to Git — add it to .gitignore and inject sensitive values from a secrets manager.'},
+  {domain:'Terraform Basics',q:'Which command shows all resources currently tracked in state?',opts:['terraform show','terraform state list','terraform output','terraform providers'],correct:1,explain:'terraform state list prints all resource addresses tracked in state (e.g. aws_vpc.main, module.network.aws_subnet.private["us-east-1a"]). Always run this before any state surgery to confirm correct addresses.'},
+  {domain:'Terraform Basics',q:'What does "terraform output" display?',opts:['Provider version information','Values from the outputs.tf file after an apply','The full terraform plan','A summary of all resource attributes'],correct:1,explain:'terraform output reads output values from the current state. Use terraform output -raw name for raw string values in scripts, and terraform output -json for machine-readable JSON in CI pipelines.'},
+  {domain:'Terraform Basics',q:'Which lifecycle argument prevents a resource from being destroyed?',opts:['ignore_changes','create_before_destroy','prevent_destroy','replace_triggered_by'],correct:2,explain:'prevent_destroy = true in a lifecycle block will cause terraform apply to fail with an error if anything in the plan would destroy that resource. Use it for databases, EKS clusters, and other critical stateful resources.'},
+  {domain:'Terraform Basics',q:'What is the purpose of the "depends_on" meta-argument?',opts:['Sets resource creation order Terraform cannot auto-detect','Marks a resource as deprecated','Configures resource replacement behaviour','Declares required provider versions'],correct:0,explain:'depends_on creates an explicit dependency that Terraform cannot automatically detect from resource attribute references. It is only needed for hidden dependencies — for example, an IAM policy attachment that must exist before a Kubernetes cluster can function correctly.'},
+  {domain:'Terraform Basics',q:'Which function converts a list to a set in Terraform?',opts:['tolist()','tomap()','toset()','setlist()'],correct:2,explain:'toset() converts a list to a set, removing duplicate values and producing string-keyed identifiers. Use it with for_each to create stable resource addresses: for_each = toset(var.availability_zones).'},
+  {domain:'Terraform Basics',q:'What does "terraform console" provide?',opts:['A web UI for managing state','An interactive REPL for evaluating Terraform expressions','A visual dependency graph','A provider configuration wizard'],correct:1,explain:'terraform console opens an interactive shell for testing HCL expressions — cidrsubnet(), toset(), for expressions, string interpolations. Test complex cidrsubnet() calculations here before putting them in your configuration.'},
+  {domain:'Terraform Basics',q:'Which terraform plan flag saves the plan to a file for later apply?',opts:['-save','-plan-file','-out','-export'],correct:2,explain:'terraform plan -out=plan.tfplan saves the exact plan to a binary file. terraform apply plan.tfplan then applies that exact plan with no re-planning. This guarantees what was reviewed is what gets applied — the production-safe pattern.'},
+  {domain:'Terraform Basics',q:'What does the "count" meta-argument do?',opts:['Counts existing resources in state','Creates multiple instances of a resource indexed by integer','Sets the resource priority','Limits API calls per minute'],correct:1,explain:'count creates N instances of a resource indexed 0, 1, 2... References use count.index. Prefer for_each for most cases — deleting an item from a count list causes all higher-indexed resources to be recreated.'},
+  {domain:'Terraform Basics',q:'What is a Terraform data source?',opts:['A read-only block that fetches information about existing infrastructure','A writable resource block for databases only','The raw JSON of terraform.tfstate','A configuration for external data storage'],correct:0,explain:'A data source (data block) fetches information about existing infrastructure without creating or modifying anything. Use it to look up AMI IDs, existing VPCs, DNS zones, or outputs from other Terraform states.'},
+  {domain:'Terraform Basics',q:'Which command opens an interactive REPL for testing Terraform expressions?',opts:['terraform shell','terraform repl','terraform console','terraform eval'],correct:2,explain:'terraform console provides an interactive evaluator where you can test functions like cidrsubnet(), upper(), format(), and complex for expressions before adding them to your configuration files.'},
+  {domain:'Terraform Basics',q:'What does the "sensitive = true" attribute do on a variable or output?',opts:['Encrypts the value in the state file','Prevents the value from appearing in plan and apply log output','Marks the variable as required','Enables automatic rotation'],correct:1,explain:'sensitive = true prevents the value from appearing in terraform plan, apply, and output command logs. The value is still stored in state (which must be secured separately) but is masked in human-readable output as "(sensitive value)".'},
+  // IaC CONCEPTS (14%)
+  {domain:'IaC Concepts',q:'What does "idempotent" mean in the context of Terraform?',opts:['Running apply once is always faster than running it twice','Running apply multiple times on unchanged config produces the same result','Terraform can never destroy resources','Each resource is unique in the state file'],correct:1,explain:'Idempotency means running terraform apply on an already-applied unchanged configuration makes zero changes — "Plan: 0 to add, 0 to change, 0 to destroy." This makes Terraform safe to run in automated pipelines repeatedly.'},
+  {domain:'IaC Concepts',q:'What is infrastructure drift?',opts:['When Terraform is slower than expected','When real resources differ from what Terraform state expects','When providers release breaking changes','When state files become too large'],correct:1,explain:'Drift occurs when actual cloud resources differ from the desired state in Terraform state — usually caused by manual console changes, other automation, or resource self-modification. Detect with terraform plan -refresh-only.'},
+  {domain:'IaC Concepts',q:'What is the main difference between declarative and imperative IaC?',opts:['Declarative specifies desired end state; imperative specifies step-by-step instructions','Declarative is faster; imperative is more reliable','Declarative requires more code; imperative uses less','Declarative is for cloud; imperative is for on-premises'],correct:0,explain:'Terraform is declarative — you specify what you want (3 EC2 instances of type t3.small) and Terraform figures out how to get there. Imperative tools (Ansible playbooks, shell scripts) specify each step explicitly.'},
+  {domain:'IaC Concepts',q:'What is the "blast radius" in the context of infrastructure?',opts:['The number of resources Terraform can create per minute','The scope of impact if a change or failure affects a system','The size of the terraform.tfstate file','The maximum VPC CIDR block size'],correct:1,explain:'Blast radius refers to how many users or systems are affected if something goes wrong. Multi-account AWS architectures, separate VPCs, and separate state files reduce blast radius — a dev mistake cannot reach prod.'},
+  {domain:'IaC Concepts',q:'What does "immutable infrastructure" mean?',opts:['Infrastructure that cannot be tagged','Components are replaced rather than modified in place','State files that cannot be edited','Resources that auto-recover from failure'],correct:1,explain:'Immutable infrastructure means never modifying servers after deployment — instead, deploy a new version and terminate the old one. This eliminates configuration drift and makes rollback as simple as deploying the previous image.'},
+  {domain:'IaC Concepts',q:'What is a "golden path" in platform engineering?',opts:['The optimal network route between cloud regions','A pre-built opinionated route for common tasks that teams follow','A Terraform module for security hardening','The recommended upgrade path for providers'],correct:1,explain:'A golden path is a paved, well-supported route for common tasks — like deploying a new microservice. Instead of every team making infrastructure decisions from scratch, they call a golden path module that handles IAM, networking, logging, and monitoring automatically.'},
+  {domain:'IaC Concepts',q:'What is "toil" in the SRE / platform engineering context?',opts:['Bug-fixing work in production','Manual repetitive work that is automatable and scales linearly with service growth','Planning and design work','On-call rotations'],correct:1,explain:'Toil is manual, repetitive, tactical work that could be automated and adds no lasting value. Manually clicking "Create subnet" in the AWS console is toil. Terraform eliminates infrastructure toil by expressing it as code that runs automatically.'},
+  // TERRAFORM PURPOSE (8%)
+  {domain:'Terraform Purpose',q:'Which of these is NOT a key benefit of using Terraform?',opts:['Infrastructure as Code enabling version control','Multi-cloud provider support','Automatic application deployment without configuration','State management tracking resource relationships'],correct:2,explain:'Terraform manages infrastructure — it does not automatically deploy application code or manage application configuration. For application deployment you need tools like Ansible, Helm, or deployment pipelines. Terraform focuses on provisioning the infrastructure those tools run on.'},
+  {domain:'Terraform Purpose',q:'What is Terraform\'s primary use case?',opts:['Monitoring cloud resources','Provisioning and managing infrastructure across providers','Writing application code','Scanning infrastructure for security vulnerabilities'],correct:1,explain:'Terraform is an infrastructure provisioning tool — it creates, updates, and destroys cloud resources like VPCs, EC2 instances, databases, and Kubernetes clusters. It is not an application deployment tool, monitoring solution, or security scanner.'},
+  {domain:'Terraform Purpose',q:'Which statement best describes Terraform\'s multi-cloud support?',opts:['Terraform only supports AWS','Terraform supports multiple providers through provider plugins','Terraform requires a separate tool for each cloud','Multi-cloud requires Terraform Enterprise'],correct:1,explain:'Terraform\'s provider architecture allows it to manage resources across AWS, GCP, Azure, Kubernetes, and thousands of other platforms using the same HCL language and workflow. Each provider is a separate plugin downloaded via terraform init.'},
+  {domain:'Terraform Purpose',q:'How does Terraform differ from Ansible?',opts:['Terraform is faster than Ansible','Terraform is declarative and focuses on infrastructure state; Ansible is procedural and focuses on configuration management','Terraform requires no state file; Ansible uses a state file','Terraform only works on Linux'],correct:1,explain:'Terraform is declarative infrastructure provisioning — it manages desired state. Ansible is procedural configuration management — it runs ordered steps. They complement each other: Terraform provisions the servers, Ansible configures what runs on them.'},
+  {domain:'Terraform Purpose',q:'What type of file format does Terraform use for its configuration language?',opts:['YAML','JSON','HCL (HashiCorp Configuration Language)','TOML'],correct:2,explain:'Terraform uses HCL (HashiCorp Configuration Language) — a human-friendly configuration language designed to be readable while also supporting machine processing. Terraform also accepts JSON as an alternative but HCL is the standard.'},
+  // TERRAFORM MODULES (22%)
+  {domain:'Terraform Modules',q:'What is the minimum required argument in a module block?',opts:['version','name','source','provider'],correct:2,explain:'The source argument is always required in a module block — Terraform needs to know where to find the module code. Sources can be local paths (./modules/vpc), Git URLs, or Terraform registry paths (terraform-aws-modules/vpc/aws).'},
+  {domain:'Terraform Modules',q:'What is the purpose of "outputs.tf" in a Terraform module?',opts:['Declares provider version requirements','Exposes internal resource attributes to calling code','Defines backend configuration','Stores variable default values'],correct:1,explain:'outputs.tf exposes internal resource values (VPC IDs, subnet IDs, endpoints) to the root module or other modules that call this module. Outputs are the API of a module — they define what callers can access without knowing the internal resource names.'},
+  {domain:'Terraform Modules',q:'What does "for_each" use as resource identifiers instead of integer indexes?',opts:['Resource types','String keys from a map or set','Random UUIDs','Provider names'],correct:1,explain:'for_each creates resources keyed by stable string identifiers. Removing one key only destroys that one resource — all others are untouched. This is critical: with count, removing item [0] renumbers all others and triggers unnecessary recreation.'},
+  {domain:'Terraform Modules',q:'What is the purpose of the "locals" block?',opts:['Declares external variables','Computes named values once for reuse within the module','Stores sensitive secrets','Configures provider aliases'],correct:1,explain:'locals defines named values computed once from expressions — like intermediate variables in programming. Use locals to avoid repeating complex expressions and to name values for clarity. They are evaluated at plan time, not runtime.'},
+  {domain:'Terraform Modules',q:'How do you reference a module output in a root module?',opts:['output.module_name.output_name','module.module_name.output_name','var.module_name.output_name','data.module_name.output_name'],correct:1,explain:'Module outputs are referenced as module.module_name.output_name. For example, if a "vpc" module exports "vpc_id", you access it as module.vpc.vpc_id in the root module.'},
+  {domain:'Terraform Modules',q:'What is the "moved" block used for in Terraform 1.1+?',opts:['Moving state files between backends','Renaming resource addresses in state without destroying resources','Moving providers between modules','Migrating between Terraform versions'],correct:1,explain:'The moved{} block renames a resource address in state declaratively — without destroying and recreating the resource. It is version-controlled, visible in plan output, and reviewable in PRs. Prefer it over the terraform state mv CLI command.'},
+  {domain:'Terraform Modules',q:'What is a "dynamic" block in Terraform?',opts:['A block that changes at runtime based on cloud events','Generates repeated nested configuration blocks from a collection','A block for conditional resource creation','A block that refreshes resource attributes automatically'],correct:1,explain:'A dynamic block generates repeated nested blocks (like ingress rules in a security group) from a variable or list. Instead of writing 5 hardcoded ingress rules, you define the pattern once and Terraform generates all 5 from a variable.'},
+  {domain:'Terraform Modules',q:'What does "cidrsubnet()" function do?',opts:['Validates a CIDR block format','Calculates a subnet CIDR from a parent CIDR block','Lists all subnets in a VPC','Converts an IP address to CIDR notation'],correct:1,explain:'cidrsubnet(prefix, newbits, netnum) calculates a subnet CIDR. For example, cidrsubnet("10.0.0.0/16", 4, 2) returns "10.0.2.0/20". Use it to programmatically generate subnet CIDRs from a parent VPC CIDR — avoid hardcoding subnet addresses.'},
+  {domain:'Terraform Modules',q:'What is the difference between a "root module" and a "child module"?',opts:['Root modules are larger; child modules are smaller','The root module is the main working directory; child modules are called via module blocks','Root modules run first; child modules run last','Root modules use JSON; child modules use HCL'],correct:1,explain:'The root module is the directory where you run terraform commands — it contains your main .tf files. Child modules are called from the root module (or other modules) using module blocks. Each module is a self-contained unit with its own variables and outputs.'},
+  {domain:'Terraform Modules',q:'How do you install modules referenced in a configuration?',opts:['terraform module install','terraform get or terraform init','terraform providers install','terraform download'],correct:1,explain:'terraform init downloads both providers and modules referenced in the configuration. terraform get can also be used to download only modules without touching providers. Running terraform init is the standard first step.'},
+  {domain:'Terraform Modules',q:'Which expression creates a map from two lists using a for expression?',opts:['zipmap(list1, list2)','{ for k in list1 : k => list2[k] }','tomap([list1, list2])','merge(list1, list2)'],correct:0,explain:'zipmap(keys, values) creates a map from two lists of equal length. For example, zipmap(["a","b"], [1,2]) produces {"a"=1,"b"=2}. It is the most concise way to create a map from two parallel lists.'},
+  // TERRAFORM WORKFLOW (4%)
+  {domain:'Terraform Workflow',q:'What is the correct order of the core Terraform workflow?',opts:['plan → init → apply','init → validate → plan → apply','apply → plan → init','validate → apply → init → plan'],correct:1,explain:'The correct order is: init (download providers/modules) → validate (check syntax) → plan (preview changes) → apply (execute changes). In CI/CD, also add fmt -check before validate and run security scanning after plan.'},
+  {domain:'Terraform Workflow',q:'What does "terraform refresh" do (pre-0.15 behaviour)?',opts:['Downloads the latest provider','Updates state to match actual infrastructure without changing resources','Re-runs the last apply operation','Resets all resource attributes to defaults'],correct:1,explain:'terraform refresh updates the state file to match real infrastructure without making changes. Since Terraform 0.15, plan and apply automatically refresh state. Use terraform plan -refresh-only instead — it shows you the diff before committing to state updates.'},
+  {domain:'Terraform Workflow',q:'Which flag makes "terraform plan" output machine-readable exit codes for use in CI?',opts:['-machine','-exit-code','-detailed-exitcode','-ci-mode'],correct:2,explain:'-detailed-exitcode gives exit code 0 (no changes), 1 (error), or 2 (changes present). Use this in scheduled drift detection pipelines: if exit code is 2 when you expected 0, infrastructure has drifted unexpectedly.'},
+  {domain:'Terraform Workflow',q:'What happens if terraform apply fails halfway through?',opts:['Terraform automatically rolls back all changes','Successfully created resources remain; state is updated to reflect them','Terraform retries indefinitely','All resources are destroyed and state is reset'],correct:1,explain:'Terraform has no automatic rollback. If apply fails midway, already-created resources remain and state is updated to track them. Re-run terraform plan to see current state before retrying apply. This is why the plan review before apply is critical.'},
+  // TERRAFORM STATE (part of Basics for exam, extra q)
+  {domain:'Terraform Basics',q:'What is state locking and why is it important?',opts:['Encrypting the state file at rest','Preventing concurrent applies that could corrupt state','Versioning state file changes','Backing up state automatically'],correct:1,explain:'State locking (via DynamoDB for S3 backend) prevents two terraform apply operations from running simultaneously. Without locking, two concurrent applies can corrupt the state file, leaving infrastructure in an undefined state.'},
+  {domain:'Terraform Basics',q:'How do you remove a resource from state without deleting the real infrastructure?',opts:['terraform state delete','terraform state rm','terraform destroy -target','terraform import --remove'],correct:1,explain:'terraform state rm removes a resource from Terraform state without touching the real infrastructure. The resource keeps running — Terraform just forgets about it. Use this when you want to stop managing a resource or when it was already deleted manually.'},
+  {domain:'Terraform Basics',q:'What command imports an existing cloud resource into Terraform state?',opts:['terraform adopt','terraform import','terraform state add','terraform get resource'],correct:1,explain:'terraform import RESOURCE_ADDRESS RESOURCE_ID brings an existing cloud resource under Terraform management without recreating it. After import, always run terraform plan to verify your .tf configuration matches the imported resource\'s actual attributes.'},
+  {domain:'Terraform Basics',q:'What does the "backend" configuration block define?',opts:['The cloud provider to use','Where Terraform state is stored and how it is locked','The Terraform CLI version to use','Which resources to create first'],correct:1,explain:'The backend configuration tells Terraform where to store state (S3, GCS, Azure Blob, HCP Terraform) and how to lock it (DynamoDB for S3). Without a backend config, state is stored locally in terraform.tfstate on the engineer\'s machine.'},
+  {domain:'Terraform Basics',q:'What is "terraform force-unlock" used for?',opts:['Force-applying a plan that has conflicts','Releasing a stuck state lock when no operation is running','Unlocking encrypted state files','Bypassing resource dependencies'],correct:1,explain:'terraform force-unlock LOCK_ID manually releases a DynamoDB state lock. Only use it after confirming with 100% certainty that no terraform apply is actually running — force-unlocking an active apply corrupts the state file.'},
+  // TERRAFORM CLOUD / HCP (16%)
+  {domain:'Terraform Cloud',q:'What is HCP Terraform (formerly Terraform Cloud)?',opts:['A Terraform version manager','A managed service for remote state, remote runs, and team collaboration','A cloud-specific Terraform provider','A Terraform UI plugin for VS Code'],correct:1,explain:'HCP Terraform (HashiCorp Cloud Platform, formerly Terraform Cloud) is a managed service providing remote state storage, remote plan and apply runs, team access controls, a private module registry, and policy enforcement with Sentinel.'},
+  {domain:'Terraform Cloud',q:'What does a Terraform workspace in HCP Terraform represent?',opts:['A git branch','A collection of infrastructure managed with its own state, variables, and run history','A provider configuration','A single terraform resource'],correct:1,explain:'In HCP Terraform, a workspace is the unit of isolation — it has its own state file, variable set, run history, and access controls. Every workspace maps to a specific environment or component of infrastructure.'},
+  {domain:'Terraform Cloud',q:'What is Sentinel in HCP Terraform / Terraform Enterprise?',opts:['A monitoring agent for Terraform runs','A policy-as-code framework that enforces rules before apply','A version control integration','A cost estimation tool'],correct:1,explain:'Sentinel is HashiCorp\'s policy-as-code framework integrated into HCP Terraform and Terraform Enterprise. It evaluates policies against Terraform plans and can block applies that violate organisational rules — for example, requiring all resources to have cost centre tags.'},
+  {domain:'Terraform Cloud',q:'Which backend configuration is used to connect a Terraform configuration to HCP Terraform?',opts:['backend "terraform_cloud"','backend "hcp"','cloud {}','backend "remote"'],correct:2,explain:'The cloud{} block (Terraform 1.1+) is the modern way to connect to HCP Terraform. The older backend "remote" {} still works but is deprecated in favour of cloud {}. Specify the organisation and workspace name inside the block.'},
+  {domain:'Terraform Cloud',q:'What is a "private module registry" in HCP Terraform?',opts:['A local cache of public modules','An internal registry where organisations publish reusable Terraform modules for team use','A registry for private cloud providers only','A backup location for state files'],correct:1,explain:'The private module registry in HCP Terraform lets organisations publish and version their own Terraform modules internally. Teams can discover and use approved, tested modules without navigating Git repos. It supports semantic versioning and README documentation.'},
+  {domain:'Terraform Cloud',q:'What is the purpose of "Terraform Enterprise" compared to HCP Terraform?',opts:['Terraform Enterprise is free; HCP Terraform is paid','Terraform Enterprise is self-hosted for air-gapped and compliance-sensitive environments','Terraform Enterprise only supports AWS','Terraform Enterprise has fewer features than HCP Terraform'],correct:1,explain:'Terraform Enterprise is the self-hosted version of HCP Terraform — designed for organisations that need to run Terraform in their own data centres or air-gapped environments due to compliance, regulatory, or security requirements.'},
+  {domain:'Terraform Cloud',q:'What does "remote operations" mean in HCP Terraform?',opts:['Terraform runs triggered by remote git pushes only','Plan and apply operations run on HCP Terraform\'s infrastructure rather than on the engineer\'s laptop','Operations that modify remote state only','Running Terraform from a different cloud region'],correct:1,explain:'Remote operations means terraform plan and terraform apply execute on HCP Terraform\'s managed infrastructure rather than locally. This provides a consistent environment, a full audit log, and lets team members trigger and review runs from the HCP Terraform UI.'},
+  {domain:'Terraform Cloud',q:'How does HCP Terraform handle variable storage?',opts:['Variables are stored only in .tfvars files in the repo','Variables (including sensitive ones) are stored encrypted in HCP Terraform workspaces','Variables are stored in AWS Secrets Manager automatically','Variables must be passed via command line only'],correct:1,explain:'HCP Terraform stores workspace variables (including sensitive values like API keys) encrypted in its database. Sensitive variables are write-only — they can be set but not read back through the UI. This keeps secrets out of version control.'},
+  {domain:'Terraform Cloud',q:'What is a "run trigger" in HCP Terraform?',opts:['A scheduled plan that runs every hour','A connection between workspaces so that a successful apply in one workspace triggers a run in another','A webhook that triggers on Git push','A policy that requires manual approval'],correct:1,explain:'Run triggers connect HCP Terraform workspaces so a successful apply in an upstream workspace (e.g. networking) automatically triggers a run in a downstream workspace (e.g. compute) that depends on it. This chains workspaces in dependency order.'},
+  // Additional practical questions
+  {domain:'Terraform Basics',q:'What is the "templatefile()" function used for?',opts:['Creating file resources','Rendering a template file with variable substitutions at plan time','Uploading files to S3','Generating SSL certificates'],correct:1,explain:'templatefile(path, vars) reads a template file and renders it with provided variable substitutions. Use it for user_data scripts on EC2 instances — the script template is stored in a .tpl file and rendered with instance-specific variables at plan time.'},
+  {domain:'Terraform Basics',q:'Which terraform command shows the current state in human-readable format?',opts:['terraform list','terraform describe','terraform show','terraform state view'],correct:2,explain:'terraform show displays the current state or a saved plan file in human-readable format. terraform show -json outputs machine-readable JSON that can be piped to jq for programmatic analysis of resource attributes.'},
+  {domain:'Terraform Modules',q:'What does "path.module" refer to in a Terraform configuration?',opts:['The path to the Terraform binary','The filesystem path to the directory containing the current module\'s .tf files','The S3 path to the state file','The URL path of the provider registry'],correct:1,explain:'path.module is the filesystem path to the directory containing the current .tf file. Use it to reference files relative to the module — for example, templatefile("\${path.module}/templates/userdata.sh.tpl", vars). This ensures the module works from any location.'},
+  {domain:'Terraform Basics',q:'What is the purpose of the "-replace" flag in terraform apply?',opts:['Replaces the entire state file','Forces a specific resource to be destroyed and recreated','Replaces variable values','Updates the provider version'],correct:1,explain:'-replace="resource_address" forces Terraform to destroy and recreate a specific resource even if no configuration changes were made. It is the modern replacement for the deprecated terraform taint command. Always preview with terraform plan -replace="..." first.'},
+  {domain:'IaC Concepts',q:'What is "GitOps" in the context of infrastructure management?',opts:['Using Git to store only application code','A practice where Git is the source of truth for infrastructure and automated tooling reconciles live state to match it','Running Terraform from a Git repository manually','Storing Terraform state in a Git repository'],correct:1,explain:'GitOps means every change to infrastructure goes through Git — PRs, reviews, and merges. Automated tooling (ArgoCD, Flux, Atlantis) continuously reconciles live infrastructure to match what is in Git. Every production change is a Git commit with author and timestamp.'},
+  {domain:'Terraform Basics',q:'Which provider argument configures Terraform to assume an IAM role before making API calls?',opts:['iam_role','role_arn','assume_role { role_arn = "..." }','switch_role'],correct:2,explain:'The assume_role {} block inside the AWS provider configuration makes Terraform call sts:AssumeRole before any API operations. This is the standard pattern for cross-account infrastructure management — Terraform runs in one account and assumes roles in target accounts.'},
+  {domain:'Terraform Modules',q:'What does "count.index" refer to?',opts:['The total number of resources created','The current iteration index (0-based) when using count','The resource ID assigned by the cloud provider','The number of failed resource creations'],correct:1,explain:'When using count = N on a resource, count.index gives the current 0-based iteration number (0, 1, 2... N-1). Use it to reference elements in a list: var.azs[count.index]. Prefer for_each over count when resources have meaningful keys.'},
+  {domain:'Terraform Cloud',q:'What is OPA (Open Policy Agent) used for in Terraform workflows?',opts:['Optimising Terraform performance','Policy-as-code enforcement on Terraform plan output','Open source provider for AWS','Online plan analysis tool'],correct:1,explain:'OPA with conftest evaluates Terraform plan JSON against policy rules written in the Rego language. Run conftest test plan.json --policy ./policy/ in CI after terraform plan to enforce rules like "all resources must have required tags" before allowing apply.'},
+  {domain:'Terraform Basics',q:'What environment variable enables verbose debug logging in Terraform?',opts:['TERRAFORM_LOG','TF_DEBUG','TF_LOG','TERRAFORM_DEBUG'],correct:2,explain:'TF_LOG=DEBUG (or TRACE for maximum verbosity) enables verbose logging. Set TF_LOG_PATH to write logs to a file. Use TF_LOG_PROVIDER=DEBUG to debug only the provider plugin. Always unset TF_LOG after debugging — it generates very large log volumes.'},
+  {domain:'IaC Concepts',q:'What is "infrastructure drift" and how is it detected?',opts:['When Terraform takes longer than expected; detected by timing the run','When real resources differ from state; detected by terraform plan -refresh-only','When provider versions change; detected by terraform init -upgrade','When costs exceed budget; detected by AWS Cost Explorer'],correct:1,explain:'Drift is detected by terraform plan -refresh-only which shows differences between real infrastructure and Terraform state without proposing config changes. Run this in a scheduled CI pipeline (nightly) and alert on exit code 2 (changes found).'},
+  {domain:'Terraform Basics',q:'What is the purpose of a "precondition" in a Terraform lifecycle block?',opts:['Pre-downloads provider plugins before apply','Validates a condition before creating a resource and fails with a custom error message','Sets the creation order of resources','Checks the Terraform version compatibility'],correct:1,explain:'lifecycle { precondition { condition = ...; error_message = "..." } } validates a condition before resource creation. If the condition is false, Terraform fails with your custom error message. Use it to enforce business rules — for example, preventing t2.micro in production environments.'},
+  {domain:'Terraform Modules',q:'What does the "merge()" function do in Terraform?',opts:['Merges two state files','Combines multiple maps into one, with later maps overriding earlier ones','Joins two lists together','Merges provider configurations'],correct:1,explain:'merge(map1, map2, ...) creates a new map combining all input maps. Keys in later maps override the same keys in earlier maps. Common use: merge(var.tags, { Name = "specific-resource" }) to add resource-specific tags to a common tag set.'},
+  {domain:'Terraform Basics',q:'Which command checks if your Terraform configuration is syntactically valid without making API calls?',opts:['terraform check','terraform lint','terraform validate','terraform verify'],correct:2,explain:'terraform validate checks HCL syntax and internal consistency without any network calls. It is fast (milliseconds) and safe to run in CI on every push. Combine it with terraform fmt -check and tflint for comprehensive static analysis before the slower terraform plan.'},
+  {domain:'Terraform Cloud',q:'What is a "variable set" in HCP Terraform?',opts:['A collection of .tfvars files','A reusable collection of variables that can be applied to multiple workspaces','A set of allowed variable values','A Terraform version constraint set'],correct:1,explain:'A variable set is a reusable collection of variables in HCP Terraform that can be applied to multiple workspaces or an entire organisation. Use it for shared credentials (AWS keys, API tokens) that multiple workspaces need — one update propagates everywhere.'},
+  {domain:'Terraform Basics',q:'What is the purpose of "terraform providers lock"?',opts:['Prevents providers from being updated','Adds platform-specific checksums to .terraform.lock.hcl for specified platforms','Locks the Terraform CLI version','Restricts which providers can be used'],correct:1,explain:'terraform providers lock -platform=linux_amd64 -platform=darwin_arm64 adds checksums for the specified platforms to .terraform.lock.hcl. Run this when your CI uses Linux but developers use macOS — without cross-platform checksums, CI will fail with checksum mismatch errors.'},
+  {domain:'Terraform Modules',q:'What is the difference between "for_each" with a map vs a set?',opts:['Maps are faster; sets are more secure','With a map, each.key and each.value are both available; with a set (toset), each.key and each.value are both the element string','Maps create ordered resources; sets create random order','There is no difference between map and set in for_each'],correct:1,explain:'When for_each uses a map, each.key is the map key and each.value is the map value. When for_each uses a set (toset(list)), each.key and each.value are both the string element (the set has no separate key and value). Use maps when you need both identifier and configuration data.'},
+  {domain:'Terraform Basics',q:'What does "terraform state mv" do?',opts:['Moves the state file to a new backend','Renames a resource address in state without destroying the real resource','Migrates state from one workspace to another','Copies a resource to a new region'],correct:1,explain:'terraform state mv SOURCE DESTINATION renames a resource\'s address in state without destroying or recreating it. Use it when refactoring — renaming a resource or moving it into a module. Prefer the moved{} block (Terraform 1.1+) for version-controlled, reviewable refactoring.'},
+  {domain:'IaC Concepts',q:'What is "policy as code" in the infrastructure context?',opts:['Writing infrastructure policies in Python','Defining compliance and security rules as machine-readable code that can be automatically enforced','A coding standard for Terraform files','A type of Terraform provider'],correct:1,explain:'Policy as code means compliance, security, and governance rules are written as code (Sentinel, OPA/Rego, Checkov rules) and automatically evaluated against infrastructure changes in CI pipelines. This enforces rules consistently without relying on manual review.'},
+  {domain:'Terraform Basics',q:'Which function formats a string with placeholders in Terraform?',opts:['sprintf()','interpolate()','format()','printf()'],correct:2,explain:'format(format_string, args...) formats a string using printf-style placeholders. For example, format("prefix-%s-%03d", "app", 7) produces "prefix-app-007". String interpolation ("\${var.name}") is more common for simple cases.'},
+  {domain:'Terraform Modules',q:'What is "Terragrunt" and why would you use it?',opts:['A Terraform GUI interface','A Terraform wrapper adding DRY config, dependency management, and per-environment backend generation','A provider for managing Terraform modules','A Terraform testing framework'],correct:1,explain:'Terragrunt wraps Terraform to add: DRY configuration (shared backend configs), automatic per-environment state paths, dependency declarations between module deployments, and before/after hooks. Use it when environments differ structurally and workspaces are insufficient.'},
+  {domain:'Terraform Workflow',q:'What is Atlantis used for?',opts:['A cloud cost management tool','PR-based GitOps Terraform workflow — runs plan on PR, apply on merge, with full audit trail','A Terraform state backup tool','A provider for cloud networking resources'],correct:1,explain:'Atlantis is an open-source server that automates Terraform via PR comments. When a PR is opened, Atlantis runs terraform plan and posts output as a comment. Engineers review it, then comment "atlantis apply" to execute. Every change has a Git commit, PR, and apply log.'},
+];
+
+// ──────────────────────────────────────────────
+// QUIZ ENGINE
+// ──────────────────────────────────────────────
+let quizTimer = null;
+let quizAnswered = false;
+
+function getTodayQuizIdx(){
+  const t = new Date();
+  const doy = Math.floor((t - new Date(t.getFullYear(),0,0)) / 86400000);
+  return (doy + 5) % QUIZ_BANK.length;
+}
+
+function initQuiz(){
+  const idx = getTodayQuizIdx();
+  const q   = QUIZ_BANK[idx];
+  const today = new Date().toISOString().slice(0,10);
+  const answered = S.quizAnswered && S.quizAnswered[today];
+
+  // Stats
+  const stats = S.quizStats || {correct:0,total:0,streak:0};
+  document.getElementById('quizStreakDisplay').textContent = stats.streak || 0;
+  document.getElementById('quizCorrectDisplay').textContent = stats.correct || 0;
+  document.getElementById('quizTotalDisplay').textContent = stats.total || 0;
+  const pct = stats.total > 0 ? Math.round(stats.correct/stats.total*100)+'%' : '—';
+  document.getElementById('quizPctDisplay').textContent = pct;
+
+  // Domain + streak badge
+  document.getElementById('quizDomain').textContent = q.domain.toUpperCase();
+  document.getElementById('quizStreakBadge').textContent = '🔥 ' + (stats.streak||0) + ' DAY STREAK';
+
+  // Question
+  document.getElementById('quizQuestion').textContent = q.q;
+
+  // Options
+  const letters = ['A','B','C','D'];
+  document.getElementById('quizOptions').innerHTML = q.opts.map((opt,i)=>`
+    <button class="quiz-opt${answered ? (i===q.correct?' revealed':'') : ''}"
+      id="quizOpt${i}"
+      onclick="${answered ? '' : `answerQuiz(${i},${idx})`}"
+      ${answered ? 'disabled' : ''}>
+      <span class="quiz-opt-letter">${letters[i]}</span>
+      ${opt}
+    </button>`).join('');
+
+  // If already answered today, show explanation
+  if(answered){
+    const wasCorrect = answered.correct;
+    const chosenIdx  = answered.chosen;
+    showQuizResult(chosenIdx, q.correct, q.explain, wasCorrect, false);
+    quizAnswered = true;
+  } else {
+    quizAnswered = false;
+    document.getElementById('quizExplain').classList.remove('show');
+    document.getElementById('quizResultRow').style.display = 'none';
+  }
+
+  // Countdown
+  clearInterval(quizTimer);
+  function tick(){
+    const now=new Date(), mid=new Date(now); mid.setHours(24,0,0,0);
+    const d=Math.floor((mid-now)/1000), el=document.getElementById('quizCountdown');
+    if(el) el.textContent=String(Math.floor(d/3600)).padStart(2,'0')+'h '+String(Math.floor((d%3600)/60)).padStart(2,'0')+'m '+String(d%60).padStart(2,'0')+'s';
+  }
+  tick(); quizTimer = setInterval(tick,1000);
+
+  renderQuizHist();
+}
+
+function answerQuiz(chosen, qIdx){
+  if(quizAnswered) return;
+  quizAnswered = true;
+  const q = QUIZ_BANK[qIdx];
+  const today = new Date().toISOString().slice(0,10);
+  const isCorrect = chosen === q.correct;
+  const xpEarned = isCorrect ? 4 : 1;
+
+  // Update stats
+  S.quizStats = S.quizStats || {correct:0,total:0,streak:0};
+  S.quizAnswered = S.quizAnswered || {};
+  S.quizAnswered[today] = {qIdx, chosen, correct:isCorrect, domain:q.domain};
+  S.quizStats.total++;
+  if(isCorrect){
+    S.quizStats.correct++;
+    S.quizStats.streak = (S.quizStats.streak||0) + 1;
+  } else {
+    S.quizStats.streak = 0;
+  }
+  save();
+
+  // XP
+  addXP(xpEarned, 'Quiz of the Day: ' + (isCorrect ? 'Correct!' : 'Attempted'));
+  toast((isCorrect ? '✓ Correct! ' : '✗ Incorrect — ') + '+' + xpEarned + ' XP', isCorrect ? 't-badge' : 't-xp');
+
+  // Update stats display
+  document.getElementById('quizStreakDisplay').textContent = S.quizStats.streak;
+  document.getElementById('quizCorrectDisplay').textContent = S.quizStats.correct;
+  document.getElementById('quizTotalDisplay').textContent = S.quizStats.total;
+  document.getElementById('quizPctDisplay').textContent = Math.round(S.quizStats.correct/S.quizStats.total*100)+'%';
+  document.getElementById('quizStreakBadge').textContent = '🔥 ' + S.quizStats.streak + ' DAY STREAK';
+
+  showQuizResult(chosen, q.correct, q.explain, isCorrect, true);
+  checkBadges();
+}
+
+function showQuizResult(chosen, correct, explain, isCorrect, animate){
+  const letters = ['A','B','C','D'];
+  // Style all options
+  for(let i=0;i<4;i++){
+    const btn = document.getElementById('quizOpt'+i);
+    if(!btn) continue;
+    btn.disabled = true;
+    btn.classList.add('answered');
+    if(i===correct) btn.classList.add('correct');
+    else if(i===chosen && !isCorrect) btn.classList.add('wrong');
+  }
+  // Show explanation
+  const expEl = document.getElementById('quizExplain');
+  document.getElementById('quizExplainText').textContent = explain;
+  if(animate) expEl.classList.add('show');
+  else expEl.style.display = 'block';
+
+  // Result row
+  const resRow = document.getElementById('quizResultRow');
+  resRow.style.display = 'flex';
+  resRow.innerHTML = isCorrect
+    ? '<span class="quiz-result-badge correct">✓ CORRECT — +4 XP</span>'
+    : `<span class="quiz-result-badge wrong">✗ INCORRECT — Correct answer: ${letters[correct]} — +1 XP for trying</span>`;
+}
+
+function renderQuizHist(){
+  const grid = document.getElementById('quizHistGrid');
+  if(!grid) return;
+  const answered = S.quizAnswered || {};
+  const todayKey = new Date().toISOString().slice(0,10);
+
+  // Build history from answered (excluding today)
+  const hist = Object.entries(answered)
+    .filter(([date]) => date !== todayKey && !date.startsWith('hist_'))
+    .sort(([a],[b]) => b.localeCompare(a))
+    .slice(0,18);
+
+  if(!hist.length){
+    grid.innerHTML = '<div style="font-family:\'Share Tech Mono\',monospace;font-size:11px;color:var(--muted);letter-spacing:1px">Answer today\'s question to start your history.</div>';
+    return;
+  }
+
+  grid.innerHTML = hist.map(([date, data])=>{
+    const q = QUIZ_BANK[data.qIdx];
+    if(!q) return '';
+    return `<div class="quiz-hist-card">
+      <div class="quiz-hist-q">${q.q}</div>
+      <div class="quiz-hist-meta">
+        ${data.correct
+          ? '<span class="quiz-hist-correct">✓ CORRECT</span>'
+          : '<span class="quiz-hist-wrong">✗ WRONG</span>'}
+        <span class="quiz-hist-domain">${(q.domain||'').toUpperCase()}</span>
+        <span style="font-family:\'Share Tech Mono\',monospace;font-size:8px;color:var(--muted)">${date}</span>
+      </div>
+    </div>`;
+  }).join('');
 }
 
 
